@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Strategy Assessment (ISA) | Jantz Wealth Advisors</title>
+<meta name="description" content="A 12-question assessment that matches you to one of the four Global Core portfolios based on your time horizon, capacity for risk, and comfort with risk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#232E3D; --blue:#0077B6; --blue-dark:#00639A; --stone:#EDE8E0; --ground:#F6F3EE;
+    --slate:#4A4F55; --rule:#D9D3C8; --white:#fff; --green:#2E7D5B; --red:#A94A3E;
+    --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--sans);color:var(--slate);background:var(--ground);font-size:16px;line-height:1.55}
+  button{font-family:inherit;cursor:pointer}
+  a{color:var(--blue)}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  .lab{font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+  h2{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.2;color:var(--blue)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;border:0;border-radius:2px;
+       font-weight:600;font-size:15px;letter-spacing:.02em;padding:15px 28px;text-decoration:none;transition:background .15s}
+  .btn:hover{background:var(--blue-dark)}
+  .btn:disabled{background:var(--rule);color:#fff;cursor:not-allowed}
+  .btn:focus-visible,.opt:focus-visible,.link:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .link{background:none;border:0;color:var(--blue);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+
+  /* ---------- hero (intro) ---------- */
+  .hero{background:var(--ink);color:#fff;padding:64px 0 60px;position:relative;overflow:hidden}
+  .hero .lines{position:absolute;inset:0;width:100%;height:100%;opacity:.13;pointer-events:none}
+  .hero .lines path{vector-effect:non-scaling-stroke}
+  .hero .wrap{position:relative}
+  .mono{display:inline-block;border:1.5px solid #fff;padding:9px 14px 8px;font-weight:600;font-size:15px;letter-spacing:.24em;line-height:1}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:52px;line-height:1.08;margin-top:22px;letter-spacing:-.005em}
+  .hero p.lead{font-size:18px;line-height:1.55;max-width:620px;margin-top:18px;color:#fff}
+  .hstats{display:flex;gap:56px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.22);max-width:620px}
+  .hstats .n{font-family:var(--serif);font-size:34px;line-height:1.1}
+  .hstats .lab{color:var(--rule);margin-top:6px}
+  .hero .btn{margin-top:36px}
+  .hero .fine{font-size:13px;color:var(--rule);margin-top:16px}
+
+  /* ---------- slim bar (quiz + result) ---------- */
+  .bar{background:var(--ink);color:#fff;padding:20px 0 0;display:none}
+  .bar .row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:18px}
+  .bar .id{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:19px}
+  .bar .mono{font-size:11px;padding:6px 9px 5px;font-family:var(--sans)}
+  .bar .pos{color:var(--rule)}
+  .track{height:3px;background:rgba(255,255,255,.2)}
+  .track i{display:block;height:100%;width:0;background:#fff;transition:width .3s ease}
+
+  body[data-view="quiz"] .hero, body[data-view="result"] .hero{display:none}
+  body[data-view="quiz"] .bar, body[data-view="result"] .bar{display:block}
+  .stage{display:none;padding:36px 0 8px}
+  body[data-view="quiz"] #quiz, body[data-view="result"] #result{display:block}
+
+  .card{background:#fff;border:1px solid var(--rule);padding:40px 44px 34px}
+  .sec{color:var(--blue)}
+  .q{font-family:var(--serif);font-weight:500;font-size:29px;line-height:1.25;color:var(--ink);margin-top:10px}
+  .q:focus{outline:none}
+  .hint{font-size:14px;margin-top:8px}
+  .opts{display:grid;gap:10px;margin-top:26px}
+  .opt{display:flex;align-items:flex-start;gap:14px;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);
+       padding:16px 18px;font-size:16px;line-height:1.45;color:var(--ink);border-radius:2px;transition:border-color .12s,background .12s}
+  .opt:hover{border-color:var(--ink)}
+  .opt .dot{flex:0 0 18px;height:18px;border:1.5px solid var(--slate);border-radius:50%;margin-top:2px;position:relative}
+  .opt[aria-checked="true"]{border-color:var(--ink);background:var(--stone)}
+  .opt[aria-checked="true"] .dot{border-color:var(--ink)}
+  .opt[aria-checked="true"] .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--ink)}
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--rule)}
+  .keys{font-size:12.5px;margin-top:14px;text-align:right}
+
+  /* ---------- result ---------- */
+  .rname{font-family:var(--serif);font-weight:400;font-size:44px;line-height:1.1;color:var(--ink);margin-top:8px}
+  .rtag{font-size:17px;color:var(--ink);margin-top:12px;max-width:640px}
+  .why{background:var(--stone);padding:24px 26px 22px;margin-top:28px}
+  .why p{font-size:15px;color:var(--ink);margin-top:14px}
+  .why p.flag{border-left:3px solid var(--blue);padding-left:12px}
+  .meter{display:grid;grid-template-columns:150px 1fr;gap:6px 18px;align-items:center;margin-top:14px}
+  .meter .name{font-weight:600;font-size:14px;color:var(--ink)}
+  .meter .name small{display:block;font-weight:400;font-size:12.5px;color:var(--slate)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+  .steps span{font-size:11.5px;font-weight:600;text-align:center;padding:8px 2px;background:#fff;color:var(--slate);border:1px solid var(--rule)}
+  .steps span.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+  .stat{background:var(--stone);padding:16px 16px 14px}
+  .stat .n{font-family:var(--serif);font-size:30px;line-height:1.15;color:var(--ink);margin-top:2px}
+  .stat .n.neg{color:var(--red)}
+  .stat .lab{color:var(--ink);font-size:10px}
+  .stat p{font-size:12.5px;line-height:1.4;margin-top:3px;color:var(--ink)}
+  .own{margin-top:30px}
+  .own h3,.sub3{font-family:var(--serif);font-weight:500;font-size:22px;color:var(--blue)}
+  .abar{display:flex;height:26px;margin-top:12px}
+  .abar div{display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;color:#fff}
+  table.hold{width:100%;border-collapse:collapse;margin-top:6px}
+  table.hold td{padding:11px 0;border-bottom:1px solid var(--rule);font-size:14.5px;color:var(--ink);vertical-align:middle}
+  table.hold .sw{width:24px}.sw i{display:inline-block;width:11px;height:11px;border:1px solid var(--ink)}
+  table.hold .tk{width:62px;font-weight:700}
+  table.hold .nm span{color:var(--slate);font-size:13.5px;margin-left:8px}
+  table.hold .wt{text-align:right;font-family:var(--serif);font-size:20px;width:70px}
+  .perfnote{font-size:12px;line-height:1.5;margin-top:12px}
+  .cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:30px;padding-top:26px;border-top:1px solid var(--rule)}
+  .rfine{font-size:13px;margin-top:18px}
+
+  /* ---------- supporting sections ---------- */
+  section.blk{padding:56px 0 0}
+  section.blk > .wrap > p.intro{font-size:17px;color:var(--ink);max-width:680px;margin-top:10px}
+  .four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+  .four > div{background:#fff;border:1px solid var(--rule);padding:22px 20px 20px}
+  .four .num{font-family:var(--serif);font-size:20px;color:var(--blue)}
+  .four h3{font-size:16px;font-weight:600;color:var(--ink);margin:4px 0 8px}
+  .four p{font-size:14px;line-height:1.5}
+  .how{background:var(--stone);margin-top:56px;padding:52px 0}
+  .how .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:22px}
+  .how h3{font-size:16px;font-weight:600;color:var(--ink)}
+  .how p{font-size:15px;color:var(--ink);margin-top:6px}
+  .how .rulebox{border-top:1px solid var(--ink);margin-top:30px;padding-top:20px;font-size:17px;color:var(--ink);max-width:720px}
+  .how em{font-family:var(--serif);font-style:italic;color:var(--blue);font-size:19px}
+  .pf{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+  .pf > div{background:#fff;border:1px solid var(--rule);padding:22px 20px 20px;position:relative}
+  .pf > div.match{border:2px solid var(--ink);padding:21px 19px 19px}
+  .pf .tag{display:none;position:absolute;top:-11px;left:16px;background:var(--ink);color:#fff;font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:4px 9px}
+  .pf > div.match .tag{display:block}
+  .pf .lab{color:var(--blue);font-size:10px}
+  .pf h3{font-family:var(--serif);font-weight:500;font-size:24px;color:var(--ink);margin-top:4px}
+  .pf p{font-size:14px;line-height:1.5;margin-top:8px;min-height:108px}
+  .mix{display:flex;height:8px;margin-top:14px}
+  .mix i{display:block;height:100%}
+  .pf ul{list-style:none;margin-top:10px;font-size:13px;color:var(--ink)}
+  .pf li{display:flex;justify-content:space-between;padding:3px 0}
+  .faq{margin-top:22px;border-top:1px solid var(--rule)}
+  details{border-bottom:1px solid var(--rule)}
+  summary{list-style:none;cursor:pointer;padding:18px 34px 18px 0;font-weight:600;font-size:16px;color:var(--ink);position:relative}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";position:absolute;right:4px;top:14px;font-family:var(--serif);font-size:24px;color:var(--blue)}
+  details[open] summary::after{content:"\2212"}
+  details p{padding:0 0 20px;font-size:15px;max-width:720px;color:var(--ink)}
+  .close{background:var(--ink);color:#fff;margin-top:60px;padding:56px 0}
+  .close h2{color:#fff;font-weight:400;font-size:34px}
+  .close p{font-size:17px;margin-top:10px;max-width:560px}
+  .close .btn{margin-top:26px}
+  .close .alt{display:inline-block;margin:26px 0 0 26px;color:#fff;font-weight:600;font-size:14px;background:none;border:0;text-decoration:underline;text-underline-offset:3px}
+  footer{padding:28px 0 36px}
+  footer p{font-size:12px;line-height:1.6}
+
+  @media (max-width:820px){
+    .four,.pf{grid-template-columns:1fr 1fr}
+    .pf p{min-height:0}
+    .stats{grid-template-columns:1fr 1fr}
+    .how .cols{grid-template-columns:1fr;gap:22px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 16px}
+    .hero{padding:44px 0 42px}
+    .hero .lines{opacity:.08}
+    .hero h1{font-size:38px}
+    .hero p.lead{font-size:16.5px}
+    .hstats{gap:28px}
+    .hstats .n{font-size:28px}
+    .card{padding:26px 20px 24px}
+    .q{font-size:24px}
+    .rname{font-size:34px}
+    .four,.pf{grid-template-columns:1fr}
+    .meter{grid-template-columns:1fr}
+    .bar .id span.full{display:none}
+    .keys{display:none}
+    h2{font-size:26px}
+    .close .alt{margin-left:0;display:block}
+    .steps span{font-size:10.5px}
+    table.hold .nm span{display:block;margin-left:0}
+    table.hold .tk{width:54px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body data-view="intro">
+<div id="page">
+
+  <!-- ============ INTRO HERO ============ -->
+  <header class="hero" id="hero">
+    <svg class="lines" aria-hidden="true" focusable="false" viewBox="0 0 1280 520" preserveAspectRatio="xMaxYMax slice"><g fill="none" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke"><path d="M 430 560 C 660 470, 900 330, 1320 250"/><path d="M 430 560 C 660 450, 900 296, 1320 204"/><path d="M 430 560 C 660 430, 900 262, 1320 158"/><path d="M 430 560 C 660 410, 900 228, 1320 112"/><path d="M 430 560 C 660 390, 900 194, 1320 66"/><path d="M 430 560 C 660 370, 900 160, 1320 20"/><path d="M 430 560 C 660 350, 900 126, 1320 -26"/><path d="M 430 560 C 660 330, 900 92, 1320 -72"/><path d="M 430 560 C 660 310, 900 58, 1320 -118"/><path d="M 430 560 C 660 290, 900 24, 1320 -164"/><path d="M 430 560 C 660 270, 900 -10, 1320 -210"/></g></svg>
+    <div class="wrap">
+      <div class="mono" aria-hidden="true">ISA</div>
+      <h1>Investment Strategy Assessment</h1>
+      <p class="lead">Twelve questions about your timeline, your finances and how you handle market swings. Your answers match you to one of the four Global Core portfolios.</p>
+      <div class="hstats">
+        <div><div class="n">12</div><div class="lab">Questions</div></div>
+        <div><div class="n">3 min</div><div class="lab">Approximate time</div></div>
+        <div><div class="n">4</div><div class="lab">Possible portfolios</div></div>
+      </div>
+      <button class="btn" id="beginBtn" type="button">Begin the assessment <span aria-hidden="true">&rarr;</span></button>
+      <p class="fine">No sign-up needed. Your answers stay in your browser and are not saved or sent anywhere.</p>
+    </div>
+  </header>
+
+  <!-- ============ SLIM BAR (quiz + result) ============ -->
+  <div class="bar" id="bar">
+    <div class="wrap">
+      <div class="row">
+        <div class="id"><span class="mono" aria-hidden="true">ISA</span><span class="full">Investment Strategy Assessment</span></div>
+        <div class="lab pos" id="barPos" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="track" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" id="track"><i id="fill"></i></div>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <main class="stage" id="quiz">
+    <div class="wrap">
+      <div class="card">
+        <div class="lab sec" id="qSec"></div>
+        <h2 class="q" id="qText" tabindex="-1"></h2>
+        <p class="hint" id="qHint"></p>
+        <div class="opts" id="opts" role="radiogroup" aria-labelledby="qText"></div>
+        <div class="nav">
+          <button class="link" id="backBtn" type="button">&larr; Back</button>
+          <button class="btn" id="nextBtn" type="button" disabled>Next <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <p class="keys">Keyboard: 1 to 4 to choose, Enter for next.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ RESULT ============ -->
+  <main class="stage" id="result">
+    <div class="wrap">
+      <div class="card">
+        <div class="lab sec">Your match</div>
+        <h2 class="rname" id="rName" tabindex="-1"></h2>
+        <p class="rtag" id="rTag"></p>
+
+        <div class="why">
+          <div class="lab" style="color:var(--ink)">How your answers scored</div>
+          <div class="meter">
+            <div class="name">Capacity for risk<small>Time horizon and finances</small></div>
+            <div class="steps" id="mCap"></div>
+            <div class="name">Comfort with risk<small>Tolerance and emotions</small></div>
+            <div class="steps" id="mCom"></div>
+          </div>
+          <p id="rWhy"></p>
+          <p class="flag" id="rFlag" hidden></p>
+        </div>
+
+        <div class="stats" id="rStats"></div>
+        <p class="perfnote" id="rPerfNote" hidden></p>
+
+        <div class="own">
+          <h3>What you would own</h3>
+          <div class="abar" id="rBar"></div>
+          <table class="hold" id="rHold"></table>
+        </div>
+
+        <div class="cta">
+          <a class="btn" id="schedBtn" href="#" target="_top" rel="noopener">Talk through your result <span aria-hidden="true">&rarr;</span></a>
+          <button class="link" id="seeAllBtn" type="button">Compare all four portfolios</button>
+          <button class="link" id="againBtn" type="button">Take it again</button>
+        </div>
+        <p class="rfine">Your match is a starting point for a conversation, not a recommendation. The right portfolio also depends on your taxes, your other accounts and your full financial picture.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ WHAT IT LOOKS AT ============ -->
+  <section class="blk">
+    <div class="wrap">
+      <h2>What the assessment looks at</h2>
+      <p class="intro">Three questions in each of four areas. Together they show how much risk you can afford to take and how much you are comfortable taking.</p>
+      <div class="four">
+        <div><div class="num">01</div><h3>Time horizon</h3><p>When you will start using this money, and how long it needs to last once you do.</p></div>
+        <div><div class="num">02</div><h3>Risk capacity</h3><p>How well your finances could absorb a bad year without changing your plans.</p></div>
+        <div><div class="num">03</div><h3>Risk tolerance</h3><p>The trade-off you would choose between growth and the size of the swings.</p></div>
+        <div><div class="num">04</div><h3>Emotions</h3><p>How you are likely to feel, and what you are likely to do, when markets fall.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW THE MATCH IS MADE ============ -->
+  <section class="how">
+    <div class="wrap">
+      <h2>How your match is made</h2>
+      <div class="cols">
+        <div><h3>Your capacity for risk</h3><p>Time horizon and risk capacity are about your situation. Someone who needs the money in three years cannot afford the same swings as someone who will not touch it for twenty, no matter how calm they feel.</p></div>
+        <div><h3>Your comfort with risk</h3><p>Risk tolerance and emotions are about you. A portfolio that looks right on paper does not help if a rough year leads you to sell at the bottom.</p></div>
+      </div>
+      <p class="rulebox">Each side points to one of the four portfolios. When they disagree, your match is <em>the more conservative of the two.</em></p>
+    </div>
+  </section>
+
+  <!-- ============ THE FOUR PORTFOLIOS ============ -->
+  <section class="blk" id="portfolios">
+    <div class="wrap">
+      <h2>The four Global Core portfolios</h2>
+      <p class="intro">Every portfolio is built from the same five low-cost funds. What changes from one to the next is the weighting.</p>
+      <div class="pf" id="pfGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ QUESTIONS ============ -->
+  <section class="blk">
+    <div class="wrap">
+      <h2>Common questions</h2>
+      <div class="faq">
+        <details><summary>Is my result investment advice?</summary><p>No. It is an educational starting point based on twelve answers. A recommendation takes a conversation about your goals, taxes, other accounts and income needs.</p></details>
+        <details><summary>What if my capacity and my comfort point to different portfolios?</summary><p>That is common. The assessment matches you to the more conservative of the two and shows you both, so you can see where the gap is. A wide gap is worth talking through before you invest.</p></details>
+        <details><summary>Will my result change over time?</summary><p>It can. Your time horizon shortens as you get closer to using the money, and your finances and outlook change. It is worth retaking the assessment every couple of years or after a major life event.</p></details>
+        <details><summary>Do you keep my answers?</summary><p>No. The assessment runs entirely in your browser. Nothing is stored or sent unless you choose to share your result with us.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section class="close">
+    <div class="wrap">
+      <h2>Prefer to talk it through?</h2>
+      <p>Bring your result, or skip the assessment and start with a conversation about what you want your money to do.</p>
+      <a class="btn" id="schedBtn2" href="#" target="_top" rel="noopener">Schedule a conversation <span aria-hidden="true">&rarr;</span></a>
+      <button class="alt" id="topBtn" type="button">Take the assessment</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>The Investment Strategy Assessment (ISA) is provided for education only. Your match is a directional indication based on your responses. It is not investment advice and is not an offer or recommendation to buy or sell any security. All investing involves risk, including loss of principal. Portfolio holdings and weights may change. Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ───────────────────────────────────────────────────────────────
+  // SETTINGS — the things you are most likely to change
+  // ───────────────────────────────────────────────────────────────
+  var CONFIG = {
+    // false: results show the stock / Treasury / gold mix and fund expenses only.
+    // true:  results also show hypothetical, backtested returns (PERF below).
+    //        Leave false until Compliance approves showing them on a public page.
+    SHOW_PERFORMANCE: false,
+    PERF_AS_OF: 'September 30, 2026',
+    PERF_BASIS: 'net of a 1.50% annual advisory fee',
+    SCHEDULE_URL: 'https://www.jantzwealth.com/schedule'
+  };
+
+  // ───────────────────────────────────────────────────────────────
+  // QUESTIONS — 12 questions, 3 in each of 4 areas. Each answer scores 1 to 4.
+  // side 'cap' = capacity for risk (time horizon + risk capacity)
+  // side 'com' = comfort with risk (risk tolerance + emotions)
+  // ───────────────────────────────────────────────────────────────
+  var QUESTIONS = [
+    { sec: 'Time horizon', side: 'cap',
+      text: 'When do you expect to start taking money out of this portfolio?',
+      opts: ['Within the next 3 years', 'In 3 to 7 years', 'In 8 to 15 years', 'In more than 15 years'] },
+    { sec: 'Time horizon', side: 'cap',
+      text: 'Once you start taking money out, how long does it need to last?',
+      opts: ['I will use most of it within 5 years', '5 to 10 years', '10 to 20 years', 'More than 20 years, or I may never need it'] },
+    { sec: 'Time horizon', side: 'cap',
+      text: 'How likely is it that you will need a large, unplanned withdrawal in the next two years?',
+      opts: ['Very likely', 'Possible', 'Unlikely', 'Very unlikely'] },
+
+    { sec: 'Risk capacity', side: 'cap',
+      text: 'Outside of this portfolio, how many months of living expenses do you have set aside in cash?',
+      opts: ['Less than 1 month', '1 to 3 months', '3 to 6 months', 'More than 6 months'] },
+    { sec: 'Risk capacity', side: 'cap',
+      text: 'How much of your total savings and investments would this portfolio represent?',
+      opts: ['Nearly all of it (more than 75%)', 'Most of it (50% to 75%)', 'Some of it (25% to 50%)', 'A small part (less than 25%)'] },
+    { sec: 'Risk capacity', side: 'cap',
+      text: 'If this portfolio fell 20% in one year, what would it mean for your plans?',
+      opts: ['I would have to change my plans in a major way', 'I would have to cut back or delay something important', 'It would be uncomfortable, but my plans would hold', 'Very little. I have other income or assets to lean on'] },
+
+    { sec: 'Risk tolerance', side: 'com',
+      text: 'You invest $100,000. One year later, which range would you choose for where it stands?',
+      hint: 'These are illustrations, not projections for any portfolio.',
+      opts: ['It could be up $7,000 or down $4,000', 'It could be up $12,000 or down $8,000', 'It could be up $18,000 or down $13,000', 'It could be up $25,000 or down $20,000'] },
+    { sec: 'Risk tolerance', side: 'com',
+      text: 'What is the largest one-year drop you could accept in exchange for higher long-term growth?',
+      opts: ['Less than 5%', '5% to 10%', '10% to 20%', 'More than 20%'] },
+    { sec: 'Risk tolerance', side: 'com',
+      text: 'Which matters more to you?',
+      opts: ['Limiting declines, even if growth is modest', 'Mostly limiting declines, with some growth', 'Mostly growth, with some cushion in bad years', 'Growth, even with large swings along the way'] },
+
+    { sec: 'Emotions', side: 'com',
+      text: 'Markets drop sharply. A few months after investing $100,000, your account shows $85,000. What do you most likely do?',
+      opts: ['Sell and move to cash', 'Sell some to reduce my risk', 'Hold and wait', 'Invest more while prices are lower'] },
+    { sec: 'Emotions', side: 'com',
+      text: 'During a rough stretch in the market, how closely would you watch your account?',
+      opts: ['Every day, and it would weigh on me', 'Every week, with some worry', 'Now and then, without much worry', 'Rarely. I would wait for my next statement'] },
+    { sec: 'Emotions', side: 'com',
+      text: 'Think of a time your investments fell noticeably. Which is closest to how you felt?',
+      hint: 'If it has never happened to you, choose how you think you would feel.',
+      opts: ['I lost sleep over it', 'I worried, and thought about getting out', 'I did not enjoy it, but I stayed put', 'It did not bother me much'] }
+  ];
+
+  // ───────────────────────────────────────────────────────────────
+  // PORTFOLIOS — mirror the Global Core overviews
+  // ───────────────────────────────────────────────────────────────
+  var FUNDS = {
+    SGOV: ['Short-term U.S. Treasuries', 'Stability and cash for rebalancing'],
+    SCHD: ['U.S. dividend stocks', 'Income from established companies'],
+    SCHB: ['U.S. total stock market', 'Broad long-term growth'],
+    IAU:  ['Gold', 'A cushion when stocks struggle'],
+    SCHF: ['International developed stocks', 'Growth beyond the U.S.']
+  };
+  var RAMP = ['#232E3D', '#4A4F55', '#7D8187', '#B1B3B6', '#D9D3C8'];
+  var PORTFOLIOS = [
+    { key: 'conservative', name: 'Conservative', tier: 'Tier 1',
+      tag: 'Built for you if protecting what you have saved comes first, and you still want steady growth and income working in the background.',
+      blurb: 'Nearly half in Treasury bills, with dividend stocks as the largest stock holding.',
+      mix: [40, 45, 15], exp: '0.10%',
+      alloc: [['SGOV', 45], ['SCHD', 20], ['IAU', 15], ['SCHB', 10], ['SCHF', 10]],
+      perf: { ann: '5.47%', worst: '-4.90%', yld: '2.72%' } },
+    { key: 'moderate', name: 'Moderate', tier: 'Tier 2',
+      tag: 'Built for you if you want steady growth and income, with a large stability sleeve to soften the rough years.',
+      blurb: 'A little over half in stocks, with close to a third in Treasury bills.',
+      mix: [55, 30, 15], exp: '0.09%',
+      alloc: [['SGOV', 30], ['SCHD', 25], ['SCHB', 20], ['IAU', 15], ['SCHF', 10]],
+      perf: { ann: '7.32%', worst: '-7.21%', yld: '2.43%' } },
+    { key: 'balanced', name: 'Balanced', tier: 'Tier 3',
+      tag: 'Built for you if you want your savings to keep growing, with enough stability on hand to stay the course when markets get rough.',
+      blurb: 'About 70% in stocks, led by the broad U.S. market, with a fifth in Treasury bills.',
+      mix: [70, 20, 10], exp: '0.07%',
+      alloc: [['SCHB', 35], ['SGOV', 20], ['SCHD', 20], ['SCHF', 15], ['IAU', 10]],
+      perf: { ann: '8.72%', worst: '-10.78%', yld: '2.21%' } },
+    { key: 'growth', name: 'Growth', tier: 'Tier 4',
+      tag: 'Built for you if you have many years ahead and want your money working hard, and you can sit through market drops along the way.',
+      blurb: 'About 90% in stocks. Rises and falls with the market, for money you will not need for many years.',
+      mix: [90, 5, 5], exp: '0.05%',
+      alloc: [['SCHB', 55], ['SCHD', 20], ['SCHF', 15], ['SGOV', 5], ['IAU', 5]],
+      perf: { ann: '10.89%', worst: '-14.81%', yld: '1.87%' } }
+  ];
+
+  // Each side scores 6 to 24. Brackets: 6-10, 11-15, 16-20, 21-24.
+  function tierFor(score) { return score <= 10 ? 0 : score <= 15 ? 1 : score <= 20 ? 2 : 3; }
+
+  // ───────────────────────────────────────────────────────────────
+  // STATE + HELPERS
+  // ───────────────────────────────────────────────────────────────
+  var idx = 0, answers = [], framed = window.parent !== window;
+  var $ = function (id) { return document.getElementById(id); };
+  var page = $('page');
+
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // Tell the host page (Duda) how tall this page is. Measures #page, not the
+  // viewport, so resizing the iframe can never feed back into the height.
+  var lastH = 0;
+  function postHeight(force) {
+    if (!framed) return;
+    var h = Math.ceil(page.getBoundingClientRect().height);
+    if (!force && h === lastH) return;
+    lastH = h;
+    var msgs = [{ type: 'jwa-widget-resize', id: 'isa', height: h }];
+    msgs.forEach(function (m) {
+      try { window.parent.postMessage(m, '*'); } catch (e) {}
+      try { if (window.top !== window.parent) window.top.postMessage(m, '*'); } catch (e) {}
+    });
+  }
+  // Ask the host page to scroll so a point inside this page is in view.
+  function scrollToY(y) {
+    if (framed) {
+      var m = { type: 'jwa-widget-scrollto', id: 'isa', top: Math.max(0, Math.round(y)) };
+      try { window.parent.postMessage(m, '*'); } catch (e) {}
+      try { if (window.top !== window.parent) window.top.postMessage(m, '*'); } catch (e) {}
+    } else {
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
+  }
+  function scrollToEl(el) { scrollToY(el.getBoundingClientRect().top + window.pageYOffset - 16); }
+
+  function setView(v) {
+    document.body.setAttribute('data-view', v);
+    postHeight(true);
+    scrollToY(0);
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // QUIZ
+  // ───────────────────────────────────────────────────────────────
+  function start() {
+    idx = 0; answers = [];
+    clearMatch();
+    setView('quiz');
+    renderQ(true);
+  }
+
+  function renderQ(focus) {
+    var q = QUESTIONS[idx], n = QUESTIONS.length;
+    $('barPos').textContent = 'Question ' + (idx + 1) + ' of ' + n;
+    $('fill').style.width = ((idx + (answers[idx] ? 1 : 0)) / n * 100) + '%';
+    $('track').setAttribute('aria-valuenow', idx + (answers[idx] ? 1 : 0));
+    $('qSec').textContent = q.sec;
+    $('qText').textContent = q.text;
+    $('qHint').textContent = q.hint || '';
+    $('qHint').hidden = !q.hint;
+    var box = $('opts'); box.innerHTML = '';
+    q.opts.forEach(function (t, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'opt'; b.setAttribute('role', 'radio');
+      b.setAttribute('aria-checked', answers[idx] === i + 1 ? 'true' : 'false');
+      b.innerHTML = '<span class="dot" aria-hidden="true"></span><span>' + esc(t) + '</span>';
+      b.addEventListener('click', function () { choose(i + 1); });
+      box.appendChild(b);
+    });
+    $('backBtn').style.visibility = idx === 0 ? 'hidden' : 'visible';
+    $('nextBtn').disabled = !answers[idx];
+    $('nextBtn').innerHTML = (idx === n - 1 ? 'See my match' : 'Next') + ' <span aria-hidden="true">&rarr;</span>';
+    if (focus) { try { $('qText').focus({ preventScroll: true }); } catch (e) {} }
+    postHeight();
+  }
+
+  function choose(v) {
+    answers[idx] = v;
+    var btns = $('opts').children;
+    for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-checked', i + 1 === v ? 'true' : 'false');
+    $('nextBtn').disabled = false;
+    $('fill').style.width = ((idx + 1) / QUESTIONS.length * 100) + '%';
+    $('track').setAttribute('aria-valuenow', idx + 1);
+  }
+  function next() {
+    if (!answers[idx]) return;
+    if (idx === QUESTIONS.length - 1) return finish();
+    idx++; renderQ(true);
+  }
+  function back() { if (idx > 0) { idx--; renderQ(true); } }
+
+  // ───────────────────────────────────────────────────────────────
+  // RESULT
+  // ───────────────────────────────────────────────────────────────
+  function score() {
+    var cap = 0, com = 0;
+    QUESTIONS.forEach(function (q, i) { if (q.side === 'cap') cap += answers[i]; else com += answers[i]; });
+    var tc = tierFor(cap), tm = tierFor(com);
+    return { cap: cap, com: com, capTier: tc, comTier: tm, match: Math.min(tc, tm) };
+  }
+
+  function steps(el, on) {
+    el.innerHTML = PORTFOLIOS.map(function (p, i) {
+      return '<span class="' + (i === on ? 'on' : '') + '">' + p.name + '</span>';
+    }).join('');
+    el.setAttribute('aria-label', PORTFOLIOS[on].name);
+  }
+
+  function finish() {
+    var s = score(), p = PORTFOLIOS[s.match];
+    $('rName').textContent = 'Global Core ' + p.name;
+    $('rTag').textContent = p.tag;
+    steps($('mCap'), s.capTier); steps($('mCom'), s.comTier);
+
+    var capN = PORTFOLIOS[s.capTier].name, comN = PORTFOLIOS[s.comTier].name, why;
+    if (s.capTier === s.comTier) {
+      why = 'Your capacity for risk and your comfort with risk both point to ' + p.name + '. When the two agree, the match is clear.';
+    } else if (s.capTier < s.comTier) {
+      why = 'Your comfort with risk points to ' + comN + ', but your time horizon and finances point to ' + capN + '. Your match is the more conservative of the two, because a portfolio has to fit your situation before it fits your temperament.';
+    } else {
+      why = 'Your time horizon and finances could support ' + capN + ', but your comfort with risk points to ' + comN + '. Your match is the more conservative of the two, because a portfolio only works if you can stay with it through a rough year.';
+    }
+    $('rWhy').textContent = why;
+    var gap = Math.abs(s.capTier - s.comTier), flag = $('rFlag');
+    flag.hidden = gap < 2;
+    if (gap >= 2) flag.textContent = 'These two are far apart. That gap is worth a conversation before you invest.';
+
+    var st;
+    if (CONFIG.SHOW_PERFORMANCE) {
+      st = [['Annualized return', p.perf.ann, 'January 2012 through ' + CONFIG.PERF_AS_OF.replace(/ \d+,/, ''), ''],
+            ['Worst calendar year', p.perf.worst, '2022', 'neg'],
+            ['Portfolio yield', p.perf.yld, 'Trailing 12 months', ''],
+            ['Fund expenses', p.exp, 'Weighted average, per year', '']];
+    } else {
+      st = [['Stocks', p.mix[0] + '%', 'U.S. and international', ''],
+            ['Treasury bills', p.mix[1] + '%', 'Short-term U.S. Treasuries', ''],
+            ['Gold', p.mix[2] + '%', 'Held as a diversifier', ''],
+            ['Fund expenses', p.exp, 'Weighted average, per year', '']];
+    }
+    $('rStats').innerHTML = st.map(function (x) {
+      return '<div class="stat"><div class="lab">' + x[0] + '</div><div class="n ' + x[3] + '">' + x[1] + '</div><p>' + x[2] + '</p></div>';
+    }).join('');
+    var pn = $('rPerfNote');
+    pn.hidden = !CONFIG.SHOW_PERFORMANCE;
+    if (CONFIG.SHOW_PERFORMANCE) {
+      pn.textContent = 'Returns are hypothetical and backtested, shown ' + CONFIG.PERF_BASIS + ', as of ' + CONFIG.PERF_AS_OF +
+        '. They were created by applying the current target weights to the historical returns of the funds and do not represent any actual account. ' +
+        'The worst calendar year is the lowest January-to-December return; declines within a year were larger. Yield is before advisory fees. ' +
+        'Past performance does not guarantee future results.';
+    }
+
+    $('rBar').innerHTML = p.alloc.map(function (a, i) {
+      return '<div style="width:' + a[1] + '%;background:' + RAMP[i] + (i === 4 ? ';color:#232E3D' : '') + '">' + a[1] + '%</div>';
+    }).join('');
+    $('rHold').innerHTML = p.alloc.map(function (a, i) {
+      var f = FUNDS[a[0]];
+      return '<tr><td class="sw"><i style="background:' + RAMP[i] + '"></i></td><td class="tk">' + a[0] + '</td>' +
+             '<td class="nm">' + f[0] + '<span>' + f[1] + '</span></td><td class="wt">' + a[1] + '%</td></tr>';
+    }).join('');
+
+    markMatch(p.key);
+    $('barPos').textContent = 'Your result';
+    $('fill').style.width = '100%';
+    setView('result');
+    try { $('rName').focus({ preventScroll: true }); } catch (e) {}
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // PORTFOLIO CARDS
+  // ───────────────────────────────────────────────────────────────
+  function renderCards() {
+    $('pfGrid').innerHTML = PORTFOLIOS.map(function (p) {
+      return '<div data-key="' + p.key + '"><span class="tag">Your match</span><div class="lab">' + p.tier + '</div><h3>' + p.name + '</h3><p>' + p.blurb + '</p>' +
+        '<div class="mix" aria-hidden="true"><i style="width:' + p.mix[0] + '%;background:' + RAMP[0] + '"></i><i style="width:' + p.mix[1] + '%;background:' + RAMP[3] + '"></i><i style="width:' + p.mix[2] + '%;background:' + RAMP[4] + '"></i></div>' +
+        '<ul><li><span>Stocks</span><b>' + p.mix[0] + '%</b></li><li><span>Treasury bills</span><b>' + p.mix[1] + '%</b></li><li><span>Gold</span><b>' + p.mix[2] + '%</b></li></ul></div>';
+    }).join('');
+  }
+  function clearMatch() {
+    var c = $('pfGrid').children; for (var i = 0; i < c.length; i++) c[i].classList.remove('match');
+  }
+  function markMatch(key) {
+    clearMatch();
+    var el = $('pfGrid').querySelector('[data-key="' + key + '"]'); if (el) el.classList.add('match');
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // WIRING
+  // ───────────────────────────────────────────────────────────────
+  renderCards();
+  $('schedBtn').href = CONFIG.SCHEDULE_URL; $('schedBtn2').href = CONFIG.SCHEDULE_URL;
+  $('beginBtn').addEventListener('click', start);
+  $('nextBtn').addEventListener('click', next);
+  $('backBtn').addEventListener('click', back);
+  $('againBtn').addEventListener('click', start);
+  $('seeAllBtn').addEventListener('click', function () { scrollToEl($('portfolios')); });
+  $('topBtn').addEventListener('click', function () {
+    if (document.body.getAttribute('data-view') === 'intro') start(); else scrollToY(0);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (document.body.getAttribute('data-view') !== 'quiz') return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var n = parseInt(e.key, 10);
+    if (n >= 1 && n <= 4) { choose(n); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') back();
+    else if (e.key === 'Enter' && document.activeElement && !document.activeElement.classList.contains('opt') && document.activeElement.tagName !== 'BUTTON') next();
+  });
+
+  // Keep the host iframe sized to the content at all times.
+  if (window.ResizeObserver) new ResizeObserver(function () { postHeight(); }).observe(page);
+  window.addEventListener('load', function () { postHeight(true); setTimeout(function () { postHeight(true); }, 400); setTimeout(function () { postHeight(true); }, 1500); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { postHeight(true); });
+  window.addEventListener('message', function (e) { if (e.data && e.data.type === 'jwa-widget-ping') postHeight(true); });
+
+  // Exposed for testing.
+  window.__ISA = { QUESTIONS: QUESTIONS, PORTFOLIOS: PORTFOLIOS, tierFor: tierFor, CONFIG: CONFIG };
+})();
+</script>
+</body>
+</html>
