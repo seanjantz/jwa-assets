@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Core Portfolios | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r1: #232E3D; --r2: #4A4F55; --r3: #7D8187; --r4: #B1B3B6; --r5: #D9D3C8;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+section { padding: 88px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 56px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; }
+h1 { font-size: clamp(40px, 5.6vw, 64px); font-weight: 400; line-height: 1.04; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
+h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 14px; }
+p + p { margin-top: 16px; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--slate); font-weight: 400; }
+.num { font-family: var(--serif); font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+.small-label {
+  font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--slate);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: var(--blue); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-line:hover { border-color: var(--ink); background: var(--white); }
+.on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
+.on-ink .btn-line:hover { border-color: #fff; background: transparent; }
+
+/* Fee toggle */
+.fee-toggle {
+  display: inline-flex; align-items: center; gap: 12px; background: var(--white);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 6px 6px 16px;
+}
+.fee-toggle .ft-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+.fee-toggle .ft-switch { display: inline-flex; background: var(--stone); border-radius: 999px; padding: 3px; }
+.fee-toggle button {
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 0; background: transparent; color: var(--slate); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.fee-toggle button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.fee-toggle button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.fee-basis { font-size: 13px; color: var(--slate); margin-top: 10px; }
+.fee-basis strong { color: var(--ink); font-weight: 600; }
+body.gross .gross-flag { display: inline-flex; }
+.gross-flag {
+  display: none; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-top: 10px;
+}
+.gross-flag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 104px 0 92px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero h1 em { color: var(--blue); }
+.hero .lede { color: rgba(255,255,255,0.78); margin-top: 26px; max-width: 540px; }
+.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: center; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 64px 0 56px; } }
+.hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-firm { font-family: var(--serif); font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+.hero-firm b { font-weight: 500; color: #fff; }
+.hero-firm span { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-left: 8px; color: rgba(255,255,255,0.6); }
+
+.mix-card { background: var(--white); border-radius: 4px; padding: 28px 28px 24px; color: var(--slate); }
+.mix-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.mix-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); }
+.mix-legend { display: flex; gap: 14px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); }
+.mix-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+.mix-row + .mix-row { margin-top: 16px; }
+.mix-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.mix-name { font-family: var(--serif); font-size: 15px; font-weight: 500; color: var(--ink); }
+.mix-nums { font-size: 11px; font-weight: 500; color: var(--slate); letter-spacing: 0.06em; }
+.mix-bar { display: flex; height: 14px; border-radius: 2px; overflow: hidden; background: var(--stone-light);
+  transform: scaleX(0); transform-origin: left center; transition: transform 1s cubic-bezier(0.22,1,0.36,1); }
+.mix-bar span { display: block; height: 100%; }
+.mix-bar span + span { border-left: 2px solid var(--white); }
+.mix-stocks { background: var(--r1); } .mix-tbills { background: var(--r4); } .mix-gold { background: var(--r5); }
+.reveal.in .mix-bar { transform: scaleX(1); }
+.mix-row:nth-child(3) .mix-bar { transition-delay: 0.1s; } .mix-row:nth-child(4) .mix-bar { transition-delay: 0.2s; } .mix-row:nth-child(5) .mix-bar { transition-delay: 0.3s; }
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; border-top: 1px solid var(--rule); margin-top: 24px; padding-top: 20px; }
+@media (max-width: 480px) { .hero-stats { grid-template-columns: 1fr 1fr; } .mix-card { padding: 22px 20px 20px; } }
+.hero-stat .num { font-size: 26px; line-height: 1; font-weight: 500; }
+.hero-stat .num small { font-size: 14px; font-weight: 400; }
+.hero-stat .lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 8px; line-height: 1.4; }
+
+/* Spectrum */
+.spectrum { background: var(--stone); padding: 80px 0; }
+.spectrum-head { text-align: center; max-width: 1040px; margin: 0 auto 56px; }
+.spectrum-head p { max-width: 640px; margin: 0 auto; }
+.spectrum-rail { position: relative; padding: 32px 0 8px; }
+.spectrum-line { position: absolute; top: 40px; left: 10%; right: 10%; height: 2px; background: var(--r4); }
+.spectrum-dots { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; z-index: 1; }
+.spectrum-dot { text-align: center; }
+.spectrum-dot::before { content: ''; display: block; width: 18px; height: 18px; border-radius: 50%; background: var(--stone); border: 3px solid var(--ink); margin: 0 auto 16px; transition: transform 0.3s; }
+.spectrum-dot:nth-child(1)::before { border-color: var(--r4); }
+.spectrum-dot:nth-child(2)::before { border-color: var(--r3); }
+.spectrum-dot:nth-child(3)::before { border-color: var(--r2); }
+.spectrum-dot:nth-child(4)::before { border-color: var(--r1); }
+.spectrum-dot:hover::before { transform: scale(1.3); }
+.spectrum-name { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.spectrum-tier { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-top: 4px; }
+.spectrum-stocks { font-size: 13px; color: var(--slate); margin-top: 6px; }
+.spectrum-cagr { font-family: var(--serif); font-size: 30px; font-weight: 500; color: var(--blue); margin-top: 12px; letter-spacing: -0.01em; line-height: 1; }
+.spectrum-cagr small { display: block; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-top: 8px; }
+@media (max-width: 720px) { .spectrum-dots { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; } .spectrum-line { display: none; } }
+
+/* Compare */
+.compare-head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; margin-bottom: 36px; }
+.compare-head p { max-width: 520px; }
+@media (max-width: 768px) { .compare-head { grid-template-columns: 1fr; } }
+.compare-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 4px; background: var(--white); }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 820px; }
+.compare-table th, .compare-table td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.compare-table thead th { background: var(--stone-light); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); border-bottom: 1px solid var(--rule); }
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table tbody tr:hover { background: var(--stone-light); }
+.compare-name { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); }
+.compare-tier { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-top: 2px; }
+.compare-num { font-family: var(--serif); font-size: 21px; font-weight: 500; color: var(--ink); }
+.compare-num.neg { color: var(--red); }
+.compare-num small { display: block; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 3px; }
+.compare-link a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); text-decoration: none; white-space: nowrap; }
+.compare-link a:hover { color: var(--ink); }
+.fee-note { margin-top: 24px; padding: 18px 22px; background: var(--stone); border-radius: 4px; font-size: 14px; line-height: 1.55; color: var(--slate); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.fee-note strong { color: var(--ink); font-weight: 600; }
+.fee-note a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); text-decoration: none; white-space: nowrap; }
+
+/* Glossary */
+.glossary { padding-top: 0; }
+.glossary-card { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 44px 52px; }
+.glossary-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+.glossary-head h3 { margin-bottom: 4px; }
+.glossary-head p { font-size: 14.5px; max-width: 360px; text-align: right; }
+.glossary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; }
+.glossary-term { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+.glossary-abbr { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.glossary-def { font-size: 14.5px; line-height: 1.55; }
+.glossary-def strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) { .glossary-card { padding: 32px 28px; } .glossary-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; } .glossary-head { grid-template-columns: 1fr; } .glossary-head p { text-align: left; max-width: none; } }
+@media (max-width: 520px) { .glossary-grid { grid-template-columns: 1fr; } }
+
+/* Method (stone) */
+.method { background: var(--stone); position: relative; overflow: hidden; }
+.method-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.method .shell { position: relative; z-index: 1; }
+.method .lede { max-width: 680px; margin-top: 12px; }
+.pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); margin-top: 56px; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.pillar { background: var(--white); padding: 32px 26px; }
+.pillar-num { font-family: var(--serif); font-size: 15px; color: var(--blue); margin-bottom: 14px; }
+.pillar h4 { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1.2; }
+.pillar p { font-size: 14.5px; line-height: 1.55; }
+@media (max-width: 900px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .pillars { grid-template-columns: 1fr; } }
+.roles { margin-top: 72px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
+.roles-intro h3 em { font-style: italic; color: var(--blue); }
+.roles-list { border-top: 1px solid var(--rule); }
+.role { padding: 18px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 40px 1fr auto; gap: 18px; align-items: center; }
+.role-swatch { width: 14px; height: 14px; border-radius: 50%; }
+.role-ticker { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 2px; }
+.role-desc { font-family: var(--serif); font-size: 18px; color: var(--ink); line-height: 1.3; }
+.role-text { font-size: 14.5px; max-width: 340px; text-align: right; text-wrap: pretty; }
+@media (max-width: 900px) { .roles { grid-template-columns: 1fr; gap: 28px; } .role { grid-template-columns: 32px 1fr; } .role-text { grid-column: 1 / -1; text-align: left; padding-left: 50px; max-width: none; } }
+
+/* Compounding */
+.compound-section { background: var(--white); border-top: 1px solid var(--rule); }
+.compound { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; }
+.compound-narr h3 { font-size: clamp(26px, 3vw, 34px); max-width: 480px; margin-bottom: 20px; }
+.compound-narr h3 em { font-style: italic; color: var(--blue); }
+.compound-narr p { font-size: 15.5px; max-width: 480px; }
+.compound-narr strong { color: var(--ink); font-weight: 600; }
+.compound-visual { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 28px 28px 24px; }
+.cv-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 4px; }
+.cv-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); }
+.cv-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); }
+.cv-sub { font-size: 12.5px; margin-bottom: 16px; }
+.compound-svg { width: 100%; height: auto; display: block; }
+.compound-svg .line { stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 2.2s cubic-bezier(0.4,0,0.2,1); }
+.compound-svg .fill { opacity: 0; transition: opacity 0.9s ease-out 1.3s; }
+.compound-svg .endpt { opacity: 0; transition: opacity 0.5s ease-out 2s; }
+.compound-svg.animate .line { stroke-dashoffset: 0; } .compound-svg.animate .fill { opacity: 1; } .compound-svg.animate .endpt { opacity: 1; }
+.cv-stats { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.cv-stat-label { font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-bottom: 6px; }
+.cv-stat-value { font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1; color: var(--ink); }
+.cv-stat-value.blue { color: var(--blue); }
+@media (max-width: 900px) { .compound { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Portfolio sections */
+.portfolio { border-top: 1px solid var(--rule); scroll-margin-top: 40px; }
+.portfolio:nth-of-type(even) { background: var(--white); }
+.portfolio-head { display: grid; grid-template-columns: auto 1fr; gap: 40px; margin-bottom: 48px; align-items: end; }
+.portfolio-marker { font-family: var(--serif); font-size: 84px; font-weight: 400; color: var(--blue); line-height: 0.9; letter-spacing: -0.03em; }
+.portfolio-marker small { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); display: block; margin-top: 10px; }
+.portfolio-title h2 { margin-bottom: 10px; }
+.tagline { font-family: var(--serif); font-size: 20px; line-height: 1.45; color: var(--slate); max-width: 640px; }
+@media (max-width: 700px) { .portfolio-head { grid-template-columns: 1fr; gap: 14px; } .portfolio-marker { font-size: 56px; } }
+.portfolio-body { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: start; }
+.portfolio-body > div { min-width: 0; }
+@media (max-width: 900px) { .portfolio-body { grid-template-columns: 1fr; gap: 36px; } }
+.donut-wrap { position: relative; width: 100%; max-width: 320px; aspect-ratio: 1; margin: 0 auto; }
+.donut-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donut-seg { fill: none; stroke-width: 22; transition: stroke-width 0.25s; }
+.donut-seg:hover { stroke-width: 28; }
+.donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.donut-center .dl { font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); margin-bottom: 8px; }
+.donut-center .dv { font-family: var(--serif); font-size: 46px; font-weight: 500; color: var(--blue); line-height: 1; letter-spacing: -0.02em; }
+.donut-center .dv span { font-size: 24px; }
+.donut-center .ds { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-top: 8px; }
+.blurbs { margin: 28px auto 0; max-width: 320px; }
+.blurb + .blurb { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.blurb h5 { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.blurb p { font-size: 14px; line-height: 1.5; }
+.blurb em { font-style: italic; font-family: var(--serif); color: var(--blue); font-size: 15px; }
+.holdings { width: 100%; border-collapse: collapse; font-size: 14px; }
+.holdings thead th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); text-align: left; padding: 0 0 10px; border-bottom: 1px solid var(--ink); }
+.holdings th:last-child, .holdings td:last-child { text-align: right; }
+.holdings tbody td { padding: 12px 0; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.h-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 12px; vertical-align: middle; }
+.h-ticker { font-size: 12px; font-weight: 600; color: var(--ink); letter-spacing: 0.08em; display: inline-block; vertical-align: middle; width: 54px; }
+.h-weight { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); }
+.periods-head { display: flex; justify-content: space-between; align-items: baseline; margin-top: 28px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.periods-head span:last-child { color: var(--blue); }
+.periods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 16px; margin: 0; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.period .pl { font-size: 9.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 6px; line-height: 1.35; }
+.period .pv { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); line-height: 1; }
+.period .pv.neg { color: var(--red); }
+@media (max-width: 600px) { .periods { gap: 16px 10px; } .period .pv { font-size: 19px; } }
+.period { min-width: 0; }
+.calyears { margin-top: 24px; }
+.calyears-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.calyears-title { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.calyears-key { font-size: 11px; color: var(--slate); }
+.calyears svg { width: 100%; height: auto; display: block; overflow: visible; }
+.calyears .bar .b, .calyears .bar .v, .calyears .bar .yr { transition: transform 0.18s ease, opacity 0.18s ease; }
+.calyears svg:hover .bar:not(:hover) .b { opacity: 0.45; }
+.calyears .bar:hover .b { transform: scaleX(1.35); }
+.calyears .bar:hover .v { transform: scale(1.7); font-weight: 600; }
+.calyears .bar:hover .yr { transform: scale(1.4); font-weight: 600; }
+.calyears .bar .v, .calyears .bar .yr { pointer-events: none; }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+@media (max-width: 600px) { .stats-row { grid-template-columns: 1fr; gap: 10px; } }
+.stat { min-width: 0; }
+.stat .sv small { display: block; margin-left: 0; }
+.stat { background: var(--stone); border-radius: 4px; padding: 14px 16px; }
+.stat .sl { font-size: 9.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 4px; }
+.stat .sv { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--ink); line-height: 1.1; }
+.stat .sv.neg { color: var(--red); }
+.stat .sv small { font-family: var(--sans); font-size: 11px; font-weight: 400; color: var(--slate); margin-left: 4px; }
+.portfolio-cta { margin-top: 28px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+
+/* Calculator */
+.calc { border-top: 1px solid var(--rule); background: var(--white); scroll-margin-top: 40px; position: relative; overflow: hidden; }
+.calc-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.calc .shell { position: relative; z-index: 1; }
+.calc-head { margin-bottom: 40px; }
+.calc-head h2 { max-width: 1000px; }
+.calc-head .lede { max-width: 680px; }
+.calc-head h2 em { white-space: nowrap; }
+@media (max-width: 520px) { .calc-head h2 em { white-space: normal; } }
+.calc-grid { display: grid; grid-template-columns: 380px 1fr; gap: 40px; align-items: start; }
+.calc-grid > div { min-width: 0; }
+@media (max-width: 960px) { .calc-grid { grid-template-columns: 1fr; gap: 28px; } }
+.calc-panel { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 28px; }
+.calc-panel + .calc-panel { margin-top: 20px; }
+.calc-field { margin-bottom: 20px; }
+.calc-field:last-child { margin-bottom: 0; }
+.calc-field label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-bottom: 8px; }
+.calc-input { display: flex; align-items: center; background: var(--white); border: 1px solid var(--rule); border-radius: 2px; padding: 0 14px; }
+.calc-input:focus-within { border-color: var(--blue); }
+.calc-input span { font-family: var(--serif); font-size: 18px; color: var(--slate); }
+.calc-input input { flex: 1; min-width: 0; border: 0; background: transparent; font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); padding: 12px 6px; outline: none; }
+.calc-input input::-webkit-outer-spin-button, .calc-input input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.calc-input input[type=number] { -moz-appearance: textfield; }
+.calc-range { width: 100%; margin-top: 10px; accent-color: var(--blue); }
+.calc-hint { font-size: 12.5px; color: var(--slate); margin-top: 8px; line-height: 1.45; }
+.pf-pills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.pf-pills button { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--rule); background: var(--white); color: var(--slate); padding: 12px 10px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+.pf-pills button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.pf-pills button:hover { border-color: var(--ink); }
+.calc-fee { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.calc-fee .fee-toggle { align-self: flex-start; }
+.calc-check { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--slate); margin-top: 16px; cursor: pointer; }
+.calc-check input { accent-color: var(--blue); width: 16px; height: 16px; }
+.calc-results-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.calc-results-head h3 { margin-bottom: 0; }
+.calc-results-head h3 em { font-style: italic; color: var(--blue); }
+.calc-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+@media (max-width: 600px) { .calc-kpis { grid-template-columns: 1fr; } }
+.kpi { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 18px 20px; }
+.kpi .kl { font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-bottom: 6px; }
+.kpi .kv { font-family: var(--serif); font-size: 32px; font-weight: 500; color: var(--ink); line-height: 1; letter-spacing: -0.01em; }
+.kpi .kv.blue { color: var(--blue); }
+.kpi .ks { font-size: 12px; color: var(--slate); margin-top: 6px; }
+.calc-chart { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 22px 22px 16px; }
+.calc-chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.calc-chart-title { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); }
+.calc-legend { display: flex; gap: 16px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); }
+.calc-legend i { display: inline-block; width: 14px; height: 3px; margin-right: 6px; vertical-align: middle; border-radius: 2px; }
+.calc-chart svg { width: 100%; height: auto; display: block; }
+.calc-compare { margin-top: 24px; }
+.calc-compare table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.calc-compare th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); text-align: left; padding: 0 0 10px; border-bottom: 1px solid var(--ink); }
+.calc-compare th:not(:first-child), .calc-compare td:not(:first-child) { text-align: right; }
+.calc-compare td { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.calc-compare tr.sel td { background: var(--stone-light); }
+.calc-compare td:first-child { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); padding-left: 8px; }
+.calc-compare td.v { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); }
+.calc-compare td.neg { color: var(--red); }
+.calc-compare td small { display: block; font-family: var(--sans); font-size: 11px; font-weight: 400; color: var(--slate); }
+@media (max-width: 560px) { .calc-compare th:nth-child(2), .calc-compare td:nth-child(2), .calc-compare th:nth-child(5), .calc-compare td:nth-child(5) { display: none; } .calc-compare td:first-child, .calc-compare td.v { font-size: 15px; } .kpi .kv { font-size: 28px; } }
+.calc-compare { overflow-x: auto; }
+.calc-note { font-size: 12.5px; line-height: 1.55; color: var(--slate); margin-top: 20px; }
+.calc-actions { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+
+/* Fee schedule pop-up */
+.modal-backdrop { position: absolute; left: 0; top: 0; width: 100%; background: rgba(35,46,61,0.55); z-index: 50; display: none; }
+.modal-backdrop.open { display: block; }
+.modal { position: absolute; left: 50%; transform: translateX(-50%); width: min(560px, calc(100% - 32px)); background: var(--white); border-radius: 4px; border: 1px solid var(--rule); padding: 32px 32px 28px; }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 0; background: transparent; color: var(--slate); font-size: 22px; line-height: 1; cursor: pointer; border-radius: 50%; }
+.modal-close:hover { background: var(--stone); color: var(--ink); }
+.modal h3 { margin-bottom: 6px; padding-right: 40px; }
+.modal .sub { font-size: 14px; color: var(--slate); margin-bottom: 20px; }
+.fee-table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin-bottom: 18px; }
+.fee-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); text-align: left; padding: 0 0 10px; border-bottom: 1px solid var(--ink); }
+.fee-table th:last-child, .fee-table td:last-child { text-align: right; }
+.fee-table td { padding: 12px 0; border-bottom: 1px solid var(--rule); color: var(--slate); }
+.fee-table td:last-child { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); }
+.fee-ex { background: var(--stone-light); border-radius: 4px; padding: 14px 16px; font-size: 13.5px; color: var(--slate); line-height: 1.55; margin-bottom: 18px; }
+.fee-ex strong { color: var(--ink); font-weight: 600; }
+.modal .fine { font-size: 12px; line-height: 1.5; color: var(--slate); }
+.modal-actions { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Custom callout */
+.custom { padding: 72px 0; border-top: 1px solid var(--rule); background: var(--stone); }
+.custom-card { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 44px 52px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: center; }
+.custom-card h3 { max-width: 520px; }
+.custom-card h3 em { font-style: italic; color: var(--blue); }
+.custom-card p { font-size: 15.5px; max-width: 540px; }
+.custom-action { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+.examples { text-align: right; font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); line-height: 1.9; }
+.examples span { display: block; }
+.examples span::before { content: '+ '; color: var(--blue); }
+@media (max-width: 900px) { .custom-card { grid-template-columns: 1fr; gap: 28px; padding: 32px 28px; } .custom-action { align-items: flex-start; } .examples { text-align: left; } }
+
+@media (min-width: 900px) { .own-line { display: block; } }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; scroll-margin-top: 40px; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; max-width: 760px; margin: 0 auto 20px; }
+.final-cta h2 em { font-style: italic; color: var(--blue); }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 560px; margin: 0 auto 36px; font-size: 18px; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-wordmark { font-family: var(--serif); font-size: 22px; color: var(--ink); font-weight: 500; margin-bottom: 28px; }
+.footer-wordmark span { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-left: 10px; }
+.site-footer h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .mix-bar { opacity: 1; transform: none; transition: none; }
+  .compound-svg .line { stroke-dashoffset: 0; transition: none; }
+  .compound-svg .fill, .compound-svg .endpt { opacity: 1; transition: none; }
+}
+.num-swap { transition: opacity 0.25s; }
+body.swapping .num-swap { opacity: 0.25; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero on-ink">
+  <svg class="hero-art" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
+      <circle cx="1500" cy="40" r="260"/><circle cx="1500" cy="40" r="360"/><circle cx="1500" cy="40" r="460"/><circle cx="1500" cy="40" r="560"/><circle cx="1500" cy="40" r="660"/>
+    </g>
+    <path d="M 1500 40 m 0 560 a 560 560 0 0 1 -560 -560" fill="none" stroke="#0077B6" stroke-opacity="0.4" stroke-width="1.5"/>
+    <path d="M 1500 40 m -360 0 a 360 360 0 0 0 360 360" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <path d="M 40 668 L 200 630 L 360 642 L 520 580 L 680 548 L 840 470" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <g fill="#FFFFFF" fill-opacity="0.14"><circle cx="200" cy="630" r="3"/><circle cx="360" cy="642" r="3"/><circle cx="520" cy="580" r="3"/><circle cx="680" cy="548" r="3"/></g>
+    <circle cx="840" cy="470" r="5" fill="#0077B6" fill-opacity="0.55"/>
+    <g fill="#FFFFFF" fill-opacity="0.06">
+      <circle cx="40" cy="60" r="2"/><circle cx="80" cy="60" r="2"/><circle cx="120" cy="60" r="2"/><circle cx="160" cy="60" r="2"/><circle cx="200" cy="60" r="2"/>
+      <circle cx="40" cy="100" r="2"/><circle cx="80" cy="100" r="2"/><circle cx="120" cy="100" r="2"/><circle cx="160" cy="100" r="2"/><circle cx="200" cy="100" r="2"/>
+      <circle cx="40" cy="140" r="2"/><circle cx="80" cy="140" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="160" cy="140" r="2"/><circle cx="200" cy="140" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="label">The Global Core Portfolios</div>
+        <h1>Four portfolios.<br><em>One disciplined framework.</em></h1>
+        <p class="lede">Globally diversified ETF portfolios built on five asset classes and set to four risk profiles. Designed to capture growth, soften the drawdowns, and keep you invested through both.</p>
+        <div class="hero-actions">
+          <a href="#compare" class="btn btn-blue">Compare the portfolios</a>
+          <a href="https://www.jantzwealth.com/investment-strategy" target="_blank" rel="noopener noreferrer" class="btn btn-line">Find your profile</a>
+        </div>
+      </div>
+      <div class="mix-card reveal">
+        <div class="mix-head">
+          <div class="mix-title">How each portfolio is divided</div>
+          <div class="mix-legend"><span><i class="mix-stocks"></i>Stocks</span><span><i class="mix-tbills"></i>Treasury bills</span><span><i class="mix-gold"></i>Gold</span></div>
+        </div>
+        <div id="mix-rows"></div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">4</div><div class="lbl">Risk profiles</div></div>
+          <div class="hero-stat"><div class="num">5</div><div class="lbl">Asset classes</div></div>
+          <div class="hero-stat"><div class="num">0.08<small>%</small></div><div class="lbl">Avg. fund expenses</div></div>
+          <div class="hero-stat"><div class="num">14<small>+ yr</small></div><div class="lbl">Hypothetical history</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECTRUM -->
+<section class="spectrum">
+  <div class="shell">
+    <div class="spectrum-head reveal">
+      <div class="label">The risk spectrum</div>
+      <h2>From stability first to long-term growth.</h2>
+      <p>Each step along the line adds more stock exposure and takes on more movement in exchange for more growth over time.</p>
+    </div>
+    <div class="spectrum-rail reveal">
+      <div class="spectrum-line"></div>
+      <div class="spectrum-dots" id="spectrum-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare" style="scroll-margin-top:40px">
+  <div class="shell">
+    <div class="compare-head reveal">
+      <div>
+        <div class="label">At a glance</div>
+        <h2>Side by side.</h2>
+        <p>Hypothetical results from January 1, 2012 through September 30, 2026. Past performance does not guarantee future results.</p>
+      </div>
+      <div>
+        <div class="fee-toggle" role="group" aria-label="Advisory fee basis">
+          <span class="ft-label">Advisory fee</span>
+          <span class="ft-switch">
+            <button type="button" data-fee="net" aria-pressed="true">Net of 1.50%</button>
+            <button type="button" data-fee="gross" aria-pressed="false">Before fees</button>
+          </span>
+        </div>
+        <div class="fee-basis">Showing results <strong class="fee-basis-text">net of the 1.50% annual advisory fee</strong></div>
+        <div class="gross-flag">Before advisory fees. Your results will be lower.</div>
+      </div>
+    </div>
+    <div class="compare-wrap reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Portfolio</th>
+            <th>Stocks</th>
+            <th>Annualized since 2012</th>
+            <th>Worst calendar year</th>
+            <th>Trailing 12 months</th>
+            <th>Yield</th>
+            <th>Fund expenses</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="compare-body"></tbody>
+      </table>
+    </div>
+    <div class="fee-note reveal">
+      <div class="fee-text num-swap" id="fee-note-text"></div>
+      <a href="#fee-schedule" class="open-fees">View fee schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section class="glossary">
+  <div class="shell">
+    <div class="glossary-card reveal">
+      <div class="glossary-head">
+        <div>
+          <div class="label">Reading the numbers</div>
+          <h3>What each number actually tells you.</h3>
+        </div>
+        <p>Four numbers do most of the work when you size up a portfolio. Here is how to read each one.</p>
+      </div>
+      <div class="glossary-grid">
+        <div>
+          <div class="glossary-term">Annualized return</div>
+          <div class="glossary-abbr">Since 1/1/2012</div>
+          <div class="glossary-def">The <strong>smoothed yearly return</strong> that, if earned every year, would produce the same ending value as the actual year-by-year results. The cleanest single number for comparing long-term growth.</div>
+        </div>
+        <div>
+          <div class="glossary-term">Worst calendar year</div>
+          <div class="glossary-abbr">Worst year</div>
+          <div class="glossary-def">The <strong>deepest single calendar-year decline</strong> in the period. Declines within a year may have been larger, but a shallower worst year means less recovery work and an easier time staying invested when markets get rough.</div>
+        </div>
+        <div>
+          <div class="glossary-term">Yield</div>
+          <div class="glossary-abbr">Trailing 12 months</div>
+          <div class="glossary-def">The <strong>income from dividends and interest</strong> over the past twelve months, as a percentage of the portfolio's value. The cash-flow part of total return.</div>
+        </div>
+        <div>
+          <div class="glossary-term">Fund expenses</div>
+          <div class="glossary-abbr">Weighted expense ratio</div>
+          <div class="glossary-def">The <strong>annual cost</strong> of the underlying ETFs, weighted by allocation. It comes out of fund returns automatically. Lower is better, and it compounds meaningfully over decades.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method">
+  <svg class="method-art" viewBox="0 0 1440 1500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1">
+      <circle cx="1600" cy="1720" r="320"/><circle cx="1600" cy="1720" r="440"/><circle cx="1600" cy="1720" r="560"/><circle cx="1600" cy="1720" r="680"/>
+    </g>
+    <path d="M 1600 1720 m -440 0 a 440 440 0 0 1 440 -440" fill="none" stroke="#0077B6" stroke-opacity="0.22" stroke-width="1.5"/>
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1">
+      <circle cx="-80" cy="-60" r="240"/><circle cx="-80" cy="-60" r="360"/><circle cx="-80" cy="-60" r="480"/>
+    </g>
+    <path d="M -80 -60 m 360 0 a 360 360 0 0 1 -360 360" fill="none" stroke="#0077B6" stroke-opacity="0.18" stroke-width="1.5"/>
+    <g fill="#FFFFFF" fill-opacity="0.9">
+      <circle cx="1200" cy="80" r="2"/><circle cx="1240" cy="80" r="2"/><circle cx="1280" cy="80" r="2"/><circle cx="1320" cy="80" r="2"/><circle cx="1360" cy="80" r="2"/><circle cx="1400" cy="80" r="2"/>
+      <circle cx="1200" cy="120" r="2"/><circle cx="1240" cy="120" r="2"/><circle cx="1280" cy="120" r="2"/><circle cx="1320" cy="120" r="2"/><circle cx="1360" cy="120" r="2"/><circle cx="1400" cy="120" r="2"/>
+      <circle cx="1200" cy="160" r="2"/><circle cx="1240" cy="160" r="2"/><circle cx="1280" cy="160" r="2"/><circle cx="1320" cy="160" r="2"/><circle cx="1360" cy="160" r="2"/><circle cx="1400" cy="160" r="2"/>
+      <circle cx="1200" cy="200" r="2"/><circle cx="1240" cy="200" r="2"/><circle cx="1280" cy="200" r="2"/><circle cx="1320" cy="200" r="2"/><circle cx="1360" cy="200" r="2"/><circle cx="1400" cy="200" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="reveal">
+      <div class="label">How they are built</div>
+      <h2>Strategic, not reactive. Diversified, not diluted.</h2>
+      <p class="lede">Every Global Core portfolio is built from the same five asset classes. What changes between tiers is the weighting, not the philosophy. Moving from Conservative to Moderate to Balanced to Growth is a question of how much movement you can live with, not which strategy you happen to land on.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar"><div class="pillar-num">01</div><h4>Low-cost ETFs</h4><p>Weighted fund expenses run between 0.05% and 0.10% a year. Every basis point saved on fees compounds for decades.</p></div>
+      <div class="pillar"><div class="pillar-num">02</div><h4>True diversification</h4><p>Across asset classes (stocks, Treasury bills, gold) and geographies (U.S. and international developed markets). Not just a different shade of the same risk.</p></div>
+      <div class="pillar"><div class="pillar-num">03</div><h4>Built-in stability</h4><p>Gold, Treasury bills, and dividend quality act as structural ballast. The cushion is engineered in, not bolted on.</p></div>
+      <div class="pillar"><div class="pillar-num">04</div><h4>Strategic, not tactical</h4><p>Allocations are set with intent and held with discipline. We do not chase momentum, predict markets, or shuffle positions on news cycles.</p></div>
+      <div class="pillar"><div class="pillar-num">05</div><h4>Rebalanced annually</h4><p>Drift is the enemy of risk discipline. Annual rebalancing keeps each portfolio anchored to its stated risk profile.</p></div>
+    </div>
+    <div class="roles reveal">
+      <div class="roles-intro">
+        <div class="label">The five roles</div>
+        <h3>Each holding plays <em>a deliberate role.</em></h3>
+        <p>The portfolios are not a collection of funds we happen to like. They are a system where every position answers a specific question about growth, income, or stability.</p>
+      </div>
+      <div class="roles-list" id="roles-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOUNDING -->
+<section class="compound-section">
+  <div class="shell">
+    <div class="compound reveal">
+      <div class="compound-narr">
+        <div class="label">The compounding engine</div>
+        <h3>Every dividend. Every interest payment. <em>Automatically reinvested.</em></h3>
+        <p>Dividends from SCHB, SCHD, and SCHF, along with interest from SGOV, are not pulled out as cash. They go straight back to work, buying more shares, generating more income, compounding quietly across decades.</p>
+        <p>This is not optional. It is the <strong>structural choice that turns a 2% yield into a meaningful share of long-term total return.</strong></p>
+        <p>No cash sits idle, and the earliest dollars work the longest.</p>
+      </div>
+      <div class="compound-visual">
+        <div class="cv-head">
+          <div class="cv-title">$100,000 in Global Core Balanced</div>
+          <div class="cv-tag">Hypothetical</div>
+        </div>
+        <div class="cv-sub num-swap" id="cv-sub"></div>
+        <svg class="compound-svg" id="compound-svg" viewBox="0 0 480 252" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="cv-stats">
+          <div><div class="cv-stat-label">Ending value</div><div class="cv-stat-value blue num-swap" id="cv-end"></div></div>
+          <div><div class="cv-stat-label">Annualized return</div><div class="cv-stat-value num-swap" id="cv-cagr"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIOS -->
+<div id="portfolios"></div>
+
+<!-- CALCULATOR -->
+<section class="calc" id="calculator">
+  <svg class="calc-art" viewBox="0 0 1440 1400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#D9D3C8" stroke-opacity="0.9" stroke-width="1">
+      <circle cx="1480" cy="-40" r="260"/><circle cx="1480" cy="-40" r="380"/><circle cx="1480" cy="-40" r="500"/><circle cx="1480" cy="-40" r="620"/>
+    </g>
+    <path d="M 1480 -40 m 0 500 a 500 500 0 0 1 -500 -500" fill="none" stroke="#0077B6" stroke-opacity="0.22" stroke-width="1.5"/>
+    <g fill="none" stroke="#D9D3C8" stroke-opacity="0.9" stroke-width="1">
+      <circle cx="-60" cy="1420" r="220"/><circle cx="-60" cy="1420" r="340"/><circle cx="-60" cy="1420" r="460"/>
+    </g>
+    <path d="M -60 1420 m 340 0 a 340 340 0 0 0 -340 -340" fill="none" stroke="#0077B6" stroke-opacity="0.18" stroke-width="1.5"/>
+    <g fill="#D9D3C8" fill-opacity="0.9">
+      <circle cx="1240" cy="1180" r="2"/><circle cx="1280" cy="1180" r="2"/><circle cx="1320" cy="1180" r="2"/><circle cx="1360" cy="1180" r="2"/><circle cx="1400" cy="1180" r="2"/>
+      <circle cx="1240" cy="1220" r="2"/><circle cx="1280" cy="1220" r="2"/><circle cx="1320" cy="1220" r="2"/><circle cx="1360" cy="1220" r="2"/><circle cx="1400" cy="1220" r="2"/>
+      <circle cx="1240" cy="1260" r="2"/><circle cx="1280" cy="1260" r="2"/><circle cx="1320" cy="1260" r="2"/><circle cx="1360" cy="1260" r="2"/><circle cx="1400" cy="1260" r="2"/>
+      <circle cx="1240" cy="1300" r="2"/><circle cx="1280" cy="1300" r="2"/><circle cx="1320" cy="1300" r="2"/><circle cx="1360" cy="1300" r="2"/><circle cx="1400" cy="1300" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="calc-head reveal">
+      <div class="label">Projected growth calculator</div>
+      <h2>See what the years ahead <em style="font-style:italic;color:var(--blue)">could look like.</em></h2>
+      <p class="lede">Pick a portfolio, enter what you are starting with and what you plan to add, and see a range of outcomes net of the advisory fee schedule. Real returns bounce around from year to year, so instead of one line we show a range of outcomes.</p>
+    </div>
+    <div class="calc-grid reveal">
+      <div>
+        <div class="calc-panel">
+          <div class="calc-field">
+            <label>Portfolio</label>
+            <div class="pf-pills" id="calc-pills"></div>
+          </div>
+          <div class="calc-field">
+            <label for="c-start">Starting balance</label>
+            <div class="calc-input"><span>$</span><input type="number" id="c-start" value="250000" min="0" step="1000" inputmode="numeric"></div>
+          </div>
+          <div class="calc-field">
+            <label for="c-contrib">Monthly contribution</label>
+            <div class="calc-input"><span>$</span><input type="number" id="c-contrib" value="500" min="0" step="50" inputmode="numeric"></div>
+          </div>
+          <div class="calc-field">
+            <label for="c-years">Years <span id="c-years-out" style="color:var(--ink);letter-spacing:0;text-transform:none;font-size:12px"></span></label>
+            <input type="range" id="c-years" class="calc-range" min="1" max="40" value="20">
+          </div>
+          <div class="calc-field">
+            <label for="c-rate">Expected annual return, before fees</label>
+            <div class="calc-input"><input type="number" id="c-rate" value="10.37" min="0" max="20" step="0.1" inputmode="decimal"><span>%</span></div>
+            <div class="calc-hint" id="c-rate-hint"></div>
+          </div>
+          <div class="calc-fee">
+            <label style="font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate)">Advisory fee</label>
+            <div class="fee-toggle" role="group" aria-label="Calculator fee basis">
+              <span class="ft-switch">
+                <button type="button" data-cfee="net" aria-pressed="true">Net of fee schedule</button>
+                <button type="button" data-cfee="gross" aria-pressed="false">Gross</button>
+              </span>
+            </div>
+          </div>
+          <div class="calc-hint" id="c-fee-hint" style="margin-top:8px"></div>
+          <label class="calc-check"><input type="checkbox" id="c-infl"> Show results in today's dollars (3% inflation)</label>
+        </div>
+      </div>
+      <div>
+        <div class="calc-results-head">
+          <h3 id="calc-title"></h3>
+          <div class="small-label" id="calc-basis"></div>
+        </div>
+        <div class="calc-kpis">
+          <div class="kpi"><div class="kl">Projected balance, middle outcome</div><div class="kv blue" id="k-end"></div><div class="ks" id="k-end-sub"></div></div>
+          <div class="kpi"><div class="kl">Total contributed</div><div class="kv" id="k-contrib"></div><div class="ks" id="k-contrib-sub"></div></div>
+          <div class="kpi"><div class="kl">Growth</div><div class="kv" id="k-growth"></div><div class="ks" id="k-growth-sub"></div></div>
+        </div>
+        <div class="calc-chart">
+          <div class="calc-chart-head">
+            <div class="calc-chart-title">Projected balance by year</div>
+            <div class="calc-legend"><span><i style="background:#0077B6"></i>Middle outcome</span><span><i style="background:rgba(0,119,182,0.18);height:10px"></i>Range, 5th to 95th</span><span><i style="background:#B1B3B6"></i>Contributions only</span></div>
+          </div>
+          <svg id="calc-svg" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="calc-compare">
+          <table>
+            <thead><tr><th>Same inputs, each portfolio</th><th>Expected return</th><th>Low (5th)</th><th>Middle (50th)</th><th>High (95th)</th></tr></thead>
+            <tbody id="calc-compare-body"></tbody>
+          </table>
+        </div>
+        <div class="calc-actions">
+          <a href="#schedule" class="btn btn-blue">Discuss these numbers</a>
+        </div>
+        <div class="calc-note">This is a projection, not a prediction. The range comes from 1,000 simulated paths that vary month to month around the expected return you enter, using each portfolio's historical volatility (about 6% a year for Conservative up to 12% for Growth). The middle outcome is the 50th percentile; half of the simulated paths finished above it and half below. The low and high outcomes are the 5th and 95th percentiles, so roughly 1 run in 20 finished below the low figure and 1 in 20 above the high. The default expected return for each portfolio is its hypothetical annualized return from January 2012 through September 2026, a period that included strong U.S. stock markets; your results will be different and may be lower. Net results deduct the Fee Schedule A advisory fee from each simulated balance monthly: 1.50% on the first $500,000, 1.00% from $500,000 to $1,000,000, 0.75% from $1,000,000 to $2,000,000, nothing above $2,000,000, capped at $20,000 a year. The maximum annual investment advisory fee is 1.50%. Contributions are added at the end of each month. Taxes and fund expenses are not modeled beyond what is already reflected in fund returns.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM -->
+<section class="custom">
+  <div class="shell">
+    <div class="custom-card reveal">
+      <div>
+        <div class="label">A note on customization</div>
+        <h3>Models are a starting point, <em>not a ceiling.</em></h3>
+        <p>Many people sit comfortably inside one of the four Global Core portfolios. Others have preferences that deserve respect. A long-held position in a single stock you want to keep. A tilt toward a sector you believe in. <span class="own-line">A holding you want to avoid for personal reasons.</span></p>
+        <p>The framework bends. A custom allocation is built on the same five-role foundation, with the same discipline around cost, diversification, and rebalancing, then adjusted to your wishes.</p>
+      </div>
+      <div class="custom-action">
+        <div class="examples"><span>Concentrated positions</span><span>Sector tilts</span><span>Values-based screens</span><span>Legacy holdings</span></div>
+        <a href="#schedule" class="btn btn-blue">Discuss a custom portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta on-ink" id="schedule">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="-40" cy="540" r="200"/><circle cx="-40" cy="540" r="320"/><circle cx="-40" cy="540" r="440"/><circle cx="-40" cy="540" r="560"/>
+    </g>
+    <path d="M -40 540 m 440 0 a 440 440 0 0 0 -440 -440" fill="none" stroke="#0077B6" stroke-opacity="0.38" stroke-width="1.5"/>
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <path d="M 1000 460 L 1120 420 L 1240 430 L 1360 370 L 1480 340" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <g fill="#FFFFFF" fill-opacity="0.14"><circle cx="1120" cy="420" r="3"/><circle cx="1240" cy="430" r="3"/><circle cx="1360" cy="370" r="3"/></g>
+    <g fill="#FFFFFF" fill-opacity="0.07">
+      <circle cx="80" cy="60" r="2"/><circle cx="120" cy="60" r="2"/><circle cx="160" cy="60" r="2"/><circle cx="200" cy="60" r="2"/><circle cx="240" cy="60" r="2"/>
+      <circle cx="80" cy="100" r="2"/><circle cx="120" cy="100" r="2"/><circle cx="160" cy="100" r="2"/><circle cx="200" cy="100" r="2"/><circle cx="240" cy="100" r="2"/>
+      <circle cx="80" cy="140" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="160" cy="140" r="2"/><circle cx="200" cy="140" r="2"/><circle cx="240" cy="140" r="2"/>
+    </g>
+  </svg>
+  <div class="shell reveal">
+    <div class="label">The next step</div>
+    <h2>Which portfolio fits <em>your road ahead?</em></h2>
+    <p>The right portfolio depends on your time horizon, your tax situation, and how much movement you can live with. A short conversation is the fastest way to find out.</p>
+    <div class="cta-buttons">
+      <a href="https://www.jantzwealth.com/schedule" class="btn btn-blue">Schedule a conversation</a>
+      <a href="https://www.jantzwealth.com/investment-strategy" target="_blank" rel="noopener noreferrer" class="btn btn-line">Find your profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEE SCHEDULE POP-UP -->
+<div class="modal-backdrop" id="fee-modal" role="dialog" aria-modal="true" aria-labelledby="fee-modal-title">
+  <div class="modal">
+    <button type="button" class="modal-close" aria-label="Close">&times;</button>
+    <div class="label">Fee schedule</div>
+    <h3 id="fee-modal-title">What you pay Jantz Wealth Advisors.</h3>
+    <div class="sub">One clear fee, with a cap built in. It covers managing your investments and your retirement income plan, billed quarterly in arrears. No commissions on your advisory accounts. No hidden charges. And it never goes above $20,000 a year.</div>
+    <table class="fee-table">
+      <thead><tr><th>Assets under management</th><th>Annual fee</th></tr></thead>
+      <tbody>
+        <tr><td>First $500,000</td><td>1.50%</td></tr>
+        <tr><td>$500,000 to $1,000,000</td><td>1.00%</td></tr>
+        <tr><td>$1,000,000 to $2,000,000</td><td>0.75%</td></tr>
+        <tr><td>Above $2,000,000</td><td>No additional fee</td></tr>
+      </tbody>
+    </table>
+    <div class="fee-ex"><strong>How the tiers work.</strong> Each dollar pays only the rate for its tier, like income tax brackets. On $750,000 you pay 1.50% on the first $500,000 and 1.00% on the next $250,000, about $10,000 a year or 1.33% overall. At $1.5 million the blended rate is 1.08%. Once a household passes $2 million the fee stops growing: the most anyone pays is $20,000 a year, no matter how large the accounts become.</div>
+    <div class="fine">The maximum annual investment advisory fee is 1.50%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter based on the value at quarter end. Underlying ETFs carry their own expenses (0.05% to 0.10% a year for the Global Core Portfolios), which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Insurance and annuity products are separate from your advisory account and pay the agent a commission from the insurance company, not from your account. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</div>
+    <div class="modal-actions">
+      <a href="https://www.jantzwealth.com/fees" target="_blank" rel="noopener noreferrer" class="btn btn-line">Full fee page</a>
+      <button type="button" class="btn btn-ink" data-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-wordmark">Jantz <span>Wealth Advisors</span></div>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>Hypothetical performance.</strong> The Global Core Portfolios were established in October 2026. All performance shown is hypothetical and was calculated by applying each portfolio's target weights to the historical monthly total returns of the underlying ETFs from January 1, 2012 through September 30, 2026, rebalanced to target weights each January, with all distributions reinvested. SGOV (iShares 0-3 Month Treasury Bond ETF) launched in May 2020; before July 2020 the Treasury bill allocation uses the iShares Short Treasury Bond ETF (SHV) as a proxy. Hypothetical results do not reflect actual trading, were prepared with the benefit of hindsight, and may not reflect the impact that material economic and market factors might have had on decision-making if client money had actually been managed. No client has experienced these results.</p>
+      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.50%. Results labeled "net of 1.50%" are shown after deducting a 1.50% annual advisory fee, applied quarterly in arrears as 0.375% of the portfolio value at the end of each calendar quarter. Results labeled "before fees" do not reflect the deduction of any advisory fee and will be higher than what a client would have received; a client's results would be reduced by advisory fees and any custodial or trading costs. For a complete description of advisory fees, see the Jantz Wealth Advisors fee schedule.</p>
+      <p><strong>Worst calendar year</strong> figures are calendar-year total returns. Declines within a year, measured from peak to trough, may have been larger than the calendar-year figures shown. Trailing 12-month returns, yields, and 2026 year-to-date figures are as of September 30, 2026. Yield and fund expense figures are weighted averages of the underlying fund data and are subject to change. Price data: Yahoo Finance.</p>
+      <p>The Global Core Portfolios are model allocations and may not be appropriate for every investor. Individual recommendations are based on your financial situation, time horizon, tax considerations, and risk tolerance. Holdings, weights, and methodology are subject to change. All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ───────── DATA (as of 9/30/2026; Jan 2012 start; SGOV spliced from July 2020) ───────── */
+const CAL_YEARS = [2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const FUNDS = {
+  SCHB: { name: 'U.S. Equity', long: 'Schwab U.S. Broad Market ETF', color: '#232E3D' },
+  SCHD: { name: 'U.S. Dividend Equity', long: 'Schwab U.S. Dividend Equity ETF', color: '#4A4F55' },
+  SCHF: { name: 'International Equity', long: 'Schwab International Equity ETF', color: '#7D8187' },
+  SGOV: { name: 'Short-Term U.S. Treasuries', long: 'iShares 0-3 Month Treasury Bond ETF', color: '#B1B3B6' },
+  IAU:  { name: 'Gold', long: 'iShares Gold Trust', color: '#D9D3C8' }
+};
+const PORTS = [
+  { id: 'conservative', name: 'Conservative', tier: 'Tier 1', tierWord: 'Stability first', num: '01',
+    weights: [['SGOV',45],['SCHD',20],['IAU',15],['SCHB',10],['SCHF',10]], stocks: 40, mix: [40,45,15], exp: '0.10%', yld: '2.72%',
+    tag: 'Built for you if protecting what you have saved comes first, and you still want steady growth and income working in the background.',
+    blurbs: [['Stability comes first','Nearly half sits in short-term Treasury bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'],
+             ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad market fell about 19%, which is <em>why the worst year stayed shallow.</em>'],
+             ['A measured share of growth','About 40% is in stocks across the U.S. and other developed markets, with gold alongside. Enough to keep growing, without one market deciding your year.']],
+    vol: 6.35,
+    gross: { QTD:1.67, YTD:7.71, Y1:11.88, Y5:9.21, Y10:8.21, SI:7.07, cal:[6.84,7.55,2.73,-1.85,6.23,11.13,-2.56,14.52,10.16,9.12,-3.46,9.59,11.46,17.52], val:[106844,114910,118046,115859,123082,136781,133282,152639,168151,183485,177136,194124,216362,254261,273870] },
+    net:   { QTD:1.29, YTD:6.50, Y1:10.21, Y5:7.58, Y10:6.60, SI:5.47, cal:[5.25,5.95,1.20,-3.32,4.65,9.47,-4.01,12.82,8.52,7.49,-4.90,7.96,9.79,15.76], val:[105250,111508,112842,109099,114172,124988,119973,135348,146879,157883,150146,162091,177965,206019,219420] } },
+  { id: 'moderate', name: 'Moderate', tier: 'Tier 2', tierWord: 'Stability with growth', num: '02',
+    weights: [['SGOV',30],['SCHD',25],['SCHB',20],['IAU',15],['SCHF',10]], stocks: 55, mix: [55,30,15], exp: '0.09%', yld: '2.43%',
+    tag: 'Built for you if you want steady growth and income, with a large stability sleeve to soften the rough years.',
+    blurbs: [['A large stability sleeve','Nearly a third sits in short-term Treasury bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'],
+             ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad market fell about 19%, which is <em>why the worst year stayed shallow.</em>'],
+             ['Growth that is not all in one place','Broad U.S. stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
+    vol: 7.87,
+    gross: { QTD:1.85, YTD:9.65, Y1:14.03, Y5:10.43, Y10:9.96, SI:8.95, cal:[9.04,12.51,4.58,-1.83,8.21,14.19,-3.63,18.61,12.86,13.19,-5.81,11.66,13.64,18.79], val:[109043,122688,128309,125963,136299,155644,150002,177922,200811,227298,214102,239076,271686,322739,353873] },
+    net:   { QTD:1.47, YTD:8.42, Y1:12.33, Y5:8.79, Y10:8.32, SI:7.32, cal:[7.42,10.83,3.02,-3.29,6.59,12.49,-5.06,16.84,11.18,11.50,-7.21,10.00,11.94,17.02], val:[107417,119055,122652,118614,126433,142224,135023,157767,175407,195582,181480,199626,223470,261504,283517] } },
+  { id: 'balanced', name: 'Balanced', tier: 'Tier 3', tierWord: 'Balanced growth', num: '03',
+    weights: [['SCHB',35],['SGOV',20],['SCHD',20],['SCHF',15],['IAU',10]], stocks: 70, mix: [70,20,10], exp: '0.07%', yld: '2.21%',
+    tag: 'Built for you if you want your savings to keep growing, with enough stability on hand to stay the course when markets get rough.',
+    blurbs: [['Growth leads','About 70% is in stocks, led by the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
+             ['A stability sleeve to lean on','One fifth sits in short-term Treasury bills. That part holds steady when markets do not, and it gives us cash to rebalance with.'],
+             ['More than one source of return','Dividend stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
+    vol: 9.60,
+    gross: { QTD:1.59, YTD:11.14, Y1:15.33, Y5:11.03, Y10:11.16, SI:10.37, cal:[11.52,18.21,5.72,-1.35,8.89,16.92,-4.94,21.85,14.37,16.34,-9.43,15.12,14.94,19.22], val:[111519,131824,139363,137482,149710,175041,166393,202742,231868,269750,244320,281272,323293,385432,428353] },
+    net:   { QTD:1.21, YTD:9.89, Y1:13.61, Y5:9.38, Y10:9.50, SI:8.72, cal:[9.86,16.45,4.14,-2.82,7.27,15.18,-6.36,20.03,12.66,14.60,-10.78,13.41,13.23,17.44], val:[109855,127921,133219,129461,138873,159949,149778,179776,202535,232110,207093,234858,265919,312302,343189] } },
+  { id: 'growth', name: 'Growth', tier: 'Tier 4', tierWord: 'Long-term growth', num: '04',
+    weights: [['SCHB',55],['SCHD',20],['SCHF',15],['SGOV',5],['IAU',5]], stocks: 90, mix: [90,5,5], exp: '0.05%', yld: '1.87%',
+    tag: 'Built for you if you have many years ahead and want your money working hard, and you can sit through market drops along the way.',
+    blurbs: [['Stocks do the work','About 90% is in stocks, with more than half in the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
+             ['Expect bigger swings','This portfolio rises and falls with the stock market. Its worst calendar year was 2022, and the drops within a year were larger. It suits money you will not need for many years.'],
+             ['A small cash and gold sleeve','Five percent in Treasury bills and five percent in gold will not cushion much. Their job is to give us something to rebalance with when stocks are down.']],
+    vol: 12.06,
+    gross: { QTD:1.58, YTD:13.45, Y1:17.26, Y5:11.93, Y10:13.02, SI:12.57, cal:[14.44,26.26,8.36,-0.74,10.84,20.42,-6.17,26.75,17.14,21.70,-13.52,18.95,17.59,18.77], val:[114438,144489,156566,155405,172249,207414,194613,246674,288956,351656,304098,361711,425342,505195,573141] },
+    net:   { QTD:1.20, YTD:12.18, Y1:15.51, Y5:10.26, Y10:11.33, SI:10.89, cal:[12.73,24.38,6.74,-2.22,9.19,18.62,-7.57,24.86,15.39,19.88,-14.81,17.17,15.84,17.00], val:[112731,140211,149664,146338,159780,189530,175180,218731,252401,302588,257763,302024,349858,409342,459191] } }
+];
+
+/* ───────── helpers ───────── */
+let FEE = 'net';
+const pct = v => (v < 0 ? '−' : '') + Math.abs(v).toFixed(2) + '%';
+const usd = v => '$' + Math.round(v).toLocaleString('en-US');
+const dataFor = p => p[FEE];
+const worst = d => { let i = 0; d.cal.forEach((r, k) => { if (r < d.cal[i]) i = k; }); return { r: d.cal[i], y: CAL_YEARS[i] }; };
+const best  = d => { let i = 0; d.cal.forEach((r, k) => { if (r > d.cal[i]) i = k; }); return { r: d.cal[i], y: CAL_YEARS[i] }; };
+const feeText = () => FEE === 'net' ? 'net of the 1.50% annual advisory fee' : 'before any advisory fee';
+
+/* ───────── static builds ───────── */
+function buildStatic() {
+  document.getElementById('mix-rows').innerHTML = PORTS.map(p => `
+    <div class="mix-row">
+      <div class="mix-label"><span class="mix-name">${p.name}</span><span class="mix-nums">${p.mix.join(' / ')}</span></div>
+      <div class="mix-bar" role="img" aria-label="${p.name}: ${p.mix[0]}% stocks, ${p.mix[1]}% Treasury bills, ${p.mix[2]}% gold"><span class="mix-stocks" style="width:${p.mix[0]}%"></span><span class="mix-tbills" style="width:${p.mix[1]}%"></span><span class="mix-gold" style="width:${p.mix[2]}%"></span></div>
+    </div>`).join('');
+
+  document.getElementById('spectrum-dots').innerHTML = PORTS.map(p => `
+    <div class="spectrum-dot">
+      <div class="spectrum-name">${p.name}</div>
+      <div class="spectrum-tier">${p.tier} &middot; ${p.tierWord}</div>
+      <div class="spectrum-stocks">${p.stocks}% stocks</div>
+      <div class="spectrum-cagr"><span class="num-swap" data-si="${p.id}"></span><small>Annualized since 2012</small></div>
+    </div>`).join('');
+
+  document.getElementById('compare-body').innerHTML = PORTS.map(p => `
+    <tr>
+      <td><div class="compare-name">${p.name}</div><div class="compare-tier">${p.tier} &middot; ${p.tierWord}</div></td>
+      <td><div class="compare-num">${p.stocks}%<small>of portfolio</small></div></td>
+      <td><div class="compare-num num-swap" data-si2="${p.id}"></div></td>
+      <td><div class="compare-num neg num-swap" data-worst="${p.id}"></div></td>
+      <td><div class="compare-num num-swap" data-y1="${p.id}"></div></td>
+      <td><div class="compare-num">${p.yld}<small>trailing 12 mo</small></div></td>
+      <td><div class="compare-num">${p.exp}<small>weighted avg</small></div></td>
+      <td class="compare-link"><a href="#${p.id}">View details</a></td>
+    </tr>`).join('');
+
+  const roles = [
+    ['SCHB','Primary growth engine. Roughly 2,400 U.S. companies of every size in a single low-cost fund, so no one company or industry can decide your year.'],
+    ['SCHD','Quality and income. A 100-stock screen for dividend consistency and balance-sheet strength that has historically softened drawdowns while keeping pace in growth markets.'],
+    ['SCHF','Geographic diversification across roughly 1,500 holdings in developed markets outside the U.S. Keeps one country from deciding your year.'],
+    ['SGOV','The stability sleeve. Treasury bills maturing in three months or less provide yield while holding steady, and give us cash to rebalance into weakness instead of selling into it.'],
+    ['IAU','Inflation hedge and crisis diversifier. Low correlation with stocks means gold often zigs when the rest of the portfolio zags.']
+  ];
+  document.getElementById('roles-list').innerHTML = roles.map(([t, txt]) => `
+    <div class="role">
+      <span class="role-swatch" style="background:${FUNDS[t].color}"></span>
+      <div><div class="role-ticker">${t}</div><div class="role-desc">${FUNDS[t].name}</div></div>
+      <div class="role-text">${txt}</div>
+    </div>`).join('');
+
+  document.getElementById('portfolios').innerHTML = PORTS.map((p, i) => {
+    const C = 2 * Math.PI * 80; let off = 0;
+    const segs = p.weights.map(([t, w]) => {
+      const len = C * w / 100;
+      const s = `<circle class="donut-seg" cx="100" cy="100" r="80" stroke="${FUNDS[t].color}" stroke-dasharray="${len.toFixed(2)} ${C.toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}"><title>${t} ${w}%</title></circle>`;
+      off += len; return s;
+    }).join('');
+    return `
+    <section class="portfolio" id="${p.id}">
+      <div class="shell">
+        <div class="portfolio-head reveal">
+          <div class="portfolio-marker">${p.num}<small>${p.tier} &middot; ${p.tierWord}</small></div>
+          <div class="portfolio-title">
+            <div class="label">${p.stocks}% stocks &middot; ${p.mix[1]}% Treasury bills &middot; ${p.mix[2]}% gold</div>
+            <h2>Global Core ${p.name}</h2>
+            <p class="tagline">${p.tag}</p>
+          </div>
+        </div>
+        <div class="portfolio-body reveal">
+          <div>
+            <div class="donut-wrap">
+              <svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="${p.name} allocation">${segs}</svg>
+              <div class="donut-center">
+                <div class="dl">Annualized since 2012</div>
+                <div class="dv num-swap" data-donut="${p.id}"></div>
+                <div class="ds num-swap" data-donut-worst="${p.id}"></div>
+              </div>
+            </div>
+            <div class="blurbs">${p.blurbs.map(([h, b]) => `<div class="blurb"><h5>${h}</h5><p>${b}</p></div>`).join('')}</div>
+          </div>
+          <div>
+            <table class="holdings">
+              <thead><tr><th>Holding</th><th>Role</th><th>Weight</th></tr></thead>
+              <tbody>${p.weights.map(([t, w]) => `<tr><td><span class="h-swatch" style="background:${FUNDS[t].color}"></span><span class="h-ticker">${t}</span></td><td>${FUNDS[t].name}</td><td class="h-weight">${w}%</td></tr>`).join('')}</tbody>
+            </table>
+            <div class="periods-head"><span>Returns</span><span>As of September 30, 2026</span></div>
+            <div class="periods">
+              ${[['Q3 2026','QTD'],['2026 year to date','YTD'],['1 year','Y1'],['5 years, annualized','Y5'],['10 years, annualized','Y10'],['Since 1/1/2012, annualized','SI']].map(([l, k]) => `<div class="period"><div class="pl">${l}</div><div class="pv num-swap" data-period="${p.id}" data-key="${k}"></div></div>`).join('')}
+            </div>
+            <div class="calyears">
+              <div class="calyears-head"><div class="calyears-title">Calendar-year returns</div><div class="calyears-key num-swap" data-calkey="${p.id}"></div></div>
+              <svg viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" data-cal="${p.id}"></svg>
+            </div>
+            <div class="stats-row">
+              <div class="stat"><div class="sl">Best calendar year</div><div class="sv num-swap" data-best="${p.id}"></div></div>
+              <div class="stat"><div class="sl">Worst calendar year</div><div class="sv neg num-swap" data-worst2="${p.id}"></div></div>
+              <div class="stat"><div class="sl">$100,000 grew to</div><div class="sv num-swap" data-grow="${p.id}"></div></div>
+            </div>
+            <div class="portfolio-cta">
+              <a href="#calculator" class="btn btn-blue try-calc" data-pf="${p.id}">Try the calculator</a>
+              <a href="#schedule" class="btn btn-line">Discuss this portfolio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }).join('');
+}
+
+/* ───────── fee-dependent renders ───────── */
+function renderNumbers() {
+  const q = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+  PORTS.forEach(p => {
+    const d = dataFor(p), w = worst(d), b = best(d);
+    q(`[data-si="${p.id}"]`, el => el.textContent = pct(d.SI));
+    q(`[data-si2="${p.id}"]`, el => el.innerHTML = `${pct(d.SI)}<small>annualized</small>`);
+    q(`[data-worst="${p.id}"]`, el => el.innerHTML = `${pct(w.r)}<small>calendar year ${w.y}</small>`);
+    q(`[data-y1="${p.id}"]`, el => el.innerHTML = `${pct(d.Y1)}<small>through 9/30/2026</small>`);
+    q(`[data-donut="${p.id}"]`, el => el.innerHTML = `${d.SI.toFixed(2)}<span>%</span>`);
+    q(`[data-donut-worst="${p.id}"]`, el => el.textContent = `${pct(w.r)} worst year`);
+    q(`[data-period="${p.id}"]`, el => { const v = d[el.dataset.key]; el.textContent = pct(v); el.classList.toggle('neg', v < 0); });
+    q(`[data-best="${p.id}"]`, el => el.innerHTML = `${pct(b.r)}<small>${b.y}</small>`);
+    q(`[data-worst2="${p.id}"]`, el => el.innerHTML = `${pct(w.r)}<small>${w.y}</small>`);
+    q(`[data-grow="${p.id}"]`, el => el.innerHTML = `${usd(d.val[14])}<small>9/30/26</small>`);
+    q(`[data-calkey="${p.id}"]`, el => el.textContent = FEE === 'net' ? 'Net of 1.50% fee' : 'Before fees');
+    q(`svg[data-cal="${p.id}"]`, svg => drawCal(svg, d));
+  });
+
+  document.getElementById('fee-note-text').innerHTML = FEE === 'net'
+    ? `<strong>Every figure on this page is shown ${feeText()}.</strong> The maximum annual investment advisory fee is 1.50%. Your fee depends on your advisory agreement and may be lower.`
+    : `<strong>Every figure on this page is now shown ${feeText()}.</strong> These are not the results a client would have received. Switch back to "Net of 1.50%" to see results after the maximum annual advisory fee.`;
+
+  const bal = PORTS.find(p => p.id === 'balanced'), bd = dataFor(bal);
+  document.getElementById('cv-sub').textContent = `January 1, 2012 through September 30, 2026, ${feeText()}, all distributions reinvested, rebalanced each January.`;
+  document.getElementById('cv-end').textContent = usd(bd.val[14]);
+  document.getElementById('cv-cagr').textContent = pct(bd.SI);
+  drawCompound(bd);
+}
+
+function drawCal(svg, d) {
+  const vals = d.cal.concat([d.YTD]);
+  const labels = CAL_YEARS.map(String).concat(['26 YTD']);
+  const W = 600, H = 150, left = 8, right = 8, top = 22, bottom = 26;
+  const bg = svg.closest('.portfolio') && getComputedStyle(svg.closest('.portfolio')).backgroundColor === 'rgb(255, 255, 255)' ? '#FFFFFF' : '#F6F3EE';
+  const maxA = Math.max(...vals.map(Math.abs));
+  const zero = top + (H - top - bottom) * (maxA / (2 * maxA));
+  const scale = (H - top - bottom) / (2 * maxA);
+  const n = vals.length, slot = (W - left - right) / n, bw = slot * 0.62;
+  let out = `<line x1="${left}" y1="${zero}" x2="${W - right}" y2="${zero}" stroke="#D9D3C8" stroke-width="1"/>`;
+  vals.forEach((v, i) => {
+    const x = left + slot * i + (slot - bw) / 2, h = Math.abs(v) * scale;
+    const y = v >= 0 ? zero - h : zero;
+    const col = v >= 0 ? '#2E7D5B' : '#A94A3E';
+    const ly = v >= 0 ? y - 5 : y + h + 11;
+    out += `<g class="bar"><rect class="hit" x="${(left + slot * i).toFixed(1)}" y="${top}" width="${slot.toFixed(1)}" height="${H - top}" fill="transparent"/>`;
+    out += `<rect class="b" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="${col}" rx="1" style="transform-origin:${(x + bw / 2).toFixed(1)}px ${zero.toFixed(1)}px"/>`;
+    out += `<text class="v" x="${(x + bw / 2).toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" font-weight="500" fill="${col}" stroke="${bg}" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="transform-origin:${(x + bw / 2).toFixed(1)}px ${ly.toFixed(1)}px">${v.toFixed(1)}%</text>`;
+    out += `<text class="yr" x="${(x + bw / 2).toFixed(1)}" y="${H - 8}" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" fill="#4A4F55" stroke="${bg}" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="transform-origin:${(x + bw / 2).toFixed(1)}px ${H - 10}px">${i < 14 ? "'" + labels[i].slice(2) : labels[i]}</text></g>`;
+  });
+  svg.innerHTML = out;
+}
+
+function drawCompound(d) {
+  const svg = document.getElementById('compound-svg');
+  const pts = [100000].concat(d.val);
+  const x0 = 60, x1 = 460, y0 = 220, y1 = 40;
+  const max = Math.max(...pts), min = 60000;
+  const X = i => x0 + (x1 - x0) * i / (pts.length - 1);
+  const Y = v => y0 - (y0 - y1) * (v - min) / (max - min);
+  const path = pts.map((v, i) => `${i ? 'L' : 'M'} ${X(i).toFixed(1)} ${Y(v).toFixed(1)}`).join(' ');
+  const was = svg.classList.contains('animate');
+  svg.innerHTML = `
+    <line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y0}" stroke="#D9D3C8" stroke-width="1"/>
+    <path class="fill" d="${path} L ${x1} ${y0} L ${x0} ${y0} Z" fill="rgba(0,119,182,0.08)"/>
+    <path class="line" d="${path}" stroke="#0077B6" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round" pathLength="1000"/>
+    <circle cx="${x0}" cy="${y0}" r="4" fill="#232E3D"/>
+    <text x="${x0}" y="${y0 - 12}" text-anchor="middle" fill="#232E3D" font-size="11.5" font-family="Inter, sans-serif" font-weight="600">$100K</text>
+    <text x="${x0}" y="244" text-anchor="middle" fill="#4A4F55" font-size="9.5" font-family="Inter, sans-serif" font-weight="600" letter-spacing="1.2">JAN 2012</text>
+    <g class="endpt">
+      <circle cx="${x1}" cy="${Y(pts[pts.length-1]).toFixed(1)}" r="6" fill="#0077B6"/>
+      <text x="${x1 - 6}" y="${(Y(pts[pts.length-1]) - 14).toFixed(1)}" text-anchor="end" fill="#0077B6" font-size="15" font-weight="600" font-family="Inter, sans-serif">${usd(pts[pts.length-1])}</text>
+    </g>
+    <text x="${x1 + 8}" y="244" text-anchor="end" fill="#4A4F55" font-size="9.5" font-family="Inter, sans-serif" font-weight="600" letter-spacing="1.2">SEP 2026</text>`;
+  if (was) svg.classList.add('animate');
+}
+
+/* ───────── fee toggle ───────── */
+function setFee(f) {
+  if (f === FEE) return;
+  FEE = f;
+  document.body.classList.toggle('gross', FEE === 'gross');
+  document.querySelectorAll('.fee-toggle button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.fee === FEE)));
+  document.querySelectorAll('.fee-basis-text').forEach(el => el.textContent = feeText());
+  document.body.classList.add('swapping');
+  setTimeout(() => { renderNumbers(); document.body.classList.remove('swapping'); }, 180);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.fee-toggle button[data-fee]'); if (b) setFee(b.dataset.fee);
+});
+
+buildStatic();
+renderNumbers();
+
+
+/* ───────── projected growth calculator ───────── */
+(function() {
+  let CF = 'net', SEL = 'balanced', userRate = false;
+  const $ = id => document.getElementById(id);
+  const pills = $('calc-pills');
+  pills.innerHTML = PORTS.map(p => `<button type="button" data-pf="${p.id}" aria-pressed="${p.id === SEL}">${p.name}</button>`).join('');
+  const port = () => PORTS.find(p => p.id === SEL);
+  const grossRate = p => p.gross.SI;
+
+  // Deterministic normal draws so the numbers do not jitter between inputs
+  const PATHS = 1000, MAXM = 480;
+  const Z = (() => { let a = 1234567; const r = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    const z = new Float32Array(PATHS * MAXM); for (let i = 0; i < z.length; i += 2) { const u = 1 - r(), v = r(), m = Math.sqrt(-2 * Math.log(u)); z[i] = m * Math.cos(2 * Math.PI * v); z[i + 1] = m * Math.sin(2 * Math.PI * v); } return z; })();
+
+  // Fee Schedule A: 1.50% to $500k, 1.00% to $1M, 0.75% to $2M, 0% above, capped at $20,000 a year
+  const TIERS = [[500000, 0.015], [1000000, 0.010], [2000000, 0.0075]], CAP = 20000;
+  function annualFee(v) { let f = 0, lo = 0; for (const [hi, r] of TIERS) { if (v <= lo) break; f += (Math.min(v, hi) - lo) * r; lo = hi; } return Math.min(f, CAP); }
+  function project(start, contrib, years, rate, vol, fee, infl) {
+    const sm = vol / 100 / Math.sqrt(12), mu = Math.log(1 + rate / 100) / 12, M = years * 12;
+    const yearly = []; for (let y = 0; y <= years; y++) yearly.push(new Float64Array(PATHS));
+    let c = start; const contribs = [start];
+    for (let m = 1; m <= M; m++) { c += contrib; if (m % 12 === 0) contribs.push(c); }
+    for (let p = 0; p < PATHS; p++) {
+      let v = start; yearly[0][p] = v;
+      for (let m = 1; m <= M; m++) { v = v * Math.exp(mu + sm * Z[p * MAXM + m - 1]); if (fee) v -= annualFee(v) / 12; v += contrib; if (m % 12 === 0) yearly[m / 12][p] = v; }
+    }
+    const series = yearly.map((arr, y) => { const a = Array.from(arr).sort((x, z) => x - z); const q = k => a[Math.min(PATHS - 1, Math.floor(k * PATHS))]; const d = infl ? Math.pow(1.03, y) : 1;
+      return { y, lo: q(0.05) / d, mid: q(0.5) / d, hi: q(0.95) / d, c: contribs[y] / d }; });
+    return series;
+  }
+  function inputs() {
+    return {
+      start: Math.max(0, +$('c-start').value || 0),
+      contrib: Math.max(0, +$('c-contrib').value || 0),
+      years: +$('c-years').value,
+      rate: Math.min(20, Math.max(0, +$('c-rate').value || 0)),
+      infl: $('c-infl').checked
+    };
+  }
+  function render() {
+    const p = port(), i = inputs(), fee = CF === 'net' ? 1 : 0;
+    if (!userRate) { $('c-rate').value = grossRate(p).toFixed(2); i.rate = grossRate(p); }
+    $('c-years-out').textContent = `· ${i.years} year${i.years > 1 ? 's' : ''}`;
+    $('c-rate-hint').textContent = `Prefilled with Global Core ${p.name}'s hypothetical annualized return since 2012 (${pct(grossRate(p))} before fees). Change it to test other assumptions. The range uses ${p.name}'s historical volatility of about ${p.vol.toFixed(0)}% a year.`;
+    const s = project(i.start, i.contrib, i.years, i.rate, p.vol, fee, i.infl), end = s[s.length - 1];
+    $('calc-title').innerHTML = `Global Core ${p.name}, <em>${i.years} years out.</em>`;
+    $('calc-basis').textContent = (CF === 'net' ? 'Net of Fee Schedule A' : 'Gross, before advisory fees') + (i.infl ? " · today's dollars" : '');
+    $('k-end').textContent = usd(end.mid);
+    $('k-end-sub').textContent = `9 in 10 runs landed between ${usd(end.lo)} and ${usd(end.hi)}`;
+    const effNow = i.start > 0 ? annualFee(i.start) / i.start * 100 : 1.5, effEnd = end.mid > 0 ? annualFee(end.mid) / end.mid * 100 : 1.5;
+    $('c-fee-hint').textContent = CF === 'net'
+      ? `Fee Schedule A: 1.50% on the first $500k, 1.00% to $1M, 0.75% to $2M, nothing above, capped at $20,000 a year. Blended rate on ${usd(i.start)} today is ${effNow.toFixed(2)}%; on the projected ${usd(end.mid)} it would be ${effEnd.toFixed(2)}%.`
+      : 'No advisory fee deducted. These are not the results a client would receive.';
+    $('k-contrib').textContent = usd(end.c);
+    $('k-contrib-sub').textContent = `${usd(i.start)} to start plus ${usd(i.contrib)} a month`;
+    $('k-growth').textContent = usd(end.mid - end.c);
+    $('k-growth-sub').textContent = end.c > 0 ? `${((end.mid / end.c - 1) * 100).toFixed(0)}% more than you put in, middle outcome` : '';
+    drawCalc(s);
+    const cur = PORTS.map(q => { const r = userRate ? i.rate : grossRate(q); const ser = project(i.start, i.contrib, i.years, r, q.vol, fee, i.infl); return { q, r, e: ser[ser.length - 1] }; });
+    $('calc-compare-body').innerHTML = cur.map(({ q, r, e }) => `<tr class="${q.id === SEL ? 'sel' : ''}"><td>${q.name}<small>${q.stocks}% stocks · ${q.vol.toFixed(0)}% volatility</small></td><td class="v">${pct(r)}<small>before fee</small></td><td class="v">${usd(e.lo)}</td><td class="v" style="color:var(--blue)">${usd(e.mid)}</td><td class="v">${usd(e.hi)}</td></tr>`).join('');
+  }
+  function drawCalc(s) {
+    const svg = $('calc-svg'), W = 640, H = 260, L = 56, R = 16, T = 20, B = 34;
+    const max = Math.max(...s.map(x => x.hi)) * 1.05, n = s.length - 1;
+    const X = y => L + (W - L - R) * y / n, Y = v => T + (H - T - B) * (1 - v / max);
+    const path = k => s.map((x, i) => `${i ? 'L' : 'M'} ${X(x.y).toFixed(1)} ${Y(x[k]).toFixed(1)}`).join(' ');
+    let out = '';
+    const ticks = 4; for (let t = 0; t <= ticks; t++) { const v = max * t / ticks, y = Y(v); out += `<line x1="${L}" y1="${y.toFixed(1)}" x2="${W - R}" y2="${y.toFixed(1)}" stroke="#D9D3C8" stroke-width="1"/><text x="${L - 8}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-family="Inter, sans-serif" font-size="9.5" fill="#4A4F55">${v >= 1e6 ? '$' + (v / 1e6).toFixed(1) + 'M' : '$' + Math.round(v / 1000) + 'K'}</text>`; }
+    const step = n > 20 ? 10 : n > 10 ? 5 : n > 5 ? 2 : 1;
+    for (let y = 0; y <= n; y += step) out += `<text x="${X(y).toFixed(1)}" y="${H - 12}" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#4A4F55">${y === 0 ? 'Today' : 'Yr ' + y}</text>`;
+    const band = s.map((x, i) => `${i ? 'L' : 'M'} ${X(x.y).toFixed(1)} ${Y(x.hi).toFixed(1)}`).join(' ') + ' ' + s.slice().reverse().map(x => `L ${X(x.y).toFixed(1)} ${Y(x.lo).toFixed(1)}`).join(' ') + ' Z';
+    out += `<path d="${band}" fill="rgba(0,119,182,0.14)"/>`;
+    out += `<path d="${path('lo')}" stroke="rgba(0,119,182,0.45)" stroke-width="1" fill="none"/><path d="${path('hi')}" stroke="rgba(0,119,182,0.45)" stroke-width="1" fill="none"/>`;
+    out += `<path d="${path('c')}" stroke="#B1B3B6" stroke-width="2" fill="none" stroke-dasharray="4 4"/>`;
+    out += `<path d="${path('mid')}" stroke="#0077B6" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`;
+    const e = s[n];
+    const hiY = Math.max(T + 10, Y(e.hi) - 10);
+    out += `<text x="${(X(n) - 6).toFixed(1)}" y="${hiY.toFixed(1)}" text-anchor="end" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#4A4F55" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round" paint-order="stroke" >${usd(e.hi)}</text>`;
+    out += `<text x="${(X(n) - 6).toFixed(1)}" y="${(Y(e.lo) + 16).toFixed(1)}" text-anchor="end" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#4A4F55" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round" paint-order="stroke" >${usd(e.lo)}</text>`;
+    out += `<circle cx="${X(n).toFixed(1)}" cy="${Y(e.mid).toFixed(1)}" r="5" fill="#0077B6"/><text x="${(X(n) - 10).toFixed(1)}" y="${(Y(e.mid) + 4).toFixed(1)}" text-anchor="end" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#0077B6" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round" paint-order="stroke" >${usd(e.mid)}</text>`;
+    svg.innerHTML = out;
+  }
+  pills.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; SEL = b.dataset.pf; userRate = false; pills.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.pf === SEL))); render(); });
+  document.addEventListener('click', e => {
+    const f = e.target.closest('[data-cfee]'); if (f) { CF = f.dataset.cfee; document.querySelectorAll('[data-cfee]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.cfee === CF))); render(); }
+    const t = e.target.closest('.try-calc'); if (t) { const b = pills.querySelector(`[data-pf="${t.dataset.pf}"]`); if (b) b.click(); }
+  });
+  ['c-start', 'c-contrib', 'c-years', 'c-infl'].forEach(id => $(id).addEventListener('input', render));
+  $('c-rate').addEventListener('input', () => { userRate = true; render(); });
+  render();
+})();
+
+
+/* ───────── fee schedule pop-up ───────── */
+(function() {
+  const bd = document.getElementById('fee-modal'), box = bd.querySelector('.modal');
+  let lastFocus = null;
+  function open(trigger) {
+    lastFocus = trigger;
+    const docH = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    bd.style.height = docH + 'px';
+    // Place the dialog just above the link that opened it, so it is on screen even inside a tall embedded iframe
+    const r = trigger.getBoundingClientRect(), y = r.top + window.scrollY;
+    bd.classList.add('open');
+    const boxH = box.offsetHeight;
+    let top = y - boxH - 24; if (top < 24) top = y + 40;
+    box.style.top = top + 'px';
+    if (window.parent === window) { box.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    else { window.parent.postMessage({ type: 'jws-scrollto', offset: Math.max(0, top - 40), targetId: 'fee-modal' }, '*'); }
+    box.querySelector('.modal-close').focus({ preventScroll: true });
+  }
+  function close() {
+    bd.classList.remove('open'); document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.addEventListener('click', e => {
+    const t = e.target.closest('.open-fees'); if (t) { e.preventDefault(); e.stopPropagation(); open(t); return; }
+    if (e.target.closest('.modal-close, [data-close]')) { close(); return; }
+    if (e.target === bd) close();
+  }, true);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && bd.classList.contains('open')) close(); });
+})();
+
+/* ───────── reveal on scroll ───────── */
+(function() {
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          const chart = e.target.querySelector('.compound-svg');
+          if (chart) setTimeout(() => chart.classList.add('animate'), 200);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    document.querySelectorAll('.compound-svg').forEach(el => el.classList.add('animate'));
+  }
+})();
+
+/* ───────── iframe anchor routing (Duda) ───────── */
+(function() {
+  if (window.parent === window) return;
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest('a'); if (!a || a.classList.contains('open-fees')) return;
+    const href = a.getAttribute('href');
+    if (!href || !href.startsWith('#') || href === '#') return;
+    const target = document.getElementById(href.slice(1)); if (!target) return;
+    e.preventDefault();
+    const offset = target.getBoundingClientRect().top + window.scrollY;
+    window.parent.postMessage({ type: 'jws-scrollto', offset: offset, targetId: href.slice(1) }, '*');
+    if (history.replaceState) history.replaceState(null, '', href);
+  });
+})();
+
+/* ───────── iframe auto-resize (Duda) ───────── */
+(function() {
+  if (window.parent === window) return;
+  let last = 0;
+  const measure = () => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  function send(force) {
+    const h = measure(); if (h <= 0) return;
+    if (!force && Math.abs(h - last) < 5) return;
+    last = h;
+    window.parent.postMessage({ type: 'jws-resize', height: h }, '*');
+  }
+  window.addEventListener('message', ev => { if (ev.data && ev.data.type === 'jws-request-height') send(true); });
+  window.addEventListener('load', () => { send(true); [250, 800, 2000].forEach(t => setTimeout(() => send(true), t)); });
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => send(true), 200); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(() => send(true), 100));
+  document.addEventListener('click', e => { if (e.target.closest('.fee-toggle, .pf-pills')) setTimeout(() => send(true), 400); });
+  document.addEventListener('input', e => { if (e.target.closest('.calc')) setTimeout(() => send(true), 300); });
+})();
+</script>
+</body>
+</html>
