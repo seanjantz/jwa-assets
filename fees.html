@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How Jantz Wealth Advisors is compensated. One clear advisory fee with a cap built in, plus a plain explanation of the hybrid approach and why it can lower the cost of your whole retirement portfolio.">
+<title>Fees | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r1: #232E3D; --r2: #4A4F55; --r3: #7D8187; --r4: #B1B3B6; --r5: #D9D3C8;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+section { padding: 88px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 56px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; }
+h1 { font-size: clamp(40px, 5.6vw, 64px); font-weight: 400; line-height: 1.04; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
+h2 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 14px; }
+h4 { font-size: 19px; margin-bottom: 8px; }
+p + p { margin-top: 16px; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--slate); font-weight: 400; }
+.num { font-family: var(--serif); font-weight: 500; color: var(--ink); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.small-label {
+  font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--slate);
+}
+.prose { max-width: 720px; }
+.prose p { font-size: 17px; line-height: 1.7; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose em { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.12em; }
+.section-head { max-width: 760px; margin-bottom: 40px; }
+.section-head .lede { margin-top: 6px; }
+.fine { font-size: 13px; line-height: 1.6; color: var(--slate); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: var(--blue); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-line:hover { border-color: var(--ink); background: var(--white); }
+.on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
+.on-ink .btn-line:hover { border-color: #fff; background: transparent; }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 104px 0 92px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.78); margin-top: 26px; max-width: 560px; }
+.hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; align-items: center; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 64px 0 56px; } }
+.hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-split { background: var(--white); border-radius: 4px; color: var(--slate); overflow: hidden; }
+.hs-head { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); line-height: 1.2; padding: 24px 28px 20px; border-bottom: 1px solid var(--rule); }
+.hs-cols { display: grid; grid-template-columns: 1fr 1fr; }
+.hs-col { padding: 24px 28px 22px; }
+.hs-col + .hs-col { border-left: 1px solid var(--rule); }
+.hs-col .small-label { color: var(--blue); margin-bottom: 10px; }
+.hs-col h3 { font-size: 21px; margin-bottom: 8px; }
+.hs-col p { font-size: 14.5px; line-height: 1.55; }
+.hs-foot { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13px; line-height: 1.5; }
+.hs-foot strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 560px) { .hs-cols { grid-template-columns: 1fr; } .hs-col + .hs-col { border-left: 0; border-top: 1px solid var(--rule); } .hs-col, .hs-head { padding-left: 22px; padding-right: 22px; } }
+
+/* Two jobs */
+.approach { background: var(--white); }
+.approach-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center; }
+@media (max-width: 900px) { .approach-grid { grid-template-columns: 1fr; gap: 36px; } }
+.approach-img { position: relative; }
+.approach-img img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.approach-img::after { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid var(--blue); border-radius: 4px; z-index: -1; opacity: 0.55; }
+.approach-img { z-index: 0; }
+@media (max-width: 900px) { .approach-img { max-width: 520px; } .approach-img::after { display: none; } }
+.jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+@media (max-width: 800px) { .jobs { grid-template-columns: 1fr; } }
+.job { background: var(--white); border-top: 3px solid var(--ink); padding: 30px 30px 28px; border-radius: 0 0 4px 4px; }
+.job.job-insurance { border-top-color: var(--blue); }
+.job .small-label { margin-bottom: 14px; }
+.job h3 { margin-bottom: 10px; }
+.job p { font-size: 16px; line-height: 1.65; }
+.job-paid { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 14px; }
+.job-paid strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 2px; }
+
+/* Schedule A */
+.schedule { background: var(--stone); position: relative; overflow: hidden; }
+.schedule-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.schedule .shell { position: relative; z-index: 1; }
+.schedule-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; margin-top: 8px; }
+@media (max-width: 900px) { .schedule-grid { grid-template-columns: 1fr; gap: 36px; } }
+.fee-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 4px; overflow: hidden; }
+.fee-table th { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; background: var(--ink); text-align: left; padding: 14px 20px; }
+.fee-table th:last-child, .fee-table td:last-child { text-align: right; }
+.fee-table td { padding: 18px 20px; border-bottom: 1px solid var(--rule); font-size: 16px; color: var(--slate); }
+.fee-table tr:last-child td { border-bottom: 0; }
+.fee-table td.rate { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fee-table td.rate.cap { color: var(--blue); font-size: 17px; font-family: var(--sans); font-weight: 600; }
+.fee-notes { margin-top: 22px; }
+.fee-notes p { font-size: 14.5px; line-height: 1.65; }
+.fee-notes strong { color: var(--ink); font-weight: 600; }
+.examples { background: var(--white); border-radius: 4px; padding: 26px 26px 10px; }
+.examples h4 { margin-bottom: 4px; }
+.examples .sub { font-size: 14px; margin-bottom: 14px; }
+.ex-table { width: 100%; border-collapse: collapse; }
+.ex-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); text-align: right; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.ex-table th:first-child, .ex-table td:first-child { text-align: left; }
+.ex-table td { padding: 13px 0; border-bottom: 1px solid var(--rule); font-size: 15px; text-align: right; font-variant-numeric: tabular-nums; }
+.ex-table tr:last-child td { border-bottom: 0; }
+.ex-table td:first-child { font-family: var(--serif); font-size: 17px; color: var(--ink); font-weight: 500; }
+.ex-table td.strong { color: var(--ink); font-weight: 600; }
+.callout { background: var(--stone-light); border-left: 3px solid var(--blue); padding: 22px 26px; border-radius: 0 4px 4px 0; margin-top: 22px; }
+.callout h4 { font-size: 18px; margin-bottom: 6px; }
+.callout p { font-size: 15px; line-height: 1.6; }
+.callout + .callout { margin-top: 14px; }
+
+/* Included */
+.included { background: var(--stone-light); }
+.included .callout { background: var(--white); }
+.inc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+@media (max-width: 800px) { .inc-grid { grid-template-columns: 1fr; } }
+.inc-card { background: var(--white); border-radius: 4px; padding: 32px 32px 26px; border-top: 3px solid var(--ink); }
+.inc-card.plan { border-top-color: var(--blue); }
+.inc-card .small-label { color: var(--blue); margin-bottom: 10px; }
+.inc-card h3 { margin-bottom: 6px; }
+.inc-card .sub { font-size: 15px; line-height: 1.55; margin-bottom: 18px; }
+.inc-list { list-style: none; }
+.inc-list li { padding: 11px 0 11px 24px; border-bottom: 1px solid var(--rule); font-size: 15.5px; line-height: 1.5; position: relative; }
+.inc-list li:last-child { border-bottom: 0; }
+.inc-list li::before { content: ''; position: absolute; left: 0; top: 19px; width: 10px; height: 2px; background: var(--blue); }
+.inc-list li strong { color: var(--ink); font-weight: 600; }
+.inc-foot { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 800px) { .inc-foot { grid-template-columns: 1fr; } }
+.inc-foot .callout { margin-top: 0; }
+
+/* Insurance */
+.insurance { background: var(--white); }
+.ins-cats { margin-top: 48px; display: grid; gap: 20px; }
+.ins-cat { background: var(--stone-light); border-radius: 4px; padding: 34px 36px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; }
+@media (max-width: 800px) { .ins-cat { grid-template-columns: 1fr; gap: 16px; padding: 26px 22px; } }
+.ins-cat .small-label { color: var(--blue); margin-bottom: 10px; }
+.ins-cat h3 { margin-bottom: 8px; }
+.ins-cat .role { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink); line-height: 1.4; }
+.ins-cat p { font-size: 16px; line-height: 1.65; }
+.ins-cat p strong { color: var(--ink); font-weight: 600; }
+.ins-cat p em { font-family: var(--serif); font-style: italic; color: var(--ink); font-size: 1.12em; }
+.ins-cat .side-note { font-size: 14.5px; color: var(--slate); border-top: 1px solid var(--rule); padding-top: 14px; margin-top: 18px; }
+
+/* Conflict */
+.conflict { background: var(--stone); }
+.conflict-box { background: var(--white); border-left: 3px solid var(--ink); padding: 34px 38px; border-radius: 0 4px 4px 0; max-width: 820px; }
+.conflict-box p { font-size: 17px; line-height: 1.7; }
+.conflict-box strong { color: var(--ink); font-weight: 600; }
+
+/* Hybrid advantage */
+.hybrid { background: var(--stone-light); position: relative; overflow: hidden; }
+.hybrid-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hybrid .shell { position: relative; z-index: 1; }
+.hybrid .section-head { max-width: 800px; }
+.calc-wrap { background: var(--white); border-radius: 4px; padding: 36px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 44px; align-items: start; margin-top: 8px; }
+@media (max-width: 900px) { .calc-wrap { grid-template-columns: 1fr; gap: 30px; padding: 26px 22px; } }
+.calc-in label.lbl { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; }
+.calc-field { position: relative; margin-bottom: 18px; }
+.calc-field .pre { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-family: var(--serif); font-size: 24px; color: var(--r3); pointer-events: none; }
+.calc-field input[type=number] {
+  width: 100%; border: 1px solid var(--rule); background: var(--stone-light); color: var(--ink);
+  padding: 14px 16px 14px 36px; font-family: var(--serif); font-size: 26px; font-weight: 500; border-radius: 3px; font-variant-numeric: tabular-nums;
+}
+.calc-field input:focus { outline: none; border-color: var(--blue); background: var(--white); }
+.calc-field input::-webkit-outer-spin-button, .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.calc-field input[type=number] { -moz-appearance: textfield; }
+.presets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.preset { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; border: 1px solid var(--rule); background: var(--white); color: var(--slate); padding: 8px 13px; border-radius: 999px; cursor: pointer; transition: all 0.15s; }
+.preset:hover { border-color: var(--ink); color: var(--ink); }
+.preset.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.slider-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.slider-head .val { font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+input[type=range] { -webkit-appearance: none; width: 100%; height: 6px; background: linear-gradient(to right, var(--blue) 0%, var(--blue) var(--pct, 25%), var(--stone) var(--pct, 25%), var(--stone) 100%); border-radius: 999px; outline: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--white); border: 2px solid var(--ink); cursor: pointer; box-shadow: 0 1px 3px rgba(35,46,61,0.2); }
+input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--white); border: 2px solid var(--ink); cursor: pointer; }
+.slider-ticks { display: flex; justify-content: space-between; font-size: 11px; color: var(--r3); margin-top: 8px; letter-spacing: 0.04em; }
+.split-bar { display: flex; height: 14px; border-radius: 2px; overflow: hidden; margin-top: 22px; background: var(--stone-light); }
+.split-bar span { display: block; height: 100%; transition: width 0.3s; }
+.split-bar .s-inv { background: var(--ink); }
+.split-bar .s-ann { background: var(--r4); }
+.split-legend { display: flex; gap: 16px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 10px; }
+.split-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; }
+.calc-note { font-size: 13.5px; line-height: 1.55; margin-top: 22px; color: var(--slate); }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 520px) { .compare { grid-template-columns: 1fr; } }
+.side { border: 1px solid var(--rule); border-radius: 4px; padding: 22px 22px 20px; }
+.side.hybrid-side { border-color: var(--blue); border-width: 1.5px; }
+.side .small-label { margin-bottom: 12px; min-height: 26px; display: flex; align-items: flex-end; line-height: 1.3; }
+.side.hybrid-side .small-label { color: var(--blue); }
+.side .alloc { font-size: 14px; line-height: 1.5; color: var(--slate); }
+.side .alloc b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.side .alloc.muted { color: var(--r3); }
+.side .fee { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.side .fee .num { font-size: 32px; line-height: 1; display: block; }
+.side.hybrid-side .fee .num { color: var(--blue); }
+.side .fee .rate { font-size: 13px; margin-top: 6px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.side .fee .mo { font-size: 12.5px; color: var(--r3); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.savings { margin-top: 16px; background: var(--stone-light); border-top: 2px solid var(--blue); border-radius: 0 0 4px 4px; padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.savings .small-label { color: var(--blue); margin-bottom: 4px; }
+.savings .num { font-size: 34px; line-height: 1; }
+.savings .pct { font-size: 14px; color: var(--slate); text-align: right; }
+.savings .pct b { color: var(--ink); font-weight: 600; }
+.savings.zero .num { color: var(--slate); }
+
+.hybrid-examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+@media (max-width: 900px) { .hybrid-examples { grid-template-columns: 1fr; } }
+.hx { background: var(--white); border-radius: 4px; padding: 22px 24px; }
+.hx .small-label { margin-bottom: 6px; }
+.hx .size { font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--ink); margin-bottom: 14px; }
+.hx-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-top: 1px solid var(--rule); font-size: 14.5px; }
+.hx-row b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.hx-row.save { border-top: 2px solid var(--blue); margin-top: 4px; padding-top: 12px; }
+.hx-row.save b { color: var(--blue); }
+.hybrid-closing { margin-top: 40px; }
+
+/* Integration */
+.integration { background: var(--white); }
+.integration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+@media (max-width: 900px) { .integration-grid { grid-template-columns: 1fr; gap: 32px; } }
+.stack { list-style: none; background: var(--stone-light); border-radius: 4px; overflow: hidden; }
+.stack li { padding: 20px 24px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 34px 1fr; gap: 16px; align-items: start; }
+.stack li:last-child { border-bottom: 0; }
+.stack li .n { font-family: var(--serif); font-size: 22px; color: var(--r4); line-height: 1.2; }
+.stack li strong { display: block; color: var(--ink); font-weight: 600; font-size: 16px; margin-bottom: 3px; }
+.stack li span { font-size: 15px; line-height: 1.55; }
+
+/* FAQ */
+.faq { background: var(--stone); }
+.faq-list { max-width: 840px; }
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-q { width: 100%; background: none; border: 0; padding: 22px 0; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-family: var(--serif); font-size: 21px; font-weight: 500; color: var(--ink); }
+.faq-q:hover { color: var(--blue); }
+.faq-q .tg { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--rule); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; line-height: 1; transition: transform 0.2s, background 0.2s; color: var(--ink); background: var(--white); }
+.faq-item.open .tg { transform: rotate(45deg); background: var(--ink); color: #fff; border-color: var(--ink); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-a-in { padding: 0 0 24px; max-width: 70ch; font-size: 16px; line-height: 1.7; }
+.faq-a-in strong { color: var(--ink); font-weight: 600; }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; max-width: 760px; margin: 0 auto 20px; }
+.final-cta h2 em { font-style: italic; color: var(--blue); }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 560px; margin: 0 auto 36px; font-size: 18px; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-sub { color: rgba(255,255,255,0.6) !important; font-size: 13px !important; margin: 18px auto 0 !important; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-wordmark { font-family: var(--serif); font-size: 22px; color: var(--ink); font-weight: 500; margin-bottom: 28px; }
+.footer-wordmark span { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-left: 10px; }
+.site-footer h4 { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero on-ink">
+  <svg class="hero-art" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
+      <circle cx="1500" cy="40" r="260"/><circle cx="1500" cy="40" r="360"/><circle cx="1500" cy="40" r="460"/><circle cx="1500" cy="40" r="560"/><circle cx="1500" cy="40" r="660"/>
+    </g>
+    <path d="M 1500 40 m -460 0 a 460 460 0 0 0 460 460" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <g fill="#FFFFFF" fill-opacity="0.07">
+      <circle cx="80" cy="600" r="2"/><circle cx="120" cy="600" r="2"/><circle cx="160" cy="600" r="2"/><circle cx="200" cy="600" r="2"/><circle cx="240" cy="600" r="2"/>
+      <circle cx="80" cy="640" r="2"/><circle cx="120" cy="640" r="2"/><circle cx="160" cy="640" r="2"/><circle cx="200" cy="640" r="2"/><circle cx="240" cy="640" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="hero-grid">
+      <div>
+        <div class="label">How we're compensated</div>
+        <h1>We are<br><em>hybrid advisors.</em></h1>
+        <p class="lede">Most advisors choose a side. Investment-only, or insurance-only. Real retirement planning usually needs both: professional management of your investments, and guaranteed income and protection that only insurance can provide. Jantz Wealth Advisors does both, in coordination, and is paid two different ways for the two different kinds of work.<br>Here is exactly how that works.</p>
+        <div class="hero-actions">
+          <a href="#schedule-a" class="btn btn-blue">See the fee schedule</a>
+          <a href="#hybrid" class="btn btn-line">The hybrid advantage</a>
+        </div>
+      </div>
+      <div class="hero-split">
+        <div class="hs-head">Two kinds of work.<br>Paid two different ways.</div>
+        <div class="hs-cols">
+          <div class="hs-col">
+            <div class="small-label">The first way</div>
+            <h3>An advisory fee</h3>
+            <p>For managing your investments and keeping your retirement plan current. One clear fee, starting at 1.50% on your first $500,000 and stepping down from there, with a cap built in.</p>
+            <div class="hs-foot"><strong>Paid by you.</strong> Nothing out of pocket. Cancel any time.</div>
+          </div>
+          <div class="hs-col">
+            <div class="small-label">The second way</div>
+            <h3>An insurance commission</h3>
+            <p>When an annuity or life policy is placed as part of your plan, your advisor is paid once by the insurance company. It never comes out of your account.</p>
+            <div class="hs-foot"><strong>Paid by the carrier.</strong> Disclosed before you sign.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO JOBS -->
+<section class="approach">
+  <div class="shell reveal">
+    <div class="approach-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:28px;">
+          <div class="label">The approach</div>
+          <h2>Two jobs. Two tools.</h2>
+          <p class="lede">Growing your money and protecting your retirement income are different jobs.<br>They call for different tools, and the tools are paid for differently.</p>
+        </div>
+        <div class="prose">
+          <p>Investments are the right tool for growth, flexibility, and liquidity. Insurance and annuities are the right tool for the problems investments can't solve as well: a paycheck that lasts as long as you do, and principal that holds steady in the years when a drawdown would do the most damage.</p>
+          <p>For most retirees and pre-retirees, a complete plan includes both. That is why we call ourselves a <em>hybrid</em> firm. It isn't a sales pitch. It is a description of the work. The two ways we're paid, an ongoing advisory fee and a one-time insurance commission, are simply the two kinds of work, paid for in the way that fits each.</p>
+        </div>
+      </div>
+      <div class="approach-img">
+        <img src="images/approach.jpg" alt="A retired couple sharing coffee beside their camper on a misty mountain morning" width="1200" height="1500" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE A -->
+<section class="schedule" id="schedule-a">
+  <svg class="schedule-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#232E3D" stroke-opacity="0.07" stroke-width="1">
+      <circle cx="-60" cy="880" r="240"/><circle cx="-60" cy="880" r="340"/><circle cx="-60" cy="880" r="440"/><circle cx="-60" cy="880" r="540"/><circle cx="-60" cy="880" r="640"/>
+    </g>
+    <path d="M -60 880 m 0 -440 a 440 440 0 0 1 440 440" fill="none" stroke="#0077B6" stroke-opacity="0.28" stroke-width="1.5"/>
+    <path d="M 1080 120 H 1180 V 190 H 1280 V 260 H 1380 V 330 H 1480" fill="none" stroke="#232E3D" stroke-opacity="0.12" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <g fill="#0077B6" fill-opacity="0.35"><circle cx="1180" cy="120" r="3"/><circle cx="1280" cy="190" r="3"/><circle cx="1380" cy="260" r="3"/></g>
+    <g fill="#232E3D" fill-opacity="0.09">
+      <circle cx="1220" cy="700" r="2"/><circle cx="1260" cy="700" r="2"/><circle cx="1300" cy="700" r="2"/><circle cx="1340" cy="700" r="2"/><circle cx="1380" cy="700" r="2"/>
+      <circle cx="1220" cy="740" r="2"/><circle cx="1260" cy="740" r="2"/><circle cx="1300" cy="740" r="2"/><circle cx="1340" cy="740" r="2"/><circle cx="1380" cy="740" r="2"/>
+      <circle cx="1220" cy="780" r="2"/><circle cx="1260" cy="780" r="2"/><circle cx="1300" cy="780" r="2"/><circle cx="1340" cy="780" r="2"/><circle cx="1380" cy="780" r="2"/>
+    </g>
+  </svg>
+  <div class="shell reveal">
+    <div class="section-head">
+      <div class="label">Fee Schedule A</div>
+      <h2>The full planning relationship.<br><em>One fee, with a cap built in.</em></h2>
+      <p class="lede">Our fee covers everything: your investment management and your complete retirement plan, kept current year after year. Each dollar pays only the rate for its tier, like income tax brackets.<br>The whole balance is never re-priced.</p>
+    </div>
+    <div class="schedule-grid">
+      <div>
+        <table class="fee-table">
+          <thead><tr><th>Assets under management</th><th>Annual fee</th></tr></thead>
+          <tbody>
+            <tr><td>First $500,000</td><td class="rate">1.50%</td></tr>
+            <tr><td>$500,000 to $1,000,000</td><td class="rate">1.00%</td></tr>
+            <tr><td>$1,000,000 to $2,000,000</td><td class="rate">0.75%</td></tr>
+            <tr><td>Above $2,000,000</td><td class="rate cap">No additional fee</td></tr>
+          </tbody>
+        </table>
+        <div class="fee-notes">
+          <p><strong>The cap.</strong> Once a household passes $2 million, the fee stops growing. The most anyone pays is $20,000 a year, no matter how large the accounts become.</p>
+          <p><strong>Households, not accounts.</strong> Fees are calculated across all the advisory accounts we manage for you and your spouse, so every account benefits from the breakpoints your whole household has earned.</p>
+          <p><strong>How it's billed.</strong> Quarterly, in arrears, based on your account value at the end of the quarter, and deducted directly from your account. No invoices. No out-of-pocket charges. No commissions on your advisory accounts.</p>
+        </div>
+      </div>
+      <div>
+        <div class="examples">
+          <h4>What that looks like</h4>
+          <p class="sub">Annual fee at a few common household sizes.</p>
+          <table class="ex-table">
+            <thead><tr><th>Household assets</th><th>Annual fee</th><th>Blended rate</th><th>Per month</th></tr></thead>
+            <tbody>
+              <tr><td>$250,000</td><td class="strong">$3,750</td><td>1.50%</td><td>$313</td></tr>
+              <tr><td>$500,000</td><td class="strong">$7,500</td><td>1.50%</td><td>$625</td></tr>
+              <tr><td>$750,000</td><td class="strong">$10,000</td><td>1.33%</td><td>$833</td></tr>
+              <tr><td>$1,000,000</td><td class="strong">$12,500</td><td>1.25%</td><td>$1,042</td></tr>
+              <tr><td>$1,500,000</td><td class="strong">$16,250</td><td>1.08%</td><td>$1,354</td></tr>
+              <tr><td>$2,000,000+</td><td class="strong">$20,000</td><td>1.00% or less</td><td>$1,667</td></tr>
+            </tbody>
+          </table>
+          <p class="fine" style="padding: 14px 0 10px;">Monthly figures are shown for perspective. The fee is billed quarterly.</p>
+        </div>
+        <div class="callout">
+          <h4>Nothing out of pocket.</h4>
+          <p>The fee is deducted from your advisory account each quarter. You never write a check, and you never get a bill.</p>
+        </div>
+        <div class="callout">
+          <h4>No long-term commitment.</h4>
+          <p>You can end our advisory services at any time, for any reason. You only pay for the time we worked for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included" id="included">
+  <div class="shell reveal">
+    <div class="section-head">
+      <div class="label">What your fee includes</div>
+      <h2>A complete relationship.<br><em>Not just a portfolio.</em></h2>
+      <p class="lede">Most people judge an advisor by the portfolio. The larger source of long-term value usually comes from the planning decisions and the discipline to stick with them.<br>Your fee covers both.</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card plan">
+        <div class="small-label">Your retirement plan</div>
+        <h3>Planning, kept current</h3>
+        <p class="sub">The work that decides how much income you can take, how long it lasts, and how much of it you keep after taxes.</p>
+        <ul class="inc-list">
+          <li><strong>A written retirement paycheck plan</strong>, showing where every dollar of income comes from, updated every year</li>
+          <li><strong>Social Security</strong> claiming strategy for you and your spouse</li>
+          <li><strong>Roth conversion</strong> strategy and multi-year tax planning</li>
+          <li><strong>Medicare and IRMAA</strong> bracket management</li>
+          <li><strong>Required minimum distributions</strong>, planned and coordinated</li>
+          <li><strong>Withdrawal sequencing</strong> and guardrails for up years and down years</li>
+          <li><strong>Estate and beneficiary coordination</strong> with your attorney and CPA</li>
+          <li><strong>Annuity and insurance analysis</strong>, so every product has a defined role in the plan before it is ever recommended</li>
+          <li><strong>Unlimited access to your advisor</strong>, with annual reviews and check-ins whenever life or markets change</li>
+        </ul>
+      </div>
+      <div class="inc-card">
+        <div class="small-label">Your investments</div>
+        <h3>Investment management</h3>
+        <p class="sub">The portfolio side of the relationship, held at one of the largest custodians in the country.</p>
+        <ul class="inc-list">
+          <li><strong>Custody at Charles Schwab</strong>, one of the largest custodians in the U.S., with the Schwab app and online access to every account</li>
+          <li><strong>Portfolio design</strong> matched to your plan, using the Global Core Portfolios</li>
+          <li><strong>Ongoing monitoring and rebalancing</strong>, with no separate trading commissions on stock or ETF trades</li>
+          <li><strong>Tax-aware management</strong> across your taxable, IRA, and Roth accounts</li>
+          <li><strong>Account coordination</strong>: rollovers, transfers, consolidations, and paperwork handled for you</li>
+          <li><strong>Performance reporting</strong> and consolidated statements</li>
+          <li><strong>Independent compliance oversight</strong> from an SEC-registered investment adviser</li>
+          <li><strong>An advisor held to the fiduciary standard</strong> on every advisory account</li>
+        </ul>
+      </div>
+    </div>
+    <div class="inc-foot">
+      <div class="callout">
+        <h4>Only need investment management?</h4>
+        <p>A management-only relationship, without the written retirement plan, is available at a lower rate under Fee Schedule B.<br>Ask your advisor which schedule fits you.</p>
+      </div>
+      <div class="callout">
+        <h4>What's not in the fee.</h4>
+        <p>The ETFs inside your portfolio carry their own expenses, about 0.05% to 0.10% a year for the Global Core Portfolios, reflected in fund returns. Insurance and annuity products sit outside your advisory account and are never charged the advisory fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section class="insurance" id="insurance">
+  <div class="shell reveal">
+    <div class="section-head">
+      <div class="label">The second way we're paid</div>
+      <h2>Insurance commissions.<br><em>Paid by the carrier, once.</em></h2>
+      <p class="lede">When an insurance product is placed as part of your plan, your advisor is compensated by the issuing insurance company, not by you. The commission comes from the carrier's own account and doesn't reduce your premium or your contract value. Rates vary by product and carrier, and you'll see the specifics before you sign anything.</p>
+    </div>
+    <div class="prose">
+      <p>The products we work with fall into three categories. Each one solves a different planning problem, and each has a defined role in your plan before it is ever recommended.</p>
+    </div>
+    <div class="ins-cats">
+      <div class="ins-cat">
+        <div>
+          <div class="small-label">Category 01</div>
+          <h3>Indexed growth annuities</h3>
+          <div class="role">The conservative part of your portfolio, with a floor long-term bond funds can't offer.</div>
+        </div>
+        <div>
+          <p>An indexed growth annuity is a fixed indexed annuity linked to a market index such as the S&amp;P 500. It has a <em>cap</em> that limits how much you earn in any one year, a <em>floor</em> that keeps your principal from going backward, and <em>no annual product fees.</em> When the market is up, you participate up to the cap and the gain locks in. When the market is down, your contract value holds.</p>
+          <p>Every retirement portfolio needs a part that stays steady when stocks fall. For decades that job went to long-term bond funds. But there are years when long-term bond funds and stocks fall together, and 2022 is a recent example. A growth annuity doesn't have that failure mode. Its value is not exposed to market declines at all.</p>
+          <p>That is why, for most people within ten years of retirement, we use an indexed growth annuity for the work long-term bond funds used to do. It becomes the volatility buffer inside your portfolio, the sleeve you draw from in a down year so your stocks have time to recover. <strong>Same defensive job. Done with a floor.</strong> And because it carries no advisory fee, it changes the math on what you pay us, which we show below.</p>
+        </div>
+      </div>
+      <div class="ins-cat">
+        <div>
+          <div class="small-label">Category 02</div>
+          <h3>Income annuities</h3>
+          <div class="role">A paycheck that lasts as long as you do.</div>
+        </div>
+        <div>
+          <p>An income annuity is built to produce guaranteed lifetime income, either right away or starting at a date you choose, for as long as you (or you and your spouse) are alive. The insurance company takes on the risk of you living a long time. You get a paycheck that doesn't depend on what the market does.</p>
+          <p>Social Security is one source of guaranteed lifetime income. A pension, if you have one, is another. For most people, those two don't fully cover the essential expenses they need covered no matter what. An income annuity fills that gap, and it lets the rest of your portfolio stay invested for growth because you aren't depending on it for groceries in a bad year.</p>
+          <p>The right amount depends on the size of your gap, not on a rule of thumb. We model your plan with it and without it before recommending a number.</p>
+        </div>
+      </div>
+      <div class="ins-cat">
+        <div>
+          <div class="small-label">Category 03</div>
+          <h3>Life insurance</h3>
+          <div class="role">Tax-advantaged income, family protection, and living benefits.</div>
+        </div>
+        <div>
+          <p><strong>Indexed universal life (IUL)</strong> is one of the more powerful tools in retirement planning and one of the most misunderstood. It builds cash value linked to a market index, with a floor against market declines, a death benefit that passes to your heirs income-tax-free, and the ability to access the cash value during your lifetime through policy loans that don't show up on your tax return. That matters for Medicare IRMAA brackets and for how much of your Social Security is taxed. For people who want tax-advantaged growth beyond what a 401(k) or IRA allows, and who have the time horizon to let it work, IUL is often the right answer. Policy design matters enormously, and you'll see a full illustration with realistic assumptions before any decision.</p>
+          <p><strong>Term life</strong> is the simplest and least expensive form of life insurance, and the right answer for most families during their working years when there are dependents or debts to protect.</p>
+          <p class="side-note"><strong>Living benefits.</strong> The life policies we recommend include riders, at no added cost, that let you access part of the death benefit while you are alive if you are diagnosed with a critical, chronic, or terminal illness. For many retirees, the chronic illness benefit can help with the costs of long-term care.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFLICT -->
+<section class="conflict">
+  <div class="shell reveal">
+    <div class="section-head">
+      <div class="label">Acknowledging the conflict</div>
+      <h2>A commission creates an incentive.<br><em>Here is how we keep it honest.</em></h2>
+    </div>
+    <div class="conflict-box">
+      <p><strong>The plan comes before the product.</strong> Every insurance recommendation starts from your plan: what problem are we solving, what tools could solve it, and what are the trade-offs of each. The product comes after the analysis, never the other way around. You'll see the alternatives we considered before any recommendation, and the commission is disclosed on every illustration. If you want to know exactly what your advisor is paid on any product, ask. We'd rather you ask than wonder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HYBRID ADVANTAGE -->
+<section class="hybrid" id="hybrid">
+  <svg class="hybrid-art" viewBox="0 0 1440 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#232E3D" stroke-opacity="0.07" stroke-width="1">
+      <circle cx="1500" cy="20" r="220"/><circle cx="1500" cy="20" r="320"/><circle cx="1500" cy="20" r="420"/><circle cx="1500" cy="20" r="520"/>
+    </g>
+    <path d="M 1500 20 m -420 0 a 420 420 0 0 0 420 420" fill="none" stroke="#0077B6" stroke-opacity="0.26" stroke-width="1.5"/>
+    <g stroke-opacity="0.10" stroke="#232E3D" stroke-width="1" fill="none">
+      <rect x="40" y="860" width="300" height="18" rx="2"/><rect x="40" y="900" width="300" height="18" rx="2"/>
+    </g>
+    <rect x="40" y="860" width="300" height="18" rx="2" fill="#232E3D" fill-opacity="0.06"/>
+    <rect x="40" y="900" width="225" height="18" rx="2" fill="#232E3D" fill-opacity="0.06"/>
+    <rect x="265" y="900" width="75" height="18" rx="2" fill="#0077B6" fill-opacity="0.22"/>
+    <path d="M 60 760 L 160 740 L 260 745 L 360 705 L 460 690" fill="none" stroke="#232E3D" stroke-opacity="0.12" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <g fill="#232E3D" fill-opacity="0.09">
+      <circle cx="80" cy="140" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="160" cy="140" r="2"/><circle cx="200" cy="140" r="2"/><circle cx="240" cy="140" r="2"/>
+      <circle cx="80" cy="180" r="2"/><circle cx="120" cy="180" r="2"/><circle cx="160" cy="180" r="2"/><circle cx="200" cy="180" r="2"/><circle cx="240" cy="180" r="2"/>
+    </g>
+  </svg>
+  <div class="shell reveal">
+    <div class="section-head">
+      <div class="label">The hybrid portfolio advantage</div>
+      <h2>Why the hybrid approach<br><em>can lower what you pay.</em></h2>
+      <p class="lede">An investment-only advisor manages 100% of your portfolio at their fee. In a hybrid portfolio, the indexed growth annuity carries no advisory fee at all. So every dollar in that sleeve is a dollar you aren't paying us to manage, and the effective cost across your whole portfolio comes down.</p>
+    </div>
+    <div class="prose" style="margin-bottom: 40px;">
+      <p>Most retirement portfolios we design hold roughly 20% to 30% in an indexed growth annuity, doing the job long-term bond funds used to do. Slide the allocation below to see how it changes the total cost on your portfolio. Your own allocation depends on your plan, your time horizon, and how much movement you can live with.</p>
+    </div>
+
+    <div class="calc-wrap" id="calc">
+      <div class="calc-in">
+        <label class="lbl" for="port-size">Your total retirement portfolio</label>
+        <div class="calc-field">
+          <span class="pre">$</span>
+          <input type="number" id="port-size" value="1000000" step="50000" min="0" inputmode="numeric">
+        </div>
+        <div class="presets">
+          <button type="button" class="preset" data-amount="250000">$250K</button>
+          <button type="button" class="preset" data-amount="500000">$500K</button>
+          <button type="button" class="preset" data-amount="750000">$750K</button>
+          <button type="button" class="preset active" data-amount="1000000">$1M</button>
+          <button type="button" class="preset" data-amount="1500000">$1.5M</button>
+          <button type="button" class="preset" data-amount="2000000">$2M</button>
+        </div>
+        <div class="slider-head">
+          <label class="lbl" for="ann-pct" style="margin:0;">In an indexed growth annuity</label>
+          <span class="val" id="ann-val">25%</span>
+        </div>
+        <input type="range" id="ann-pct" min="0" max="50" step="5" value="25" style="--pct:50%">
+        <div class="slider-ticks"><span>0%</span><span>25%</span><span>50%</span></div>
+        <div class="split-bar"><span class="s-inv" id="bar-inv" style="width:75%"></span><span class="s-ann" id="bar-ann" style="width:25%"></span></div>
+        <div class="split-legend"><span><i style="background:var(--ink)"></i>Investments (Schedule A)</span><span><i style="background:var(--r4)"></i>Growth annuity (no advisory fee)</span></div>
+        <p class="calc-note">The growth annuity side pays your advisor a one-time commission from the insurance company instead of an ongoing fee. Nothing is deducted from your contract for it.</p>
+      </div>
+      <div class="calc-out">
+        <div class="compare">
+          <div class="side">
+            <div class="small-label">Investment-only advisor</div>
+            <div class="alloc"><b id="io-inv">$1,000,000</b> in managed investments</div>
+            <div class="alloc muted">No growth annuity</div>
+            <div class="fee">
+              <span class="num" id="io-fee">$12,500</span>
+              <div class="rate"><span id="io-rate">1.25%</span> of your whole portfolio, per year</div>
+              <div class="mo">About <span id="io-mo">$1,042</span> a month</div>
+            </div>
+          </div>
+          <div class="side hybrid-side">
+            <div class="small-label">Jantz Wealth Advisors hybrid</div>
+            <div class="alloc"><b id="hy-inv">$750,000</b> in managed investments</div>
+            <div class="alloc"><b id="hy-ann">$250,000</b> in a growth annuity</div>
+            <div class="fee">
+              <span class="num" id="hy-fee">$10,000</span>
+              <div class="rate"><span id="hy-rate">1.00%</span> of your whole portfolio, per year</div>
+              <div class="mo">About <span id="hy-mo">$833</span> a month</div>
+            </div>
+          </div>
+        </div>
+        <div class="savings" id="savings">
+          <div>
+            <div class="small-label">Your annual difference</div>
+            <span class="num" id="sv-amt">$2,500</span>
+          </div>
+          <div class="pct" id="sv-pct"><b>20% lower</b> cost on the same portfolio</div>
+        </div>
+        <p class="calc-note">Both columns use Fee Schedule A, so the comparison is apples to apples. Many investment-only advisors charge more than Schedule A, which would make the difference larger. Above $2 million the cap takes over and the two columns converge.</p>
+      </div>
+    </div>
+
+    <div class="hybrid-examples">
+      <div class="hx">
+        <div class="small-label">Example</div>
+        <div class="size">$500,000</div>
+        <div class="hx-row"><span>Investment-only (100%)</span><b>$7,500</b></div>
+        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$5,625</b></div>
+        <div class="hx-row save"><span>Difference each year</span><b>$1,875</b></div>
+      </div>
+      <div class="hx">
+        <div class="small-label">Example</div>
+        <div class="size">$1,000,000</div>
+        <div class="hx-row"><span>Investment-only (100%)</span><b>$12,500</b></div>
+        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$10,000</b></div>
+        <div class="hx-row save"><span>Difference each year</span><b>$2,500</b></div>
+      </div>
+      <div class="hx">
+        <div class="small-label">Example</div>
+        <div class="size">$1,500,000</div>
+        <div class="hx-row"><span>Investment-only (100%)</span><b>$16,250</b></div>
+        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$13,438</b></div>
+        <div class="hx-row save"><span>Difference each year</span><b>$2,812</b></div>
+      </div>
+    </div>
+
+    <div class="prose hybrid-closing">
+      <p>A lower total cost is a real consequence of the hybrid structure, and one an investment-only firm can't match because it won't use the tool. But the savings aren't the <em>reason</em> we recommend an indexed growth annuity. They are the result of recommending it when it is the right fit. The conservative part of a retirement portfolio has one job: hold steady when stocks fall. A growth annuity does that job with a floor under your principal. Long-term bond funds can't promise one. It gives up some liquidity and some upside to do it, which is why it fits some plans and not others. The lower fee is a welcome side effect.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION -->
+<section class="integration">
+  <div class="shell reveal">
+    <div class="integration-grid">
+      <div>
+        <div class="label">How it fits together</div>
+        <h2>Every dollar has a role.<br><em>Every tool has a job.</em></h2>
+        <div class="prose">
+          <p>Fee-only advisors won't touch insurance and will send you to an agent if you need it. Insurance agents don't manage investments and will send you to an advisor for the portfolio. Either way, the two halves of your plan end up with people who don't talk to each other.</p>
+          <p>The hybrid approach is different. Your insurance and your investments are designed <em>together</em>, by one advisor, because the choices on one side change the choices on the other. A protected income floor lets your portfolio be positioned for growth. A growth annuity inside the portfolio lets the stocks ride out a bad year. Each piece does what it does best, and the plan is sturdier than either side could be on its own.</p>
+          <p>This is what we mean by <em>hybrid advisor.</em> It is why most of our clients have both.</p>
+        </div>
+      </div>
+      <ul class="stack">
+        <li><span class="n">01</span><div><strong>Social Security and pensions</strong><span>The foundation. Guaranteed income you already have, claimed at the right time.</span></div></li>
+        <li><span class="n">02</span><div><strong>Income annuity (if needed)</strong><span>Fills the gap so your essential expenses are covered for life, no matter what markets do.</span></div></li>
+        <li><span class="n">03</span><div><strong>The investment portfolio</strong><span>The growth engine. Long-term growth, flexibility, and most of the tax planning, managed under our advisory fee schedule with a cap.</span></div></li>
+        <li><span class="n">04</span><div><strong>Indexed growth annuity</strong><span>The buffer inside the growth engine. Takes the place of long-term bond funds, with no advisory fee.</span></div></li>
+        <li><span class="n">05</span><div><strong>Life insurance</strong><span>Where appropriate: tax-advantaged income, protection for your family, and living benefits.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="shell reveal">
+    <div class="section-head">
+      <div class="label">Common questions</div>
+      <h2>Straight answers<br><em>about what you pay.</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button type="button" class="faq-q">Is the advisory fee charged on my annuity?<span class="tg">+</span></button>
+        <div class="faq-a"><div class="faq-a-in">No. Annuities and life insurance sit outside your advisory accounts and are never billed the advisory fee. Your advisor is paid a one-time commission by the insurance company when the contract is placed, and that is disclosed on the illustration before you sign.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">How is the fee actually collected?<span class="tg">+</span></button>
+        <div class="faq-a"><div class="faq-a-in">Quarterly, in arrears, based on the value of your accounts at the end of the quarter. Charles Schwab deducts it directly from your advisory account and it shows on your statement. You never receive an invoice and never pay out of pocket.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Does my spouse's account count toward the breakpoints?<span class="tg">+</span></button>
+        <div class="faq-a"><div class="faq-a-in">Yes. Fees are calculated on a household basis across all the advisory accounts we manage for you and your spouse, so the lower tiers and the $20,000 cap apply to the household as a whole.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">What if I only want my investments managed?<span class="tg">+</span></button>
+        <div class="faq-a"><div class="faq-a-in">That is available under <strong>Fee Schedule B</strong>, a management-only relationship at a lower rate. It includes investment management, rebalancing, unlimited advisor access, an annual review, account coordination, and reporting, but not the written retirement paycheck plan or the ongoing tax, Social Security, and Medicare planning that come with Schedule A. Your advisor can walk you through both.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Can I leave?<span class="tg">+</span></button>
+        <div class="faq-a"><div class="faq-a-in">Any time, for any reason, with no termination fee. Your accounts stay at Charles Schwab in your name, so leaving is a matter of ending the advisory agreement, not moving your money.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Are there other costs I should know about?<span class="tg">+</span></button>
+        <div class="faq-a"><div class="faq-a-in">The ETFs inside your portfolio carry their own internal expenses, roughly 0.05% to 0.10% a year for the Global Core Portfolios, reflected in the fund returns rather than billed to you. There are no trading commissions on stock or ETF trades. Any custodial charges, such as wire fees, are set by the custodian and are rare.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA (ink band 2 of 2) -->
+<section class="final-cta on-ink">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+  </svg>
+  <div class="shell reveal">
+    <div class="label">The next step</div>
+    <h2>See what your plan<br><em>would look like.</em></h2>
+    <p>A short conversation is the fastest way to find out whether the hybrid approach fits you, and exactly what it would cost.</p>
+    <div class="cta-buttons">
+      <a href="https://www.jantzwealth.com/schedule" class="btn btn-blue">Schedule a conversation</a>
+      <a href="https://www.jantzwealth.com/global-core-portfolios" target="_blank" rel="noopener noreferrer" class="btn btn-line">See the portfolios</a>
+    </div>
+    <p class="cta-sub">No cost. No obligation.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-wordmark">Jantz <span>Wealth Advisors</span></div>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee under Fee Schedule A is 1.50%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter in arrears based on the value at quarter end, and capped at $20,000 per year. Underlying ETFs carry their own expenses, which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</p>
+      <p><strong>Hybrid cost comparison.</strong> The comparison above is hypothetical and for illustration only. It applies Fee Schedule A to both columns and assumes the growth annuity allocation carries no advisory fee. It does not reflect the surrender charges, caps, participation rates, or other terms of any specific annuity contract, and it is not a recommendation of any allocation. Indexed annuities are long-term contracts designed for retirement; withdrawals above the free amount during the surrender period may be subject to surrender charges, and guarantees are backed by the financial strength and claims-paying ability of the issuing insurance company. Whether an annuity is appropriate depends on your individual situation.</p>
+      <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee.</p>
+      <p>All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ───────── Fee Schedule A ───────── */
+const CAP = 20000;
+function scheduleA(x) {
+  if (!x || x <= 0) return 0;
+  let f = 0;
+  f += Math.min(x, 500000) * 0.015;
+  if (x > 500000) f += (Math.min(x, 1000000) - 500000) * 0.010;
+  if (x > 1000000) f += (Math.min(x, 2000000) - 1000000) * 0.0075;
+  return Math.min(f, CAP);
+}
+const $ = id => document.getElementById(id);
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+const pct = (fee, base) => base > 0 ? (fee / base * 100).toFixed(2) + '%' : '0.00%';
+
+function update() {
+  const total = Math.max(0, parseFloat($('port-size').value) || 0);
+  const p = parseInt($('ann-pct').value, 10);
+  const ann = total * p / 100, inv = total - ann;
+  const ioFee = scheduleA(total), hyFee = scheduleA(inv);
+  const diff = ioFee - hyFee;
+
+  $('ann-val').textContent = p + '%';
+  $('ann-pct').style.setProperty('--pct', (p / 50 * 100) + '%');
+  $('bar-inv').style.width = (100 - p) + '%';
+  $('bar-ann').style.width = p + '%';
+
+  $('io-inv').textContent = money(total);
+  $('io-fee').textContent = money(ioFee);
+  $('io-rate').textContent = pct(ioFee, total);
+  $('io-mo').textContent = money(ioFee / 12);
+
+  $('hy-inv').textContent = money(inv);
+  $('hy-ann').textContent = money(ann);
+  $('hy-fee').textContent = money(hyFee);
+  $('hy-rate').textContent = pct(hyFee, total);
+  $('hy-mo').textContent = money(hyFee / 12);
+
+  $('sv-amt').textContent = money(diff);
+  const sv = $('savings');
+  if (diff > 0 && ioFee > 0) {
+    sv.classList.remove('zero');
+    $('sv-pct').innerHTML = '<b>' + Math.round(diff / ioFee * 100) + '% lower</b> cost on the same portfolio';
+  } else {
+    sv.classList.add('zero');
+    $('sv-pct').innerHTML = p === 0 ? 'Move the slider to add a growth annuity' : 'At this size the $20,000 cap applies either way';
+  }
+  document.querySelectorAll('.preset').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.amount) === total));
+}
+$('port-size').addEventListener('input', update);
+$('ann-pct').addEventListener('input', update);
+document.querySelectorAll('.preset').forEach(b => b.addEventListener('click', () => { $('port-size').value = b.dataset.amount; update(); }));
+update();
+
+/* ───────── FAQ ───────── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement, a = item.querySelector('.faq-a'), open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = '0'; });
+    if (!open) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    setTimeout(() => window.dispatchEvent(new Event('jwa-relayout')), 320);
+  });
+});
+
+/* ───────── reveal on scroll ───────── */
+(function() {
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+})();
+
+/* ───────── iframe anchor routing (Duda) ───────── */
+(function() {
+  if (window.parent === window) return;
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest('a'); if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || !href.startsWith('#') || href === '#') return;
+    const target = document.getElementById(href.slice(1)); if (!target) return;
+    e.preventDefault();
+    const offset = target.getBoundingClientRect().top + window.scrollY;
+    window.parent.postMessage({ type: 'jws-scrollto', offset: offset, targetId: href.slice(1) }, '*');
+    if (history.replaceState) history.replaceState(null, '', href);
+  });
+})();
+
+/* ───────── iframe auto-resize (Duda) ───────── */
+(function() {
+  if (window.parent === window) return;
+  let last = 0;
+  const measure = () => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  function send(force) {
+    const h = measure(); if (h <= 0) return;
+    if (!force && Math.abs(h - last) < 5) return;
+    last = h;
+    window.parent.postMessage({ type: 'jws-resize', height: h }, '*');
+  }
+  window.addEventListener('message', ev => { if (ev.data && ev.data.type === 'jws-request-height') send(true); });
+  window.addEventListener('load', () => { send(true); [250, 800, 2000].forEach(t => setTimeout(() => send(true), t)); });
+  window.addEventListener('jwa-relayout', () => send(true));
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => send(true), 200); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(() => send(true), 100));
+  document.addEventListener('input', e => { if (e.target.closest('#calc')) setTimeout(() => send(true), 300); });
+})();
+</script>
+</body>
+</html>
