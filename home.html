@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jantz Wealth Advisors is a retirement planning and investment management firm. We are hybrid advisors who turn your savings into a steady retirement paycheck, invest the rest with discipline, and keep the whole plan current.">
+<title>Jantz Wealth Advisors | Retirement Planning and Investment Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r1: #232E3D; --r2: #4A4F55; --r3: #7D8187; --r4: #B1B3B6; --r5: #D9D3C8;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+section { padding: 88px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 56px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; }
+h1 { font-size: clamp(42px, 6vw, 70px); font-weight: 400; line-height: 1.03; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
+h1, h2, h3, .ln { text-wrap: balance; }
+.ln { display: block; }
+h3 { font-size: clamp(22px, 2.4vw, 26px); margin-bottom: 12px; }
+h4 { font-size: 19px; margin-bottom: 8px; }
+p + p { margin-top: 16px; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--slate); font-weight: 400; }
+.small-label {
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--slate);
+}
+.section-head { max-width: 760px; margin-bottom: 44px; }
+.section-head .lede { margin-top: 6px; }
+.text-link {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); text-decoration: none;
+  border-bottom: 1px solid transparent; padding-bottom: 2px; transition: border-color 0.2s;
+}
+.text-link:hover { border-bottom-color: var(--blue); }
+
+/* Sentence starts on its own line in designed text */
+.s { display: inline-block; }
+.nw { white-space: nowrap; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: var(--blue); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-line:hover { border-color: var(--ink); background: var(--white); }
+.on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
+.on-ink .btn-line:hover { border-color: #fff; background: transparent; }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 112px 0 100px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.8); margin-top: 28px; max-width: 580px; }
+.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: center; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 44px; } .hero { padding: 64px 0 56px; } }
+.hero-actions { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.q-card { background: var(--white); border-radius: 4px; color: var(--slate); padding: 30px 32px 26px; }
+.q-card .small-label { color: var(--blue); margin-bottom: 8px; }
+.q-list { list-style: none; counter-reset: q; }
+.q-list li {
+  counter-increment: q; display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: baseline;
+  padding: 18px 0; border-bottom: 1px solid var(--rule);
+  font-family: var(--serif); font-size: 22px; line-height: 1.25; color: var(--ink); font-weight: 500;
+}
+.q-list li::before { content: counter(q); font-family: var(--serif); font-size: 22px; color: var(--r4); font-weight: 400; }
+.q-foot { padding-top: 18px; font-size: 14.5px; line-height: 1.55; }
+.q-foot strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 560px) { .q-card { padding: 24px 22px 20px; } .q-list li { font-size: 20px; } }
+
+/* Trust strip */
+.trust { background: var(--white); padding: 0; border-bottom: 1px solid var(--rule); }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.trust-item { padding: 30px 28px 28px; border-left: 1px solid var(--rule); }
+.trust-item:first-child { border-left: 0; padding-left: 0; }
+.trust-item strong { display: block; font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); line-height: 1.25; margin-bottom: 6px; }
+.trust-item span { font-size: 14.5px; line-height: 1.5; }
+@media (max-width: 900px) {
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .trust-item { padding: 24px 20px; }
+  .trust-item:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .trust-item:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 520px) {
+  .trust-grid { grid-template-columns: 1fr; }
+  .trust-item { border-left: 0; padding-left: 0; padding-right: 0; }
+  .trust-item + .trust-item { border-top: 1px solid var(--rule); }
+}
+
+/* Who we help */
+.who { background: var(--stone-light); }
+.who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 900px) { .who-grid { grid-template-columns: 1fr; } }
+.who-card { background: var(--white); border-radius: 4px; padding: 32px 30px 30px; border-top: 3px solid var(--ink); }
+.who-card .small-label { margin-bottom: 14px; }
+.who-card h3 { margin-bottom: 12px; }
+.who-card p { font-size: 16px; line-height: 1.65; }
+.early { margin-top: 24px; background: var(--stone); border-radius: 4px; border-left: 3px solid var(--blue); padding: 32px 34px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: start; }
+@media (max-width: 900px) { .early { grid-template-columns: 1fr; gap: 22px; padding: 26px 22px; } }
+.early .small-label { color: var(--blue); margin-bottom: 12px; }
+.early h3 { margin-bottom: 12px; }
+.early p { font-size: 16px; line-height: 1.65; }
+.early p strong { color: var(--ink); font-weight: 600; }
+.early p + p { margin-top: 12px; }
+.early .text-link { margin-top: 20px; }
+.early-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
+@media (max-width: 560px) { .early-list { grid-template-columns: 1fr; } }
+.early-list li { padding: 10px 0 10px 22px; border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.45; position: relative; }
+.early-list li::before { content: ''; position: absolute; left: 0; top: 19px; width: 10px; height: 2px; background: var(--blue); }
+
+/* Hybrid */
+.hybrid { background: var(--white); position: relative; overflow: hidden; }
+.hybrid > .shell { position: relative; z-index: 1; }
+.hybrid-venn { position: absolute; top: -80px; right: 0; width: 420px; height: auto; pointer-events: none; z-index: -1; }
+.hybrid-arcs { position: absolute; right: 0; bottom: 0; width: 760px; height: auto; pointer-events: none; }
+@media (max-width: 900px) { .hybrid-venn { display: none; } .hybrid-arcs { width: 480px; } }
+.hybrid-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 64px; align-items: start; }
+@media (max-width: 900px) { .hybrid-grid { grid-template-columns: 1fr; gap: 36px; } }
+.hybrid-grid .section-head { margin-bottom: 28px; }
+.hybrid-head { margin-bottom: 40px; }
+.hybrid-head h2 { margin-bottom: 0; }
+h2 .hl { color: var(--blue); }
+.founders { margin-top: 40px; max-width: 400px; }
+.founders-img { position: relative; z-index: 0; }
+.founders-img img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.founders-img::after { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid var(--blue); border-radius: 4px; z-index: -1; opacity: 0.55; }
+.founders figcaption { margin-top: 30px; }
+.founders figcaption strong { display: block; font-family: var(--serif); font-size: 21px; font-weight: 500; color: var(--blue); line-height: 1.2; margin-bottom: 6px; }
+.founders figcaption span { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+@media (max-width: 900px) { .founders { max-width: 380px; margin-top: 36px; } .founders-img::after { display: none; } .founders figcaption { margin-top: 16px; } }
+.jobs { display: grid; gap: 20px; }
+.job { background: var(--stone-light); border-radius: 4px; padding: 30px 32px 26px; display: grid; grid-template-columns: 210px 1fr; gap: 26px; }
+@media (max-width: 640px) { .job { grid-template-columns: 1fr; gap: 10px; padding: 26px 22px 22px; } }
+.job .small-label { color: var(--blue); margin-bottom: 10px; }
+.job h3 { margin-bottom: 0; }
+.job p { font-size: 16px; line-height: 1.65; }
+.job-paid { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 14px; }
+.job-paid strong { color: var(--ink); font-weight: 600; }
+.coord { margin-top: 20px; border-left: 3px solid var(--blue); padding: 6px 0 6px 22px; }
+.coord p { font-size: 16px; line-height: 1.65; }
+.coord strong { color: var(--ink); font-weight: 600; }
+
+/* Retirement Stack */
+.stack-sec { background: var(--stone); position: relative; overflow: hidden; }
+.stack-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.stack-sec .shell { position: relative; z-index: 1; }
+.stack-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+@media (max-width: 900px) { .stack-grid { grid-template-columns: 1fr; gap: 36px; } }
+.stack-head { max-width: 900px; margin-bottom: 44px; }
+.stack-grid .lede { margin-bottom: 0; }
+.stack-note { margin-top: 24px; font-size: 16px; line-height: 1.65; max-width: 460px; }
+.stack-note strong { color: var(--ink); font-weight: 600; }
+.tax-card { margin-top: 32px; background: var(--white); border-left: 3px solid var(--blue); border-radius: 0 4px 4px 0; padding: 28px 30px 22px; max-width: 480px; }
+.tax-card .small-label { color: var(--blue); margin-bottom: 10px; }
+.tax-card h4 { font-size: 21px; line-height: 1.25; margin-bottom: 10px; }
+.tax-card p { font-size: 15.5px; line-height: 1.6; }
+.tax-list { list-style: none; margin-top: 14px; }
+.tax-list li { padding: 9px 0 9px 22px; border-top: 1px solid var(--rule); font-size: 15px; line-height: 1.45; position: relative; }
+.tax-list li::before { content: ''; position: absolute; left: 0; top: 18px; width: 10px; height: 2px; background: var(--blue); }
+@media (max-width: 900px) { .tax-card { max-width: none; padding: 24px 22px 18px; } }
+.stack { display: grid; gap: 6px; }
+.layer { border-radius: 2px 4px 4px 2px; padding: 22px 26px; display: grid; grid-template-columns: 34px 1fr; gap: 16px; align-items: start; position: relative; overflow: hidden; color: var(--ink); background: var(--wash); border-left: 4px solid var(--edge); }
+/* soft paper grain so the washes read as watercolor */
+.layer::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
+.layer > * { position: relative; z-index: 1; }
+.layer .n { font-family: var(--serif); font-size: 24px; line-height: 1.1; color: var(--ink); opacity: 0.5; }
+.layer h4 { margin-bottom: 4px; font-size: 21px; color: var(--ink); }
+.layer .holds { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; color: var(--ink); opacity: 0.75; }
+.layer p { font-size: 15px; line-height: 1.55; color: var(--ink); }
+/* Retirement Stack layer colors, locked Nov 8, 2026 (standard wash + deep edge) */
+.l4 { --wash: #CFC8DD; --edge: #55507A; }  /* Legacy */
+.l3 { --wash: #E9CF9C; --edge: #A8772E; }  /* Growth Engine */
+.l2 { --wash: #B9D0C2; --edge: #2F6F6D; }  /* Guaranteed Income Floor */
+.l1 { --wash: #D3CABA; --edge: #4A4F55; }  /* Foundation */
+.stack-base { margin-top: 12px; display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+.stack-base::before { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.stack-base::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+/* How it works */
+.how { background: var(--stone-light); }
+.how-top { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; margin-bottom: 36px; }
+.how-top .section-head { margin-bottom: 0; }
+.how-art img { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) { .how-top { grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; } .how-art { max-width: 560px; } }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); }
+@media (max-width: 960px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+.step { padding: 30px 28px 10px 0; position: relative; }
+.step + .step { padding-left: 28px; border-left: 1px solid var(--rule); }
+@media (max-width: 960px) {
+  .step, .step + .step { padding: 28px 24px 24px 0; border-left: 0; }
+  .step:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--rule); }
+  .step:nth-child(n+3) { border-top: 1px solid var(--rule); }
+}
+@media (max-width: 560px) {
+  .step, .step + .step, .step:nth-child(even) { padding: 26px 0 22px; border-left: 0; }
+  .step + .step { border-top: 1px solid var(--rule); }
+}
+.step .num { font-family: var(--serif); font-size: 46px; line-height: 1; color: var(--r4); margin-bottom: 18px; font-weight: 400; }
+.step h3 { font-size: 23px; margin-bottom: 10px; }
+.step p { font-size: 15.5px; line-height: 1.65; }
+
+/* Portfolios */
+.portfolios { background: var(--white); }
+.portfolios > .shell { position: relative; }
+.pf-art { position: absolute; top: -6px; right: 32px; width: 380px; height: auto; pointer-events: none; }
+.pf-art .grow { stroke-dasharray: 520; stroke-dashoffset: 520; transition: stroke-dashoffset 2.2s ease 0.3s; }
+.pf-art .grow-dot { opacity: 0; transition: opacity 0.6s ease 2.3s; }
+.pf-art.in .grow { stroke-dashoffset: 0; }
+.pf-art.in .grow-dot { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .pf-art .grow { stroke-dashoffset: 0; transition: none; } .pf-art .grow-dot { opacity: 1; transition: none; } }
+#portfolios .section-head { max-width: 620px; }
+@media (max-width: 1140px) { .pf-art { width: 300px; } }
+@media (max-width: 1040px) { .pf-art { display: none; } }
+.pf-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: stretch; }
+@media (max-width: 960px) { .pf-grid { grid-template-columns: 1fr; } }
+.pf-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .pf-list { grid-template-columns: 1fr; } }
+.pf { background: var(--stone-light); border-radius: 4px; padding: 24px 24px 22px; }
+.pf h4 { font-size: 22px; margin-bottom: 6px; }
+.pf p { font-size: 14.5px; line-height: 1.55; min-height: 45px; }
+.pf-bar { display: flex; height: 8px; border-radius: 2px; overflow: hidden; margin-top: 18px; background: var(--r5); }
+.pf-bar .stk { background: var(--r1); }
+.pf-mix { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.pf-mix b { color: var(--ink); font-weight: 600; }
+.pf-key { margin-top: 16px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 12.5px; }
+.pf-key span { display: inline-flex; align-items: center; gap: 8px; }
+.pf-key i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.isa { background: var(--stone); border-radius: 4px; padding: 34px 32px 32px; display: flex; flex-direction: column; }
+.isa .small-label { color: var(--blue); margin-bottom: 12px; }
+.isa h3 { margin-bottom: 12px; }
+.isa p { font-size: 16px; line-height: 1.65; }
+.isa .btn { margin-top: auto; align-self: flex-start; }
+.isa .isa-gap { flex: 1; min-height: 24px; }
+.pf-foot { margin-top: 28px; }
+
+/* FAQ */
+.faq { background: var(--stone); }
+.faq-wrap { display: grid; grid-template-columns: 1fr 1.7fr; gap: 64px; align-items: start; }
+@media (max-width: 900px) { .faq-wrap { grid-template-columns: 1fr; gap: 20px; } }
+.ask-card { margin-top: 36px; background: var(--white); border-left: 3px solid var(--blue); border-radius: 0 4px 4px 0; padding: 26px 28px 24px; max-width: 360px; }
+.ask-card .small-label { color: var(--blue); margin-bottom: 10px; }
+.ask-card h4 { font-size: 21px; line-height: 1.25; margin-bottom: 8px; }
+.ask-card p { font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+@media (max-width: 900px) { .ask-card { display: none; } }
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-item:first-child { border-top: 1px solid var(--rule); }
+.faq-q { width: 100%; background: none; border: 0; padding: 22px 0; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-family: var(--serif); font-size: 21px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.faq-q:hover { color: var(--blue); }
+.faq-q .tg { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--rule); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; line-height: 1; transition: transform 0.2s, background 0.2s; color: var(--ink); background: var(--white); }
+.faq-item.open .tg { transform: rotate(45deg); background: var(--ink); color: #fff; border-color: var(--ink); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-a-in { padding: 0 0 24px; max-width: 68ch; font-size: 16px; line-height: 1.7; }
+.faq-a-in strong { color: var(--ink); font-weight: 600; }
+.faq-a-in a { color: var(--blue); }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; max-width: 760px; margin: 0 auto 20px; }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 560px; margin: 0 auto 36px; font-size: 18px; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-sub { color: rgba(255,255,255,0.6) !important; font-size: 13px !important; margin: 18px auto 0 !important; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-wordmark { font-family: var(--serif); font-size: 22px; color: var(--ink); font-weight: 500; margin-bottom: 28px; }
+.footer-logo { display: block; width: 220px; height: auto; margin-bottom: 22px; }
+.footer-address { font-style: normal; font-size: 14px; line-height: 1.6; color: var(--slate); margin: 0 0 28px; }
+.addr-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+.footer-wordmark span { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-left: 10px; }
+.site-footer h4 { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<!-- HERO (ink band 1 of 2) -->
+<section class="hero on-ink">
+  <svg class="hero-art" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="1500" cy="40" r="260"/><circle cx="1500" cy="40" r="360"/><circle cx="1500" cy="40" r="460"/><circle cx="1500" cy="40" r="560"/><circle cx="1500" cy="40" r="660"/><circle cx="1500" cy="40" r="760"/>
+    </g>
+    <path d="M 1500 40 m -560 0 a 560 560 0 0 0 560 560" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5"/>
+    <g fill="#FFFFFF" fill-opacity="0.07">
+      <circle cx="80" cy="660" r="2"/><circle cx="120" cy="660" r="2"/><circle cx="160" cy="660" r="2"/><circle cx="200" cy="660" r="2"/><circle cx="240" cy="660" r="2"/>
+      <circle cx="80" cy="700" r="2"/><circle cx="120" cy="700" r="2"/><circle cx="160" cy="700" r="2"/><circle cx="200" cy="700" r="2"/><circle cx="240" cy="700" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="hero-grid">
+      <div>
+        <div class="label">Retirement planning and investment management</div>
+        <h1>Retire with a plan<br>for <em>every dollar.</em></h1>
+        <p class="lede">We help you turn what you've saved into a steady retirement paycheck, invest the rest with discipline, and keep the whole plan current as life and markets change.</p>
+        <div class="hero-actions">
+          <a href="https://www.jantzwealth.com/schedule" target="_top" class="btn btn-blue">Schedule a conversation</a>
+          <a href="#how" class="btn btn-line">See how it works</a>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="small-label">Four questions every retiree asks</div>
+        <ol class="q-list">
+          <li>How much can I spend each month?</li>
+          <li>What happens when the market drops?</li>
+          <li>How do I pay less in taxes?</li>
+          <li>Will my money last as long as I do?</li>
+        </ol>
+        <div class="q-foot"><strong>A good plan answers all four.</strong><br>In writing, before you need the answers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust">
+  <div class="shell">
+    <div class="trust-grid">
+      <div class="trust-item"><strong>Held to the fiduciary standard</strong><span>Your advisor is required to put your interests first on the advice we give.</span></div>
+      <div class="trust-item"><strong>Your money stays in your name</strong><span>Accounts are held at Charles Schwab, one of the largest custodians in the U.S.</span></div>
+      <div class="trust-item"><strong>One clear fee, with a cap</strong><span><span class="s">Billed from your advisory account each quarter.</span> <span class="s">Nothing out of pocket, and no hidden charges.</span></span></div>
+      <div class="trust-item"><strong>No long-term commitment</strong><span>You can end our advisory services at any time, for any reason.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE HELP -->
+<section class="who">
+  <div class="shell">
+    <div class="section-head reveal">
+      <div class="label">Who we help</div>
+      <h2>Saving for retirement and living on it are two different jobs.</h2>
+      <p class="lede"><span class="s">Most of the people we work with are getting close to retirement or already there.</span> <span class="s">Wherever you are, the goal is the same: a paycheck you can plan around.</span></p>
+    </div>
+    <div class="who-grid reveal">
+      <div class="who-card">
+        <div class="small-label">Five to ten years out</div>
+        <h3>You're getting close.</h3>
+        <p>The choices you make now about saving, taxes, and when to stop working shape the paycheck you'll live on. We build the plan while there's still time to adjust it.</p>
+      </div>
+      <div class="who-card">
+        <div class="small-label">Retiring soon</div>
+        <h3>You're about to make the switch.</h3>
+        <p>Turning a lifetime of savings into income is a different job than building it. We map out where each month's paycheck comes from, when to claim Social Security, and how to handle the first years of withdrawals.</p>
+      </div>
+      <div class="who-card">
+        <div class="small-label">Already retired</div>
+        <h3>You want a second set of eyes.</h3>
+        <p>Maybe the plan you started with no longer fits, or nobody is watching the taxes. We review what you have, keep what works, and bring the rest into one coordinated plan.</p>
+      </div>
+    </div>
+    <div class="early reveal">
+      <div>
+        <div class="small-label">More than ten years out?</div>
+        <h3>Put your savings in professional hands now.</h3>
+        <p>You may not need a full retirement income plan yet. Your investments can still be professionally managed with the same disciplined approach we use for retirees, so the money you're saving today is working toward the day you'll need it.</p>
+        <p><strong>A lower, management-only fee schedule is available.</strong></p>
+        <a href="https://www.jantzwealth.com/investment-strategy" target="_top" class="text-link">Find your investment strategy <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div>
+        <div class="small-label" style="margin-bottom:6px">Investment management includes</div>
+        <ul class="early-list">
+          <li>A portfolio matched to your goals and timeline</li>
+          <li>Ongoing management and rebalancing</li>
+          <li>Investment advice whenever you need it</li>
+          <li>Unlimited access to your advisor</li>
+          <li>Clear reporting you can check any time</li>
+          <li>Coordination across your IRAs, Roth IRAs, and brokerage</li>
+          <li>Accounts held in your name at Charles Schwab</li>
+          <li>An annual review</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HYBRID -->
+<section class="hybrid" id="hybrid">
+  <svg class="hybrid-arcs" viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#232E3D" stroke-opacity="0.07" stroke-width="1">
+      <circle cx="800" cy="600" r="180"/><circle cx="800" cy="600" r="280"/><circle cx="800" cy="600" r="380"/><circle cx="800" cy="600" r="480"/><circle cx="800" cy="600" r="580"/>
+    </g>
+    <path d="M 420 600 A 380 380 0 0 1 800 220" fill="none" stroke="#0077B6" stroke-opacity="0.22" stroke-width="1.5"/>
+    <g fill="#232E3D" fill-opacity="0.08">
+      <circle cx="560" cy="80" r="2"/><circle cx="600" cy="80" r="2"/><circle cx="640" cy="80" r="2"/><circle cx="680" cy="80" r="2"/><circle cx="720" cy="80" r="2"/>
+      <circle cx="560" cy="120" r="2"/><circle cx="600" cy="120" r="2"/><circle cx="640" cy="120" r="2"/><circle cx="680" cy="120" r="2"/><circle cx="720" cy="120" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <svg class="hybrid-venn" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#232E3D" stroke-opacity="0.12" stroke-width="1">
+        <circle cx="155" cy="150" r="100"/><circle cx="265" cy="150" r="100"/>
+        <circle cx="155" cy="150" r="130" stroke-opacity="0.05"/><circle cx="265" cy="150" r="130" stroke-opacity="0.05"/>
+      </g>
+      <path d="M 210 66.5 A 100 100 0 0 1 210 233.5 A 100 100 0 0 1 210 66.5 Z" fill="#0077B6" fill-opacity="0.05" stroke="#0077B6" stroke-opacity="0.45" stroke-width="1.5"/>
+    </svg>
+    <div class="hybrid-head reveal">
+      <div class="label">Our approach</div>
+      <h2><span class="ln">Most advisors pick a side.</span><span class="ln">We are <span class="hl">hybrid advisors.</span></span></h2>
+    </div>
+    <div class="hybrid-grid">
+      <div class="reveal">
+        <div class="section-head">
+          <p class="lede"><span class="s">Some advisors only manage investments.</span> <span class="s">Others only sell annuities and life insurance.</span> <span class="s">Most retirements need both, working together <span class="nw">under one plan.</span></span></p>
+        </div>
+        <a href="https://www.jantzwealth.com/fees" target="_top" class="text-link">How we're paid <span aria-hidden="true">&rarr;</span></a>
+        <figure class="founders">
+          <div class="founders-img"><img src="images/home-approach-founders.jpg" alt="Sean and Megan Jantz, founders of Jantz Wealth Advisors" width="900" height="1125" loading="lazy"></div>
+          <figcaption><strong>Sean and Megan Jantz</strong><span>Founders of Jantz Wealth Advisors</span></figcaption>
+        </figure>
+      </div>
+      <div class="reveal">
+        <div class="jobs">
+          <div class="job">
+            <div>
+              <div class="small-label">Investment management</div>
+              <h3>The engine of your plan</h3>
+            </div>
+            <div>
+              <p>Diversified, low-cost portfolios managed for you. Rebalanced on a schedule, tax-aware, and matched to your risk tolerance and capacity.</p>
+              <div class="job-paid"><span class="s"><strong>Paid by an advisory fee.</strong></span> <span class="s">Deducted from your account.</span> <span class="s">Nothing out of pocket.</span></div>
+            </div>
+          </div>
+          <div class="job">
+            <div>
+              <div class="small-label">Annuities and life insurance</div>
+              <h3>The floor under your plan</h3>
+            </div>
+            <div>
+              <p>Annuities and life insurance, used only where they solve a specific problem: covering essential expenses for life, cushioning market drawdowns, or protecting the people you love.</p>
+              <div class="job-paid"><span class="s"><strong>Paid by the insurance company.</strong></span> <span class="s">Disclosed before you sign.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coord"><p><strong>The point is coordination.</strong> Your investments, annuities, and life insurance are chosen together, so each one does the job it does best and nothing is working against the rest.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETIREMENT STACK -->
+<section class="stack-sec" id="stack">
+  <svg class="stack-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#232E3D" stroke-opacity="0.06" stroke-width="1">
+      <circle cx="-60" cy="940" r="240"/><circle cx="-60" cy="940" r="340"/><circle cx="-60" cy="940" r="440"/><circle cx="-60" cy="940" r="540"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="stack-head reveal">
+      <div class="label">The Retirement Stack</div>
+      <h2><span class="ln">Every dollar should have a role.</span><span class="ln">Every vehicle should have a job.</span></h2>
+    </div>
+    <div class="stack-grid">
+      <div class="reveal">
+        <p class="lede"><span class="s">Your plan is built in four layers, from the bottom up.</span> <span class="s">Each layer has one job, and each one is funded with the tool best suited to it.</span></p>
+        <p class="stack-note"><strong>Built from the bottom up.</strong> When your essential bills are covered by income that doesn't depend on the market, the money in your Growth Engine can stay invested through the drawdowns instead of being sold at the wrong time.</p>
+        <div class="tax-card">
+          <div class="small-label">Tax-smart income</div>
+          <h4><span class="ln">It's not just what you have.</span><span class="ln">It's what you keep after taxes.</span></h4>
+          <p>Every withdrawal has a tax cost. We plan which accounts you draw from and when, looking to lower what you pay over your lifetime, not just this year.</p>
+          <ul class="tax-list">
+            <li>Roth conversions in lower-tax years</li>
+            <li>Managing Medicare IRMAA surcharges</li>
+            <li>Planning ahead for required minimum distributions</li>
+            <li>Keeping taxes on Social Security in check</li>
+            <li>Coordinating with your CPA</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="stack" role="list" aria-label="The four layers of the Retirement Stack, top to bottom">
+          <div class="layer l4" role="listitem">
+            <div class="n">4</div>
+            <div><h4>Legacy</h4><div class="holds">Assets set aside for others</div><p>What you want to leave to family or causes you care about, positioned to pass on efficiently.</p></div>
+          </div>
+          <div class="layer l3" role="listitem">
+            <div class="n">3</div>
+            <div><h4>Growth Engine</h4><div class="holds">Investment portfolio and growth annuities</div><p>Funds your lifestyle spending, keeps pace with inflation, and is managed to ride out market swings.</p></div>
+          </div>
+          <div class="layer l2" role="listitem">
+            <div class="n">2</div>
+            <div><h4>Guaranteed Income Floor</h4><div class="holds">Lifetime income annuities, if needed</div><p>Closes any gap between your Foundation and your essential expenses, so the bills are covered for life.</p></div>
+          </div>
+          <div class="layer l1" role="listitem">
+            <div class="n">1</div>
+            <div><h4>Foundation</h4><div class="holds">Social Security and pensions</div><p>The income you already have coming. We help you claim it at the right time, because it pays you for as long as you live.</p></div>
+          </div>
+        </div>
+        <div class="stack-base">Start here</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="shell">
+    <div class="how-top">
+      <div class="section-head reveal">
+        <div class="label">How it works</div>
+        <h2><span class="ln">Four steps.</span><span class="ln">No pressure at any of them.</span></h2>
+        <p class="lede">You'll always know where you are in the process and what comes next.</p>
+      </div>
+      <div class="how-art reveal">
+        <img src="images/home-how-retirees-watercolor.jpg" alt="Watercolor illustration of a retired couple smiling at each other over coffee while reviewing papers at a kitchen table" width="1200" height="800" loading="lazy">
+      </div>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>A first conversation</h3>
+        <p>A short, no-cost conversation about where you are, where you want to go, and whether we're the right fit for each other.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Your plan, in writing</h3>
+        <p>We map your income sources against your expenses, test the plan against market drawdowns and inflation, and show you the paycheck it can support.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Put it to work</h3>
+        <p>Accounts open in your name at Charles Schwab. Your investments go into the portfolio that fits you, and an annuity or life insurance is added only where it solves a problem in your plan.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Stay on course</h3>
+        <p>Ongoing management, an annual review, and access to your advisor whenever you need it. When life or markets change, the plan changes with them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIOS -->
+<section class="portfolios" id="portfolios">
+  <div class="shell">
+    <svg class="pf-art reveal" viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#232E3D" stroke-opacity="0.07" stroke-width="1">
+        <line x1="0" y1="40" x2="380" y2="40"/><line x1="0" y1="90" x2="380" y2="90"/><line x1="0" y1="140" x2="380" y2="140"/><line x1="0" y1="190" x2="380" y2="190"/><line x1="0" y1="230" x2="380" y2="230" stroke-opacity="0.14"/>
+      </g>
+      <polygon points="10,205 50,190 80,196 115,170 150,178 185,150 215,158 250,120 280,128 315,92 345,72 370,48 370,230 10,230" fill="#232E3D" fill-opacity="0.03"/>
+      <polyline points="10,212 60,203 110,193 160,184 210,172 260,161 310,148 370,134" fill="none" stroke="#232E3D" stroke-opacity="0.12" stroke-width="1.25" stroke-dasharray="3 5"/>
+      <polyline class="grow" points="10,205 50,190 80,196 115,170 150,178 185,150 215,158 250,120 280,128 315,92 345,72 370,48" fill="none" stroke="#232E3D" stroke-opacity="0.28" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="grow-dot">
+        <circle cx="370" cy="48" r="10" fill="none" stroke="#0077B6" stroke-opacity="0.3"/>
+        <circle cx="370" cy="48" r="4" fill="#0077B6"/>
+      </g>
+    </svg>
+    <div class="section-head reveal">
+      <div class="label">The Global Core Portfolios</div>
+      <h2><span class="ln">Four portfolios.</span><span class="ln">One disciplined approach.</span></h2>
+      <p class="lede">Five low-cost building blocks, in four mixes: U.S. stocks, dividend stocks, international stocks, short-term Treasuries, and gold.</p>
+    </div>
+    <div class="pf-grid reveal">
+      <div>
+        <div class="pf-list">
+          <div class="pf">
+            <h4>Conservative</h4>
+            <p>For steady income with the smallest swings.</p>
+            <div class="pf-bar"><div class="stk" style="width:40%"></div></div>
+            <div class="pf-mix"><span><b>40%</b> stocks</span><span><b>60%</b> stability</span></div>
+          </div>
+          <div class="pf">
+            <h4>Moderate</h4>
+            <p>More growth, with a large stability sleeve.</p>
+            <div class="pf-bar"><div class="stk" style="width:55%"></div></div>
+            <div class="pf-mix"><span><b>55%</b> stocks</span><span><b>45%</b> stability</span></div>
+          </div>
+          <div class="pf">
+            <h4>Balanced</h4>
+            <p>A middle path between growth and stability.</p>
+            <div class="pf-bar"><div class="stk" style="width:70%"></div></div>
+            <div class="pf-mix"><span><b>70%</b> stocks</span><span><b>30%</b> stability</span></div>
+          </div>
+          <div class="pf">
+            <h4>Growth</h4>
+            <p>For longer time horizons and investors comfortable riding out drawdowns.</p>
+            <div class="pf-bar"><div class="stk" style="width:90%"></div></div>
+            <div class="pf-mix"><span><b>90%</b> stocks</span><span><b>10%</b> stability</span></div>
+          </div>
+        </div>
+        <div class="pf-key">
+          <span><i style="background:var(--r1)"></i>Stocks: U.S., dividend, and international</span>
+          <span><i style="background:var(--r5)"></i>Stability: short-term Treasuries and gold</span>
+        </div>
+        <div class="pf-foot"><a href="https://www.jantzwealth.com/global-core-portfolios" target="_top" class="text-link">Explore the portfolios <span aria-hidden="true">&rarr;</span></a></div>
+      </div>
+      <div class="isa">
+        <div class="small-label">Not sure which fits?</div>
+        <h3>Take the Investment Strategy Assessment (ISA).</h3>
+        <p>A short set of questions about your time horizon, your income needs, and how you react when markets move. Your answers point to the portfolio that fits you best.</p>
+        <p>It's a starting point for a conversation, not a final answer.</p>
+        <div class="isa-gap"></div>
+        <a href="https://www.jantzwealth.com/investment-strategy" target="_top" class="btn btn-ink">Take the assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="shell">
+    <div class="faq-wrap">
+      <div class="section-head reveal" style="margin-bottom:0">
+        <div class="label">Common questions</div>
+        <h2>Straight answers<br>before you call.</h2>
+        <div class="ask-card">
+          <div class="small-label">Didn't see your question?</div>
+          <h4>Ask it in a short conversation.</h4>
+          <p><span class="s">No cost and no obligation.</span> <span class="s">No question is too basic.</span></p>
+          <a href="https://www.jantzwealth.com/schedule" target="_top" class="text-link">Schedule a conversation <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" type="button">Do I need to live near an office? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">No. Jantz Wealth Advisors works with clients across the country. You can meet with your advisor in person where one is local, or by video from home. Most of the work happens the same way either way.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">What does it cost? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">One clear advisory fee, starting at 1.50% a year on your first $500,000 and stepping down from there, with a cap of $20,000 a year. It's billed quarterly and deducted from your account, so there's nothing out of pocket. If an annuity or life policy is part of your plan, your advisor is paid a commission by the insurance company, disclosed before you sign. <a href="https://www.jantzwealth.com/fees" target="_top">See the full fee schedule</a>.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Do you have an account minimum? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">Generally, no. The questions that matter in retirement are the same whether you've saved a little or a lot: how much you can spend, what happens when markets drop, and how to keep taxes in check. No matter how much you've saved, an introductory conversation is worth having. At the very least, you'll leave with a clearer picture of where you stand.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Do I have to buy an annuity? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">No. An annuity is a tool, and it's only recommended where it solves a specific problem in your plan. The same goes for life insurance. When it is part of a recommendation, you'll see the alternatives we considered and the trade-offs of each before you decide anything.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Where is my money held? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">Your investment accounts are held in your name at Charles Schwab. You can see every account and every trade in the Schwab app, and you receive statements directly from Schwab. Annuities and life insurance are held directly with the insurance company that issues them.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">What happens in the first conversation? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">It's a short conversation, not a sales pitch. We'll ask about your goals, your timeline, and what's on your mind, and you can ask us anything. If it looks like a fit, we'll explain what the planning process looks like. If not, we'll tell you that too.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Am I locked in once I start? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">No. There's no long-term commitment. You can end our advisory services at any time, for any reason. Annuity and life insurance contracts have their own terms, which are explained in full before you sign.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA (ink band 2 of 2) -->
+<section class="final-cta on-ink">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+  </svg>
+  <div class="shell reveal">
+    <div class="label">The next step</div>
+    <h2>See what your retirement paycheck could look like.</h2>
+    <p>A short conversation is the fastest way to find out where you stand, and whether we're the right fit.</p>
+    <div class="cta-buttons">
+      <a href="https://www.jantzwealth.com/schedule" target="_top" class="btn btn-blue">Schedule a conversation</a>
+      <a href="https://www.jantzwealth.com/investment-strategy" target="_top" class="btn btn-line">Take the assessment</a>
+    </div>
+    <p class="cta-sub"><span class="s">No cost.</span> <span class="s">No obligation.</span></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <img class="footer-logo" src="images/shared/jwa-logo.png" alt="Jantz Wealth Advisors" width="640" height="202">
+    <address class="footer-address"><span class="addr-label">Headquarters</span>139 River Vista Place, Suite 202<br>Twin Falls, ID 83301</address>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.50%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter in arrears, and capped at $20,000 per year. Underlying ETFs carry their own expenses, which are reflected in fund returns. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</p>
+      <p><strong>Portfolios.</strong> The Global Core Portfolio allocations shown are model allocations and may change. Stock and stability percentages are rounded and describe the target mix, not the mix in any account on any given day. The Investment Strategy Assessment is an educational tool and is not a recommendation; your advisor will confirm suitability before any investment is made.</p>
+      <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee. Annuity guarantees are backed by the financial strength and claims-paying ability of the issuing insurance company. Annuities are long-term contracts; withdrawals during the surrender period may be subject to surrender charges.</p>
+      <p><strong>Tax planning.</strong> Jantz Wealth Advisors does not provide tax or legal advice. Tax strategies described here are general in nature; please consult your tax professional before acting on them.</p>
+      <p><strong>Custody.</strong> Charles Schwab &amp; Co., Inc. is an independent custodian and is not affiliated with Jantz Wealth Advisors or SimplyRIA Advisor Network.</p>
+      <p>All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ───────── FAQ ───────── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.setAttribute('aria-expanded', 'false');
+  q.addEventListener('click', () => {
+    const item = q.parentElement, a = item.querySelector('.faq-a'), open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = '0';
+      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!open) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; q.setAttribute('aria-expanded', 'true'); }
+    setTimeout(() => window.dispatchEvent(new Event('jwa-relayout')), 320);
+  });
+});
+
+/* ───────── reveal on scroll ───────── */
+(function() {
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+})();
+
+/* ───────── iframe anchor routing (Duda) ───────── */
+(function() {
+  if (window.parent === window) return;
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest('a'); if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || !href.startsWith('#') || href === '#') return;
+    const target = document.getElementById(href.slice(1)); if (!target) return;
+    e.preventDefault();
+    const offset = target.getBoundingClientRect().top + window.scrollY;
+    window.parent.postMessage({ type: 'jws-scrollto', offset: offset, targetId: href.slice(1) }, '*');
+    if (history.replaceState) history.replaceState(null, '', href);
+  });
+})();
+
+/* ───────── iframe auto-resize (Duda) ───────── */
+(function() {
+  if (window.parent === window) return;
+  let last = 0;
+  const measure = () => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  function send(force) {
+    const h = measure(); if (h <= 0) return;
+    if (!force && Math.abs(h - last) < 5) return;
+    last = h;
+    window.parent.postMessage({ type: 'jws-resize', height: h }, '*');
+  }
+  window.addEventListener('message', ev => { if (ev.data && ev.data.type === 'jws-request-height') send(true); });
+  window.addEventListener('load', () => { send(true); [250, 800, 2000].forEach(t => setTimeout(() => send(true), t)); });
+  window.addEventListener('jwa-relayout', () => send(true));
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => send(true), 200); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(() => send(true), 100));
+})();
+</script>
+</body>
+</html>
