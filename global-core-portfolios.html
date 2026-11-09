@@ -145,6 +145,8 @@ body.gross .gross-flag { display: inline-flex; }
 .spectrum-stocks { font-size: 13px; color: var(--slate); margin-top: 6px; }
 .spectrum-cagr { font-family: var(--serif); font-size: 30px; font-weight: 500; color: var(--blue); margin-top: 12px; letter-spacing: -0.01em; line-height: 1; }
 .spectrum-cagr small { display: block; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-top: 8px; }
+.spectrum-note { text-align: center; margin-top: 36px; font-size: 13px; color: var(--slate); }
+.spectrum-note a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); text-decoration: none; margin-left: 10px; white-space: nowrap; }
 @media (max-width: 720px) { .spectrum-dots { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; } .spectrum-line { display: none; } }
 
 /* Compare */
@@ -480,6 +482,7 @@ body.swapping .num-swap { opacity: 0.25; }
       <div class="spectrum-line"></div>
       <div class="spectrum-dots" id="spectrum-dots"></div>
     </div>
+    <div class="spectrum-note reveal"><span class="num-swap" id="spectrum-note-text"></span> <a href="#fee-schedule" class="open-fees">Fee schedule</a></div>
   </div>
 </section>
 
@@ -997,6 +1000,9 @@ function renderNumbers() {
     q(`svg[data-cal="${p.id}"]`, svg => drawCal(svg, d));
   });
 
+  document.getElementById('spectrum-note-text').textContent = FEE === 'net'
+    ? 'Hypothetical annualized returns, January 2012 through September 2026, shown after deducting our maximum annual advisory fee of 1.50%.'
+    : 'Hypothetical annualized returns, January 2012 through September 2026, shown before any advisory fee. A client\'s results would be lower.';
   document.getElementById('fee-note-text').innerHTML = FEE === 'net'
     ? `<strong>Every figure on this page is shown ${feeText()}.</strong> The maximum annual investment advisory fee is 1.50%. Your fee depends on your advisory agreement and may be lower.`
     : `<strong>Every figure on this page is now shown ${feeText()}.</strong> These are not the results a client would have received. Switch back to "Net of 1.50%" to see results after the maximum annual advisory fee.`;
