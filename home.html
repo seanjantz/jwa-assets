@@ -87,13 +87,14 @@ p + p { margin-top: 16px; }
 .hero .shell { position: relative; z-index: 1; }
 .hero .label { color: rgba(255,255,255,0.7); }
 .hero h1 { color: #fff; }
-.hero .lede { color: rgba(255,255,255,0.8); margin-top: 28px; max-width: 580px; }
-.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: center; }
+.hero .lede { color: rgba(255,255,255,0.8); margin-top: 28px; max-width: 580px; text-wrap: balance; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 44px; } .hero { padding: 64px 0 56px; } }
 .hero-actions { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap; }
 
 .q-card { background: var(--white); border-radius: 4px; color: var(--slate); padding: 30px 32px 26px; }
-.q-card .small-label { color: var(--blue); margin-bottom: 8px; }
+.q-card .small-label { color: var(--blue); margin-bottom: 8px; letter-spacing: 0.12em; }
+.q-list li { text-wrap: balance; }
 .q-list { list-style: none; counter-reset: q; }
 .q-list li {
   counter-increment: q; display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: baseline;
@@ -338,21 +339,21 @@ h2 .hl { color: var(--blue); }
       <div>
         <div class="label">Retirement planning and investment management</div>
         <h1>Retire with a plan<br>for <em>every dollar.</em></h1>
-        <p class="lede">We help you turn what you've saved into a steady retirement paycheck, invest the rest with discipline, and keep the whole plan current as life and markets change.</p>
+        <p class="lede">We bring your income and investments together into one <span class="nw">tax-smart</span> plan, built to give you a steady retirement paycheck.</p>
         <div class="hero-actions">
           <a href="https://www.jantzwealth.com/schedule" target="_top" class="btn btn-blue">Schedule a conversation</a>
           <a href="#how" class="btn btn-line">See how it works</a>
         </div>
       </div>
       <div class="q-card">
-        <div class="small-label">Four questions every retiree asks</div>
+        <div class="small-label">Four questions your retirement plan should answer</div>
         <ol class="q-list">
-          <li>How much can I spend each month?</li>
+          <li>How much can I comfortably spend each month?</li>
           <li>What happens when the market drops?</li>
-          <li>How do I pay less in taxes?</li>
+          <li>How can I manage taxes in retirement?</li>
           <li>Will my money last as long as I do?</li>
         </ol>
-        <div class="q-foot"><strong>A good plan answers all four.</strong><br>In writing, before you need the answers.</div>
+        <div class="q-foot"><strong>Answered in writing,</strong><br>before you need the answers.</div>
       </div>
     </div>
   </div>
@@ -672,6 +673,10 @@ h2 .hl { color: var(--blue); }
         <div class="faq-item">
           <button class="faq-q" type="button">Do I have to buy an annuity? <span class="tg" aria-hidden="true">+</span></button>
           <div class="faq-a"><div class="faq-a-in">No. An annuity is a tool, and it's only recommended where it solves a specific problem in your plan. The same goes for life insurance. When it is part of a recommendation, you'll see the alternatives we considered and the trade-offs of each before you decide anything.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Do you prepare tax returns? <span class="tg" aria-hidden="true">+</span></button>
+          <div class="faq-a"><div class="faq-a-in">No. We plan with taxes in mind, such as which accounts to draw from and when, and work alongside your CPA or tax preparer, who files your returns.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">Where is my money held? <span class="tg" aria-hidden="true">+</span></button>
