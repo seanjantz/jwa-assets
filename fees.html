@@ -47,6 +47,8 @@ h2 em { font-style: italic; font-weight: 400; color: var(--blue); }
 h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 14px; }
 h4 { font-size: 19px; margin-bottom: 8px; }
 p + p { margin-top: 16px; }
+p, li, td, .role, .hs-foot, .job-paid, .faq-a-in, .stack li span { text-wrap: pretty; }
+h1, h2, h3, h4, .hs-head { text-wrap: balance; }
 .lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--slate); font-weight: 400; }
 .num { font-family: var(--serif); font-weight: 500; color: var(--ink); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
 .small-label {
@@ -84,16 +86,16 @@ p + p { margin-top: 16px; }
 .hero h1 { color: #fff; }
 .hero .lede { color: rgba(255,255,255,0.78); margin-top: 26px; max-width: 560px; }
 .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; align-items: center; }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 64px 0 56px; } }
+@media (max-width: 1080px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 64px 0 56px; } .hero-split { max-width: 640px; } }
 .hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
 
 .hero-split { background: var(--white); border-radius: 4px; color: var(--slate); overflow: hidden; }
 .hs-head { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); line-height: 1.2; padding: 24px 28px 20px; border-bottom: 1px solid var(--rule); }
-.hs-cols { display: grid; grid-template-columns: 1fr 1fr; }
-.hs-col { padding: 24px 28px 22px; }
+.hs-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.hs-col { padding: 24px 24px 22px; }
 .hs-col + .hs-col { border-left: 1px solid var(--rule); }
 .hs-col .small-label { color: var(--blue); margin-bottom: 10px; }
-.hs-col h3 { font-size: 21px; margin-bottom: 8px; }
+.hs-col h3 { font-size: 19px; margin-bottom: 8px; white-space: nowrap; }
 .hs-col p { font-size: 14.5px; line-height: 1.55; }
 .hs-foot { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13px; line-height: 1.5; }
 .hs-foot strong { color: var(--ink); font-weight: 600; }
@@ -323,7 +325,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
       <div>
         <div class="label">How we're compensated</div>
         <h1>We are<br><em>hybrid advisors.</em></h1>
-        <p class="lede">Most advisors choose a side. Investment-only, or insurance-only. Real retirement planning usually needs both: professional management of your investments, and guaranteed income and protection that only insurance can provide. Jantz Wealth Advisors provides both, in coordination, and is paid two different ways for the two different kinds of work.<br>Here is exactly how that works.</p>
+        <p class="lede">Most advisors choose a side. Investment-only, or insurance-only. Real retirement planning usually needs both: professional management of your investments, and guaranteed income and protection that only insurance can provide.<br>Jantz Wealth Advisors provides both, in coordination, and is paid two different ways for the two different kinds of work.<br>Here is exactly how that works.</p>
         <div class="hero-actions">
           <a href="#schedule-a" class="btn btn-blue">See the fee schedule</a>
           <a href="#hybrid" class="btn btn-line">The hybrid advantage</a>
@@ -334,13 +336,13 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
         <div class="hs-cols">
           <div class="hs-col">
             <div class="small-label">The first way</div>
-            <h3>An advisory fee</h3>
+            <h3>Advisory fee</h3>
             <p>For managing your investments and keeping your retirement plan current. One clear fee, starting at 1.50% on your first $500,000 and stepping down from there, with a cap built in.</p>
             <div class="hs-foot"><strong>Paid by you.</strong> Nothing out of pocket. Cancel any time.</div>
           </div>
           <div class="hs-col">
             <div class="small-label">The second way</div>
-            <h3>An insurance commission</h3>
+            <h3>Insurance commission</h3>
             <p>When an annuity or life policy is placed as part of your plan, your advisor is paid once by the insurance company. It never comes out of your account.</p>
             <div class="hs-foot"><strong>Paid by the carrier.</strong> Disclosed before you sign.</div>
           </div>
@@ -362,7 +364,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
         </div>
         <div class="prose">
           <p>Investments are the right tool for growth, flexibility, and liquidity. Insurance and annuities are the right tool for the problems investments can't solve as well: a paycheck that lasts as long as you do, and principal that holds steady in the years when a drawdown would do the most damage.</p>
-          <p>For most retirees and pre-retirees, a complete plan includes both. That is why we call ourselves a <em>hybrid</em> firm. It isn't a sales pitch. It is a description of the work. The two ways we're paid, an ongoing advisory fee and a one-time insurance commission, are simply the two kinds of work, paid for in the way that fits each.</p>
+          <p>For most retirees and pre-retirees, a complete plan includes both. That is why we call ourselves a <em>hybrid</em> firm. It isn't a sales pitch. It is a description of what we do. And each side is paid for in its own way: an ongoing advisory fee for the investments, and a one-time commission for the insurance.</p>
         </div>
       </div>
       <div class="approach-img">
@@ -509,7 +511,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
       <div class="ins-cat">
         <div>
           <div class="small-label">Category 01</div>
-          <h3>Indexed growth annuities</h3>
+          <h3>Indexed growth&nbsp;annuities</h3>
           <div class="role">The conservative part of your portfolio, with a floor long-term bond funds can't offer.</div>
         </div>
         <div>
@@ -537,7 +539,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
           <div class="role">Tax-advantaged income, family protection, and living benefits.</div>
         </div>
         <div>
-          <p><strong>Indexed universal life (IUL)</strong> is one of the more powerful tools in retirement planning and one of the most misunderstood. It builds cash value linked to a market index, with a floor against market declines, a death benefit that passes to your heirs income-tax-free, and the ability to access the cash value during your lifetime through policy loans that don't show up on your tax return. That matters for Medicare IRMAA brackets and for how much of your Social Security is taxed. For people who want tax-advantaged growth beyond what a 401(k) or IRA allows, and who have the time horizon to let it work, IUL is often the right answer. Policy design matters enormously, and you'll see a full illustration with realistic assumptions before any decision.</p>
+          <p><strong>Indexed universal life (IUL)</strong> is one of the more powerful tools in retirement planning and one of the most misunderstood. It builds cash value linked to a market index, with a floor against market declines, a death benefit that passes to your heirs income-tax-free, and the ability to access the cash value during your lifetime through policy loans that don't show up on your tax return. That matters for Medicare IRMAA brackets and for how much of your Social Security is taxed. For people who want tax-advantaged growth beyond what a 401(k) or IRA allows, and who have the time horizon to let it work, IUL can be a strong choice. Policy design matters enormously, and you'll see a full illustration with realistic assumptions before any decision.</p>
           <p><strong>Term life</strong> is the simplest and least expensive form of life insurance, and the right answer for most families during their working years when there are dependents or debts to protect.</p>
           <p class="side-note"><strong>Living benefits.</strong> The life policies we recommend include riders, at no added cost, that let you access part of the death benefit while you are alive if you are diagnosed with a critical, chronic, or terminal illness. For many retirees, the chronic illness benefit can help with the costs of long-term care.</p>
         </div>
@@ -820,11 +822,48 @@ function update() {
     $('sv-pct').innerHTML = p === 0 ? 'Move the slider to add a growth annuity' : 'At this size the $20,000 cap applies either way';
   }
   document.querySelectorAll('.preset').forEach(b => b.classList.toggle('active', parseFloat(b.dataset.amount) === total));
+  if (window.jwaNoWidows) window.jwaNoWidows($('savings'));
 }
 $('port-size').addEventListener('input', update);
 $('ann-pct').addEventListener('input', update);
 document.querySelectorAll('.preset').forEach(b => b.addEventListener('click', () => { $('port-size').value = b.dataset.amount; update(); }));
 update();
+
+/* ───────── no lone word on a last line ─────────
+   Joins the last two words of every sentence block (and of every line that ends
+   at a forced break) with a non-breaking space, so a single word can never wrap
+   onto a line by itself. Works in every browser; text-wrap in the CSS refines it. */
+(function() {
+  const NBSP = '\u00A0';
+  const sel = 'p, li, h1, h2, h3, h4, .role, .hs-head, .hs-foot, .job-paid, .faq-a-in, .stack li span, .fee-card-desc, .pct';
+  function glue(nodes) {
+    let text = ''; const map = [];
+    nodes.forEach(n => { for (let i = 0; i < n.data.length; i++) { map.push([n, i]); } text += n.data; });
+    const end = text.replace(/\s+$/, '').length; if (!end) return;
+    const body = text.slice(0, end);
+    if (body.trim().split(/\s+/).length < 4) return;
+    const idx = body.lastIndexOf(' '); if (idx < 0) return;
+    const prev = body.slice(0, idx).replace(/\s+$/, '');
+    const tail = body.slice(prev.lastIndexOf(' ') + 1);
+    if (tail.length > 26) return;                      // too long to keep together on a phone
+    const [node, off] = map[idx];
+    node.data = node.data.slice(0, off) + NBSP + node.data.slice(off + 1);
+  }
+  function run(root) {
+    root.querySelectorAll(sel).forEach(el => {
+      if (el.querySelector('p, li, table')) return;
+      let seg = [];
+      const walk = n => {
+        if (n.nodeType === 3) seg.push(n);
+        else if (n.nodeName === 'BR') { glue(seg); seg = []; }
+        else if (n.nodeType === 1) n.childNodes.forEach(walk);
+      };
+      el.childNodes.forEach(walk); glue(seg);
+    });
+  }
+  run(document);
+  window.jwaNoWidows = run;
+})();
 
 /* ───────── FAQ ───────── */
 document.querySelectorAll('.faq-q').forEach(q => {
