@@ -1,0 +1,26 @@
+/* Site header styles. Added to every page by build.mjs. */
+html{scroll-padding-top:84px}
+.jwa-hd{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #D9D3C8;font-family:Inter,system-ui,sans-serif}
+.jwa-hd *{box-sizing:border-box;margin:0;padding:0}
+.jwa-hd-in{max-width:1240px;margin:0 auto;padding:0 28px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.jwa-hd-logo{display:flex;align-items:center}
+.jwa-hd-logo img{height:38px;width:auto;display:block}
+.jwa-hd-nav{display:flex;align-items:center;gap:28px}
+.jwa-hd .jwa-hd-link{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#232E3D;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.jwa-hd .jwa-hd-link:hover{color:#0077B6}
+.jwa-hd .jwa-hd-link.is-active{color:#0077B6;border-bottom-color:#0077B6}
+.jwa-hd .jwa-hd-cta{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:#0077B6;text-decoration:none;padding:13px 20px;border-radius:2px;white-space:nowrap}
+.jwa-hd .jwa-hd-cta:hover{background:#00609A}
+.jwa-hd-btn{display:none;background:none;border:1px solid #D9D3C8;border-radius:2px;width:44px;height:44px;cursor:pointer;align-items:center;justify-content:center}
+.jwa-hd-btn span,.jwa-hd-btn span:before,.jwa-hd-btn span:after{content:'';display:block;width:18px;height:2px;background:#232E3D;position:relative}
+.jwa-hd-btn span:before{position:absolute;top:-6px}
+.jwa-hd-btn span:after{position:absolute;top:6px}
+@media (max-width:1080px){
+  .jwa-hd-btn{display:flex}
+  .jwa-hd-nav{display:none;position:absolute;left:0;right:0;top:72px;background:#fff;border-bottom:1px solid #D9D3C8;flex-direction:column;align-items:stretch;gap:0;padding:8px 28px 24px}
+  .jwa-hd.is-open .jwa-hd-nav{display:flex}
+  .jwa-hd .jwa-hd-link{padding:16px 0;border-bottom:1px solid #EDE8E0}
+  .jwa-hd .jwa-hd-link.is-active{border-bottom-color:#EDE8E0}
+  .jwa-hd .jwa-hd-cta{margin-top:20px;text-align:center}
+}
+@media print{.jwa-hd{display:none}}

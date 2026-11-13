@@ -1,0 +1,13 @@
+// Cloudflare settings for the Jantz Wealth Advisors site.
+// "name" must match the Worker's name in the Cloudflare dashboard.
+{
+  "name": "jwa-site",
+  "compatibility_date": "2026-11-01",
+  // Runs before every deploy: assembles the pages into ./dist
+  "build": { "command": "node build.mjs" },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

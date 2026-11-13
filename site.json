@@ -1,0 +1,89 @@
+{
+  "name": "Jantz Wealth Advisors",
+  "url": "https://www.jantzwealth.com",
+  "defaultShareImage": "/images/share/home.jpg",
+
+  "header": {
+    "button": { "label": "Schedule a conversation", "path": "/schedule" }
+  },
+
+  "forms": {
+    "scheduleEndpoint": ""
+  },
+
+  "pages": [
+    {
+      "path": "/",
+      "file": "home.html",
+      "title": "Jantz Wealth Advisors | Retirement Planning and Investment Management",
+      "description": "Jantz Wealth Advisors is a retirement planning and investment management firm. We are hybrid advisors who turn your savings into a steady retirement paycheck, invest the rest with discipline, and keep the whole plan current.",
+      "shareImage": "/images/share/home.jpg"
+    },
+    {
+      "path": "/my-retirement-design",
+      "file": "my-retirement-design.html",
+      "menu": "Design Profile",
+      "title": "The Design Profile | Jantz Wealth Advisors",
+      "description": "An 18-question assessment that reveals how you want your retirement designed, then builds your personalized Retirement Stack."
+    },
+    {
+      "path": "/global-core-portfolios",
+      "file": "global-core-portfolios.html",
+      "menu": "Portfolios",
+      "title": "The Global Core Portfolios | Jantz Wealth Advisors",
+      "description": "The four Global Core portfolios used by Jantz Wealth Advisors: Conservative, Moderate, Balanced, and Growth. See what each one holds and how each is built.",
+      "shareImage": "/images/share/portfolios.jpg"
+    },
+    {
+      "path": "/investment-strategy",
+      "file": "investment-strategy.html",
+      "menu": "Assessment",
+      "title": "Investment Strategy Assessment (ISA) | Jantz Wealth Advisors",
+      "description": "A 12-question assessment that matches you to one of the four Global Core portfolios based on your time horizon, capacity for risk, and comfort with risk."
+    },
+    {
+      "path": "/fees",
+      "file": "fees.html",
+      "menu": "Fees",
+      "title": "Fees | Jantz Wealth Advisors",
+      "description": "How Jantz Wealth Advisors is compensated. One clear advisory fee with a cap built in, plus a plain explanation of the hybrid approach and why it can lower the advisory fee on your whole retirement portfolio.",
+      "shareImage": "/images/share/fees.jpg"
+    },
+    {
+      "path": "/schedule",
+      "file": "schedule.html",
+      "title": "Schedule a Conversation | Jantz Wealth Advisors",
+      "description": "Request a conversation with Jantz Wealth Advisors. Tell us a little about where you are and we will call you within 12 to 24 hours. No cost, no obligation, and no account minimum.",
+      "shareImage": "/images/share/schedule.jpg"
+    }
+  ],
+
+  "redirects": [
+    { "from": "/home", "to": "/", "permanent": true },
+    { "from": "/home-old", "to": "/", "permanent": true },
+    { "from": "/test", "to": "/", "permanent": true },
+    { "from": "/isa", "to": "/investment-strategy", "permanent": true },
+
+    { "from": "/moderate-calculator", "to": "/global-core-portfolios" },
+    { "from": "/conservative-calculator", "to": "/global-core-portfolios" },
+    { "from": "/conservative-lowvol-calculator", "to": "/global-core-portfolios" },
+    { "from": "/aggressive-calculator", "to": "/global-core-portfolios" },
+
+    { "from": "/blog", "to": "/" },
+    { "from": "/faq", "to": "/" },
+    { "from": "/straight-talk-book", "to": "/" },
+    { "from": "/four-taxes", "to": "/" },
+    { "from": "/indexed-growth-annuity", "to": "/" },
+    { "from": "/global-growth-max", "to": "/" },
+    { "from": "/life-insurance-application", "to": "/" },
+    { "from": "/email-confirmation", "to": "/" },
+    { "from": "/roth-conversion-calculator", "to": "/" },
+    { "from": "/tax-simulator", "to": "/" },
+    { "from": "/portfolio-income-illustrator", "to": "/" },
+    { "from": "/income-pay-pro", "to": "/" },
+
+    { "from": "/make-the-most-of-the-season-by-following-these-simple-guidelines", "to": "/", "permanent": true },
+    { "from": "/keep-in-touch-with-site-visitors-and-boost-loyalty", "to": "/", "permanent": true },
+    { "from": "/tips-for-writing-great-posts-that-increase-your-site-traffic", "to": "/", "permanent": true }
+  ]
+}

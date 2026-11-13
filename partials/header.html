@@ -1,0 +1,12 @@
+<!-- Site header. Added to the top of every page by build.mjs.
+     {{menu}} is filled from the "menu" entries in site.json, and the button from "header.button". -->
+<div class="jwa-hd" id="jwa-hd" role="banner">
+  <div class="jwa-hd-in">
+    <a class="jwa-hd-logo" href="/" aria-label="{{siteName}} home"><img src="/images/shared/jwa-logo.png" alt="{{siteName}}" width="640" height="202"></a>
+    <button class="jwa-hd-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="jwa-hd-nav" onclick="var h=document.getElementById('jwa-hd');this.setAttribute('aria-expanded',h.classList.toggle('is-open'))"><span></span></button>
+    <nav class="jwa-hd-nav" id="jwa-hd-nav" aria-label="Main">
+      {{menu}}
+      <a class="jwa-hd-cta" href="{{buttonPath}}">{{buttonLabel}}</a>
+    </nav>
+  </div>
+</div>
