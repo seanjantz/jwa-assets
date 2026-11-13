@@ -14,6 +14,7 @@ This repository is the website. Cloudflare watches it, and each time a change is
 | The header's look | `partials/header.html` and `partials/header.css` |
 | An old address that should send people somewhere else | `site.json`, under `redirects` |
 | The "page not found" page | `partials/404.html` |
+| The Schedule form's email handler | `worker/index.js`. The address requests are sent to is stored in Cloudflare, not here |
 | Images | `images/`, named `{page}-{section}-{subject}.jpg`. Shared ones go in `images/shared/` |
 
 ## Adding a page

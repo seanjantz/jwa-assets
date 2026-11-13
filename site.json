@@ -8,7 +8,7 @@
   },
 
   "forms": {
-    "scheduleEndpoint": ""
+    "scheduleEndpoint": "/api/schedule"
   },
 
   "pages": [
