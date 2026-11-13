@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Request a conversation with Jantz Wealth Advisors. Tell us a little about where you are and we will call you within 12 to 24 hours. No cost, no obligation, and no account minimum.">
+<title>Schedule a Conversation | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r3: #7D8187;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+section { padding: 88px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 56px 0; } }
+
+.label {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(42px, 5.6vw, 66px); font-weight: 400; line-height: 1.03; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
+h3 { font-size: clamp(22px, 2.4vw, 26px); margin-bottom: 10px; }
+p { text-wrap: pretty; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; font-weight: 400; }
+.s { display: inline-block; }
+.nw { white-space: nowrap; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+.btn[disabled] { opacity: 0.6; cursor: default; }
+
+/* Hero (the one ink band on this page) */
+.hero { background: var(--ink); color: #fff; padding: 88px 0 96px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.8); margin-top: 26px; max-width: 520px; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 72px; align-items: start; }
+.hero-copy { padding-top: 28px; }
+.points { list-style: none; margin-top: 40px; max-width: 500px; }
+.points li { padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.55; }
+.hero-img { display: block; width: 100%; max-width: 500px; height: auto; margin-top: 40px; border-radius: 4px; }
+.points li strong { display: block; color: #fff; font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero { padding: 56px 0 64px; }
+  .hero-copy { padding-top: 0; }
+  .points, .hero-img { display: none; }
+}
+
+/* Form card */
+.card { background: var(--white); border-radius: 4px; color: var(--slate); padding: 36px 38px 34px; }
+@media (max-width: 560px) { .card { padding: 28px 22px 26px; } }
+.steps { display: flex; gap: 8px; margin-bottom: 22px; }
+.steps span { flex: 1; height: 3px; background: var(--rule); }
+.steps span.on { background: var(--blue); }
+.step-label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.card h2 { font-size: 30px; margin-bottom: 8px; }
+.card .sub { font-size: 15.5px; margin-bottom: 26px; }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; gap: 0; } }
+.field { margin-bottom: 18px; }
+.field > label, .field > .q { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+.field .opt { font-weight: 400; color: var(--r3); }
+.field input[type=text], .field input[type=email], .field input[type=tel], .field select, .field textarea {
+  width: 100%; font-family: var(--sans); font-size: 16px; color: var(--ink); background: var(--white);
+  border: 1px solid var(--rule); border-radius: 2px; padding: 13px 14px; line-height: 1.3; appearance: none; -webkit-appearance: none;
+}
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23232E3D' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px;
+}
+.field textarea { min-height: 84px; resize: vertical; line-height: 1.5; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; border-color: var(--blue); }
+.field.bad input, .field.bad select { border-color: var(--red); }
+.err { display: none; font-size: 13px; color: var(--red); margin-top: 6px; }
+.field.bad .err { display: block; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer; margin: 0; }
+.chip span {
+  display: block; padding: 10px 14px; font-size: 14.5px; line-height: 1.3; color: var(--slate);
+  border: 1px solid var(--rule); border-radius: 2px; background: var(--white); transition: border-color 0.15s, background 0.15s;
+}
+.chip input:hover + span { border-color: var(--ink); }
+.chip input:checked + span { border-color: var(--ink); background: var(--stone-light); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--blue); }
+.chip input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 1px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.card .btn { width: 100%; margin-top: 6px; }
+.fine { font-size: 12.5px; line-height: 1.55; color: var(--r3); margin-top: 16px; }
+.fine a { color: var(--blue); }
+.client-line { font-size: 14px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.client-line a { color: var(--blue); font-weight: 600; text-decoration: none; }
+.client-line a:hover { text-decoration: underline; }
+
+/* Step 2 */
+.cal { border: 1px solid var(--rule); border-radius: 2px; min-height: 660px; overflow: hidden; background: var(--white); }
+.cal-ph { min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 28px; border: 1px dashed #B1B3B6; border-radius: 2px; color: var(--r3); font-size: 15px; }
+.cal-ph strong { font-family: var(--serif); font-weight: 500; font-size: 24px; color: var(--slate); margin-bottom: 8px; }
+.after { font-size: 15px; margin-top: 16px; }
+.done-lede { font-family: var(--serif); font-size: 21px; line-height: 1.45; color: var(--ink); margin-top: 6px; }
+.done-lede strong { font-weight: 500; white-space: nowrap; }
+#done { padding: 18px 0 22px; }
+.send-err { font-size: 14px; color: var(--red); border: 1px solid var(--red); border-radius: 2px; padding: 12px 14px; margin-bottom: 14px; }
+.back { background: none; border: 0; font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); cursor: pointer; margin-top: 18px; padding: 0; }
+[hidden] { display: none !important; }
+
+/* What to expect */
+.expect-head { max-width: 720px; margin-bottom: 44px; }
+.expect { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.expect > div { background: var(--white); border: 1px solid var(--rule); padding: 34px 32px 32px; }
+.expect .n { font-family: var(--serif); font-size: 30px; color: var(--blue); line-height: 1; margin-bottom: 18px; }
+.expect p { font-size: 16px; }
+@media (max-width: 900px) { .expect { grid-template-columns: 1fr; } }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-logo { display: block; width: 220px; height: auto; margin-bottom: 22px; }
+.footer-address { font-style: normal; font-size: 14px; line-height: 1.6; color: var(--slate); margin: 0 0 28px; }
+.addr-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+.site-footer h4 { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); max-width: 940px; }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HERO + FORM -->
+<section class="hero on-ink" id="top">
+  <svg class="hero-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1">
+      <circle cx="-40" cy="940" r="260"/><circle cx="-40" cy="940" r="360"/><circle cx="-40" cy="940" r="460"/><circle cx="-40" cy="940" r="560"/>
+    </g>
+    <path d="M -40 940 m 0 -460 a 460 460 0 0 1 460 460" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+  </svg>
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="label">Schedule a conversation</div>
+        <h1>Start with a<br><em>conversation.</em></h1>
+        <p class="lede">Tell us a little about where you are, and we will call you within <span class="nw">12 to 24 hours.</span></p>
+        <ul class="points">
+          <li><strong>No cost, no obligation</strong>The first conversation is about your questions, not a sales pitch.</li>
+          <li><strong>No account minimum</strong>Wherever you are starting from, the conversation is worth having.</li>
+          <li><strong>Come as you are</strong>You do not need statements or paperwork for a first call.</li>
+        </ul>
+        <img class="hero-img" src="images/schedule-hero-couple-video-call-watercolor.jpg" alt="A couple at their kitchen counter on a video call with two advisors" width="1200" height="800" loading="lazy">
+      </div>
+
+      <div class="card" id="card">
+        <!-- FORM -->
+        <form id="step1" novalidate>
+          <div class="step-label">Request a call</div>
+          <h2>A little about you</h2>
+          <p class="sub"><span class="s">It takes about a minute.</span> <span class="s">Expect a phone call from us within <span class="nw">12 to 24 hours.</span></span></p>
+
+          <div class="row">
+            <div class="field" data-req><label for="f-first">First name</label><input id="f-first" name="first" type="text" autocomplete="given-name"><div class="err">Please enter your first name.</div></div>
+            <div class="field" data-req><label for="f-last">Last name</label><input id="f-last" name="last" type="text" autocomplete="family-name"><div class="err">Please enter your last name.</div></div>
+          </div>
+          <div class="row">
+            <div class="field" data-req="email"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email"><div class="err">Please enter a valid email address.</div></div>
+            <div class="field" data-req="phone"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"><div class="err">Please enter a 10-digit phone number.</div></div>
+          </div>
+          <div class="field" data-req><label for="f-state">State you live in</label>
+            <select id="f-state" name="state" autocomplete="address-level1"><option value="">Select your state</option></select>
+            <div class="err">Please select your state.</div>
+          </div>
+
+          <div class="field" data-req="check" id="times-field">
+            <div class="q" id="q-times">Best time to call <span class="opt">Choose any that apply.</span></div>
+            <div class="chips" role="group" aria-labelledby="q-times">
+              <label class="chip"><input type="checkbox" name="times" value="Morning"><span>Morning</span></label>
+              <label class="chip"><input type="checkbox" name="times" value="Afternoon"><span>Afternoon</span></label>
+              <label class="chip"><input type="checkbox" name="times" value="Evening"><span>Evening</span></label>
+              <label class="chip"><input type="checkbox" name="times" value="Any time"><span>Any time</span></label>
+            </div>
+            <div class="err">Please choose at least one.</div>
+          </div>
+
+          <div class="field" data-req="radio" id="stage-field">
+            <div class="q" id="q-stage">Where are you with retirement?</div>
+            <div class="chips" role="radiogroup" aria-labelledby="q-stage">
+              <label class="chip"><input type="radio" name="stage" value="Already retired"><span>Already retired</span></label>
+              <label class="chip"><input type="radio" name="stage" value="Within 5 years"><span>Within 5 years</span></label>
+              <label class="chip"><input type="radio" name="stage" value="5 to 10 years away"><span>5 to 10 years away</span></label>
+              <label class="chip"><input type="radio" name="stage" value="More than 10 years away"><span>More than 10 years away</span></label>
+            </div>
+            <div class="err">Please choose one.</div>
+          </div>
+
+          <div class="field">
+            <div class="q" id="q-topics">What would you like to talk about? <span class="opt">Choose any that apply.</span></div>
+            <div class="chips" role="group" aria-labelledby="q-topics">
+              <label class="chip"><input type="checkbox" name="topics" value="Retirement income"><span>Retirement income</span></label>
+              <label class="chip"><input type="checkbox" name="topics" value="Investments"><span>Investments</span></label>
+              <label class="chip"><input type="checkbox" name="topics" value="Taxes and Roth conversions"><span>Taxes and Roth conversions</span></label>
+              <label class="chip"><input type="checkbox" name="topics" value="Social Security"><span>Social Security</span></label>
+              <label class="chip"><input type="checkbox" name="topics" value="A second opinion"><span>A second opinion</span></label>
+              <label class="chip"><input type="checkbox" name="topics" value="Not sure yet"><span>Not sure yet</span></label>
+            </div>
+          </div>
+
+          <div class="field"><label for="f-note">Anything else we should know? <span class="opt">Optional</span></label><textarea id="f-note" name="note" maxlength="1000"></textarea></div>
+
+          <div class="hp" aria-hidden="true"><label>Leave this field empty <input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+
+          <p class="send-err" id="send-err" role="alert" hidden>We could not send your request. Please check your connection and try again.</p>
+          <button class="btn btn-blue" type="submit" id="go">Request a call</button>
+          <p class="fine">By sending this request, you agree that Jantz Wealth Advisors may contact you by phone or email about your request. We do not sell or share your information.</p>
+          <p class="client-line" id="client-line" hidden>Already a client? <a id="client-link" href="#">Book your review here</a></p>
+        </form>
+
+        <!-- CONFIRMATION -->
+        <div id="done" hidden>
+          <div class="step-label">Request received</div>
+          <h2 id="done-title" tabindex="-1">Thanks.</h2>
+          <p class="done-lede">Expect a phone call from us within <span class="nw">12 to 24 hours</span> at <strong id="done-phone"></strong>.<span id="done-when"></span></p>
+          <p class="after">If we miss you, we will leave a message and follow up by email. There is nothing you need to prepare.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section>
+  <div class="shell">
+    <div class="expect-head">
+      <div class="label">What to expect</div>
+      <h2>A first conversation, not a sales meeting.</h2>
+    </div>
+    <div class="expect">
+      <div><div class="n">1</div><h3>We call you</h3><p>Within <span class="nw">12 to 24 hours</span> of your request, at the time of day you told us works best.</p></div>
+      <div><div class="n">2</div><h3>We listen first</h3><p>What you want retirement to look like, what you have saved, and what is on your mind. Ask us anything.</p></div>
+      <div><div class="n">3</div><h3>Then, a proposal meeting</h3><p>If we are a fit, the natural next step is a meeting where we show you exactly how we would map out your retirement income and investments. <span class="s">In person in Southern Idaho,</span> <span class="s">or by Zoom from anywhere.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="shell">
+    <img class="footer-logo" src="images/shared/jwa-logo.png" alt="Jantz Wealth Advisors" width="640" height="202">
+    <address class="footer-address"><span class="addr-label">Headquarters</span>139 River Vista Place, Suite 202<br>Twin Falls, ID 83301</address>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p>Scheduling a conversation does not create an advisory relationship. Nothing on this page is investment, tax, or legal advice, and no recommendation is made until your advisor has reviewed your individual situation.</p>
+      <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee.</p>
+      <p>All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---------------------------------------------------------------
+  // Settings. Fill these in before launch.
+  // ---------------------------------------------------------------
+  var CONFIG = {
+    SUBMIT_URL: '',     // where the answers are sent (set up with the new site)
+    CLIENT_URL: ''      // optional: direct booking link for existing clients
+  };
+
+  var STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+  var sel = document.getElementById('f-state');
+  STATES.forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
+
+  if (CONFIG.CLIENT_URL) {
+    document.getElementById('client-link').href = CONFIG.CLIENT_URL;
+    document.getElementById('client-line').hidden = false;
+  }
+
+  var form = document.getElementById('step1');
+  var done = document.getElementById('done');
+  var card = document.getElementById('card');
+  var btn = document.getElementById('go');
+  var sendErr = document.getElementById('send-err');
+  var BTN_TEXT = btn.textContent;
+
+  function check(field) {
+    var kind = field.getAttribute('data-req');
+    var ok = true;
+    if (kind === 'radio' || kind === 'check') {
+      ok = !!field.querySelector('input:checked');
+    } else {
+      var el = field.querySelector('input, select');
+      var v = (el.value || '').trim();
+      if (kind === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      else if (kind === 'phone') { var d = v.replace(/\D/g, ''); ok = d.length === 10 || (d.length === 11 && d.charAt(0) === '1'); }
+      else ok = v.length > 0;
+      el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    }
+    field.classList.toggle('bad', !ok);
+    return ok;
+  }
+
+  form.querySelectorAll('[data-req]').forEach(function (field) {
+    field.addEventListener('change', function () { if (field.classList.contains('bad')) check(field); });
+    field.addEventListener('input', function () { if (field.classList.contains('bad')) check(field); });
+  });
+
+  // "Any time" and the specific times are either/or.
+  var times = Array.prototype.slice.call(form.querySelectorAll('input[name=times]'));
+  times.forEach(function (box) {
+    box.addEventListener('change', function () {
+      if (!box.checked) return;
+      times.forEach(function (o) { if (o !== box && ((box.value === 'Any time') || o.value === 'Any time')) o.checked = false; });
+    });
+  });
+
+  function answers() {
+    var fd = new FormData(form);
+    return {
+      first: (fd.get('first') || '').trim(), last: (fd.get('last') || '').trim(),
+      email: (fd.get('email') || '').trim(), phone: (fd.get('phone') || '').trim(),
+      state: fd.get('state') || '', times: fd.getAll('times'), stage: fd.get('stage') || '',
+      topics: fd.getAll('topics'), note: (fd.get('note') || '').trim(),
+      page: location.pathname, company: fd.get('company') || ''
+    };
+  }
+
+  function finish(a) {
+    btn.disabled = false; btn.textContent = BTN_TEXT;
+    form.hidden = true; done.hidden = false;
+    document.getElementById('done-title').textContent = 'Thanks, ' + a.first + '.';
+    document.getElementById('done-phone').textContent = a.phone;
+    var t = a.times.join(' or ').toLowerCase();
+    document.getElementById('done-when').textContent = (a.times[0] === 'Any time') ? '' : ' We will aim for the ' + t + '.';
+    card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    document.getElementById('done-title').focus({ preventScroll: true });
+  }
+
+  function failed() {
+    btn.disabled = false; btn.textContent = BTN_TEXT;
+    sendErr.hidden = false;
+    sendErr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendErr.hidden = true;
+    var fields = Array.prototype.slice.call(form.querySelectorAll('[data-req]'));
+    var bad = fields.filter(function (f) { return !check(f); });
+    if (bad.length) {
+      var first = bad[0].querySelector('input, select');
+      if (first) first.focus();
+      bad[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return;
+    }
+    var a = answers();
+    btn.disabled = true; btn.textContent = 'Sending';
+
+    // A filled hidden field means a bot: show the thank-you, send nothing.
+    // With no SUBMIT_URL yet (preview), show the thank-you so the page can be reviewed.
+    if (a.company || !CONFIG.SUBMIT_URL) { finish(a); return; }
+
+    // The request only counts as received when the server says so.
+    var timer = setTimeout(failed, 12000);
+    fetch(CONFIG.SUBMIT_URL, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(a) })
+      .then(function (r) { clearTimeout(timer); if (r.ok) finish(a); else failed(); })
+      .catch(function () { clearTimeout(timer); failed(); });
+  });
+})();
+</script>
+</body>
+</html>
