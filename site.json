@@ -7,6 +7,10 @@
     "button": { "label": "Schedule a conversation", "path": "/schedule" }
   },
 
+  "tracking": {
+    "metaPixelId": "851959394846037"
+  },
+
   "forms": {
     "scheduleEndpoint": "/api/schedule"
   },
@@ -22,6 +26,7 @@
     {
       "path": "/my-retirement-design",
       "file": "my-retirement-design.html",
+      "metaEvent": { "name": "CompleteRegistration", "whenVisible": "#results-screen" },
       "menu": "Design Profile",
       "title": "The Design Profile | Jantz Wealth Advisors",
       "description": "An 18-question assessment that reveals how you want your retirement designed, then builds your personalized Retirement Stack."
@@ -37,6 +42,7 @@
     {
       "path": "/investment-strategy",
       "file": "investment-strategy.html",
+      "metaEvent": { "name": "CompleteRegistration", "whenVisible": "#result" },
       "menu": "Assessment",
       "title": "Investment Strategy Assessment (ISA) | Jantz Wealth Advisors",
       "description": "A 12-question assessment that matches you to one of the four Global Core portfolios based on your time horizon, capacity for risk, and comfort with risk."
@@ -52,6 +58,7 @@
     {
       "path": "/schedule",
       "file": "schedule.html",
+      "metaEvent": { "name": "Lead", "whenVisible": "#done" },
       "title": "Schedule a Conversation | Jantz Wealth Advisors",
       "description": "Request a conversation with Jantz Wealth Advisors. Tell us a little about where you are and we will call you within 12 to 24 hours. No cost, no obligation, and no account minimum.",
       "shareImage": "/images/share/schedule.jpg"

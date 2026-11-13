@@ -65,6 +65,16 @@ const ICONS =
   '<link rel="icon" type="image/png" sizes="192x192" href="/images/shared/favicon-192.png">\n' +
   '<link rel="apple-touch-icon" href="/images/shared/apple-touch-icon.png">\n';
 
+// Meta Pixel (optional). Set tracking.metaPixelId in site.json; leave it empty to turn tracking off.
+const pixelId = String(site.tracking?.metaPixelId || "").trim();
+if (pixelId && !/^\d{10,20}$/.test(pixelId)) problems.push("site.json: tracking.metaPixelId should be digits only");
+const pixelTpl = pixelId ? read("partials/meta-pixel.html").replace(/<!--[\s\S]*?-->\s*/, "") : "";
+function pixel(p) {
+  if (!pixelId) return "";
+  const ev = p && p.metaEvent ? JSON.stringify({ name: p.metaEvent.name, whenVisible: p.metaEvent.whenVisible }) : "null";
+  return pixelTpl.replaceAll("{{pixelId}}", pixelId).replace("{{event}}", ev);
+}
+
 function headTags(p) {
   const url = BASE + (p.path === "/" ? "/" : p.path);
   const img = BASE + (p.shareImage || site.defaultShareImage);
@@ -82,7 +92,8 @@ function headTags(p) {
     `<meta name="twitter:card" content="summary_large_image">\n` +
     `<meta name="twitter:image" content="${img}">\n` +
     ICONS +
-    `<style>\n${headerCss}</style>\n`
+    `<style>\n${headerCss}</style>\n` +
+    pixel(p)
   );
 }
 

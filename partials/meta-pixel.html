@@ -1,0 +1,21 @@
+<!-- Meta Pixel. Added to every page by build.mjs when "tracking.metaPixelId" is set in site.json.
+     It reports page views, and one event when a page's completion screen appears
+     (set per page in site.json with "metaEvent"). No form answers are sent to Meta. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','{{pixelId}}');
+fbq('track','PageView');
+(function(){
+  var ev={{event}};
+  if(!ev)return;
+  var sent=false;
+  function shown(el){return el&&!el.hidden&&el.getClientRects().length>0;}
+  function check(){
+    if(sent)return;
+    if(shown(document.querySelector(ev.whenVisible))){sent=true;fbq('track',ev.name);clearInterval(timer);}
+  }
+  var timer=setInterval(check,500);
+  document.addEventListener('DOMContentLoaded',check);
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id={{pixelId}}&ev=PageView&noscript=1"></noscript>
