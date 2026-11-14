@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="See how an indexed growth annuity credits interest year by year. Set your own S&P 500 cap and compare two very different market decades.">
+<title>The Indexed Growth Strategy | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r3: #7D8187; --r4: #B1B3B6;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+section { padding: 72px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 48px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(38px, 5.2vw, 60px); font-weight: 400; line-height: 1.05; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h2 { font-size: clamp(26px, 3.2vw, 36px); margin-bottom: 20px; }
+h3 { font-size: 21px; margin-bottom: 10px; }
+p, li { text-wrap: pretty; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; font-weight: 400; }
+.intro { max-width: 760px; margin-bottom: 36px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 84px 0 76px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; top: 0; bottom: 0; right: max(0px, calc(50vw - 620px)); height: 100%; width: auto; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.78); margin-top: 24px; max-width: 690px; }
+@media (max-width: 768px) { .hero { padding: 56px 0 48px; } }
+@media (max-width: 1279px) { .hero-art { display: none; } }
+
+/* How it works */
+.how { background: var(--stone-light); padding-bottom: 24px; }
+.terms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 860px) { .terms { grid-template-columns: 1fr; } }
+.term { background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); padding: 26px 28px 24px; }
+.term .n { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; }
+.term p { font-size: 15.5px; line-height: 1.65; }
+.term strong { color: var(--ink); font-weight: 600; }
+
+/* Illustration */
+.calc { background: var(--stone-light); }
+.panel { background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); padding: 28px 32px 24px; margin-bottom: 20px;
+  display: flex; flex-wrap: wrap; gap: 24px 36px; align-items: flex-start; }
+@media (max-width: 600px) { .panel { padding: 24px 20px 20px; } }
+.ctl { flex: 0 1 250px; }
+.ctl.capctl { flex: 1 1 340px; }
+.ctl.floorctl { flex: 0 1 130px; }
+.ctl.bondctl { flex: 0 1 230px; }
+@media (max-width: 880px) { .ctl, .ctl.capctl, .ctl.floorctl, .ctl.bondctl { flex: 1 1 100%; } }
+.ctl > label, .ctl .ctl-lab {
+  display: block; font-family: var(--sans); font-weight: 600; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); margin-bottom: 9px; line-height: 1.4;
+}
+.hint { display: block; font-size: 12.5px; color: var(--r3); margin-top: 9px; line-height: 1.45; }
+.caprow { display: flex; align-items: center; gap: 14px; }
+input[type=range] { flex: 1; accent-color: var(--ink); height: 4px; min-width: 0; }
+.numbox { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--rule); border-radius: 3px;
+  padding: 9px 12px; background: var(--stone-light); color: var(--ink); font-variant-numeric: tabular-nums; }
+.numbox:focus-within { border-color: var(--blue); background: var(--white); }
+.numbox span { color: var(--r3); font-size: 15px; }
+.numbox input { border: 0; outline: 0; width: 62px; font-family: var(--sans); font-size: 16px; color: inherit; text-align: right; background: transparent;
+  -moz-appearance: textfield; appearance: textfield; }
+.numbox input::-webkit-outer-spin-button, .numbox input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.numbox.cap input { width: 66px; font-family: var(--serif); font-size: 21px; font-weight: 500; }
+.numbox.prem input { width: 118px; text-align: left; }
+.chips { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--rule); background: var(--white); border-radius: 2px; padding: 6px 12px;
+  font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: 0.1em; color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--ink); }
+.chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.switchrow { display: flex; align-items: center; gap: 10px; }
+.switch { position: relative; display: inline-block; width: 46px; height: 26px; flex: none; }
+.switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.slider { position: absolute; cursor: pointer; inset: 0; background: var(--r4); border-radius: 26px; transition: background .18s; }
+.slider:before { content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: transform .18s; }
+.switch input:checked + .slider { background: var(--ink); }
+.switch input:checked + .slider:before { transform: translateX(20px); }
+.switch input:focus-visible + .slider { outline: 2px solid var(--blue); outline-offset: 2px; }
+.switchlbl { font-size: 14.5px; color: var(--slate); }
+
+.decades { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; margin-bottom: 20px; }
+@media (max-width: 980px) { .decades { grid-template-columns: 1fr; } }
+.card { background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); padding: 24px 24px 12px; min-width: 0; }
+.chead { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.chead h3 { margin-bottom: 4px; }
+.chead .sub { font-size: 14px; line-height: 1.5; }
+.annual { text-align: right; flex: none; }
+.annual .v { font-family: var(--serif); font-weight: 500; font-size: 36px; line-height: 1; color: var(--ink); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.annual .l { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-top: 8px; line-height: 1.4; }
+
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; min-width: 360px; font-size: 14px; font-variant-numeric: tabular-nums; }
+body.bonds table { min-width: 460px; }
+thead th { background: var(--ink); color: #fff; font-family: var(--sans); font-weight: 600; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 10px; text-align: right; line-height: 1.35; vertical-align: bottom; }
+thead th:first-child { text-align: left; }
+thead th.aggh { background: var(--stone); color: var(--ink); }
+tbody td { padding: 10px 10px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; color: var(--slate); }
+tbody td:first-child { text-align: left; }
+tbody tr.zero td { background: var(--stone-light); }
+td.credit { font-weight: 600; color: var(--green); }
+tr.zero td.credit { color: var(--ink); }
+td.value { color: var(--ink); }
+.neg { color: var(--red); }
+tfoot td { padding: 13px 10px; text-align: right; font-weight: 600; color: var(--ink); background: var(--stone); white-space: nowrap; }
+tfoot td:first-child { text-align: left; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+tfoot td.credit { color: var(--green); }
+
+@media (max-width: 520px) {
+  .card { padding: 20px 14px 8px; }
+  table { min-width: 0; font-size: 13px; }
+  body.bonds table { min-width: 420px; }
+  thead th { padding: 10px 6px; font-size: 8.5px; letter-spacing: 0.06em; }
+  tbody td, tfoot td { padding: 10px 5px; }
+  thead th { padding: 10px 5px; }
+  tfoot td:first-child { font-size: 12px; letter-spacing: 0; text-transform: none; }
+  .annual .v { font-size: 30px; }
+}
+
+.note { background: var(--white); border-left: 3px solid var(--blue); border-radius: 0 4px 4px 0; padding: 26px 30px; }
+.note p { font-size: 15.5px; line-height: 1.65; margin-bottom: 10px; max-width: 92ch; }
+.note p:last-child { margin-bottom: 0; }
+.note strong { color: var(--ink); font-weight: 600; }
+
+/* Where it fits */
+.fit { background: var(--stone); }
+.fitgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+@media (max-width: 900px) { .fitgrid { grid-template-columns: 1fr; gap: 36px; } }
+.fit p { margin-bottom: 16px; }
+.fit p strong { color: var(--ink); font-weight: 600; }
+.tradeoffs { list-style: none; background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); padding: 8px 28px; }
+.tradeoffs li { padding: 18px 0; border-bottom: 1px solid var(--rule); font-size: 15.5px; line-height: 1.6; }
+.tradeoffs li:last-child { border-bottom: 0; }
+.tradeoffs strong { display: block; font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; font-size: clamp(30px, 3.8vw, 44px); max-width: 820px; margin: 0 auto 20px; }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 600px; margin: 0 auto 36px; font-size: 18px; }
+.cta-sub { color: rgba(255,255,255,0.6) !important; font-size: 13px !important; margin: 18px auto 0 !important; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-logo { display: block; width: 220px; height: auto; margin-bottom: 22px; }
+.footer-address { font-style: normal; font-size: 14px; line-height: 1.6; color: var(--slate); margin: 0 0 28px; }
+.addr-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+.site-footer h4 { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+@media print { .hero-art, .cta-art, .final-cta { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- HERO (ink band 1 of 2) -->
+<section class="hero">
+  <svg class="hero-art" viewBox="830 50 590 440" preserveAspectRatio="xMaxYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- 2007 to 2016: the index path (faint) and the credited value with a 10% cap and 0% floor (blue) -->
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1"><line x1="880" y1="66" x2="880" y2="470"/><line x1="932" y1="66" x2="932" y2="470"/><line x1="984" y1="66" x2="984" y2="470"/><line x1="1036" y1="66" x2="1036" y2="470"/><line x1="1088" y1="66" x2="1088" y2="470"/><line x1="1140" y1="66" x2="1140" y2="470"/><line x1="1192" y1="66" x2="1192" y2="470"/><line x1="1244" y1="66" x2="1244" y2="470"/><line x1="1296" y1="66" x2="1296" y2="470"/><line x1="1348" y1="66" x2="1348" y2="470"/><line x1="1400" y1="66" x2="1400" y2="470"/><line x1="840" y1="470" x2="1420" y2="470"/></g>
+    <polyline points="880.0,352.3 932.0,341.8 984.0,461.0 1036.0,416.3 1088.0,386.3 1140.0,386.3 1192.0,350.7 1244.0,261.6 1296.0,217.2 1348.0,220.3 1400.0,179.2" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.5"/>
+    <polyline points="880.0,352.3 932.0,341.8 984.0,341.8 1036.0,310.8 1088.0,276.7 1140.0,276.7 1192.0,239.2 1244.0,198.0 1296.0,152.6 1348.0,152.6 1400.0,105.0" fill="none" stroke="#0077B6" stroke-opacity="0.75" stroke-width="1.75"/>
+    <g fill="#0077B6" fill-opacity="0.9"><circle cx="880.0" cy="352.3" r="2.5"/><circle cx="932.0" cy="341.8" r="2.5"/><circle cx="984.0" cy="341.8" r="2.5"/><circle cx="1036.0" cy="310.8" r="2.5"/><circle cx="1088.0" cy="276.7" r="2.5"/><circle cx="1140.0" cy="276.7" r="2.5"/><circle cx="1192.0" cy="239.2" r="2.5"/><circle cx="1244.0" cy="198.0" r="2.5"/><circle cx="1296.0" cy="152.6" r="2.5"/><circle cx="1348.0" cy="152.6" r="2.5"/><circle cx="1400.0" cy="105.0" r="2.5"/></g>
+    <circle cx="1400.0" cy="105.0" r="7" fill="none" stroke="#0077B6" stroke-opacity="0.6" stroke-width="1"/>
+  </svg>
+  <div class="shell">
+    <div class="label">The indexed growth strategy</div>
+    <h1>Growth with a floor,<br><em>year by year.</em></h1>
+    <p class="lede">An indexed growth annuity earns interest tied to the S&amp;P 500, up to a cap.<br>In a down year for the index, the credit is 0% and your contract value holds.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="shell">
+    <div class="label">How it works</div>
+    <h2>Three terms do the work.</h2>
+    <p class="intro">An indexed growth annuity is a fixed indexed annuity built for accumulation. It is an insurance contract, not an investment in the stock market. Each year it follows a simple set of rules.</p>
+    <div class="terms">
+      <div class="term">
+        <div class="n">01 &nbsp;The cap</div>
+        <h3>Your upside, up to a limit</h3>
+        <p>Each contract year, your credit is the price return of the S&amp;P 500, up to a cap. With a 10% cap, a year when the index rises 16% credits 10%. <strong>Once credited, that interest is locked in.</strong></p>
+      </div>
+      <div class="term">
+        <div class="n">02 &nbsp;The floor</div>
+        <h3>A down year credits 0%</h3>
+        <p>When the index is down for the year, your credit is 0%. <strong>Your contract value does not decline because of the market,</strong> and the next year starts from where you already are.</p>
+      </div>
+      <div class="term">
+        <div class="n">03 &nbsp;The cost</div>
+        <h3>No statement fee, no product fee</h3>
+        <p>Nothing is deducted from your contract value each year. <strong>The cost is built into the contract instead,</strong> through the cap on your upside and limits on how much you can withdraw during the surrender period.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ILLUSTRATION -->
+<section class="calc" id="illustration">
+  <div class="shell">
+    <div class="label">See it year by year</div>
+    <h2>Two very different decades. The same rules.</h2>
+    <p class="intro">Set a cap and a starting premium to see how the strategy would have credited across a strong decade and a challenging one. Turn on the bond comparison to see the bond market alongside it.</p>
+
+    <div class="panel">
+      <div class="ctl capctl">
+        <label for="capNum">S&amp;P 500 cap</label>
+        <div class="caprow">
+          <input type="range" id="capRange" min="2" max="16" step="0.05" value="10" aria-label="S&amp;P 500 cap">
+          <span class="numbox cap"><input type="number" id="capNum" min="0.1" max="50" step="0.05" value="10" inputmode="decimal"><span>%</span></span>
+        </div>
+        <span class="hint">Each year credits the lesser of the S&amp;P 500 price return and your cap, never below the floor.</span>
+      </div>
+      <div class="ctl premctl">
+        <label for="premium">Starting premium</label>
+        <span class="numbox prem"><span>$</span><input type="number" id="premium" min="0" step="1000" value="100000" inputmode="numeric"></span>
+        <div class="chips" id="premChips">
+          <button type="button" class="chip" data-p="100000">$100K</button>
+          <button type="button" class="chip" data-p="250000">$250K</button>
+          <button type="button" class="chip" data-p="500000">$500K</button>
+        </div>
+      </div>
+      <div class="ctl floorctl">
+        <label for="floor">Floor</label>
+        <span class="numbox"><input type="number" id="floor" min="0" max="10" step="0.25" value="0" style="width:52px" inputmode="decimal"><span>%</span></span>
+        <span class="hint">Standard is 0%.</span>
+      </div>
+      <div class="ctl bondctl">
+        <span class="ctl-lab" id="bondLab">Bond comparison</span>
+        <div class="switchrow">
+          <label class="switch">
+            <input type="checkbox" id="bondToggle" aria-labelledby="bondLab">
+            <span class="slider"></span>
+          </label>
+          <span class="switchlbl" id="bondState">Off</span>
+        </div>
+        <span class="hint">Show the Bloomberg U.S. Aggregate Bond Index year by year.</span>
+      </div>
+    </div>
+
+    <div class="decades">
+      <div class="card">
+        <div class="chead">
+          <div><h3>Strong market decade</h3><div class="sub">2016 to 2025. A favorable stretch for the S&amp;P 500.</div></div>
+          <div class="annual"><div class="v" id="annStrong">7.88%</div><div class="l">Annualized<br>credited rate</div></div>
+        </div>
+        <div class="tablewrap"><table id="tblStrong"></table></div>
+      </div>
+      <div class="card">
+        <div class="chead">
+          <div><h3>Challenging market decade</h3><div class="sub">2007 to 2016, including the 2008 downturn.</div></div>
+          <div class="annual"><div class="v" id="annChall">6.21%</div><div class="l">Annualized<br>credited rate</div></div>
+        </div>
+        <div class="tablewrap"><table id="tblChall"></table></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>What the shaded rows show.</strong> In a 0% crediting year, the account value holds flat. There is no statement fee or product fee to deduct, so every down year for the index, including 2008, became a year with no decline in account value.</p>
+      <p>The other side of that trade shows up in the strong years. When the index rose more than the cap, the credit stopped at the cap.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE IT FITS -->
+<section class="fit">
+  <div class="shell">
+    <div class="fitgrid">
+      <div>
+        <div class="label">Where it fits</div>
+        <h2>The steady part of a retirement portfolio.</h2>
+        <p>The conservative part of a retirement portfolio has one job. It holds steady when stocks fall, so you have somewhere to draw income from while your stocks recover.</p>
+        <p>For many people within ten years of retirement, we use an indexed growth annuity for the work long-term bond funds used to do.<br><strong>The same defensive job, done with a floor.</strong></p>
+        <p>We are hybrid advisors, which means we can use investments and insurance side by side. It fits some plans and not others. Your advisor will show you where it belongs in yours, if it belongs at all.</p>
+      </div>
+      <ul class="tradeoffs" aria-label="What you give up">
+        <li><strong>Your upside is capped</strong>In a strong year, the index can earn far more than your credit.<br>This is not a replacement for stocks.</li>
+        <li><strong>Dividends are left out</strong>Credits follow the price return of the index, which does not include dividends.</li>
+        <li><strong>Access is limited for a period</strong>These are long-term contracts. Most allow a free withdrawal each year, and withdrawals above that amount during the surrender period may carry surrender charges.</li>
+        <li><strong>The cap can change</strong>The insurance company sets the cap at the start of each crediting period, and it can move up or down at renewal.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA (ink band 2 of 2) -->
+<section class="final-cta">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+  </svg>
+  <div class="shell">
+    <div class="label">The next step</div>
+    <h2>An illustration shows the past.<br>A plan shows where it fits.</h2>
+    <p>Your advisor can walk through current caps with you and show how an indexed growth annuity would work inside your full retirement plan.</p>
+    <a href="https://www.jantzwealth.com/schedule" class="btn btn-blue">Schedule a conversation</a>
+    <p class="cta-sub">No cost. No obligation.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <img class="footer-logo" src="images/shared/jwa-logo.png" alt="Jantz Wealth Advisors" width="640" height="202">
+    <address class="footer-address"><span class="addr-label">Headquarters</span>139 River Vista Place, Suite 202<br>Twin Falls, ID 83301</address>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>About this illustration.</strong> This page is a hypothetical illustration for educational purposes only. It shows a fixed indexed annuity using a 1-year S&amp;P 500 point-to-point crediting strategy. It does not represent any specific annuity product, and it is not a product illustration, an offer, or a recommendation. The S&amp;P 500 cap is entered by the user for illustration; actual caps vary by carrier and product, are set at the start of each crediting period, and are subject to change. Each year credits the S&amp;P 500 calendar-year price return, which does not include dividends, limited by the cap and floor entered and applied to the starting premium entered.</p>
+      <p><strong>Costs and charges.</strong> The illustration assumes no annual statement fee or product fee and reflects index crediting only. An indexed annuity's costs are reflected in its caps, participation rates, and surrender charges. Actual product features, optional riders and their charges, and surrender charges vary by carrier and product. Values shown do not reflect rider charges, surrender charges, market value adjustments, taxes, or withdrawals.</p>
+      <p><strong>Indexes.</strong> The S&amp;P 500 figures are calendar-year price returns. The Bloomberg U.S. Aggregate figures are the calendar-year total returns of the Bloomberg U.S. Aggregate Bond Index. Both are unmanaged indexes that cannot be invested in directly and do not reflect any fees. The 10-year figures are annualized (compound) returns. A fixed indexed annuity and a bond fund are different products with different risks, guarantees, liquidity, and tax treatment.</p>
+      <p>Past performance is not indicative of future results.</p>
+      <p>Indexed annuities are long-term insurance contracts designed for retirement and are not an investment in the stock market. Withdrawals above the free amount during the surrender period may be subject to surrender charges and a market value adjustment, and withdrawals before age 59&frac12; may be subject to a 10% additional federal tax. Guarantees are backed by the financial strength and claims-paying ability of the issuing insurance company. Annuities are not FDIC or NCUA insured and are not bank guaranteed. Whether an annuity is appropriate depends on your individual situation.</p>
+      <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+var SP = {2007:3.53,2008:-38.49,2009:23.45,2010:12.78,2011:0.00,2012:13.41,2013:29.60,2014:11.39,2015:-0.73,2016:9.54,2017:19.42,2018:-6.24,2019:28.88,2020:16.26,2021:26.89,2022:-19.44,2023:24.23,2024:23.31,2025:16.39};
+var AGG = {2007:6.97,2008:5.24,2009:5.93,2010:6.54,2011:7.84,2012:4.21,2013:-2.02,2014:5.97,2015:0.55,2016:2.65,2017:3.54,2018:0.01,2019:8.72,2020:7.51,2021:-1.54,2022:-13.01,2023:5.53,2024:1.25,2025:7.30};
+var STRONG = [2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+var CHALL  = [2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
+
+var $ = function(id){ return document.getElementById(id); };
+var clampCredit = function(sp, cap, floor){ return Math.min(Math.max(sp, floor), cap); };
+var annualize = function(arr){ var f = 1; arr.forEach(function(r){ f *= (1 + r/100); }); return (Math.pow(f, 1/arr.length) - 1) * 100; };
+var money = function(v){ return '$' + String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
+var trimPct = function(v){ return parseFloat(v.toFixed(2)) + '%'; };
+function pctCell(v){
+  if (Math.abs(v) < 0.005) return '<td>0.00%</td>';
+  return '<td' + (v < 0 ? ' class="neg"' : '') + '>' + (v > 0 ? '+' : '') + v.toFixed(2) + '%</td>';
+}
+
+function buildTable(years, cap, floor, premium, showBonds){
+  var rows = '', val = premium;
+  years.forEach(function(y){
+    var cr = clampCredit(SP[y], cap, floor);
+    val = val * (1 + cr/100);
+    rows += '<tr' + (cr <= 0.00001 ? ' class="zero"' : '') + '>'
+      + '<td>' + y + '</td>'
+      + pctCell(SP[y])
+      + '<td class="credit">' + cr.toFixed(2) + '%</td>'
+      + '<td class="value">' + money(val) + '</td>'
+      + (showBonds ? pctCell(AGG[y]) : '')
+      + '</tr>';
+  });
+  var sgn = function(v){ return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; };
+  var spAnn = annualize(years.map(function(y){ return SP[y]; }));
+  var aggAnn = annualize(years.map(function(y){ return AGG[y]; }));
+  var crAnn = annualize(years.map(function(y){ return clampCredit(SP[y], cap, floor); }));
+  return '<thead><tr>'
+    + '<th scope="col">Calendar<br>year</th>'
+    + '<th scope="col">S&amp;P 500<br>price return</th>'
+    + '<th scope="col">Credited<br>rate</th>'
+    + '<th scope="col">Account<br>value</th>'
+    + (showBonds ? '<th scope="col" class="aggh">Bloomberg U.S. Agg<br>total return</th>' : '')
+    + '</tr></thead><tbody>' + rows + '</tbody><tfoot><tr>'
+    + '<td>Annualized</td>'
+    + '<td>' + sgn(spAnn) + '</td>'
+    + '<td class="credit">' + crAnn.toFixed(2) + '%</td>'
+    + '<td></td>'
+    + (showBonds ? '<td>' + sgn(aggAnn) + '</td>' : '')
+    + '</tr></tfoot>';
+}
+
+function render(){
+  var cap = parseFloat($('capNum').value); if (isNaN(cap) || cap <= 0) cap = 10; cap = Math.min(cap, 50);
+  var floor = parseFloat($('floor').value); if (isNaN(floor) || floor < 0) floor = 0;
+  var premium = parseFloat($('premium').value); if (isNaN(premium) || premium < 0) premium = 100000;
+  var showBonds = $('bondToggle').checked;
+
+  document.body.classList.toggle('bonds', showBonds);
+  $('bondState').textContent = showBonds ? 'On' : 'Off';
+  $('capRange').value = Math.min(Math.max(cap, 2), 16);
+
+  $('tblStrong').innerHTML = buildTable(STRONG, cap, floor, premium, showBonds);
+  $('tblChall').innerHTML = buildTable(CHALL, cap, floor, premium, showBonds);
+  $('annStrong').textContent = annualize(STRONG.map(function(y){ return clampCredit(SP[y], cap, floor); })).toFixed(2) + '%';
+  $('annChall').textContent  = annualize(CHALL.map(function(y){ return clampCredit(SP[y], cap, floor); })).toFixed(2) + '%';
+
+  var chips = document.querySelectorAll('#premChips .chip');
+  for (var i = 0; i < chips.length; i++) chips[i].classList.toggle('on', parseFloat(chips[i].dataset.p) === premium);
+}
+
+$('capRange').addEventListener('input', function(){ $('capNum').value = parseFloat(this.value).toFixed(2); render(); });
+$('capNum').addEventListener('input', render);
+$('floor').addEventListener('input', render);
+$('premium').addEventListener('input', render);
+$('bondToggle').addEventListener('change', render);
+(function(){
+  var btns = document.querySelectorAll('#premChips .chip');
+  for (var j = 0; j < btns.length; j++) (function(b){ b.addEventListener('click', function(){ $('premium').value = b.dataset.p; render(); }); })(btns[j]);
+})();
+render();
+</script>
+<script>
+/* no lone word on a last line: joins the last two words of each text block */
+(function() {
+  var NBSP = '\u00A0';
+  var sel = 'p, h1, h2, h3, li, .sub, .hint';
+  function glue(nodes) {
+    var text = '', map = [];
+    nodes.forEach(function(n){ for (var i = 0; i < n.data.length; i++) map.push([n, i]); text += n.data; });
+    var end = text.replace(/\s+$/, '').length; if (!end) return;
+    var body = text.slice(0, end);
+    if (body.trim().split(/\s+/).length < 4) return;
+    var idx = body.lastIndexOf(' '); if (idx < 0) return;
+    var prev = body.slice(0, idx).replace(/\s+$/, '');
+    var tail = body.slice(prev.lastIndexOf(' ') + 1);
+    if (tail.length > 26) return;
+    var m = map[idx];
+    m[0].data = m[0].data.slice(0, m[1]) + NBSP + m[0].data.slice(m[1] + 1);
+  }
+  function run(root) {
+    if (!root) return;
+    root.querySelectorAll(sel).forEach(function(el){
+      if (el.querySelector('p, li, table')) return;
+      var seg = [];
+      var walk = function(n){
+        if (n.nodeType === 3) seg.push(n);
+        else if (n.nodeName === 'BR') { glue(seg); seg = []; }
+        else if (n.nodeType === 1) n.childNodes.forEach(walk);
+      };
+      el.childNodes.forEach(walk); glue(seg);
+    });
+  }
+  window.jwaNoWidows = run;
+  run(document);
+})();
+</script>
+</body>
+</html>

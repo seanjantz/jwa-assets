@@ -70,6 +70,13 @@
       "shareImage": "/images/share/tax-simulator.jpg"
     },
     {
+      "path": "/indexed-growth-annuity",
+      "file": "indexed-growth-annuity.html",
+      "title": "The Indexed Growth Strategy | Jantz Wealth Advisors",
+      "description": "See how an indexed growth annuity credits interest year by year. Set your own S&P 500 cap, compare a strong market decade with a challenging one, and see the bond market alongside it.",
+      "shareImage": "/images/share/indexed-growth-annuity.jpg"
+    },
+    {
       "path": "/schedule",
       "file": "schedule.html",
       "metaEvent": { "name": "Lead", "whenVisible": "#done" },
@@ -94,7 +101,6 @@
     { "from": "/faq", "to": "/" },
     { "from": "/straight-talk-book", "to": "/" },
     { "from": "/four-taxes", "to": "/" },
-    { "from": "/indexed-growth-annuity", "to": "/" },
     { "from": "/global-growth-max", "to": "/" },
     { "from": "/life-insurance-application", "to": "/" },
     { "from": "/email-confirmation", "to": "/" },
