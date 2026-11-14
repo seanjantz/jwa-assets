@@ -293,6 +293,25 @@ h2 .hl { color: var(--blue); }
 .faq-a-in strong { color: var(--ink); font-weight: 600; }
 .faq-a-in a { color: var(--blue); }
 
+/* About */
+.about { background: var(--stone-light); }
+.about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 72px; align-items: start; }
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+.about-photo { position: relative; z-index: 0; max-width: 460px; }
+.about-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.about-photo::after { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid var(--blue); border-radius: 4px; z-index: -1; opacity: 0.55; }
+@media (max-width: 900px) { .about-photo { max-width: 420px; } .about-photo::after { display: none; } }
+.about-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 40px; max-width: 460px; border-top: 1px solid var(--rule); }
+.about-facts div { padding: 16px 12px 0 0; }
+.about-facts div + div { padding-left: 14px; border-left: 1px solid var(--rule); }
+.about-facts strong { display: block; font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.about-facts span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.4; text-wrap: balance; }
+@media (max-width: 900px) { .about-facts { max-width: 420px; margin-top: 32px; } }
+.about-text .section-head { margin-bottom: 24px; }
+.about-text p { font-size: 16.5px; line-height: 1.7; max-width: 64ch; text-wrap: pretty; }
+.about-text .lede { font-size: 20px; line-height: 1.55; }
+.about-quote { margin: 30px 0; padding: 4px 0 4px 24px; border-left: 3px solid var(--blue); font-family: var(--serif); font-style: italic; font-size: 24px; line-height: 1.35; color: var(--ink); max-width: 34ch; text-wrap: balance; }
+
 /* Final CTA (ink band 2 of 2) */
 .final-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
 .cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -643,6 +662,35 @@ h2 .hl { color: var(--blue); }
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="shell">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-photo">
+          <img src="images/home-about-family.jpg" alt="Sean and Megan Jantz with their two daughters and two dogs, outdoors above a river canyon" width="960" height="1200" loading="lazy">
+        </div>
+        <div class="about-facts">
+          <div><strong>Since 2012</strong><span>Guiding families through retirement</span></div>
+          <div><strong>Twin Falls</strong><span>Headquartered in Idaho</span></div>
+          <div><strong>Fiduciary</strong><span>Held to the fiduciary standard</span></div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-head">
+          <div class="label">About us</div>
+          <h2>Meet Sean and Megan.</h2>
+        </div>
+        <p class="lede">Sean and Megan Jantz are independent advisors held to the fiduciary standard, based in Twin Falls, Idaho. Together, they help families build, protect, and grow their wealth with confidence, with a focus on the years leading up to and through retirement.</p>
+        <p>Since 2012, Sean and Megan have guided families through every stage of the financial journey. Their work centers on retirement income, investment strategy, protection, and tax-smart planning, with every piece working together as one plan.</p>
+        <p>Their approach goes beyond traditional advising. They act as partners and coaches, simplifying complex ideas, building long-term relationships, and making sure clients feel supported at every step. They believe great planning is built on clear communication, straight-talk explanations, and the discipline to do the right thing.</p>
+        <blockquote class="about-quote">A plan only works if you understand it.</blockquote>
+        <p>Outside the office, Sean and Megan are raising their two daughters, Juliet and Jesslyn. They put family first, stay active in their community, and believe in the Idaho values of honesty, faith, and hard work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="shell">
@@ -747,6 +795,26 @@ document.querySelectorAll('.faq-q').forEach(q => {
     setTimeout(() => window.dispatchEvent(new Event('jwa-relayout')), 320);
   });
 });
+
+/* ───────── arriving at a section (e.g. /#about from the header) ─────────
+   Fonts and images finish loading after the browser jumps to the section, which moves
+   it, so keep it lined up under the header for the first few seconds, until the
+   visitor scrolls on their own. */
+(function() {
+  if (!location.hash || location.hash.length < 2) return;
+  var id = location.hash.slice(1), done = false, ro;
+  function realign() {
+    if (done) return;
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }
+  function stop() { done = true; if (ro) ro.disconnect(); ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(e) { removeEventListener(e, stop); }); }
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(e) { addEventListener(e, stop, { passive: true }); });
+  if ('ResizeObserver' in window) { ro = new ResizeObserver(realign); ro.observe(document.documentElement); }
+  addEventListener('load', realign);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(realign);
+  setTimeout(stop, 4000);
+})();
 
 /* ───────── reveal on scroll ───────── */
 (function() {

@@ -42,6 +42,11 @@ for (const r of site.redirects || []) {
   if (paths.has(r.from)) problems.push(`site.json: ${r.from} is both a page and a redirect`);
   if (!paths.has(r.to) && !/^https?:\/\//.test(r.to)) problems.push(`site.json: redirect ${r.from} points to ${r.to}, which is not a page`);
 }
+for (const l of site.header?.links || []) {
+  const base = String(l.path || "").split("#")[0] || "/";
+  if (!l.label || !l.path) problems.push('site.json: each header link needs a "label" and a "path"');
+  else if (!paths.has(base)) problems.push(`site.json: header link ${l.path} is not on a page of this site`);
+}
 if (problems.length) fail();
 
 // ---------- shared pieces ----------
@@ -52,10 +57,12 @@ function header(activePath) {
   const menu = site.pages.filter((p) => p.menu).map((p) => {
     const on = p.path === activePath;
     return `<a class="jwa-hd-link${on ? ' is-active" aria-current="page' : ""}" href="${p.path}">${esc(p.menu)}</a>`;
-  }).join("\n      ");
+  });
+  // Extra links that are not their own page, such as /#about (a section of the home page).
+  for (const l of site.header.links || []) menu.push(`<a class="jwa-hd-link" href="${esc(l.path)}">${esc(l.label)}</a>`);
   return headerTpl
     .replaceAll("{{siteName}}", esc(site.name))
-    .replace("{{menu}}", menu)
+    .replace("{{menu}}", menu.join("\n      "))
     .replace("{{buttonPath}}", site.header.button.path)
     .replace("{{buttonLabel}}", esc(site.header.button.label));
 }

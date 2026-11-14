@@ -4,7 +4,10 @@
   "defaultShareImage": "/images/share/home.jpg",
 
   "header": {
-    "button": { "label": "Schedule a conversation", "path": "/schedule" }
+    "button": { "label": "Schedule a conversation", "path": "/schedule" },
+    "links": [
+      { "label": "About", "path": "/#about" }
+    ]
   },
 
   "tracking": {
