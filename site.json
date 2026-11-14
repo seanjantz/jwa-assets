@@ -66,7 +66,8 @@
       "path": "/tax-simulator",
       "file": "tax-simulator.html",
       "title": "2026 Federal and State Tax Simulator | Jantz Wealth Advisors",
-      "description": "Estimate your 2026 federal and state income taxes, then test a Roth conversion or a capital gain and see the before and after side by side. Covers all 50 states, Social Security taxation, and Medicare IRMAA tiers."
+      "description": "Estimate your 2026 federal and state income taxes, then test a Roth conversion or a capital gain and see the before and after side by side. Covers all 50 states, Social Security taxation, and Medicare IRMAA tiers.",
+      "shareImage": "/images/share/tax-simulator.jpg"
     },
     {
       "path": "/schedule",
