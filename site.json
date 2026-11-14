@@ -56,6 +56,12 @@
       "shareImage": "/images/share/fees.jpg"
     },
     {
+      "path": "/roth-conversion-calculator",
+      "file": "roth-conversion-calculator.html",
+      "title": "Multi-Year Roth Conversion Calculator | Jantz Wealth Advisors",
+      "description": "Model a year-by-year Roth conversion plan. Choose from three conversion strategies, set an IRMAA ceiling, and compare the plan against doing nothing."
+    },
+    {
       "path": "/schedule",
       "file": "schedule.html",
       "metaEvent": { "name": "Lead", "whenVisible": "#done" },
@@ -84,7 +90,6 @@
     { "from": "/global-growth-max", "to": "/" },
     { "from": "/life-insurance-application", "to": "/" },
     { "from": "/email-confirmation", "to": "/" },
-    { "from": "/roth-conversion-calculator", "to": "/" },
     { "from": "/tax-simulator", "to": "/" },
     { "from": "/portfolio-income-illustrator", "to": "/" },
     { "from": "/income-pay-pro", "to": "/" },
