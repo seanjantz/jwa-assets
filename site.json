@@ -80,6 +80,13 @@
       "shareImage": "/images/share/indexed-growth-annuity.jpg"
     },
     {
+      "path": "/straight-talk-retirement-guide",
+      "file": "straight-talk-retirement-guide.html",
+      "title": "The Straight-Talk Retirement Guide | Jantz Wealth Advisors",
+      "description": "The Straight-Talk Retirement Guide by Sean Jantz. Retirement planning without confusion, pressure, or gimmicks. Plain answers on income, taxes, Social Security, and the decisions that matter most.",
+      "shareImage": "/images/share/straight-talk-retirement-guide.jpg"
+    },
+    {
       "path": "/schedule",
       "file": "schedule.html",
       "metaEvent": { "name": "Lead", "whenVisible": "#done" },
@@ -102,7 +109,7 @@
 
     { "from": "/blog", "to": "/" },
     { "from": "/faq", "to": "/" },
-    { "from": "/straight-talk-book", "to": "/" },
+    { "from": "/straight-talk-book", "to": "/straight-talk-retirement-guide", "permanent": true },
     { "from": "/four-taxes", "to": "/" },
     { "from": "/global-growth-max", "to": "/" },
     { "from": "/life-insurance-application", "to": "/" },

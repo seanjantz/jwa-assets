@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Straight-Talk Retirement Guide by Sean Jantz. Retirement planning without confusion, pressure, or gimmicks.">
+<title>The Straight-Talk Retirement Guide | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --r3: #7D8187;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+.shell { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+section { padding: 80px 0; scroll-margin-top: 72px; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 52px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 5.4vw, 64px); font-weight: 400; line-height: 1.04; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h2 { font-size: clamp(27px, 3.3vw, 38px); margin-bottom: 20px; }
+h3 { font-size: 22px; margin-bottom: 10px; }
+p, li { text-wrap: pretty; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; font-weight: 400; }
+.intro { max-width: 760px; margin-bottom: 44px; }
+.intro p { font-size: 18px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 15px 28px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+.btn svg { width: 13px; height: 13px; flex: none; }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 76px 0 80px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.8); margin-top: 26px; max-width: 560px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; margin-top: 36px; }
+.textlink { color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 4px; }
+.textlink:hover { border-bottom-color: #fff; }
+.facts { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 0; margin-top: 40px; font-size: 13.5px; color: rgba(255,255,255,0.62); }
+.facts li { padding-right: 18px; margin-right: 18px; border-right: 1px solid rgba(255,255,255,0.22); }
+.facts li:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.facts b { color: #fff; font-weight: 500; }
+.cover { justify-self: center; width: 340px; max-width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .hero { padding: 52px 0 56px; }
+  .hero .shell { grid-template-columns: 1fr; gap: 44px; }
+  .cover { width: 250px; order: -1; justify-self: start; }
+}
+
+@media (max-width: 520px) { .facts { flex-direction: column; gap: 6px; } .facts li { border-right: 0; margin-right: 0; padding-right: 0; } }
+
+/* Three promises */
+.promises { background: var(--stone); padding: 0; border-bottom: 1px solid var(--rule); }
+.promises .shell { display: grid; grid-template-columns: repeat(3, 1fr); }
+.promise { padding: 38px 36px 36px; border-left: 1px solid var(--rule); }
+.promise:first-child { border-left: 0; padding-left: 0; }
+.promise:last-child { padding-right: 0; }
+.promise h3 { font-size: 23px; margin-bottom: 8px; }
+.promise p { font-size: 15.5px; line-height: 1.6; max-width: 32ch; }
+@media (max-width: 860px) {
+  .promises .shell { grid-template-columns: 1fr; }
+  .promise { padding: 26px 0; border-left: 0; border-top: 1px solid var(--rule); }
+  .promise:first-child { border-top: 0; }
+  .promise p { max-width: none; }
+}
+
+/* Plain English */
+.plain { background: var(--stone-light); }
+.terms { background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); }
+.termrow { display: grid; grid-template-columns: 0.8fr 1.6fr; gap: 12px 48px; padding: 30px 40px; border-bottom: 1px solid var(--rule); align-items: start; }
+.termrow:last-child { border-bottom: 0; }
+.tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--r3); margin-bottom: 8px; }
+.say .tag { color: var(--blue); }
+.jargon { font-size: 16.5px; line-height: 1.45; color: var(--r3); }
+.say p { font-family: var(--serif); font-size: 22px; line-height: 1.38; color: var(--ink); }
+@media (max-width: 760px) {
+  .termrow { grid-template-columns: 1fr; padding: 24px 22px; }
+  .say p { font-size: 20px; }
+}
+
+/* What's inside */
+.inside { background: var(--stone); }
+.chapters { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 860px) { .chapters { grid-template-columns: 1fr; } }
+.chapter { background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); padding: 26px 30px 26px; }
+.chapter .n { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; }
+.chapter p { font-size: 15.5px; line-height: 1.65; }
+
+/* Who it's for */
+.who { background: var(--stone-light); }
+.stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--rule); }
+.stage { padding: 30px 36px 4px; border-left: 1px solid var(--rule); }
+.stage:first-child { border-left: 0; padding-left: 0; }
+.stage p { font-size: 16px; max-width: 30ch; }
+@media (max-width: 860px) {
+  .stages { grid-template-columns: 1fr; }
+  .stage { padding: 24px 0; border-left: 0; border-bottom: 1px solid var(--rule); }
+  .stage:last-child { border-bottom: 0; padding-bottom: 0; }
+  .stage p { max-width: none; }
+}
+
+/* Quote */
+.quote { background: var(--white); text-align: center; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.quote blockquote { font-family: var(--serif); font-weight: 400; font-size: clamp(25px, 3.1vw, 37px); line-height: 1.28; color: var(--ink); max-width: 880px; margin: 0 auto; letter-spacing: -0.005em; text-wrap: balance; }
+.quote cite { display: block; margin-top: 26px; font-style: normal; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); }
+
+/* Author */
+.author { background: var(--stone); }
+.authorgrid { display: grid; grid-template-columns: 300px 1fr; gap: 64px; align-items: center; max-width: 1040px; }
+.author img { width: 100%; height: auto; border-radius: 4px; }
+.author p { margin-bottom: 16px; max-width: 62ch; }
+.author p:last-child { margin-bottom: 0; }
+@media (max-width: 820px) { .authorgrid { grid-template-columns: 1fr; gap: 32px; } .author img { width: 220px; } }
+
+/* Next step */
+.next { background: var(--stone-light); }
+.nextbox { background: var(--white); border-radius: 4px; border-top: 3px solid var(--ink); padding: 48px 52px; display: grid; grid-template-columns: 1fr auto; gap: 32px 56px; align-items: center; }
+.nextbox h2 { margin-bottom: 14px; }
+.nextbox p { max-width: 58ch; }
+@media (max-width: 900px) { .nextbox { grid-template-columns: 1fr; padding: 34px 26px; } }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; font-size: clamp(30px, 3.8vw, 44px); max-width: 820px; margin: 0 auto 20px; }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 600px; margin: 0 auto 36px; font-size: 18px; }
+.cta-sub { color: rgba(255,255,255,0.6) !important; font-size: 13px !important; margin: 18px auto 0 !important; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-logo { display: block; width: 220px; height: auto; margin-bottom: 22px; }
+.footer-address { font-style: normal; font-size: 14px; line-height: 1.6; color: var(--slate); margin: 0 0 28px; }
+.addr-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 4px; }
+.site-footer h4 { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.hero a:focus-visible, .final-cta a:focus-visible { outline-color: #fff; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print { .hero-art, .cta-art { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- HERO (ink band 1 of 2) -->
+<section class="hero">
+  <svg class="hero-art" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1">
+      <circle cx="1060" cy="330" r="250"/><circle cx="1060" cy="330" r="370"/><circle cx="1060" cy="330" r="490"/>
+    </g>
+    <path d="M 1060 330 m -370 0 a 370 370 0 0 1 370 -370" fill="none" stroke="#0077B6" stroke-opacity="0.35" stroke-width="1.5"/>
+  </svg>
+  <div class="shell">
+    <div>
+      <div class="label">A book by Sean Jantz</div>
+      <h1>The <em>Straight-Talk</em><br>Retirement Guide</h1>
+      <p class="lede">Retirement planning without confusion, pressure, or gimmicks. Plain answers on income, taxes, Social Security, and the decisions that actually move the needle.</p>
+      <div class="hero-actions">
+        <a class="btn btn-blue" href="https://amzn.to/4vuCZI5" target="_blank" rel="noopener">Buy on Amazon
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 1h9v9M13 1 1 13"/></svg></a>
+        <a class="textlink" href="#inside">See what's inside</a>
+      </div>
+      <ul class="facts">
+        <li><b>Paperback</b> and <b>Kindle</b></li>
+        <li><b>82</b> pages</li>
+        <li>ISBN <b>9798199474078</b></li>
+      </ul>
+    </div>
+    <img class="cover" src="images/straight-talk-hero-book-cover.webp" alt="The Straight-Talk Retirement Guide by Sean Jantz, book cover" width="640" height="958">
+  </div>
+</section>
+
+<!-- THREE PROMISES -->
+<section class="promises" aria-label="What the book helps you do">
+  <div class="shell">
+    <div class="promise">
+      <h3>Build income</h3>
+      <p>Guaranteed income you cannot outlive, matched to the expenses you cannot skip.</p>
+    </div>
+    <div class="promise">
+      <h3>Reduce taxes</h3>
+      <p>The surprises that quietly cost the most, and the levers that address them.</p>
+    </div>
+    <div class="promise">
+      <h3>Retire confidently</h3>
+      <p>A plan built to bend instead of break when life does the unexpected.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLAIN ENGLISH -->
+<section class="plain">
+  <div class="shell">
+    <div class="intro">
+      <div class="label">Retirement, in plain English</div>
+      <h2>The industry has a word for everything.<br>This book has an answer.</h2>
+      <p>Most retirement advice hides behind terms built to keep you nodding along. Here is the same information, said straight.</p>
+    </div>
+    <div class="terms">
+      <div class="termrow">
+        <div><div class="tag">They say</div><div class="jargon">Sequence of returns risk</div></div>
+        <div class="say"><div class="tag">Straight talk</div><p>A bad year early in retirement does more damage than the same year later. The order your returns happen in can make or break the plan.</p></div>
+      </div>
+      <div class="termrow">
+        <div><div class="tag">They say</div><div class="jargon">Risk capacity</div></div>
+        <div class="say"><div class="tag">Straight talk</div><p>How big a market drop your finances can actually survive, which is not the same as how big a drop you can stomach emotionally.</p></div>
+      </div>
+      <div class="termrow">
+        <div><div class="tag">They say</div><div class="jargon">IRMAA surcharge</div></div>
+        <div class="say"><div class="tag">Straight talk</div><p>Cross one hidden income line by a single dollar and your Medicare premiums jump for the whole year.</p></div>
+      </div>
+      <div class="termrow">
+        <div><div class="tag">They say</div><div class="jargon">Tax-efficient withdrawal sequencing</div></div>
+        <div class="say"><div class="tag">Straight talk</div><p>The order you pull from your accounts can hand you years of lower taxes, or quietly cost you them.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside" id="inside">
+  <div class="shell">
+    <div class="intro">
+      <div class="label">What's inside</div>
+      <h2>One idea, worked all the way through.<br>Retirement is a design problem, not a destination.</h2>
+      <p>Eleven short chapters take you from the seven variables that make your situation unique to the Roles-Based Method and the Retirement Stack, the framework that turns it all into an actual plan.</p>
+    </div>
+    <div class="chapters">
+      <div class="chapter">
+        <div class="n">Chapters 1 and 2</div>
+        <h3>Why no two retirees should have the same plan</h3>
+        <p>The seven variables that make your situation unlike anyone else's, and why the right plan starts there.</p>
+      </div>
+      <div class="chapter">
+        <div class="n">Chapter 4</div>
+        <h3>Turning savings into a paycheck</h3>
+        <p>How to build income you cannot outlive, where guaranteed income belongs in the plan, and where it does not.</p>
+      </div>
+      <div class="chapter">
+        <div class="n">Chapter 5</div>
+        <h3>Why the first years of retirement matter most</h3>
+        <p>Sequence-of-returns risk in plain terms, and how your portfolio's job changes the day the paycheck stops.</p>
+      </div>
+      <div class="chapter">
+        <div class="n">Chapter 6</div>
+        <h3>The taxes that quietly cost the most</h3>
+        <p>Social Security taxation, the IRMAA cliff, the RMD tax bomb, and the widow's tax trap, plus the levers that address each one.</p>
+      </div>
+      <div class="chapter">
+        <div class="n">Chapter 7</div>
+        <h3>A plan that bends instead of breaks</h3>
+        <p>Long-term care, market shocks, and family emergencies, and how a resilient plan absorbs the surprise rather than shattering on it.</p>
+      </div>
+      <div class="chapter">
+        <div class="n">Chapter 8</div>
+        <h3>Taking care of your spouse and heirs</h3>
+        <p>The decisions that protect whoever outlives you, and the difference between leaving money and leaving it well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="who">
+  <div class="shell">
+    <div class="intro">
+      <div class="label">Who it's for</div>
+      <h2>Written for people who want to understand their plan, not just be handed one.</h2>
+    </div>
+    <div class="stages">
+      <div class="stage">
+        <h3>A few years out</h3>
+        <p>Build the design before the decisions get expensive and hard to undo.</p>
+      </div>
+      <div class="stage">
+        <h3>Newly retired</h3>
+        <p>Turn a lifetime of saving into a steady paycheck without guessing.</p>
+      </div>
+      <div class="stage">
+        <h3>Already retired</h3>
+        <p>Tighten the income and tax strategy you already have in place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+  <div class="shell">
+    <blockquote>&ldquo;A good plan is not one that predicts the surprise.<br>It is one built so that no single surprise can break it.&rdquo;</blockquote>
+    <cite>From the book</cite>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author">
+  <div class="shell">
+    <div class="authorgrid">
+      <img src="images/straight-talk-author-sean-jantz.jpg" alt="Sean Jantz" width="560" height="700">
+      <div>
+        <div class="label">About the author</div>
+        <h2>Sean Jantz</h2>
+        <p>Sean is the founder of Jantz Wealth Advisors, a retirement planning and investment management firm, and has been guiding families through retirement decisions since 2012. He is an advisor held to the fiduciary standard on the portfolios he manages, and he is insurance licensed, so he can use the right tool for your situation rather than the one tool he happens to sell.</p>
+        <p>Based in Twin Falls, Idaho, Sean works with families across the country. He wrote this book for the conversations he has every week: clear, direct, and free of the jargon that keeps good people in the dark about their own money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEP -->
+<section class="next">
+  <div class="shell">
+    <div class="nextbox">
+      <div>
+        <div class="label">Take the next step</div>
+        <h2>Discover your own retirement design.</h2>
+        <p>The book's final chapter points here. A short, free assessment surfaces what your retirement plan should prioritize. No pressure, and no sales call unless you ask for one.</p>
+      </div>
+      <a class="btn btn-blue" href="https://www.jantzwealth.com/my-retirement-design">Take the free assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA (ink band 2 of 2) -->
+<section class="final-cta">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+  </svg>
+  <div class="shell">
+    <div class="label">Get the book</div>
+    <h2>Get the straight talk<br>on your retirement.</h2>
+    <p>Available now in paperback and Kindle on Amazon.</p>
+    <a class="btn btn-blue" href="https://amzn.to/4vuCZI5" target="_blank" rel="noopener">Buy on Amazon
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 1h9v9M13 1 1 13"/></svg></a>
+    <p class="cta-sub">Paperback and Kindle. ISBN 9798199474078.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <img class="footer-logo" src="images/shared/jwa-logo.png" alt="Jantz Wealth Advisors" width="640" height="202">
+    <address class="footer-address"><span class="addr-label">Headquarters</span>139 River Vista Place, Suite 202<br>Twin Falls, ID 83301</address>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>About this book.</strong> The Straight-Talk Retirement Guide is for general educational purposes only. It is not investment, tax, or legal advice, and it is not a recommendation to buy or sell any security or insurance product. Your situation is unique; please talk with a qualified professional before acting on anything in the book.</p>
+      <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee. Guaranteed income refers to annuity guarantees, which are backed by the financial strength and claims-paying ability of the issuing insurance company. Annuities are long-term contracts; withdrawals during the surrender period may be subject to surrender charges.</p>
+      <p><strong>Tax planning.</strong> Jantz Wealth Advisors does not provide tax or legal advice. Tax strategies described here are general in nature; please consult your tax professional before acting on them.</p>
+      <p>All investments involve risk, including the possible loss of principal. No plan or strategy can guarantee a profit or protect against every outcome.</p>
+      <p>The book is sold by Amazon. Amazon and Kindle are trademarks of Amazon.com, Inc. or its affiliates.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
