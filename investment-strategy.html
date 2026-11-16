@@ -293,7 +293,7 @@
   <section class="blk" id="portfolios">
     <div class="wrap">
       <h2>The four Global Core portfolios</h2>
-      <p class="intro">Every portfolio is built from the same five low-cost funds. What changes from one to the next is the weighting.</p>
+      <p class="intro">Every portfolio is built from the same six low-cost funds. What changes from one to the next is the weighting.</p>
       <div class="pf" id="pfGrid"></div>
     </div>
   </section>
@@ -399,37 +399,38 @@
   // ───────────────────────────────────────────────────────────────
   var FUNDS = {
     SGOV: ['Short-term U.S. Treasuries', 'Stability and cash for rebalancing'],
-    SCHD: ['U.S. dividend stocks', 'Income from established companies'],
+    VGIT: ['Intermediate-term U.S. Treasuries', 'Steadies the portfolio in recessions'],
+    SCHD: ['U.S. dividend stocks', 'Income and growth from established companies'],
     SCHB: ['U.S. total stock market', 'Broad long-term growth'],
-    IAU:  ['Gold', 'A cushion when stocks struggle'],
-    SCHF: ['International developed stocks', 'Growth beyond the U.S.']
+    VXUS: ['International stocks', 'Growth beyond the U.S.'],
+    IAUM: ['Gold', 'A cushion when inflation rises']
   };
-  var RAMP = ['#232E3D', '#4A4F55', '#7D8187', '#B1B3B6', '#D9D3C8'];
+  var RAMP = ['#232E3D', '#4A4F55', '#7D8187', '#A0A3A7', '#BDBDBA', '#D9D3C8'];
   var PORTFOLIOS = [
     { key: 'conservative', name: 'Conservative', tier: 'Tier 1',
       tag: 'Built for you if protecting what you have saved comes first, and you still want steady growth and income working in the background.',
-      blurb: 'Nearly half in Treasury bills, with dividend stocks as the largest stock holding.',
-      mix: [40, 45, 15], exp: '0.10%',
-      alloc: [['SGOV', 45], ['SCHD', 20], ['IAU', 15], ['SCHB', 10], ['SCHF', 10]],
-      perf: { ann: '5.47%', worst: '-4.90%', yld: '2.72%' } },
+      blurb: 'Half in U.S. Treasuries, with dividend stocks as the largest stock holding.',
+      mix: [40, 50, 10], exp: '0.07%',
+      alloc: [['SGOV', 35], ['SCHD', 20], ['VGIT', 15], ['SCHB', 10], ['VXUS', 10], ['IAUM', 10]],
+      perf: { ann: '5.05%', worst: '-6.69%', yld: '2.88%' } },
     { key: 'moderate', name: 'Moderate', tier: 'Tier 2',
       tag: 'Built for you if you want steady growth and income, with a large stability sleeve to soften the rough years.',
-      blurb: 'A little over half in stocks, with close to a third in Treasury bills.',
-      mix: [55, 30, 15], exp: '0.09%',
-      alloc: [['SGOV', 30], ['SCHD', 25], ['SCHB', 20], ['IAU', 15], ['SCHF', 10]],
-      perf: { ann: '7.32%', worst: '-7.21%', yld: '2.43%' } },
+      blurb: 'A little over half in stocks, with about a third in U.S. Treasuries.',
+      mix: [55, 35, 10], exp: '0.06%',
+      alloc: [['SCHD', 25], ['SCHB', 20], ['SGOV', 20], ['VGIT', 15], ['VXUS', 10], ['IAUM', 10]],
+      perf: { ann: '6.89%', worst: '-9.00%', yld: '2.60%' } },
     { key: 'balanced', name: 'Balanced', tier: 'Tier 3',
       tag: 'Built for you if you want your savings to keep growing, with enough stability on hand to stay the course when markets get rough.',
-      blurb: 'About 70% in stocks, led by the broad U.S. market, with a fifth in Treasury bills.',
-      mix: [70, 20, 10], exp: '0.07%',
-      alloc: [['SCHB', 35], ['SGOV', 20], ['SCHD', 20], ['SCHF', 15], ['IAU', 10]],
-      perf: { ann: '8.72%', worst: '-10.78%', yld: '2.21%' } },
+      blurb: 'About 70% in stocks, led by the broad U.S. market, with a fifth in U.S. Treasuries.',
+      mix: [70, 20, 10], exp: '0.05%',
+      alloc: [['SCHB', 35], ['SCHD', 20], ['VXUS', 15], ['SGOV', 10], ['VGIT', 10], ['IAUM', 10]],
+      perf: { ann: '8.58%', worst: '-12.15%', yld: '2.14%' } },
     { key: 'growth', name: 'Growth', tier: 'Tier 4',
       tag: 'Built for you if you have many years ahead and want your money working hard, and you can sit through market drops along the way.',
-      blurb: 'About 90% in stocks. Rises and falls with the market, for money you will not need for many years.',
-      mix: [90, 5, 5], exp: '0.05%',
-      alloc: [['SCHB', 55], ['SCHD', 20], ['SCHF', 15], ['SGOV', 5], ['IAU', 5]],
-      perf: { ann: '10.89%', worst: '-14.81%', yld: '1.87%' } }
+      blurb: 'About 85% in stocks. Rises and falls with the market, for money you will not need for many years.',
+      mix: [85, 10, 5], exp: '0.04%',
+      alloc: [['SCHB', 55], ['SCHD', 15], ['VXUS', 15], ['SGOV', 5], ['VGIT', 5], ['IAUM', 5]],
+      perf: { ann: '10.23%', worst: '-15.36%', yld: '1.80%' } }
   ];
 
   // Each side scores 6 to 24. Brackets: 6-10, 11-15, 16-20, 21-24.
@@ -570,7 +571,7 @@
             ['Fund expenses', p.exp, 'Weighted average, per year', '']];
     } else {
       st = [['Stocks', p.mix[0] + '%', 'U.S. and international', ''],
-            ['Treasury bills', p.mix[1] + '%', 'Short-term U.S. Treasuries', ''],
+            ['Treasuries', p.mix[1] + '%', 'Short and intermediate term', ''],
             ['Gold', p.mix[2] + '%', 'Held as a diversifier', ''],
             ['Fund expenses', p.exp, 'Weighted average, per year', '']];
     }
@@ -587,7 +588,7 @@
     }
 
     $('rBar').innerHTML = p.alloc.map(function (a, i) {
-      return '<div style="width:' + a[1] + '%;background:' + RAMP[i] + (i === 4 ? ';color:#232E3D' : '') + '">' + a[1] + '%</div>';
+      return '<div style="width:' + a[1] + '%;background:' + RAMP[i] + (i >= 3 ? ';color:#232E3D' : '') + '">' + a[1] + '%</div>';
     }).join('');
     $('rHold').innerHTML = p.alloc.map(function (a, i) {
       var f = FUNDS[a[0]];
@@ -608,8 +609,8 @@
   function renderCards() {
     $('pfGrid').innerHTML = PORTFOLIOS.map(function (p) {
       return '<div data-key="' + p.key + '"><span class="tag">Your match</span><div class="lab">' + p.tier + '</div><h3>' + p.name + '</h3><p>' + p.blurb + '</p>' +
-        '<div class="mix" aria-hidden="true"><i style="width:' + p.mix[0] + '%;background:' + RAMP[0] + '"></i><i style="width:' + p.mix[1] + '%;background:' + RAMP[3] + '"></i><i style="width:' + p.mix[2] + '%;background:' + RAMP[4] + '"></i></div>' +
-        '<ul><li><span>Stocks</span><b>' + p.mix[0] + '%</b></li><li><span>Treasury bills</span><b>' + p.mix[1] + '%</b></li><li><span>Gold</span><b>' + p.mix[2] + '%</b></li></ul></div>';
+        '<div class="mix" aria-hidden="true"><i style="width:' + p.mix[0] + '%;background:' + RAMP[0] + '"></i><i style="width:' + p.mix[1] + '%;background:' + RAMP[3] + '"></i><i style="width:' + p.mix[2] + '%;background:' + RAMP[5] + '"></i></div>' +
+        '<ul><li><span>Stocks</span><b>' + p.mix[0] + '%</b></li><li><span>Treasuries</span><b>' + p.mix[1] + '%</b></li><li><span>Gold</span><b>' + p.mix[2] + '%</b></li></ul></div>';
     }).join('');
   }
   function clearMatch() {

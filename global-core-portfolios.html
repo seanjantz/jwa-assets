@@ -117,6 +117,7 @@ body.gross .gross-flag { display: inline-flex; }
   transform: scaleX(0); transform-origin: left center; transition: transform 1s cubic-bezier(0.22,1,0.36,1); }
 .mix-bar span { display: block; height: 100%; }
 .mix-bar span + span { border-left: 2px solid var(--white); }
+.hero-tag { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.3; color: #D9D3C8; margin: 4px 0 28px; }
 .mix-stocks { background: var(--r1); } .mix-tbills { background: var(--r4); } .mix-gold { background: var(--r5); }
 .reveal.in .mix-bar { transform: scaleX(1); }
 .mix-row:nth-child(3) .mix-bar { transition-delay: 0.1s; } .mix-row:nth-child(4) .mix-bar { transition-delay: 0.2s; } .mix-row:nth-child(5) .mix-bar { transition-delay: 0.3s; }
@@ -199,6 +200,18 @@ body.gross .gross-flag { display: inline-flex; }
 .roles { margin-top: 72px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
 .roles-intro h3 em { font-style: italic; color: var(--blue); }
 .roles-list { border-top: 1px solid var(--rule); }
+.env { margin-top: 40px; }
+.env-title { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--ink); margin: 8px 0 16px; line-height: 1.25; }
+.env-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.env-cell { background: var(--white); padding: 18px 18px 16px; }
+.env-when { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); }
+.env-name { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); line-height: 1.2; margin: 4px 0 10px; }
+.env-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.env-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 9px 3px 7px; }
+.env-chip i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.env-cell p { font-size: 13.5px; line-height: 1.5; color: var(--slate); margin: 0; text-wrap: pretty; }
+.env-foot { font-size: 12.5px; line-height: 1.5; color: var(--slate); margin-top: 12px; text-wrap: pretty; }
+@media (max-width: 520px) { .env-grid { grid-template-columns: 1fr; } }
 .role { padding: 18px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 40px 1fr auto; gap: 18px; align-items: center; }
 .role-swatch { width: 14px; height: 14px; border-radius: 50%; }
 .role-ticker { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 2px; }
@@ -428,11 +441,21 @@ body.swapping .num-swap { opacity: 0.25; }
 <!-- HERO -->
 <section class="hero on-ink">
   <svg class="hero-art" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
-      <circle cx="1500" cy="40" r="260"/><circle cx="1500" cy="40" r="360"/><circle cx="1500" cy="40" r="460"/><circle cx="1500" cy="40" r="560"/><circle cx="1500" cy="40" r="660"/>
+    <g transform="rotate(-16 1085 352)" fill="none">
+    <circle cx="1085" cy="352" r="318" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.2"/>
+    <g stroke="#FFFFFF" stroke-opacity="0.11" stroke-width="1">
+    <ellipse cx="1085" cy="352" rx="119.1" ry="318"/>
+    <ellipse cx="1085" cy="352" rx="224.9" ry="318"/>
+    <ellipse cx="1085" cy="352" rx="294.8" ry="318"/>
+    <line x1="1085" y1="34" x2="1085" y2="670"/>
+    <ellipse cx="1085" cy="610.8" rx="159.0" ry="54.4"/>
+    <ellipse cx="1085" cy="501.4" rx="275.4" ry="94.2"/>
+    <ellipse cx="1085" cy="202.6" rx="275.4" ry="94.2"/>
+    <ellipse cx="1085" cy="93.2" rx="159.0" ry="54.4"/>
     </g>
-    <path d="M 1500 40 m 0 560 a 560 560 0 0 1 -560 -560" fill="none" stroke="#0077B6" stroke-opacity="0.4" stroke-width="1.5"/>
-    <path d="M 1500 40 m -360 0 a 360 360 0 0 0 360 360" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <ellipse cx="1085" cy="352" rx="318" ry="108.8" stroke="#0077B6" stroke-opacity="0.55" stroke-width="1.5"/>
+    <ellipse cx="1085" cy="352" rx="224.9" ry="318" stroke="#0077B6" stroke-opacity="0.28" stroke-width="1.2"/>
+    </g>
     <path d="M 40 668 L 200 630 L 360 642 L 520 580 L 680 548 L 840 470" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5" stroke-dasharray="6 8"/>
     <g fill="#FFFFFF" fill-opacity="0.14"><circle cx="200" cy="630" r="3"/><circle cx="360" cy="642" r="3"/><circle cx="520" cy="580" r="3"/><circle cx="680" cy="548" r="3"/></g>
     <circle cx="840" cy="470" r="5" fill="#0077B6" fill-opacity="0.55"/>
@@ -447,7 +470,8 @@ body.swapping .num-swap { opacity: 0.25; }
       <div class="reveal">
         <div class="label">The Global Core Portfolios</div>
         <h1>Four portfolios.<br><em>One disciplined framework.</em></h1>
-        <p class="lede">Globally diversified ETF portfolios built on five asset classes and set to four risk profiles. Designed to capture growth, soften the drawdowns, and keep you invested through both.</p>
+        <p class="lede">Globally diversified ETF portfolios built on six asset classes and set to four risk profiles. Designed to capture growth, soften the drawdowns, and keep you invested through both.</p>
+        <p class="hero-tag">Own a piece of the whole world.</p>
         <div class="hero-actions">
           <a href="#compare" class="btn btn-blue">Compare the portfolios</a>
           <a href="https://www.jantzwealth.com/investment-strategy" target="_blank" rel="noopener noreferrer" class="btn btn-line">Find your profile</a>
@@ -456,13 +480,13 @@ body.swapping .num-swap { opacity: 0.25; }
       <div class="mix-card reveal">
         <div class="mix-head">
           <div class="mix-title">How each portfolio is divided</div>
-          <div class="mix-legend"><span><i class="mix-stocks"></i>Stocks</span><span><i class="mix-tbills"></i>Treasury bills</span><span><i class="mix-gold"></i>Gold</span></div>
+          <div class="mix-legend"><span><i class="mix-stocks"></i>Stocks</span><span><i class="mix-tbills"></i>Treasuries</span><span><i class="mix-gold"></i>Gold</span></div>
         </div>
         <div id="mix-rows"></div>
         <div class="hero-stats">
           <div class="hero-stat"><div class="num">4</div><div class="lbl">Risk profiles</div></div>
-          <div class="hero-stat"><div class="num">5</div><div class="lbl">Asset classes</div></div>
-          <div class="hero-stat"><div class="num">0.08<small>%</small></div><div class="lbl">Avg. fund expenses</div></div>
+          <div class="hero-stat"><div class="num">6</div><div class="lbl">Asset classes</div></div>
+          <div class="hero-stat"><div class="num">0.05<small>%</small></div><div class="lbl">Avg. fund expenses</div></div>
           <div class="hero-stat"><div class="num">14<small>+ yr</small></div><div class="lbl">Hypothetical history</div></div>
         </div>
       </div>
@@ -590,20 +614,26 @@ body.swapping .num-swap { opacity: 0.25; }
     <div class="reveal">
       <div class="label">How they are built</div>
       <h2>Strategic, not reactive. Diversified, not diluted.</h2>
-      <p class="lede">Every Global Core portfolio is built from the same five asset classes. What changes between tiers is the weighting, not the philosophy. Moving from Conservative to Moderate to Balanced to Growth is a question of how much movement you can live with, not which strategy you happen to land on.</p>
+      <p class="lede">Every Global Core portfolio is built from the same six asset classes. What changes between tiers is the weighting, not the philosophy. Moving from Conservative to Moderate to Balanced to Growth is a question of how much movement you can live with, not which strategy you happen to land on.</p>
     </div>
     <div class="pillars reveal">
-      <div class="pillar"><div class="pillar-num">01</div><h4>Low-cost ETFs</h4><p>Weighted fund expenses run between 0.05% and 0.10% a year. Every basis point saved on fees compounds for decades.</p></div>
-      <div class="pillar"><div class="pillar-num">02</div><h4>True diversification</h4><p>Across asset classes (stocks, Treasury bills, gold) and geographies (U.S. and international developed markets). Not just a different shade of the same risk.</p></div>
-      <div class="pillar"><div class="pillar-num">03</div><h4>Built-in stability</h4><p>Gold, Treasury bills, and dividend quality act as structural ballast. The cushion is engineered in, not bolted on.</p></div>
+      <div class="pillar"><div class="pillar-num">01</div><h4>Low-cost ETFs</h4><p>Weighted fund expenses run between 0.04% and 0.07% a year. Every basis point saved on fees compounds for decades.</p></div>
+      <div class="pillar"><div class="pillar-num">02</div><h4>True diversification</h4><p>Across asset classes (stocks, Treasuries, gold) and geographies (U.S., developed, and emerging markets). Not just a different shade of the same risk.</p></div>
+      <div class="pillar"><div class="pillar-num">03</div><h4>Built-in stability</h4><p>Treasuries, gold, and dividend quality steady the portfolio by design. The cushion is engineered in, not bolted on.</p></div>
       <div class="pillar"><div class="pillar-num">04</div><h4>Strategic, not tactical</h4><p>Allocations are set with intent and held with discipline. We do not chase momentum, predict markets, or shuffle positions on news cycles.</p></div>
       <div class="pillar"><div class="pillar-num">05</div><h4>Rebalanced annually</h4><p>Drift is the enemy of risk discipline. Annual rebalancing keeps each portfolio anchored to its stated risk profile.</p></div>
     </div>
     <div class="roles reveal">
       <div class="roles-intro">
-        <div class="label">The five roles</div>
+        <div class="label">The six roles</div>
         <h3>Each holding plays <em>a deliberate role.</em></h3>
         <p>The portfolios are not a collection of funds we happen to like. They are a system where every position answers a specific question about growth, income, or stability.</p>
+        <div class="env">
+          <div class="label">Four environments</div>
+          <div class="env-title">Every kind of market has a holding assigned to it.</div>
+          <div class="env-grid" id="env-grid"></div>
+          <p class="env-foot">Based on how these asset classes have tended to behave historically. Past patterns are not a guarantee, and holdings can decline together.</p>
+        </div>
       </div>
       <div class="roles-list" id="roles-list"></div>
     </div>
@@ -617,7 +647,7 @@ body.swapping .num-swap { opacity: 0.25; }
       <div class="compound-narr">
         <div class="label">The compounding engine</div>
         <h3>Every dividend. Every interest payment. <em>Automatically reinvested.</em></h3>
-        <p>Dividends from SCHB, SCHD, and SCHF, along with interest from SGOV, are not pulled out as cash. They go straight back to work, buying more shares, generating more income, compounding quietly across decades.</p>
+        <p>Dividends from SCHB, SCHD, and VXUS, along with interest from SGOV and VGIT, are not pulled out as cash. They go straight back to work, buying more shares, generating more income, compounding quietly across decades.</p>
         <p>This is not optional. It is the <strong>structural choice that turns a 2% yield into a meaningful share of long-term total return.</strong></p>
         <p>No cash sits idle, and the earliest dollars work the longest.</p>
       </div>
@@ -742,7 +772,7 @@ body.swapping .num-swap { opacity: 0.25; }
         <div class="label">A note on customization</div>
         <h3>Models are a starting point, <em>not a ceiling.</em></h3>
         <p>Many people sit comfortably inside one of the four Global Core portfolios. Others have preferences that deserve respect. A long-held position in a single stock you want to keep. A tilt toward a sector you believe in. <span class="own-line">A holding you want to avoid for personal reasons.</span></p>
-        <p>The framework bends. A custom allocation is built on the same five-role foundation, with the same discipline around cost, diversification, and rebalancing, then adjusted to your wishes.</p>
+        <p>The framework bends. A custom allocation is built on the same six-role foundation, with the same discipline around cost, diversification, and rebalancing, then adjusted to your wishes.</p>
       </div>
       <div class="custom-action">
         <div class="examples"><span>Concentrated positions</span><span>Sector tilts</span><span>Values-based screens</span><span>Legacy holdings</span></div>
@@ -813,7 +843,7 @@ body.swapping .num-swap { opacity: 0.25; }
     <div class="footer-wordmark">Jantz <span>Wealth Advisors</span></div>
     <h4>Important disclosures</h4>
     <div class="disclosures">
-      <p><strong>Hypothetical performance.</strong> The Global Core Portfolios were established in October 2026. All performance shown is hypothetical and was calculated by applying each portfolio's target weights to the historical monthly total returns of the underlying ETFs from January 1, 2012 through September 30, 2026, rebalanced to target weights each January, with all distributions reinvested. SGOV (iShares 0-3 Month Treasury Bond ETF) launched in May 2020; before July 2020 the Treasury bill allocation uses the iShares Short Treasury Bond ETF (SHV) as a proxy. Hypothetical results do not reflect actual trading, were prepared with the benefit of hindsight, and may not reflect the impact that material economic and market factors might have had on decision-making if client money had actually been managed. No client has experienced these results.</p>
+      <p><strong>Hypothetical performance.</strong> The Global Core Portfolios in their current form were established in November 2026. All performance shown is hypothetical and was calculated by applying each portfolio's target weights to the historical monthly total returns of the underlying ETFs from January 1, 2012 through September 30, 2026, rebalanced to target weights each January, with all distributions reinvested. SGOV (iShares 0-3 Month Treasury Bond ETF) launched in May 2020; before July 2020 the short-term Treasury allocation uses the iShares Short Treasury Bond ETF (SHV) as a proxy. IAUM (iShares Gold Trust Micro) launched in June 2021; before August 2021 the gold allocation uses the iShares Gold Trust (IAU), which holds the same metal at a higher expense ratio, as a proxy. Hypothetical results do not reflect actual trading, were prepared with the benefit of hindsight, and may not reflect the impact that material economic and market factors might have had on decision-making if client money had actually been managed. No client has experienced these results.</p>
       <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.50%. Results labeled "net of 1.50%" are shown after deducting a 1.50% annual advisory fee, applied quarterly in arrears as 0.375% of the portfolio value at the end of each calendar quarter. Results labeled "before fees" do not reflect the deduction of any advisory fee and will be higher than what a client would have received; a client's results would be reduced by advisory fees and any custodial or trading costs. For a complete description of advisory fees, see the Jantz Wealth Advisors fee schedule.</p>
       <p><strong>Worst calendar year</strong> figures are calendar-year total returns. Declines within a year, measured from peak to trough, may have been larger than the calendar-year figures shown. Trailing 12-month returns, yields, and 2026 year-to-date figures are as of September 30, 2026. Yield and fund expense figures are weighted averages of the underlying fund data and are subject to change. Price data: Yahoo Finance.</p>
       <p>The Global Core Portfolios are model allocations and may not be appropriate for every investor. Individual recommendations are based on your financial situation, time horizon, tax considerations, and risk tolerance. Holdings, weights, and methodology are subject to change. All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
@@ -823,52 +853,53 @@ body.swapping .num-swap { opacity: 0.25; }
 </footer>
 
 <script>
-/* ───────── DATA (as of 9/30/2026; Jan 2012 start; SGOV spliced from July 2020) ───────── */
+/* ───────── DATA (as of 9/30/2026; Jan 2012 start; SGOV spliced from July 2020, IAUM from Aug 2021; six-fund lineup of Nov 2026) ───────── */
 const CAL_YEARS = [2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
 const FUNDS = {
   SCHB: { name: 'U.S. Equity', long: 'Schwab U.S. Broad Market ETF', color: '#232E3D' },
   SCHD: { name: 'U.S. Dividend Equity', long: 'Schwab U.S. Dividend Equity ETF', color: '#4A4F55' },
-  SCHF: { name: 'International Equity', long: 'Schwab International Equity ETF', color: '#7D8187' },
-  SGOV: { name: 'Short-Term U.S. Treasuries', long: 'iShares 0-3 Month Treasury Bond ETF', color: '#B1B3B6' },
-  IAU:  { name: 'Gold', long: 'iShares Gold Trust', color: '#D9D3C8' }
+  VXUS: { name: 'International Equity', long: 'Vanguard Total International Stock ETF', color: '#7D8187' },
+  SGOV: { name: 'Short-Term U.S. Treasuries', long: 'iShares 0-3 Month Treasury Bond ETF', color: '#A0A3A7' },
+  VGIT: { name: 'Intermediate-Term U.S. Treasuries', long: 'Vanguard Intermediate-Term Treasury ETF', color: '#BDBDBA' },
+  IAUM: { name: 'Gold', long: 'iShares Gold Trust Micro', color: '#D9D3C8' }
 };
 const PORTS = [
   { id: 'conservative', name: 'Conservative', tier: 'Tier 1', tierWord: 'Stability first', num: '01',
-    weights: [['SGOV',45],['SCHD',20],['IAU',15],['SCHB',10],['SCHF',10]], stocks: 40, mix: [40,45,15], exp: '0.10%', yld: '2.72%',
+    weights: [['SGOV',35],['SCHD',20],['VGIT',15],['SCHB',10],['VXUS',10],['IAUM',10]], stocks: 40, mix: [40,50,10], exp: '0.07%', yld: '2.88%',
     tag: 'Built for you if protecting what you have saved comes first, and you still want steady growth and income working in the background.',
-    blurbs: [['Stability comes first','Nearly half sits in short-term Treasury bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'],
-             ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad market fell about 19%, which is <em>why the worst year stayed shallow.</em>'],
-             ['A measured share of growth','About 40% is in stocks across the U.S. and other developed markets, with gold alongside. Enough to keep growing, without one market deciding your year.']],
-    vol: 6.35,
-    gross: { QTD:1.67, YTD:7.71, Y1:11.88, Y5:9.21, Y10:8.21, SI:7.07, cal:[6.84,7.55,2.73,-1.85,6.23,11.13,-2.56,14.52,10.16,9.12,-3.46,9.59,11.46,17.52], val:[106844,114910,118046,115859,123082,136781,133282,152639,168151,183485,177136,194124,216362,254261,273870] },
-    net:   { QTD:1.29, YTD:6.50, Y1:10.21, Y5:7.58, Y10:6.60, SI:5.47, cal:[5.25,5.95,1.20,-3.32,4.65,9.47,-4.01,12.82,8.52,7.49,-4.90,7.96,9.79,15.76], val:[105250,111508,112842,109099,114172,124988,119973,135348,146879,157883,150146,162091,177965,206019,219420] } },
+    blurbs: [['A large stability sleeve','Half the portfolio is in U.S. Treasuries. Most of that is short-term bills, the part that holds steady when markets do not and gives us cash to rebalance with.'],
+             ['A holding for each kind of market','Intermediate Treasuries have tended to gain in recessions, and gold in periods of inflation, <em>so no single environment decides your year.</em>'],
+             ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad U.S. market fell about 19%.']],
+    vol: 6.04,
+    gross: { QTD:1.06, YTD:7.05, Y1:10.33, Y5:7.65, Y10:7.39, SI:6.64, cal:[6.8,8.12,3.61,-1.27,6.08,10.82,-2.45,14.27,10.1,8.69,-5.28,8.86,9.99,14.81], val:[106804,115479,119650,118128,125308,138862,135454,154778,170414,185229,175448,190988,210072,241181,258176] },
+    net:   { QTD:0.68, YTD:5.85, Y1:8.68, Y5:6.04, Y10:5.79, SI:5.05, cal:[5.21,6.51,2.07,-2.74,4.5,9.16,-3.91,12.56,8.46,7.07,-6.69,7.23,8.35,13.1], val:[105211,112060,114375,111236,116238,126889,121929,137245,148856,159383,148715,159473,172791,195420,206846] } },
   { id: 'moderate', name: 'Moderate', tier: 'Tier 2', tierWord: 'Stability with growth', num: '02',
-    weights: [['SGOV',30],['SCHD',25],['SCHB',20],['IAU',15],['SCHF',10]], stocks: 55, mix: [55,30,15], exp: '0.09%', yld: '2.43%',
+    weights: [['SCHD',25],['SCHB',20],['SGOV',20],['VGIT',15],['VXUS',10],['IAUM',10]], stocks: 55, mix: [55,35,10], exp: '0.06%', yld: '2.60%',
     tag: 'Built for you if you want steady growth and income, with a large stability sleeve to soften the rough years.',
-    blurbs: [['A large stability sleeve','Nearly a third sits in short-term Treasury bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'],
-             ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad market fell about 19%, which is <em>why the worst year stayed shallow.</em>'],
-             ['Growth that is not all in one place','Broad U.S. stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
-    vol: 7.87,
-    gross: { QTD:1.85, YTD:9.65, Y1:14.03, Y5:10.43, Y10:9.96, SI:8.95, cal:[9.04,12.51,4.58,-1.83,8.21,14.19,-3.63,18.61,12.86,13.19,-5.81,11.66,13.64,18.79], val:[109043,122688,128309,125963,136299,155644,150002,177922,200811,227298,214102,239076,271686,322739,353873] },
-    net:   { QTD:1.47, YTD:8.42, Y1:12.33, Y5:8.79, Y10:8.32, SI:7.32, cal:[7.42,10.83,3.02,-3.29,6.59,12.49,-5.06,16.84,11.18,11.50,-7.21,10.00,11.94,17.02], val:[107417,119055,122652,118614,126433,142224,135023,157767,175407,195582,181480,199626,223470,261504,283517] } },
+    blurbs: [['A large stability sleeve','A little over a third is in U.S. Treasuries, mostly short-term bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'],
+             ['Stocks that pay you','Dividend payers are the largest holding. In 2022 they fell about 3% while the broad U.S. market fell about 19%.'],
+             ['A holding for each kind of market','Intermediate Treasuries have tended to gain in recessions, and gold in periods of inflation, <em>so no single environment decides your year.</em>']],
+    vol: 7.70,
+    gross: { QTD:1.25, YTD:8.98, Y1:12.47, Y5:8.86, Y10:9.14, SI:8.51, cal:[9,13.09,5.46,-1.25,8.05,13.88,-3.52,18.36,12.8,12.76,-7.63,10.93,12.18,16.08], val:[109003,123268,130003,128382,138716,157968,152406,180382,203478,229451,211953,235123,263753,306173,333672] },
+    net:   { QTD:0.88, YTD:7.76, Y1:10.79, Y5:7.24, Y10:7.51, SI:6.89, cal:[7.38,11.4,3.89,-2.72,6.44,12.18,-4.96,16.59,11.12,11.08,-9,9.28,10.5,14.35], val:[107378,119618,124272,120892,128675,144347,137188,159949,177737,197434,179658,196325,216946,248081,267332] } },
   { id: 'balanced', name: 'Balanced', tier: 'Tier 3', tierWord: 'Balanced growth', num: '03',
-    weights: [['SCHB',35],['SGOV',20],['SCHD',20],['SCHF',15],['IAU',10]], stocks: 70, mix: [70,20,10], exp: '0.07%', yld: '2.21%',
+    weights: [['SCHB',35],['SCHD',20],['VXUS',15],['SGOV',10],['VGIT',10],['IAUM',10]], stocks: 70, mix: [70,20,10], exp: '0.05%', yld: '2.14%',
     tag: 'Built for you if you want your savings to keep growing, with enough stability on hand to stay the course when markets get rough.',
     blurbs: [['Growth leads','About 70% is in stocks, led by the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
-             ['A stability sleeve to lean on','One fifth sits in short-term Treasury bills. That part holds steady when markets do not, and it gives us cash to rebalance with.'],
-             ['More than one source of return','Dividend stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
-    vol: 9.60,
-    gross: { QTD:1.59, YTD:11.14, Y1:15.33, Y5:11.03, Y10:11.16, SI:10.37, cal:[11.52,18.21,5.72,-1.35,8.89,16.92,-4.94,21.85,14.37,16.34,-9.43,15.12,14.94,19.22], val:[111519,131824,139363,137482,149710,175041,166393,202742,231868,269750,244320,281272,323293,385432,428353] },
-    net:   { QTD:1.21, YTD:9.89, Y1:13.61, Y5:9.38, Y10:9.50, SI:8.72, cal:[9.86,16.45,4.14,-2.82,7.27,15.18,-6.36,20.03,12.66,14.60,-10.78,13.41,13.23,17.44], val:[109855,127921,133219,129461,138873,159949,149778,179776,202535,232110,207093,234858,265919,312302,343189] } },
+             ['Two kinds of Treasuries','Short-term bills hold steady and give us cash to rebalance with. Intermediate Treasuries have tended to gain in recessions, when stocks fall.'],
+             ['More than one source of return','U.S. stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
+    vol: 9.80,
+    gross: { QTD:1.31, YTD:10.35, Y1:14.24, Y5:10.4, Y10:10.88, SI:10.22, cal:[11.7,17.29,6.32,-1.46,9.2,17.24,-5,22.15,15.23,15.72,-10.82,14.7,14.84,19.23], val:[111704,131012,139287,137260,149886,175723,166938,203918,234976,271922,242508,278146,319421,380855,420289] },
+    net:   { QTD:0.93, YTD:9.12, Y1:12.53, Y5:8.76, Y10:9.23, SI:8.58, cal:[10.04,15.54,4.73,-2.93,7.57,15.49,-6.42,20.33,13.51,14,-12.15,12.98,13.13,17.45], val:[110037,127133,133147,129252,139037,160572,150269,180819,205250,233980,205557,232248,262734,308593,336729] } },
   { id: 'growth', name: 'Growth', tier: 'Tier 4', tierWord: 'Long-term growth', num: '04',
-    weights: [['SCHB',55],['SCHD',20],['SCHF',15],['SGOV',5],['IAU',5]], stocks: 90, mix: [90,5,5], exp: '0.05%', yld: '1.87%',
+    weights: [['SCHB',55],['SCHD',15],['VXUS',15],['SGOV',5],['VGIT',5],['IAUM',5]], stocks: 85, mix: [85,10,5], exp: '0.04%', yld: '1.80%',
     tag: 'Built for you if you have many years ahead and want your money working hard, and you can sit through market drops along the way.',
-    blurbs: [['Stocks do the work','About 90% is in stocks, with more than half in the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
+    blurbs: [['Stocks do the work','About 85% is in stocks, with more than half in the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
              ['Expect bigger swings','This portfolio rises and falls with the stock market. Its worst calendar year was 2022, and the drops within a year were larger. It suits money you will not need for many years.'],
-             ['A small cash and gold sleeve','Five percent in Treasury bills and five percent in gold will not cushion much. Their job is to give us something to rebalance with when stocks are down.']],
-    vol: 12.06,
-    gross: { QTD:1.58, YTD:13.45, Y1:17.26, Y5:11.93, Y10:13.02, SI:12.57, cal:[14.44,26.26,8.36,-0.74,10.84,20.42,-6.17,26.75,17.14,21.70,-13.52,18.95,17.59,18.77], val:[114438,144489,156566,155405,172249,207414,194613,246674,288956,351656,304098,361711,425342,505195,573141] },
-    net:   { QTD:1.20, YTD:12.18, Y1:15.51, Y5:10.26, Y10:11.33, SI:10.89, cal:[12.73,24.38,6.74,-2.22,9.19,18.62,-7.57,24.86,15.39,19.88,-14.81,17.17,15.84,17.00], val:[112731,140211,149664,146338,159780,189530,175180,218731,252401,302588,257763,302024,349858,409342,459191] } }
+             ['A small stabilizing sleeve','Ten percent in Treasuries and five percent in gold will not cushion much. Their job is to give us something to rebalance with when stocks are down.']],
+    vol: 11.67,
+    gross: { QTD:1.35, YTD:12, Y1:15.45, Y5:11.24, Y10:12.34, SI:11.9, cal:[13.95,23.83,8.14,-0.91,10.32,19.67,-5.85,25.62,16.95,19.72,-14.07,18.57,17.36,18.61], val:[113947,141097,152587,151204,166809,199623,187950,236103,276128,330576,284053,336811,395271,468832,525115] },
+    net:   { QTD:0.97, YTD:10.75, Y1:13.73, Y5:9.58, Y10:10.67, SI:10.23, cal:[12.25,21.98,6.53,-2.38,8.67,17.89,-7.25,23.75,15.21,17.93,-15.36,16.8,15.61,16.84], val:[112248,136919,145861,142383,154734,182411,169183,209357,241196,284449,240772,281233,325124,379878,420713] } }
 ];
 
 /* ───────── helpers ───────── */
@@ -885,7 +916,7 @@ function buildStatic() {
   document.getElementById('mix-rows').innerHTML = PORTS.map(p => `
     <div class="mix-row">
       <div class="mix-label"><span class="mix-name">${p.name}</span><span class="mix-nums">${p.mix.join(' / ')}</span></div>
-      <div class="mix-bar" role="img" aria-label="${p.name}: ${p.mix[0]}% stocks, ${p.mix[1]}% Treasury bills, ${p.mix[2]}% gold"><span class="mix-stocks" style="width:${p.mix[0]}%"></span><span class="mix-tbills" style="width:${p.mix[1]}%"></span><span class="mix-gold" style="width:${p.mix[2]}%"></span></div>
+      <div class="mix-bar" role="img" aria-label="${p.name}: ${p.mix[0]}% stocks, ${p.mix[1]}% Treasuries, ${p.mix[2]}% gold"><span class="mix-stocks" style="width:${p.mix[0]}%"></span><span class="mix-tbills" style="width:${p.mix[1]}%"></span><span class="mix-gold" style="width:${p.mix[2]}%"></span></div>
     </div>`).join('');
 
   document.getElementById('spectrum-dots').innerHTML = PORTS.map(p => `
@@ -909,12 +940,27 @@ function buildStatic() {
     </tr>`).join('');
 
   const roles = [
-    ['SCHB','Primary growth engine. Roughly 2,400 U.S. companies of every size in a single low-cost fund, so no one company or industry can decide your year.'],
-    ['SCHD','Quality and income. A 100-stock screen for dividend consistency and balance-sheet strength that has historically softened drawdowns while keeping pace in growth markets.'],
-    ['SCHF','Geographic diversification across roughly 1,500 holdings in developed markets outside the U.S. Keeps one country from deciding your year.'],
-    ['SGOV','The stability sleeve. Treasury bills maturing in three months or less provide yield while holding steady, and give us cash to rebalance into weakness instead of selling into it.'],
-    ['IAU','Inflation hedge and crisis diversifier. Low correlation with stocks means gold often zigs when the rest of the portfolio zags.']
+    ['SCHB','Primary growth engine. Roughly 2,400 U.S. companies of every size in a single low-cost fund, so no one company or industry can decide your year.'],
+    ['SCHD','Quality and income. A 100-stock screen for dividend consistency and balance-sheet strength that has historically softened drawdowns while keeping pace in growth markets.'],
+    ['VXUS','Geographic diversification across roughly 8,900 holdings in developed and emerging markets outside the U.S. Keeps one country from deciding your year.'],
+    ['SGOV','The stability sleeve. Treasury bills maturing in three months or less provide yield while holding steady, and give us cash to rebalance into weakness instead of selling into it.'],
+    ['VGIT','The recession hedge. Treasury notes maturing in three to ten years have tended to gain when the economy weakens and stocks fall, which steadies the portfolio.'],
+    ['IAUM','Inflation hedge and crisis diversifier. Low correlation with stocks means gold often zigs when the rest of the portfolio zags.']
   ];
+  const envs = [
+    ['Economy grows','Growth',['SCHB','SCHD','VXUS'],'Stocks do the work, in the U.S. and around the world.'],
+    ['Economy shrinks','Recession',['VGIT'],'Intermediate Treasuries have tended to gain as stocks fall.'],
+    ['Prices climb','Inflation',['IAUM'],'Gold has tended to hold its value as the dollar buys less.'],
+    ['Rates rise','Rising rates',['SGOV'],'Treasury bills hold steady and reset to the higher rates.']
+  ];
+  document.getElementById('env-grid').innerHTML = envs.map(([when, name, ts, txt]) => `
+    <div class="env-cell">
+      <div class="env-when">${when}</div>
+      <div class="env-name">${name}</div>
+      <div class="env-chips">${ts.map(t => `<span class="env-chip"><i style="background:${FUNDS[t].color}"></i>${t}</span>`).join('')}</div>
+      <p>${txt}</p>
+    </div>`).join('');
+
   document.getElementById('roles-list').innerHTML = roles.map(([t, txt]) => `
     <div class="role">
       <span class="role-swatch" style="background:${FUNDS[t].color}"></span>
@@ -935,7 +981,7 @@ function buildStatic() {
         <div class="portfolio-head reveal">
           <div class="portfolio-marker">${p.num}<small>${p.tier} &middot; ${p.tierWord}</small></div>
           <div class="portfolio-title">
-            <div class="label">${p.stocks}% stocks &middot; ${p.mix[1]}% Treasury bills &middot; ${p.mix[2]}% gold</div>
+            <div class="label">${p.stocks}% stocks &middot; ${p.mix[1]}% Treasuries &middot; ${p.mix[2]}% gold</div>
             <h2>Global Core ${p.name}</h2>
             <p class="tagline">${p.tag}</p>
           </div>
