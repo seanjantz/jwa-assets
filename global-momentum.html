@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Momentum | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r1: #232E3D; --r2: #4A4F55; --r3: #7D8187; --r4: #B1B3B6; --r5: #D9D3C8;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+section { padding: 88px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 56px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 5.6vw, 64px); font-weight: 400; line-height: 1.04; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h1 em span { white-space: nowrap; }
+h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
+h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 14px; }
+p { text-wrap: pretty; }
+p + p { margin-top: 16px; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--slate); font-weight: 400; }
+.sec-head { max-width: 760px; margin-bottom: 44px; }
+.sec-head .lede { margin-top: 4px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: #00609A; }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-line:hover { border-color: var(--ink); background: var(--white); }
+.on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
+.on-ink .btn-line:hover { border-color: #fff; background: transparent; }
+.btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.on-ink .btn:focus-visible { outline-color: #fff; }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 104px 0 92px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.78); margin-top: 26px; max-width: 560px; }
+.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: center; }
+.hero-grid > div { min-width: 0; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 64px 0 56px; } }
+.hero-tag { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.3; color: #D9D3C8; margin: 20px 0 0; }
+.hero-tag span { display: block; text-wrap: balance; }
+.hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.mix-card { background: var(--white); border-radius: 4px; padding: 28px 28px 24px; color: var(--slate); }
+.mix-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 18px; }
+.mix-bar { display: flex; height: 16px; border-radius: 2px; overflow: hidden; background: var(--stone-light);
+  transform: scaleX(0); transform-origin: left center; transition: transform 1s cubic-bezier(0.22,1,0.36,1); }
+.mix-bar span { display: block; height: 100%; }
+.mix-bar span + span { border-left: 2px solid var(--white); }
+.reveal.in .mix-bar { transform: scaleX(1); }
+.mix-list { margin-top: 18px; }
+.mix-row { display: grid; grid-template-columns: 14px 56px 1fr auto; gap: 10px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+.mix-row:first-child { border-top: 1px solid var(--rule); }
+.mix-row i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; align-self: center; }
+.mix-tk { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink); }
+.mix-nm { font-size: 14px; color: var(--slate); }
+.mix-wt { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); }
+.c1 { background: var(--r1); } .c2 { background: var(--r3); } .c3 { background: var(--r5); }
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+@media (max-width: 480px) { .hero-stats { grid-template-columns: 1fr 1fr; } .mix-card { padding: 22px 20px 20px; } }
+.hero-stat .num { font-family: var(--serif); font-size: 26px; line-height: 1; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+.hero-stat .num small { font-size: 14px; font-weight: 400; }
+.hero-stat .lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 8px; line-height: 1.4; }
+
+/* Funds */
+.funds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .funds { grid-template-columns: 1fr; } }
+.fund { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 30px 28px 26px; display: flex; flex-direction: column; }
+.fund-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.fund-wt { font-family: var(--serif); font-size: 60px; font-weight: 400; color: var(--blue); line-height: 0.9; letter-spacing: -0.03em; }
+.fund-wt small { font-size: 28px; }
+.fund-tk { text-align: right; }
+.fund-tk b { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--ink); }
+.fund-tk span { display: block; font-size: 12px; line-height: 1.4; color: var(--slate); margin-top: 3px; max-width: 170px; }
+.fund h3 { font-size: 24px; margin: 22px 0 8px; }
+.fund p { font-size: 15.5px; }
+.fund-top5 { margin-top: auto; padding-top: 22px; }
+.fund-top5 .small-label { display: block; margin-bottom: 6px; }
+.fund-top5 div { font-size: 14px; line-height: 1.5; color: var(--slate); }
+.small-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+.funds-note { margin-top: 28px; padding: 20px 24px; background: var(--stone); border-radius: 4px; font-size: 15.5px; line-height: 1.55; }
+.funds-note strong { color: var(--ink); font-weight: 600; }
+
+/* How it works (stone) */
+.method { background: var(--stone); }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.pillar { background: var(--white); padding: 34px 30px; }
+.pillar-num { font-family: var(--serif); font-size: 15px; color: var(--blue); margin-bottom: 14px; }
+.pillar h4 { font-size: 24px; margin-bottom: 10px; line-height: 1.2; }
+.pillar p { font-size: 15.5px; line-height: 1.55; }
+@media (max-width: 800px) { .pillars { grid-template-columns: 1fr; } }
+
+/* Performance */
+.perf { background: var(--white); border-top: 1px solid var(--rule); scroll-margin-top: 40px; }
+.perf-head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; margin-bottom: 36px; }
+.perf-head h2 { margin-bottom: 12px; }
+.perf-head p { max-width: 560px; }
+.perf-ctl { text-align: right; }
+@media (max-width: 860px) { .perf-head { grid-template-columns: 1fr; } .perf-ctl { text-align: left; } }
+.fee-toggle {
+  display: inline-flex; align-items: center; gap: 12px; background: var(--white);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 6px 6px 16px;
+}
+.fee-toggle .ft-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+.fee-toggle .ft-switch { display: inline-flex; background: var(--stone); border-radius: 999px; padding: 3px; }
+.fee-toggle button {
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 0; background: transparent; color: var(--slate); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.fee-toggle button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.fee-toggle button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (max-width: 480px) { .fee-toggle { flex-wrap: wrap; border-radius: 20px; padding: 10px 12px; } }
+.gross-flag {
+  display: none; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-top: 10px;
+}
+.gross-flag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex: none; }
+body.gross .gross-flag { display: inline-flex; }
+
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .tiles { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .tiles { grid-template-columns: 1fr; } }
+.tile { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 22px 22px 20px; min-width: 0; }
+.tile .tl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; line-height: 1.4; }
+.tile .tv { font-family: var(--serif); font-size: 38px; font-weight: 500; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
+.tile .tv.neg { color: var(--red); }
+.tile .tn { font-size: 13.5px; line-height: 1.45; color: var(--slate); margin-top: 10px; }
+.tile .tn:empty { display: none; }
+.tile .tn b { color: var(--ink); font-weight: 600; }
+.tile .tc { font-size: 13.5px; line-height: 1.45; color: var(--slate); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.tile .tc b { color: var(--ink); font-weight: 600; }
+.yield-note { font-size: 13.5px; color: var(--slate); margin-top: 16px; }
+
+.chart-card { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 28px 28px 20px; margin-top: 28px; }
+.chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px 32px; flex-wrap: wrap; margin-bottom: 14px; }
+.chart-title { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); }
+.chart-legend { display: flex; gap: 10px 26px; flex-wrap: wrap; font-size: 13px; color: var(--slate); }
+.chart-legend > span { display: inline-flex; align-items: center; gap: 8px; }
+.chart-legend b { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--ink); }
+.chart-legend svg { flex: none; }
+.chart-wrap { position: relative; }
+.chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-tip { position: absolute; top: 0; left: 0; pointer-events: none; background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: var(--slate); white-space: nowrap; opacity: 0; transition: opacity 0.15s; }
+.chart-tip.on { opacity: 1; }
+.chart-tip b { color: var(--ink); font-weight: 600; }
+.chart-tip .ty { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); }
+@media (max-width: 600px) { .chart-card { padding: 20px 14px 14px; } }
+
+.years-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--rule); border-radius: 4px; margin-top: 28px; }
+.years { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14.5px; }
+.years th, .years td { padding: 14px 12px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.years th:first-child, .years td:first-child { text-align: left; padding-left: 20px; }
+.years th:last-child, .years td:last-child { padding-right: 20px; }
+.years thead th { background: var(--stone-light); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.years tbody tr:last-child td { border-bottom: none; }
+.years td { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); }
+.years td:first-child { font-size: 17px; }
+.years td:first-child small { display: block; font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-top: 2px; }
+.years td.neg { color: var(--red); }
+.years tr.bench td { color: var(--slate); font-weight: 400; }
+.years tr.bench td.neg { color: var(--red); }
+.fee-note { margin-top: 24px; padding: 18px 22px; background: var(--stone); border-radius: 4px; font-size: 14px; line-height: 1.55; color: var(--slate); display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+.fee-note strong { color: var(--ink); font-weight: 600; }
+.fee-note a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); text-decoration: none; white-space: nowrap; }
+.fee-note a:hover { color: var(--ink); }
+.num-swap { transition: opacity 0.25s; }
+body.swapping .num-swap { opacity: 0.25; }
+
+.table-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 32px; padding-bottom: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.table-cap span:last-child { color: var(--blue); }
+.years.periods { min-width: 760px; }
+.years.periods thead th { white-space: normal; line-height: 1.4; vertical-align: bottom; }
+
+/* Why not the S&P 500 */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
+.why-card { background: var(--white); border: 1px solid var(--rule); border-top: 2px solid var(--ink); border-radius: 0 0 4px 4px; padding: 28px 26px; }
+.why-card h3 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; }
+.why-card p { font-size: 15.5px; }
+.why-fact { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .why-fact { grid-template-columns: 1fr; } }
+.why-box { background: var(--stone); border-radius: 4px; padding: 26px 28px; font-size: 15.5px; }
+.why-box.plain { background: var(--white); border: 1px solid var(--rule); }
+.why-box .small-label { display: block; color: var(--blue); margin-bottom: 10px; }
+.why-box strong { color: var(--ink); font-weight: 600; }
+
+/* Fit (stone) */
+.fit { background: var(--stone); }
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 800px) { .fit-grid { grid-template-columns: 1fr; } }
+.fit-col { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 30px 30px 22px; }
+.fit-col h3 { font-size: 24px; margin-bottom: 14px; }
+.fit-col ul { list-style: none; }
+.fit-col li { position: relative; padding: 13px 0 13px 30px; border-top: 1px solid var(--rule); font-size: 16px; line-height: 1.45; text-wrap: pretty; }
+.fit-col li::before { content: ''; position: absolute; left: 2px; top: 20px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+.fit-col.caution li::before { background: var(--red); }
+.fit-core { margin-top: 20px; background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 30px 32px; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; }
+.fit-core h3 { font-size: 24px; margin-bottom: 8px; }
+.fit-core p { font-size: 15.5px; max-width: 700px; }
+@media (max-width: 800px) { .fit-core { grid-template-columns: 1fr; gap: 20px; padding: 26px 24px; } }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; scroll-margin-top: 40px; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; max-width: 820px; margin: 0 auto 20px; }
+.final-cta h2 span { display: block; }
+.final-cta h2 em { font-style: italic; color: var(--blue); }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 600px; margin: 0 auto 36px; font-size: 18px; text-wrap: balance; }
+.final-cta p span { display: block; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-wordmark { font-family: var(--serif); font-size: 22px; color: var(--ink); font-weight: 500; margin-bottom: 28px; }
+.footer-wordmark span { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-left: 10px; }
+.site-footer h4 { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+/* Reveal */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.js .reveal.in { opacity: 1; transform: translateY(0); }
+html:not(.js) .mix-bar { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .mix-bar { opacity: 1; transform: none; transition: none; }
+}
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="gross">
+
+<!-- HERO -->
+<section class="hero on-ink">
+  <svg class="hero-art" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1">
+      <line x1="0" y1="180" x2="1440" y2="180"/><line x1="0" y1="320" x2="1440" y2="320"/><line x1="0" y1="460" x2="1440" y2="460"/><line x1="0" y1="600" x2="1440" y2="600"/>
+    </g>
+    <path d="M 520 660 L 660 612 L 760 632 L 900 520 L 1000 548 L 1140 400 L 1240 436 L 1400 236" fill="none" stroke="#0077B6" stroke-opacity="0.5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1400" cy="236" r="5" fill="#0077B6" fill-opacity="0.75"/>
+    <path d="M 600 676 L 740 640 L 850 656 L 980 574 L 1090 598 L 1250 486 L 1440 372" fill="none" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 680 688 L 820 664 L 930 676 L 1060 618 L 1190 634 L 1330 556 L 1440 512" fill="none" stroke="#FFFFFF" stroke-opacity="0.11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 8"/>
+    <g fill="#FFFFFF" fill-opacity="0.06">
+      <circle cx="40" cy="60" r="2"/><circle cx="80" cy="60" r="2"/><circle cx="120" cy="60" r="2"/><circle cx="160" cy="60" r="2"/><circle cx="200" cy="60" r="2"/>
+      <circle cx="40" cy="100" r="2"/><circle cx="80" cy="100" r="2"/><circle cx="120" cy="100" r="2"/><circle cx="160" cy="100" r="2"/><circle cx="200" cy="100" r="2"/>
+      <circle cx="40" cy="140" r="2"/><circle cx="80" cy="140" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="160" cy="140" r="2"/><circle cx="200" cy="140" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="label">The Global Momentum Portfolio</div>
+        <h1>Own the leaders.<br><em><span>Let the rules</span> <span>do the rest.</span></em></h1>
+        <p class="lede">A momentum portfolio for long-horizon investors. Instead of guessing which companies will win, it systematically owns what is already leading at three levels of the global market.</p>
+        <p class="hero-tag"><span>Built for people with 15 or more years until retirement,</span> <span>whose biggest asset is time.</span></p>
+        <div class="hero-actions">
+          <a href="#performance" class="btn btn-blue">See the numbers</a>
+          <a href="#fit" class="btn btn-line">Is it right for you?</a>
+        </div>
+      </div>
+      <div class="mix-card reveal">
+        <div class="mix-title">How the portfolio is divided</div>
+        <div class="mix-bar" role="img" aria-label="50% SPMO, 25% XMMO, 25% IDMO"><span class="c1" style="width:50%"></span><span class="c2" style="width:25%"></span><span class="c3" style="width:25%"></span></div>
+        <div class="mix-list">
+          <div class="mix-row"><i class="c1"></i><span class="mix-tk">SPMO</span><span class="mix-nm">U.S. large-cap leaders</span><span class="mix-wt">50%</span></div>
+          <div class="mix-row"><i class="c2"></i><span class="mix-tk">XMMO</span><span class="mix-nm">U.S. mid-cap leaders</span><span class="mix-wt">25%</span></div>
+          <div class="mix-row"><i class="c3"></i><span class="mix-tk">IDMO</span><span class="mix-nm">International leaders</span><span class="mix-wt">25%</span></div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">3</div><div class="lbl">Funds</div></div>
+          <div class="hero-stat"><div class="num">380<small>+</small></div><div class="lbl">Stocks held</div></div>
+          <div class="hero-stat"><div class="num">0</div><div class="lbl">Overlap between funds</div></div>
+          <div class="hero-stat"><div class="num">0.21<small>%</small></div><div class="lbl">Avg. fund expenses</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU OWN -->
+<section>
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">What you own and why</div>
+      <h2>Every holding has one job.</h2>
+      <p class="lede">No overlap, no duplication, no guesswork. Each fund covers one level of the global market and owns only the stocks leading it.</p>
+    </div>
+    <div class="funds">
+      <div class="fund reveal">
+        <div class="fund-top">
+          <div class="fund-wt">50<small>%</small></div>
+          <div class="fund-tk"><b>SPMO</b><span>Invesco S&amp;P 500 Momentum ETF</span></div>
+        </div>
+        <h3>The engine</h3>
+        <p>The 100 strongest large-cap stocks in America.</p>
+        <div class="fund-top5"><span class="small-label">Top five holdings</span><div>Micron, NVIDIA, Broadcom, Lam Research, AMD</div></div>
+      </div>
+      <div class="fund reveal">
+        <div class="fund-top">
+          <div class="fund-wt">25<small>%</small></div>
+          <div class="fund-tk"><b>XMMO</b><span>Invesco S&amp;P MidCap Momentum ETF</span></div>
+        </div>
+        <h3>The next generation</h3>
+        <p>About 80 mid-sized leaders on the rise.</p>
+        <div class="fund-top5"><span class="small-label">Top five holdings</span><div>Curtiss-Wright, TechnipFMC, Fabrinet, ATI, TTM Technologies</div></div>
+      </div>
+      <div class="fund reveal">
+        <div class="fund-top">
+          <div class="fund-wt">25<small>%</small></div>
+          <div class="fund-tk"><b>IDMO</b><span>Invesco S&amp;P International Developed Momentum ETF</span></div>
+        </div>
+        <h3>The rest of the world</h3>
+        <p>Developed-market winners beyond the U.S.</p>
+        <div class="fund-top5"><span class="small-label">Top five holdings</span><div>HSBC, Toronto-Dominion, Santander, Siemens Energy, BBVA</div></div>
+      </div>
+    </div>
+    <p class="funds-note reveal">Together, these three funds hold <strong>380+ individual stocks</strong> across U.S. large caps, U.S. mid caps, and developed markets worldwide, with zero overlap between funds. Each stock is owned once, on purpose.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="method">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">How it works</div>
+      <h2>The same rules, in every market.</h2>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar"><div class="pillar-num">01</div><h4>Score</h4><p>Twice a year, in March and September, each index re-scores its full universe on the past twelve months of performance, adjusted for volatility.</p></div>
+      <div class="pillar"><div class="pillar-num">02</div><h4>Rebuild</h4><p>The portfolio rebuilds around the current leaders. Fading names rotate out, new leaders rotate in.</p></div>
+      <div class="pillar"><div class="pillar-num">03</div><h4>Repeat</h4><p>No forecasts, no manager opinions, no exceptions. The same rules run in every market, every cycle.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section class="perf" id="performance">
+  <div class="shell">
+    <div class="perf-head reveal">
+      <div>
+        <div class="label">The numbers</div>
+        <h2>Hypothetical growth of $10,000, 2016 through September 2026.</h2>
+        <p>Ten full calendar years plus 2026 through September 30, next to an S&amp;P 500 index fund. Results are shown before our advisory fee. Switch the view to see them after it.</p>
+      </div>
+      <div class="perf-ctl">
+        <div class="fee-toggle" role="group" aria-label="Show results net or before fees">
+          <span class="ft-label">Results</span>
+          <span class="ft-switch">
+            <button type="button" data-basis="net" aria-pressed="false">Net of 1.25%</button>
+            <button type="button" data-basis="gross" aria-pressed="true">Before fees</button>
+          </span>
+        </div>
+        <div><span class="gross-flag">Before fees. Results after our fee are lower.</span></div>
+      </div>
+    </div>
+
+    <div class="tiles reveal">
+      <div class="tile"><div class="tl">Annualized return since 2016</div><div class="tv num-swap" id="t-cagr"></div><div class="tn num-swap" id="n-cagr"></div><div class="tc">vs <b id="b-cagr"></b> for the S&amp;P 500</div></div>
+      <div class="tile"><div class="tl">Worst calendar year (2022)</div><div class="tv neg num-swap" id="t-worst"></div><div class="tn num-swap" id="n-worst"></div><div class="tc">vs <b id="b-worst"></b> for the S&amp;P 500</div></div>
+      <div class="tile"><div class="tl">Ending value of $10,000</div><div class="tv num-swap" id="t-end"></div><div class="tn num-swap" id="n-end"></div><div class="tc">vs <b id="b-end"></b> in the S&amp;P 500</div></div>
+      <div class="tile"><div class="tl">Blended fund expense ratio</div><div class="tv">0.21%</div><div class="tc">Already reflected in fund returns</div></div>
+    </div>
+    <p class="yield-note reveal">Trailing 12-month portfolio yield: 1.40% (July 2026). Global Momentum is a growth strategy, not an income strategy.</p>
+
+    <div class="chart-card reveal">
+      <div class="chart-head">
+        <div class="chart-title">Growth of $10,000, through September 30, 2026</div>
+        <div class="chart-legend">
+          <span><svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#232E3D" stroke-width="3"/></svg><span>Global Momentum, <span class="num-swap" id="lg-basis"></span></span> <b class="num-swap" id="lg-end"></b></span>
+          <span><svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#7D8187" stroke-width="2" stroke-dasharray="6 4"/></svg>S&amp;P 500 (VOO) <b id="lg-bench"></b></span>
+        </div>
+      </div>
+      <div class="chart-wrap" id="chart-wrap">
+        <svg id="chart" viewBox="0 0 960 400" role="img" aria-labelledby="chart-desc"><desc id="chart-desc"></desc></svg>
+        <div class="chart-tip" id="chart-tip"></div>
+      </div>
+    </div>
+
+    <div class="table-cap reveal"><span>Returns</span><span>As of September 30, 2026</span></div>
+    <div class="years-wrap reveal" style="margin-top:0">
+      <table class="years periods">
+        <thead><tr><th>Period</th><th>Q3 2026</th><th>2026 year to date</th><th>1 year</th><th>5 years, annualized</th><th>10 years, annualized</th><th>Since 1/1/2016, annualized</th></tr></thead>
+        <tbody>
+          <tr id="pd-port"></tr>
+          <tr id="pd-bench" class="bench"></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-cap reveal"><span>Calendar years</span><span>2026 is January through September</span></div>
+    <div class="years-wrap reveal" style="margin-top:0">
+      <table class="years">
+        <thead><tr id="yr-head"><th>Calendar year</th></tr></thead>
+        <tbody>
+          <tr id="yr-port"></tr>
+          <tr id="yr-bench" class="bench"></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fee-note reveal">
+      <span class="num-swap" id="fee-note-text"></span>
+      <a href="https://www.jantzwealth.com/fees">See our fees</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOT THE S&P 500 -->
+<section>
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">A fair question</div>
+      <h2>Why not just buy the S&amp;P 500?</h2>
+      <p class="lede">An S&amp;P 500 index fund is a great investment, and it is the benchmark we hold ourselves to. Global Momentum is built differently in three specific ways.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h3>The index owns everything. This owns the leaders.</h3>
+        <p>An S&amp;P 500 fund holds all 500 companies, the rising and the fading alike, weighted by size instead of strength. Global Momentum holds only the stocks currently earning their place, and re-checks that twice a year.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>The index is one country, one size tier.</h3>
+        <p>The S&amp;P 500 is U.S. large caps only. Global Momentum adds U.S. mid caps and developed markets worldwide, so the plan never depends on one country or one class of company staying on top for 30 years.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>The index waits. This adapts.</h3>
+        <p>When market leadership changes, an index fund holds what it holds. Global Momentum systematically rotates toward whatever is leading now, whether that is technology, industrials, or markets overseas.</p>
+      </div>
+    </div>
+    <div class="why-fact">
+      <div class="why-box reveal"><span class="small-label">What the ten years showed</span><span class="num-swap" id="why-fact-text"></span></div>
+      <div class="why-box plain reveal"><span class="small-label">The honest trade-offs</span>An S&amp;P 500 fund costs less to own (about 0.03% vs 0.21%), carries no advisory fee if you hold it on your own, is more tax-efficient in a taxable account, and will win in some years, especially when market leadership reverses quickly. We think the design advantages are worth those costs for long-horizon investors. That is a judgment, and we are happy to walk through it with you.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="fit" id="fit" style="scroll-margin-top:40px">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">Who it is for</div>
+      <h2>Is Global Momentum right for you?</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col reveal">
+        <h3>A strong fit if you</h3>
+        <ul>
+          <li>Have 15 or more years until retirement</li>
+          <li>Are contributing regularly, so market dips work in your favor</li>
+          <li>Can fund it inside a Roth IRA, traditional IRA, or other tax-advantaged account</li>
+          <li>Want a rules-based strategy instead of stock picking or market timing</li>
+        </ul>
+      </div>
+      <div class="fit-col caution reveal">
+        <h3>Think twice if you</h3>
+        <ul>
+          <li>Are within 10 years of needing this money for income</li>
+          <li>Would be tempted to sell during a 30 percent decline</li>
+          <li>Need dividend income from this account today</li>
+          <li>Are investing primarily in a taxable account</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fit-core reveal">
+      <div>
+        <h3>Where it sits next to the Global Core Portfolios</h3>
+        <p>Global Momentum is the accumulation engine. The four Global Core portfolios are built for the years when protecting and spending what you have saved matters as much as growing it. As retirement approaches, we design the move from one to the other.</p>
+      </div>
+      <a href="https://www.jantzwealth.com/global-core-portfolios" class="btn btn-line">See the Global Core Portfolios</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta on-ink" id="schedule">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="-40" cy="540" r="200"/><circle cx="-40" cy="540" r="320"/><circle cx="-40" cy="540" r="440"/><circle cx="-40" cy="540" r="560"/>
+    </g>
+    <path d="M -40 540 m 440 0 a 440 440 0 0 0 -440 -440" fill="none" stroke="#0077B6" stroke-opacity="0.38" stroke-width="1.5"/>
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <path d="M 1000 460 L 1120 420 L 1240 430 L 1360 370 L 1480 340" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <g fill="#FFFFFF" fill-opacity="0.14"><circle cx="1120" cy="420" r="3"/><circle cx="1240" cy="430" r="3"/><circle cx="1360" cy="370" r="3"/></g>
+  </svg>
+  <div class="shell reveal">
+    <div class="label">The next step</div>
+    <h2><span>Every dollar should have a role.</span> <span><em>Every vehicle should have a job.</em></span></h2>
+    <p><span>The right portfolio depends on your time horizon, your tax situation, and how much movement you can live with.</span> <span>A short conversation is the fastest way to find out.</span></p>
+    <div class="cta-buttons">
+      <a href="https://www.jantzwealth.com/schedule" class="btn btn-blue">Schedule a conversation</a>
+      <a href="https://www.jantzwealth.com/investment-strategy" class="btn btn-line">Find your profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-wordmark">Jantz <span>Wealth Advisors</span></div>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>Hypothetical performance.</strong> Global Momentum is a model allocation. All performance shown is hypothetical and does not represent any actual account. It was calculated by applying a 50/25/25 allocation to SPMO, XMMO, and IDMO to the historical monthly total returns of each fund from January 1, 2016 through September 30, 2026, rebalanced to target weights each January, with all distributions reinvested. Hypothetical results do not reflect actual trading, were prepared with the benefit of hindsight, and may not reflect the impact that material economic and market factors might have had on decision-making if client money had actually been managed. Results do not reflect trading costs or taxes. No client has experienced these results. Price data: Yahoo Finance, retrieved November 2026.</p>
+      <p><strong>Advisory fees.</strong> Results labeled "net of 1.25%" are shown after deducting a 1.25% annual advisory fee, the rate used for this portfolio, applied quarterly in arrears as 0.3125% of the portfolio value at the end of each calendar quarter. Results labeled "before fees" do not reflect the deduction of any advisory fee and are higher than what a client would have received; a client's results would be reduced by advisory fees and any custodial or trading costs. For a complete description of advisory fees, see the Jantz Wealth Advisors fee schedule.</p>
+      <p><strong>The S&amp;P 500 comparison</strong> uses the monthly total returns of the Vanguard S&amp;P 500 ETF (VOO) over the same period, with distributions reinvested. It is shown as a reference point and does not reflect the deduction of an advisory fee. Indexes are unmanaged and cannot be invested in directly.</p>
+      <p><strong>Worst calendar year</strong> figures are calendar-year total returns. Trailing returns and 2026 year-to-date figures are as of September 30, 2026; periods longer than one year are annualized. Measured on daily data, declines within the period were substantially deeper than the annual figures shown; the largest peak-to-trough decline for SPMO during this period was approximately 31%.</p>
+      <p><strong>Fund data.</strong> Expense ratios, top holdings, the number of stocks held, and portfolio yield are as of July 2026. Holdings change at each rebalance and are shown for illustration only, not as recommendations. Portfolio yield is the weighted trailing 12-month distribution yield of the underlying funds as of the date noted and will fluctuate with market prices and fund distributions. Momentum funds trade frequently and may generate non-qualified dividend income; this strategy is generally best suited to tax-advantaged accounts. Consider each fund's objectives, risks, and expenses carefully before investing; see each prospectus for details.</p>
+      <p>Global Momentum is a model allocation and may not be appropriate for every investor. Individual recommendations are based on your financial situation, time horizon, tax considerations, and risk tolerance. Holdings, weights, and methodology are subject to change. Diversification does not ensure a profit or protect against a decline. All investments involve risk, including the possible loss of principal. Past performance, actual or hypothetical, is not indicative of future results.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ───────── DATA (as of 9/30/2026) ─────────
+     Month-end value of $10,000 before advisory fees, December 31, 2015 through September 30, 2026 (130 points).
+     G = Global Momentum (50% SPMO, 25% XMMO, 25% IDMO, rebalanced each January). V = S&P 500 fund (VOO).
+     To update: replace both lists with the new month-end values and change the dates in the text and disclosures. */
+  var G = [10000.00,9249.30,9338.97,10076.38,10160.67,10260.78,10107.97,10611.03,10594.50,10641.54,10256.86,10243.29,10405.86,10685.31,11029.61,11039.05,11242.44,11533.93,11708.39,12045.47,12145.70,12376.99,13065.15,13455.24,13577.77,14546.02,14395.42,13969.03,14115.39,14579.44,14531.01,14856.47,15605.23,15785.16,14106.65,14290.93,13157.41,14492.57,15212.98,15563.82,15838.35,15340.35,16109.60,16151.56,16048.54,16140.82,16245.65,16542.75,16901.60,17290.26,15870.47,14243.69,15672.43,16863.25,17291.92,18518.82,19696.78,19394.55,18854.31,20437.40,21382.21,21576.39,21421.06,21695.77,22574.25,22306.85,23346.91,23736.58,24662.20,23691.28,25365.87,24673.85,25414.24,23697.94,23414.42,24037.26,22347.76,22653.96,20475.18,22176.46,21423.44,19704.39,22050.14,23071.06,22304.24,22756.76,22044.92,22179.56,22600.06,21544.24,22972.09,23616.54,23810.57,23460.57,22772.78,24929.58,26523.20,27700.09,30661.96,32384.33,30664.23,32485.14,33713.76,33998.38,34704.85,35042.58,34941.93,37477.89,35970.07,37886.06,37504.29,35672.18,36780.75,40149.32,42279.09,42941.24,43591.69,45103.71,45264.70,45347.62,45715.71,46425.82,47591.66,44864.90,51197.05,55384.52,57738.39,53097.59,53894.78,54181.18];
+  var V = [10000.00,9508.90,9489.11,10141.33,10176.83,10355.39,10388.76,10771.45,10784.42,10787.55,10594.26,10988.98,11216.67,11416.63,11859.15,11874.79,11998.29,12166.79,12243.40,12495.92,12532.31,12788.25,13085.84,13485.96,13658.94,14421.82,13884.46,13541.85,13588.83,13917.20,14022.76,14522.39,14989.99,15076.34,14045.47,14310.25,13044.20,14077.24,14534.73,14814.62,15412.25,14433.89,15442.99,15668.48,15411.43,15715.39,16058.40,16640.67,17135.51,17129.14,15741.73,13783.24,15545.58,16281.82,16581.75,17557.01,18780.91,18075.45,17615.41,19543.69,20275.49,20068.42,20623.55,21567.13,22707.94,22859.50,23376.02,23948.07,24654.96,23505.13,25159.54,24974.80,26113.71,24745.12,24007.59,24917.29,22728.46,22787.28,20904.03,22827.02,21884.51,19871.38,21484.46,22667.17,21367.79,22711.87,22144.43,22965.99,23331.18,23443.55,24969.69,25791.23,25371.26,24167.66,23642.71,25810.84,26992.63,27426.44,28854.54,29801.01,28606.36,30044.03,31115.75,31476.59,32230.02,32931.44,32619.39,34540.35,33734.31,34643.39,34205.13,32286.89,32024.91,34036.60,35797.21,36615.85,37375.87,38702.52,39629.03,39715.62,39746.89,40323.00,39994.70,37991.69,41999.08,44218.62,43793.91,43783.72,44946.78,44804.72];
+  var START_YEAR = 2016, LAST = G.length - 1;
+  /* 1.25% a year, taken as 0.3125% of the value at the end of each calendar quarter */
+  var NET = G.map(function (v, m) { return v * Math.pow(1 - 0.003125, Math.floor(m / 3)); });
+  var FULL_YEARS = Math.floor(LAST / 12);          /* 10 complete calendar years */
+  var YTD_FROM = FULL_YEARS * 12;                  /* December 2025 */
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  var basis = 'gross';
+  var $ = function (id) { return document.getElementById(id); };
+  var usd = function (v) { return '$' + Math.round(v).toLocaleString('en-US'); };
+  var pct = function (v) { var r = Math.abs(v).toFixed(1); return (v < 0 && r !== '0.0' ? '-' : '') + r + '%'; };
+  var WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+
+  function stats(s) {
+    var o = { cal: [] };
+    for (var y = 0; y < FULL_YEARS; y++) o.cal.push((s[12 * (y + 1)] / s[12 * y] - 1) * 100);
+    o.ytd = (s[LAST] / s[YTD_FROM] - 1) * 100;
+    o.qtd = (s[LAST] / s[LAST - 3] - 1) * 100;
+    o.y1 = (s[LAST] / s[LAST - 12] - 1) * 100;
+    o.y5 = (Math.pow(s[LAST] / s[LAST - 60], 1 / 5) - 1) * 100;
+    o.y10 = (Math.pow(s[LAST] / s[LAST - 120], 1 / 10) - 1) * 100;
+    o.si = (Math.pow(s[LAST] / s[0], 12 / LAST) - 1) * 100;
+    o.end = s[LAST];
+    o.worst = Math.min.apply(null, o.cal);
+    return o;
+  }
+  var S = { net: stats(NET), gross: stats(G), bench: stats(V) };
+  function series() { return basis === 'net' ? NET : G; }
+
+  /* ───────── GROWTH CHART ───────── */
+  var W = 960, H = 400, L = 58, R = 22, T = 14, B = 38, small = false;
+  var YMAX = Math.ceil(Math.max(Math.max.apply(null, G), Math.max.apply(null, V)) / 10000) * 10000;
+  var x = function (i) { return L + (W - L - R) * i / LAST; };
+  var y = function (v) { return T + (H - T - B) * (1 - v / YMAX); };
+  var path = function (s) { return s.map(function (v, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1); }).join(' '); };
+  var when = function (i) { return i === 0 ? 'Start, end of ' + (START_YEAR - 1) : 'End of ' + MONTHS[(i - 1) % 12] + ' ' + (START_YEAR + Math.floor((i - 1) / 12)); };
+
+  function drawChart() {
+    var s = series(), svg = $('chart'), h = '';
+    /* phones get a narrower drawing so the axis labels stay readable */
+    small = $('chart-wrap').offsetWidth < 560;
+    W = small ? 520 : 960; H = small ? 380 : 400; L = small ? 62 : 58; R = small ? 14 : 22;
+    var fs = small ? 17 : 12;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    for (var t = 0; t <= YMAX; t += 10000) {
+      h += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(t) + '" y2="' + y(t) + '" stroke="#D9D3C8" stroke-width="1"/>';
+      h += '<text x="' + (L - 12) + '" y="' + (y(t) + 4) + '" text-anchor="end" font-family="Inter, sans-serif" font-size="' + fs + '" fill="#4A4F55">' + (t ? '$' + t / 1000 + 'k' : '$0') + '</text>';
+    }
+    /* a year label sits where that year begins */
+    for (var yr = 0; yr * 12 <= LAST; yr++) {
+      if (small && yr % 2) continue;
+      h += '<line x1="' + x(yr * 12) + '" x2="' + x(yr * 12) + '" y1="' + y(0) + '" y2="' + (y(0) + 5) + '" stroke="#B1B3B6" stroke-width="1"/>';
+      h += '<text x="' + x(yr * 12) + '" y="' + (H - 12) + '" text-anchor="middle" font-family="Inter, sans-serif" font-size="' + fs + '" fill="#4A4F55">' + (START_YEAR + yr) + '</text>';
+    }
+    h += '<path d="' + path(s) + ' L' + x(LAST) + ' ' + y(0) + ' L' + x(0) + ' ' + y(0) + ' Z" fill="#232E3D" fill-opacity="0.05"/>';
+    h += '<path d="' + path(V) + '" fill="none" stroke="#7D8187" stroke-width="2" stroke-dasharray="7 5" stroke-linejoin="round"/>';
+    h += '<path d="' + path(s) + '" fill="none" stroke="#232E3D" stroke-width="' + (small ? 2.5 : 3) + '" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<circle cx="' + x(LAST) + '" cy="' + y(V[LAST]) + '" r="4" fill="#F6F3EE" stroke="#7D8187" stroke-width="2"/>';
+    h += '<circle cx="' + x(LAST) + '" cy="' + y(s[LAST]) + '" r="5" fill="#232E3D"/>';
+    h += '<g id="chart-hover" style="display:none"><line id="ch-line" y1="' + T + '" y2="' + y(0) + '" stroke="#232E3D" stroke-opacity="0.35" stroke-width="1"/>' +
+         '<circle id="ch-b" r="4.5" fill="#F6F3EE" stroke="#7D8187" stroke-width="2"/><circle id="ch-p" r="5" fill="#232E3D" stroke="#F6F3EE" stroke-width="2"/></g>';
+    h += '<rect id="chart-hit" x="' + L + '" y="' + T + '" width="' + (W - L - R) + '" height="' + (H - T - B) + '" fill="transparent"/>';
+    var desc = 'Line chart of the hypothetical growth of $10,000 from the start of 2016 through September 30, 2026. Global Momentum, ' +
+      (basis === 'net' ? 'net of a 1.25% advisory fee' : 'before advisory fees') + ', ends at ' + usd(s[LAST]) + '. The S&P 500 fund ends at ' + usd(V[LAST]) + '.';
+    svg.innerHTML = '<desc id="chart-desc">' + desc + '</desc>' + h;
+
+    var hit = $('chart-hit'), tip = $('chart-tip'), wrap = $('chart-wrap'), hov = $('chart-hover');
+    function show(clientX) {
+      var box = svg.getBoundingClientRect();
+      var px = (clientX - box.left) / box.width * W;
+      var i = Math.max(0, Math.min(LAST, Math.round((px - L) / (W - L - R) * LAST)));
+      hov.style.display = '';
+      $('ch-line').setAttribute('x1', x(i)); $('ch-line').setAttribute('x2', x(i));
+      $('ch-p').setAttribute('cx', x(i)); $('ch-p').setAttribute('cy', y(s[i]));
+      $('ch-b').setAttribute('cx', x(i)); $('ch-b').setAttribute('cy', y(V[i]));
+      tip.innerHTML = '<div class="ty">' + when(i) + '</div>Global Momentum <b>' + usd(s[i]) + '</b><br>S&amp;P 500 (VOO) <b>' + usd(V[i]) + '</b>';
+      tip.classList.add('on');
+      var left = x(i) / W * box.width, tw = tip.offsetWidth;
+      left = left + 14 + tw > wrap.offsetWidth ? left - tw - 14 : left + 14;
+      tip.style.transform = 'translate(' + Math.max(0, left) + 'px, 8px)';
+    }
+    function hide() { hov.style.display = 'none'; tip.classList.remove('on'); }
+    hit.addEventListener('mousemove', function (e) { show(e.clientX); });
+    hit.addEventListener('mouseleave', hide);
+    hit.addEventListener('touchstart', function (e) { show(e.touches[0].clientX); }, { passive: true });
+    hit.addEventListener('touchmove', function (e) { show(e.touches[0].clientX); }, { passive: true });
+    hit.addEventListener('touchend', hide);
+  }
+
+  /* ───────── NUMBERS ───────── */
+  function render() {
+    var net = basis === 'net', p = S[basis], b = S.bench, tag = net ? 'Net of 1.25%' : 'Before fees';
+    var wins = p.cal.filter(function (v, i) { return v > b.cal[i]; }).length;
+    var cell = function (v) { return '<td' + (v < 0 ? ' class="neg"' : '') + '>' + pct(v) + '</td>'; };
+
+    $('t-cagr').textContent = pct(p.si);     $('b-cagr').textContent = pct(b.si);
+    $('t-worst').textContent = pct(p.worst); $('b-worst').textContent = pct(b.worst);
+    $('t-end').textContent = usd(p.end);     $('b-end').textContent = usd(b.end);
+    $('n-cagr').innerHTML = net ? '' : '<b>' + pct(S.net.si) + '</b> net of our 1.25% fee';
+    $('n-worst').innerHTML = net ? '' : '<b>' + pct(S.net.worst) + '</b> net of our 1.25% fee';
+    $('n-end').innerHTML = net ? '' : '<b>' + usd(S.net.end) + '</b> net of our 1.25% fee';
+    $('lg-basis').textContent = net ? 'net of 1.25%' : 'before fees';
+    $('lg-end').textContent = usd(p.end);    $('lg-bench').textContent = usd(b.end);
+
+    var periods = function (o) { return [o.qtd, o.ytd, o.y1, o.y5, o.y10, o.si].map(cell).join(''); };
+    $('pd-port').innerHTML = '<td>Global Momentum<small>' + tag + '</small></td>' + periods(p);
+    $('pd-bench').innerHTML = '<td>S&amp;P 500 (VOO)</td>' + periods(b);
+
+    var heads = '';
+    for (var i = 0; i < FULL_YEARS; i++) heads += '<th>' + (START_YEAR + i) + '</th>';
+    $('yr-head').innerHTML = '<th>Calendar year</th>' + heads + '<th>' + (START_YEAR + FULL_YEARS) + ' YTD</th>';
+    $('yr-port').innerHTML = '<td>Global Momentum<small>' + tag + '</small></td>' + p.cal.concat([p.ytd]).map(cell).join('');
+    $('yr-bench').innerHTML = '<td>S&amp;P 500 (VOO)</td>' + b.cal.concat([b.ytd]).map(cell).join('');
+
+    $('fee-note-text').innerHTML = net
+      ? '<strong>Shown net of a 1.25% annual advisory fee,</strong> our rate for this portfolio. The S&amp;P 500 fund is shown with no advisory fee.'
+      : '<strong>Shown before advisory fees.</strong> A client\'s results would be lower by our 1.25% annual advisory fee. Switch the view above to see them.';
+
+    /* the wording follows the numbers, so it stays true when the data is updated */
+    var gap = p.end / b.end - 1;
+    var verdict = gap > 0.02 ? 'finished ahead of' : gap < -0.02 ? 'finished behind' : 'finished about even with';
+    var ytdWord = p.ytd > b.ytd ? 'and again' : 'but behind';
+    var worstWord = p.worst > b.worst ? 'shallower' : 'deeper';
+    var n = S.net, other = net
+      ? 'Before fees, the same $10,000 grew to ' + usd(S.gross.end) + '.'
+      : 'After a 1.25% annual advisory fee, the same $10,000 grew to ' + usd(n.end) + '.';
+    $('why-fact-text').innerHTML =
+      'From January 2016 through September 2026, ' + (net ? 'after a 1.25% annual advisory fee' : 'before advisory fees') + ', Global Momentum ' + verdict +
+      ' an S&amp;P 500 fund: <strong>' + usd(p.end) + ' versus ' + usd(b.end) + '</strong> on a starting $10,000. It was ahead in ' + WORDS[wins] +
+      ' of the ten full calendar years ' + ytdWord + ' so far in 2026. Its worst calendar year was ' + worstWord + ' (' + pct(p.worst) + ' versus ' + pct(b.worst) +
+      '). It does not lead every quarter: in the third quarter of 2026 it returned ' + pct(p.qtd) + ' while the S&amp;P 500 fund returned ' + pct(b.qtd) + '. ' + other +
+      ' Hypothetical, historical, and no guarantee of the next ten.';
+
+    drawChart();
+  }
+
+  document.querySelectorAll('[data-basis]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.dataset.basis === basis) return;
+      basis = btn.dataset.basis;
+      document.querySelectorAll('[data-basis]').forEach(function (o) { o.setAttribute('aria-pressed', String(o === btn)); });
+      document.body.classList.toggle('gross', basis === 'gross');
+      document.body.classList.add('swapping');
+      setTimeout(function () { render(); document.body.classList.remove('swapping'); }, 200);
+    });
+  });
+  render();
+  var wasSmall = small;
+  window.addEventListener('resize', function () { if (($('chart-wrap').offsetWidth < 560) !== wasSmall) { drawChart(); wasSmall = small; } });
+
+  /* ───────── REVEAL ───────── */
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>

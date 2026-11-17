@@ -43,6 +43,12 @@
       "shareImage": "/images/share/portfolios.jpg"
     },
     {
+      "path": "/global-momentum",
+      "file": "global-momentum.html",
+      "title": "Global Momentum | Jantz Wealth Advisors",
+      "description": "Global Momentum is a three-fund momentum portfolio for long-horizon investors. It systematically owns market leaders at three levels of the global market."
+    },
+    {
       "path": "/investment-strategy",
       "file": "investment-strategy.html",
       "metaEvent": { "name": "CompleteRegistration", "whenVisible": "#result" },
@@ -111,7 +117,7 @@
     { "from": "/faq", "to": "/" },
     { "from": "/straight-talk-book", "to": "/straight-talk-retirement-guide", "permanent": true },
     { "from": "/four-taxes", "to": "/" },
-    { "from": "/global-growth-max", "to": "/" },
+    { "from": "/global-growth-max", "to": "/global-momentum", "permanent": true },
     { "from": "/life-insurance-application", "to": "/" },
     { "from": "/email-confirmation", "to": "/" },
     { "from": "/portfolio-income-illustrator", "to": "/" },
