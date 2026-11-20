@@ -54,10 +54,33 @@ const headerCss = read("partials/header.css");
 const headerTpl = read("partials/header.html").replace(/<!--[\s\S]*?-->\s*/, "");
 
 function header(activePath) {
-  const menu = site.pages.filter((p) => p.menu).map((p) => {
+  // A page with a "menu" label is a header link. Pages that share a "menuGroup" are gathered
+  // into one dropdown, placed where the first page of that group sits in site.json.
+  const menu = [];
+  const groups = new Map();
+  for (const p of site.pages.filter((p) => p.menu)) {
     const on = p.path === activePath;
-    return `<a class="jwa-hd-link${on ? ' is-active" aria-current="page' : ""}" href="${p.path}">${esc(p.menu)}</a>`;
-  });
+    if (!p.menuGroup) {
+      menu.push(`<a class="jwa-hd-link${on ? ' is-active" aria-current="page' : ""}" href="${p.path}">${esc(p.menu)}</a>`);
+      continue;
+    }
+    if (!groups.has(p.menuGroup)) {
+      groups.set(p.menuGroup, { at: menu.length, items: [], on: false });
+      menu.push("");
+    }
+    const g = groups.get(p.menuGroup);
+    g.on = g.on || on;
+    g.items.push(`<a class="jwa-hd-dd-item${on ? ' is-active" aria-current="page' : ""}" href="${p.path}">${esc(p.menu)}</a>`);
+  }
+  let n = 0;
+  for (const [label, g] of groups) {
+    const id = `jwa-hd-dd-${++n}`;
+    menu[g.at] =
+      `<div class="jwa-hd-dd${g.on ? " is-active" : ""}">` +
+      `<button class="jwa-hd-link jwa-hd-dd-btn" type="button" aria-expanded="false" aria-controls="${id}">${esc(label)}` +
+      `<svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>` +
+      `<div class="jwa-hd-dd-menu" id="${id}">${g.items.join("")}</div></div>`;
+  }
   // Extra links that are not their own page, such as /#about (a section of the home page).
   for (const l of site.header.links || []) menu.push(`<a class="jwa-hd-link" href="${esc(l.path)}">${esc(l.label)}</a>`);
   return headerTpl

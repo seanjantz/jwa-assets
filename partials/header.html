@@ -1,5 +1,5 @@
 <!-- Site header. Added to the top of every page by build.mjs.
-     {{menu}} is filled from the "menu" entries in site.json, and the button from "header.button". -->
+     {{menu}} is filled from the "menu" entries in site.json (pages sharing a "menuGroup" become a dropdown), and the button from "header.button". -->
 <div class="jwa-hd" id="jwa-hd" role="banner">
   <div class="jwa-hd-in">
     <a class="jwa-hd-logo" href="/" aria-label="{{siteName}} home"><img src="/images/shared/jwa-logo.png" alt="{{siteName}}" width="640" height="202"></a>
@@ -10,3 +10,14 @@
     </nav>
   </div>
 </div>
+<script>
+(function(){
+  var h=document.getElementById('jwa-hd'); if(!h) return;
+  function closeAll(except){h.querySelectorAll('.jwa-hd-dd.is-open').forEach(function(d){if(d!==except){d.classList.remove('is-open');d.querySelector('.jwa-hd-dd-btn').setAttribute('aria-expanded','false')}})}
+  h.querySelectorAll('.jwa-hd-dd-btn').forEach(function(b){
+    b.addEventListener('click',function(e){e.stopPropagation();var d=b.parentNode;closeAll(d);b.setAttribute('aria-expanded',d.classList.toggle('is-open'))});
+  });
+  document.addEventListener('click',function(){closeAll()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+})();
+</script>

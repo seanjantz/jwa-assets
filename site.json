@@ -37,7 +37,8 @@
     {
       "path": "/global-core-portfolios",
       "file": "global-core-portfolios.html",
-      "menu": "Portfolios",
+      "menu": "Global Core",
+      "menuGroup": "Portfolios",
       "title": "The Global Core Portfolios | Jantz Wealth Advisors",
       "description": "The four Global Core portfolios used by Jantz Wealth Advisors: Conservative, Balanced, Moderate Growth, and Aggressive Growth. See what each one holds and how each is built.",
       "shareImage": "/images/share/portfolios.jpg"
@@ -45,12 +46,16 @@
     {
       "path": "/global-momentum",
       "file": "global-momentum.html",
+      "menu": "Global Momentum",
+      "menuGroup": "Portfolios",
       "title": "Global Momentum | Jantz Wealth Advisors",
       "description": "Global Momentum is a three-fund momentum portfolio for long-horizon investors. It systematically owns market leaders at three levels of the global market."
     },
     {
       "path": "/buffered-growth",
       "file": "buffered-growth.html",
+      "menu": "Buffered Growth",
+      "menuGroup": "Portfolios",
       "title": "Buffered Growth | Jantz Wealth Advisors",
       "description": "Buffered Growth is a six-fund portfolio built around buffered S&P 500 funds. It is designed to keep your savings growing while taking a smaller share of the market's declines."
     },

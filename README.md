@@ -9,7 +9,7 @@ This repository is the website. Cloudflare watches it, and each time a change is
 | A page's content | The page file, for example `fees.html` |
 | A page's title or search description | `site.json`, under `pages` |
 | The picture shown when a link is shared | `site.json`, `shareImage` for that page (files are in `images/share/`) |
-| The links in the header | `site.json`: a page with a `menu` label appears in the header, in the order listed |
+| The links in the header | `site.json`: a page with a `menu` label appears in the header, in the order listed. Pages that share a `menuGroup` (for example `"Portfolios"`) are gathered into one dropdown under that name |
 | The header button | `site.json`, under `header` |
 | The header's look | `partials/header.html` and `partials/header.css` |
 | The Meta Pixel | `site.json`, under `tracking`. Clear the ID to turn it off. A page's `metaEvent` is the event sent when its completion screen appears |
