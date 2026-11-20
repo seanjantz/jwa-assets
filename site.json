@@ -60,6 +60,15 @@
       "description": "Buffered Growth is a six-fund portfolio built around buffered S&P 500 funds. It is designed to keep your savings growing while taking a smaller share of the market's declines."
     },
     {
+      "path": "/low-volatility-income",
+      "file": "low-volatility-income.html",
+      "menu": "Low-Volatility Income",
+      "menuGroup": "Portfolios",
+      "title": "Low-Volatility Income | Jantz Wealth Advisors",
+      "description": "Low-Volatility Income is a seven-fund portfolio built to pay you a monthly income from your savings, with a steadier ride than the stock market. See what it holds, how the paycheck works, and try the income calculator.",
+      "shareImage": "/images/share/low-volatility-income.jpg"
+    },
+    {
       "path": "/investment-strategy",
       "file": "investment-strategy.html",
       "metaEvent": { "name": "CompleteRegistration", "whenVisible": "#result" },
