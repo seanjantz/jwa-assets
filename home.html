@@ -249,6 +249,7 @@ h2 .hl { color: var(--blue); }
 .pf-art.in .grow-dot { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .pf-art .grow { stroke-dashoffset: 0; transition: none; } .pf-art .grow-dot { opacity: 1; transition: none; } }
 #portfolios .section-head { max-width: 620px; }
+#portfolios .section-head .lede { text-wrap: pretty; }
 @media (max-width: 1140px) { .pf-art { width: 300px; } }
 @media (max-width: 1040px) { .pf-art { display: none; } }
 .pf-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: stretch; }
@@ -257,7 +258,7 @@ h2 .hl { color: var(--blue); }
 @media (max-width: 600px) { .pf-list { grid-template-columns: 1fr; } }
 .pf { background: var(--stone-light); border-radius: 4px; padding: 24px 24px 22px; }
 .pf h4 { font-size: 22px; margin-bottom: 6px; }
-.pf p { font-size: 14.5px; line-height: 1.55; min-height: 45px; }
+.pf p { font-size: 14.5px; line-height: 1.55; min-height: 45px; text-wrap: pretty; }
 .pf-bar { display: flex; height: 8px; border-radius: 2px; overflow: hidden; margin-top: 18px; background: var(--r5); }
 .pf-bar .stk { background: var(--r1); }
 .pf-mix { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
@@ -420,7 +421,6 @@ h2 .hl { color: var(--blue); }
         <div class="small-label">More than ten years out?</div>
         <h3>Put your savings in professional hands now.</h3>
         <p>You may not need a full retirement income plan yet. Your investments can still be professionally managed with the same disciplined approach we use for retirees, so the money you're saving today is working toward the day you'll need it.</p>
-        <p><strong>A lower, management-only fee schedule is available.</strong></p>
         <a href="https://www.jantzwealth.com/investment-strategy" target="_top" class="text-link">Find your investment strategy <span aria-hidden="true">&rarr;</span></a>
       </div>
       <div>
@@ -614,39 +614,39 @@ h2 .hl { color: var(--blue); }
     <div class="section-head reveal">
       <div class="label">The Global Core Portfolios</div>
       <h2><span class="ln">Four portfolios.</span><span class="ln">One disciplined approach.</span></h2>
-      <p class="lede">Five low-cost building blocks, in four mixes: U.S. stocks, dividend stocks, international stocks, short-term Treasuries, and gold.</p>
+      <p class="lede">Six low-cost building blocks, in four mixes: U.S. stocks, dividend stocks, international stocks, short-term and intermediate-term Treasuries, and gold.</p>
     </div>
     <div class="pf-grid reveal">
       <div>
         <div class="pf-list">
           <div class="pf">
             <h4>Conservative</h4>
-            <p>For steady income with the smallest swings.</p>
+            <p>Stability first, for steady income with smaller swings.</p>
             <div class="pf-bar"><div class="stk" style="width:40%"></div></div>
             <div class="pf-mix"><span><b>40%</b> stocks</span><span><b>60%</b> stability</span></div>
           </div>
           <div class="pf">
-            <h4>Moderate</h4>
-            <p>More growth, with a large stability sleeve.</p>
+            <h4>Balanced</h4>
+            <p>An even mix of stability and growth.</p>
             <div class="pf-bar"><div class="stk" style="width:55%"></div></div>
             <div class="pf-mix"><span><b>55%</b> stocks</span><span><b>45%</b> stability</span></div>
           </div>
           <div class="pf">
-            <h4>Balanced</h4>
-            <p>A middle path between growth and stability.</p>
+            <h4>Moderate Growth</h4>
+            <p>Growth with stability, for longer horizons.</p>
             <div class="pf-bar"><div class="stk" style="width:70%"></div></div>
             <div class="pf-mix"><span><b>70%</b> stocks</span><span><b>30%</b> stability</span></div>
           </div>
           <div class="pf">
-            <h4>Growth</h4>
-            <p>For longer time horizons and investors comfortable riding out drawdowns.</p>
-            <div class="pf-bar"><div class="stk" style="width:90%"></div></div>
-            <div class="pf-mix"><span><b>90%</b> stocks</span><span><b>10%</b> stability</span></div>
+            <h4>Aggressive Growth</h4>
+            <p>Long-term growth, for horizons of ten years or more.</p>
+            <div class="pf-bar"><div class="stk" style="width:85%"></div></div>
+            <div class="pf-mix"><span><b>85%</b> stocks</span><span><b>15%</b> stability</span></div>
           </div>
         </div>
         <div class="pf-key">
           <span><i style="background:var(--r1)"></i>Stocks: U.S., dividend, and international</span>
-          <span><i style="background:var(--r5)"></i>Stability: short-term Treasuries and gold</span>
+          <span><i style="background:var(--r5)"></i>Stability: U.S. Treasuries and gold</span>
         </div>
         <div class="pf-foot"><a href="https://www.jantzwealth.com/global-core-portfolios" target="_top" class="text-link">Explore the portfolios <span aria-hidden="true">&rarr;</span></a></div>
       </div>
@@ -712,7 +712,7 @@ h2 .hl { color: var(--blue); }
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">What does it cost? <span class="tg" aria-hidden="true">+</span></button>
-          <div class="faq-a"><div class="faq-a-in">One clear advisory fee, starting at 1.50% a year on your first $500,000 and stepping down from there, with a cap of $20,000 a year. It's billed quarterly and deducted from your account, so there's nothing out of pocket. If an annuity or life policy is part of your plan, your advisor is paid a commission by the insurance company, disclosed before you sign. <a href="https://www.jantzwealth.com/fees" target="_top">See the full fee schedule</a>.</div></div>
+          <div class="faq-a"><div class="faq-a-in">One clear advisory fee: 1.25% a year on your first $1,000,000 and less above that, with a cap of $20,000 a year. It's billed quarterly and deducted from your account, so there's nothing out of pocket. If an annuity or life policy is part of your plan, your advisor is paid a commission by the insurance company, disclosed before you sign. <a href="https://www.jantzwealth.com/fees" target="_top">See the full fee schedule</a>.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">Do you have an account minimum? <span class="tg" aria-hidden="true">+</span></button>
@@ -770,7 +770,7 @@ h2 .hl { color: var(--blue); }
     <address class="footer-address"><span class="addr-label">Headquarters</span>139 River Vista Place, Suite 202<br>Twin Falls, ID 83301</address>
     <h4>Important disclosures</h4>
     <div class="disclosures">
-      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.50%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter in arrears, and capped at $20,000 per year. Underlying ETFs carry their own expenses, which are reflected in fund returns. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</p>
+      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.25%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter in arrears based on the value at quarter end, and capped at $20,000 per year. Underlying ETFs carry their own expenses, which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</p>
       <p><strong>Portfolios.</strong> The Global Core Portfolio allocations shown are model allocations and may change. Stock and stability percentages are rounded and describe the target mix, not the mix in any account on any given day. The Investment Strategy Assessment is an educational tool and is not a recommendation; your advisor will confirm suitability before any investment is made.</p>
       <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee. Annuity guarantees are backed by the financial strength and claims-paying ability of the issuing insurance company. Annuities are long-term contracts; withdrawals during the surrender period may be subject to surrender charges.</p>
       <p><strong>Tax planning.</strong> Jantz Wealth Advisors does not provide tax or legal advice. Tax strategies described here are general in nature; please consult your tax professional before acting on them.</p>
