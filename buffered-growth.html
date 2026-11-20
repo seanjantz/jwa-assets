@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buffered Growth | Jantz Wealth Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #232E3D;
+  --blue: #0077B6;
+  --slate: #4A4F55;
+  --stone: #EDE8E0;
+  --stone-light: #F6F3EE;
+  --rule: #D9D3C8;
+  --white: #FFFFFF;
+  --green: #2E7D5B;
+  --red: #A94A3E;
+  --r1: #232E3D; --r2: #4A4F55; --r3: #7D8187; --r4: #B1B3B6; --r5: #D9D3C8;
+  --serif: 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6;
+  color: var(--slate); background: var(--stone-light);
+  -webkit-font-smoothing: antialiased;
+}
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+section { padding: 88px 0; }
+@media (max-width: 768px) { body { font-size: 16px; } .shell { padding: 0 20px; } section { padding: 56px 0; } }
+
+/* Type */
+.label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 18px;
+}
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 5.6vw, 64px); font-weight: 400; line-height: 1.04; }
+h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h1 em span { white-space: nowrap; }
+h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
+h3 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 14px; }
+p { text-wrap: pretty; }
+p + p { margin-top: 16px; }
+.lede { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--slate); font-weight: 400; }
+.sec-head { max-width: 760px; margin-bottom: 44px; }
+.sec-head .lede { margin-top: 4px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
+}
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
+.btn-line:hover { border-color: var(--ink); background: var(--white); }
+.on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
+.on-ink .btn-line:hover { border-color: #fff; background: transparent; }
+.btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.on-ink .btn:focus-visible { outline-color: #fff; }
+
+/* Hero (ink band 1 of 2) */
+.hero { background: var(--ink); color: #fff; padding: 104px 0 92px; position: relative; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero .shell { position: relative; z-index: 1; }
+.hero .label { color: rgba(255,255,255,0.7); }
+.hero h1 { color: #fff; }
+.hero .lede { color: rgba(255,255,255,0.78); margin-top: 26px; max-width: 560px; }
+.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: center; }
+.hero-grid > div { min-width: 0; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 64px 0 56px; } }
+.hero-tag { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.3; color: #D9D3C8; margin: 20px 0 0; }
+.hero-tag span { display: block; text-wrap: balance; }
+.hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.mix-card { background: var(--white); border-radius: 4px; padding: 28px 28px 24px; color: var(--slate); }
+.mix-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 18px; }
+.mix-bar { display: flex; height: 16px; border-radius: 2px; overflow: hidden; background: var(--stone-light);
+  transform: scaleX(0); transform-origin: left center; transition: transform 1s cubic-bezier(0.22,1,0.36,1); }
+.mix-bar span { display: block; height: 100%; }
+.mix-bar span + span { border-left: 2px solid var(--white); }
+.reveal.in .mix-bar { transform: scaleX(1); }
+.mix-list { margin-top: 18px; }
+.mix-row { display: grid; grid-template-columns: 14px 56px 1fr auto; gap: 10px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+.mix-row:first-child { border-top: 1px solid var(--rule); }
+.mix-row i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; align-self: center; }
+.mix-tk { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--ink); }
+.mix-nm { font-size: 14px; color: var(--slate); }
+.mix-wt { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); }
+.c1 { background: var(--r1); } .c2 { background: var(--r3); } .c3 { background: var(--r5); }
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+@media (max-width: 480px) { .hero-stats { grid-template-columns: 1fr 1fr; } .mix-card { padding: 22px 20px 20px; } }
+.hero-stat .num { font-family: var(--serif); font-size: 26px; line-height: 1; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+.hero-stat .num small { font-size: 14px; font-weight: 400; }
+.hero-stat .lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 8px; line-height: 1.4; }
+
+/* Funds */
+.funds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .funds { grid-template-columns: 1fr; } }
+.fund { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 30px 28px 26px; display: flex; flex-direction: column; }
+.fund-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.fund-wt { font-family: var(--serif); font-size: 60px; font-weight: 400; color: var(--blue); line-height: 0.9; letter-spacing: -0.03em; }
+.fund-wt small { font-size: 28px; }
+.fund-tk { text-align: right; }
+.fund-tk b { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--ink); }
+.fund-tk span { display: block; font-size: 12px; line-height: 1.4; color: var(--slate); margin-top: 3px; max-width: 170px; }
+.fund h3 { font-size: 24px; margin: 22px 0 8px; }
+.fund p { font-size: 15.5px; }
+.fund-top5 { margin-top: auto; padding-top: 22px; }
+.fund-top5 .small-label { display: block; margin-bottom: 6px; }
+.fund-top5 div { font-size: 14px; line-height: 1.5; color: var(--slate); }
+.small-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate); }
+.funds-note { margin-top: 28px; padding: 20px 24px; background: var(--stone); border-radius: 4px; font-size: 15.5px; line-height: 1.55; }
+.funds-note strong { color: var(--ink); font-weight: 600; }
+
+/* How it works (stone) */
+.method { background: var(--stone); }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.pillar { background: var(--white); padding: 34px 30px; }
+.pillar-num { font-family: var(--serif); font-size: 15px; color: var(--blue); margin-bottom: 14px; }
+.pillar h4 { font-size: 24px; margin-bottom: 10px; line-height: 1.2; }
+.pillar p { font-size: 15.5px; line-height: 1.55; }
+@media (max-width: 800px) { .pillars { grid-template-columns: 1fr; } }
+
+/* Performance */
+.perf { background: var(--white); border-top: 1px solid var(--rule); scroll-margin-top: 40px; }
+.perf-head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; margin-bottom: 36px; }
+.perf-head h2 { margin-bottom: 12px; }
+.perf-head p { max-width: 560px; }
+.perf-ctl { text-align: right; }
+@media (max-width: 860px) { .perf-head { grid-template-columns: 1fr; } .perf-ctl { text-align: left; } }
+.fee-toggle {
+  display: inline-flex; align-items: center; gap: 12px; background: var(--white);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 6px 6px 16px;
+}
+.fee-toggle .ft-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+.fee-toggle .ft-switch { display: inline-flex; background: var(--stone); border-radius: 999px; padding: 3px; }
+.fee-toggle button {
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 0; background: transparent; color: var(--slate); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.fee-toggle button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.fee-toggle button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (max-width: 480px) { .fee-toggle { flex-wrap: wrap; border-radius: 20px; padding: 10px 12px; } }
+.gross-flag {
+  display: none; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--red); margin-top: 10px;
+}
+.gross-flag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex: none; }
+body.gross .gross-flag { display: inline-flex; }
+
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .tiles { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .tiles { grid-template-columns: 1fr; } }
+.tile { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 22px 22px 20px; min-width: 0; }
+.tile .tl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; line-height: 1.4; }
+.tile .tv { font-family: var(--serif); font-size: 38px; font-weight: 500; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
+.tile .tv.neg { color: var(--red); }
+.tile .tn { font-size: 13.5px; line-height: 1.45; color: var(--slate); margin-top: 10px; }
+.tile .tn:empty { display: none; }
+.tile .tn b { color: var(--ink); font-weight: 600; }
+.tile .tc { font-size: 13.5px; line-height: 1.45; color: var(--slate); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.tile .tc b { color: var(--ink); font-weight: 600; }
+.yield-note { font-size: 13.5px; color: var(--slate); margin-top: 16px; }
+
+.chart-card { background: var(--stone-light); border: 1px solid var(--rule); border-radius: 4px; padding: 28px 28px 20px; margin-top: 28px; }
+.chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px 32px; flex-wrap: wrap; margin-bottom: 14px; }
+.chart-title { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); }
+.chart-legend { display: flex; gap: 10px 26px; flex-wrap: wrap; font-size: 13px; color: var(--slate); }
+.chart-legend > span { display: inline-flex; align-items: center; gap: 8px; }
+.chart-legend b { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--ink); }
+.chart-legend svg { flex: none; }
+.chart-wrap { position: relative; }
+.chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-tip { position: absolute; top: 0; left: 0; pointer-events: none; background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: var(--slate); white-space: nowrap; opacity: 0; transition: opacity 0.15s; }
+.chart-tip.on { opacity: 1; }
+.chart-tip b { color: var(--ink); font-weight: 600; }
+.chart-tip .ty { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); }
+@media (max-width: 600px) { .chart-card { padding: 20px 14px 14px; } }
+
+.years-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--rule); border-radius: 4px; margin-top: 28px; }
+.years { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14.5px; }
+.years th, .years td { padding: 14px 12px; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.years th:first-child, .years td:first-child { text-align: left; padding-left: 20px; }
+.years th:last-child, .years td:last-child { padding-right: 20px; }
+.years thead th { background: var(--stone-light); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.years tbody tr:last-child td { border-bottom: none; }
+.years td { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); }
+.years td:first-child { font-size: 17px; }
+.years td:first-child small { display: block; font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-top: 2px; }
+.years td.neg { color: var(--red); }
+.years tr.bench td { color: var(--slate); font-weight: 400; }
+.years tr.bench td.neg { color: var(--red); }
+.fee-note { margin-top: 24px; padding: 18px 22px; background: var(--stone); border-radius: 4px; font-size: 14px; line-height: 1.55; color: var(--slate); display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; }
+.fee-note strong { color: var(--ink); font-weight: 600; }
+.fee-note a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); text-decoration: none; white-space: nowrap; }
+.fee-note a:hover { color: var(--ink); }
+.num-swap { transition: opacity 0.25s; }
+body.swapping .num-swap { opacity: 0.25; }
+
+.table-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 32px; padding-bottom: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+.table-cap span:last-child { color: var(--blue); }
+.years.periods { min-width: 760px; }
+.years.periods thead th { white-space: normal; line-height: 1.4; vertical-align: bottom; }
+
+/* Why not the S&P 500 */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
+.why-card { background: var(--white); border: 1px solid var(--rule); border-top: 2px solid var(--ink); border-radius: 0 0 4px 4px; padding: 28px 26px; }
+.why-card h3 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; }
+.why-card p { font-size: 15.5px; }
+.why-fact { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) { .why-fact { grid-template-columns: 1fr; } }
+.why-box { background: var(--stone); border-radius: 4px; padding: 26px 28px; font-size: 15.5px; }
+.why-box.plain { background: var(--white); border: 1px solid var(--rule); }
+.why-box .small-label { display: block; color: var(--blue); margin-bottom: 10px; }
+.why-box strong { color: var(--ink); font-weight: 600; }
+
+/* Fit (stone) */
+.fit { background: var(--stone); }
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 800px) { .fit-grid { grid-template-columns: 1fr; } }
+.fit-col { background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 30px 30px 22px; }
+.fit-col h3 { font-size: 24px; margin-bottom: 14px; }
+.fit-col ul { list-style: none; }
+.fit-col li { position: relative; padding: 13px 0 13px 30px; border-top: 1px solid var(--rule); font-size: 16px; line-height: 1.45; text-wrap: pretty; }
+.fit-col li::before { content: ''; position: absolute; left: 2px; top: 20px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+.fit-col.caution li::before { background: var(--red); }
+.fit-core { margin-top: 20px; background: var(--white); border: 1px solid var(--rule); border-radius: 4px; padding: 30px 32px; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; }
+.fit-core h3 { font-size: 24px; margin-bottom: 8px; }
+.fit-core p { font-size: 15.5px; max-width: 700px; }
+@media (max-width: 800px) { .fit-core { grid-template-columns: 1fr; gap: 20px; padding: 26px 24px; } }
+
+/* Final CTA (ink band 2 of 2) */
+.final-cta { background: var(--ink); text-align: center; scroll-margin-top: 40px; position: relative; overflow: hidden; }
+.cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.final-cta .shell { position: relative; z-index: 1; }
+.final-cta .label { color: rgba(255,255,255,0.7); }
+.final-cta h2 { color: #fff; max-width: 820px; margin: 0 auto 20px; }
+.final-cta h2 span { display: block; }
+.final-cta h2 em { font-style: italic; color: var(--blue); }
+.final-cta p { color: rgba(255,255,255,0.78); max-width: 600px; margin: 0 auto 36px; font-size: 18px; text-wrap: balance; }
+.final-cta p span { display: block; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* Footer */
+.site-footer { background: var(--stone); padding: 56px 0 44px; font-size: 13px; line-height: 1.65; border-top: 1px solid var(--rule); }
+.footer-wordmark { font-family: var(--serif); font-size: 22px; color: var(--ink); font-weight: 500; margin-bottom: 28px; }
+.footer-wordmark span { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-left: 10px; }
+.site-footer h4 { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.disclosures p { margin-bottom: 12px; font-size: 12.5px; color: var(--slate); }
+.disclosures strong { color: var(--ink); font-weight: 600; }
+
+/* Reveal */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.js .reveal.in { opacity: 1; transform: translateY(0); }
+html:not(.js) .mix-bar { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .mix-bar { opacity: 1; transform: none; transition: none; }
+}
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+.method { background-image: var(--g-stone-sky); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
+
+/* Buffered Growth additions */
+.k1 { background: #232E3D; } .k2 { background: #4A4F55; } .k3 { background: #7D8187; } .k4 { background: #A3A6AA; } .k5 { background: #C4C2BE; } .k6 { background: #DDD8CF; }
+.mix-row { padding: 9px 0; }
+.fund-top5 div + div { margin-top: 4px; }
+.fund-top5 div b { color: var(--ink); font-weight: 600; letter-spacing: 0.06em; font-size: 12.5px; margin-right: 6px; }
+.tile .tc span { white-space: nowrap; }
+.chart-legend .lg-me { white-space: nowrap; }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="gross">
+
+<!-- HERO -->
+<section class="hero on-ink">
+  <svg class="hero-art" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1">
+      <line x1="0" y1="180" x2="1440" y2="180"/><line x1="0" y1="320" x2="1440" y2="320"/><line x1="0" y1="460" x2="1440" y2="460"/><line x1="0" y1="600" x2="1440" y2="600"/>
+    </g>
+    <path d="M 480 600 L 580 540 L 660 590 L 760 470 L 840 610 L 930 520 L 1020 400 L 1100 560 L 1190 430 L 1280 300 L 1350 380 L 1440 220" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 8"/>
+    <path d="M 480 600 L 580 572 L 660 586 L 760 540 L 840 566 L 930 536 L 1020 492 L 1100 520 L 1190 478 L 1280 430 L 1350 446 L 1440 396" fill="none" stroke="#8CCBEC" stroke-opacity="0.55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1440" cy="396" r="5" fill="#8CCBEC" fill-opacity="0.75"/>
+    <g fill="#FFFFFF" fill-opacity="0.06">
+      <circle cx="40" cy="60" r="2"/><circle cx="80" cy="60" r="2"/><circle cx="120" cy="60" r="2"/><circle cx="160" cy="60" r="2"/><circle cx="200" cy="60" r="2"/>
+      <circle cx="40" cy="100" r="2"/><circle cx="80" cy="100" r="2"/><circle cx="120" cy="100" r="2"/><circle cx="160" cy="100" r="2"/><circle cx="200" cy="100" r="2"/>
+      <circle cx="40" cy="140" r="2"/><circle cx="80" cy="140" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="160" cy="140" r="2"/><circle cx="200" cy="140" r="2"/>
+    </g>
+  </svg>
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="label">The Buffered Growth Portfolio</div>
+        <h1>Growth,<br><em><span>with a buffer</span> <span>built in.</span></em></h1>
+        <p class="lede">A portfolio built around buffered S&amp;P 500 funds. It is designed to keep your savings growing while taking a smaller share of the market's declines.</p>
+        <p class="hero-tag"><span>Built for people who want to stay invested,</span> <span>and would trade some upside for a steadier ride.</span></p>
+        <div class="hero-actions">
+          <a href="#performance" class="btn btn-blue">See the numbers</a>
+          <a href="#fit" class="btn btn-line">Is it right for you?</a>
+        </div>
+      </div>
+      <div class="mix-card reveal">
+        <div class="mix-title">How the portfolio is divided</div>
+        <div class="mix-bar" role="img" aria-label="40% BALT, 15% BUFR, 15% DBMF, 10% STIP, 10% SPLV, 10% EFAV"><span class="k1" style="width:40%"></span><span class="k2" style="width:15%"></span><span class="k3" style="width:15%"></span><span class="k4" style="width:10%"></span><span class="k5" style="width:10%"></span><span class="k6" style="width:10%"></span></div>
+        <div class="mix-list">
+          <div class="mix-row"><i class="k1"></i><span class="mix-tk">BALT</span><span class="mix-nm">Buffered S&amp;P 500, quarterly</span><span class="mix-wt">40%</span></div>
+          <div class="mix-row"><i class="k2"></i><span class="mix-tk">BUFR</span><span class="mix-nm">Buffered S&amp;P 500, laddered</span><span class="mix-wt">15%</span></div>
+          <div class="mix-row"><i class="k3"></i><span class="mix-tk">DBMF</span><span class="mix-nm">Managed futures</span><span class="mix-wt">15%</span></div>
+          <div class="mix-row"><i class="k4"></i><span class="mix-tk">STIP</span><span class="mix-nm">Short-term inflation-protected Treasuries</span><span class="mix-wt">10%</span></div>
+          <div class="mix-row"><i class="k5"></i><span class="mix-tk">SPLV</span><span class="mix-nm">U.S. low-volatility stocks</span><span class="mix-wt">10%</span></div>
+          <div class="mix-row"><i class="k6"></i><span class="mix-tk">EFAV</span><span class="mix-nm">International low-volatility stocks</span><span class="mix-wt">10%</span></div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">6</div><div class="lbl">Funds</div></div>
+          <div class="hero-stat"><div class="num">3</div><div class="lbl">Jobs</div></div>
+          <div class="hero-stat"><div class="num">55<small>%</small></div><div class="lbl">In buffered funds</div></div>
+          <div class="hero-stat"><div class="num">0.59<small>%</small></div><div class="lbl">Avg. fund expenses</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU OWN -->
+<section>
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">What you own and why</div>
+      <h2>Three sleeves, each with one job.</h2>
+      <p class="lede">A buffered core for growth with a cushion, two diversifiers that follow their own path, and a small sleeve of steadier stocks.</p>
+    </div>
+    <div class="funds">
+      <div class="fund reveal">
+        <div class="fund-top">
+          <div class="fund-wt">55<small>%</small></div>
+          <div class="fund-tk"><b>BALT, BUFR</b><span>Buffered S&amp;P 500 funds</span></div>
+        </div>
+        <h3>The buffered core</h3>
+        <p>Follows the S&amp;P 500 up to a cap, and absorbs the first part of a decline.</p>
+        <div class="fund-top5"><span class="small-label">Holdings</span><div><b>BALT 40%</b>Innovator Defined Wealth Shield ETF. A 20% buffer that resets each quarter.</div><div><b>BUFR 15%</b>FT Vest Laddered Buffer ETF. Twelve monthly funds, each with a 10% buffer over one year.</div></div>
+      </div>
+      <div class="fund reveal">
+        <div class="fund-top">
+          <div class="fund-wt">25<small>%</small></div>
+          <div class="fund-tk"><b>DBMF, STIP</b><span>Managed futures and short-term TIPS</span></div>
+        </div>
+        <h3>The diversifiers</h3>
+        <p>Two holdings that do not depend on the stock market to do their work.</p>
+        <div class="fund-top5"><span class="small-label">Holdings</span><div><b>DBMF 15%</b>iMGP DBi Managed Futures Strategy ETF. Follows trends across stocks, bonds, currencies and commodities.</div><div><b>STIP 10%</b>iShares 0-5 Year TIPS Bond ETF. Stability that keeps pace with inflation.</div></div>
+      </div>
+      <div class="fund reveal">
+        <div class="fund-top">
+          <div class="fund-wt">20<small>%</small></div>
+          <div class="fund-tk"><b>SPLV, EFAV</b><span>Low-volatility stock funds</span></div>
+        </div>
+        <h3>The steadier stocks</h3>
+        <p>Stock market growth with no cap, from companies that tend to move less.</p>
+        <div class="fund-top5"><span class="small-label">Holdings</span><div><b>SPLV 10%</b>Invesco S&amp;P 500 Low Volatility ETF. The 100 least volatile companies in the S&amp;P 500.</div><div><b>EFAV 10%</b>iShares MSCI EAFE Min Vol Factor ETF. Steadier companies outside the U.S.</div></div>
+      </div>
+    </div>
+    <p class="funds-note reveal">The portfolio is rebalanced back to these weights each January. <strong>No single fund is asked to do everything,</strong> and the largest position is 40%.</p>
+  </div>
+</section>
+
+<!-- HOW A BUFFER WORKS -->
+<section class="method">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">How a buffer works</div>
+      <h2>A defined trade, set in advance.</h2>
+      <p class="lede">A buffered fund uses options on the S&amp;P 500 to give up some of the upside in exchange for a cushion on the downside.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar"><div class="pillar-num">01</div><h4>A cap on the way up</h4><p>The fund follows the S&amp;P 500 up to a set limit for the period. In a very strong market, gains above the cap are the price of the cushion.</p></div>
+      <div class="pillar"><div class="pillar-num">02</div><h4>A buffer on the way down</h4><p>If the index falls over the period, the fund is built to absorb the first part of the decline: the first 20% each quarter in BALT, and the first 10% over a year in each of BUFR's twelve funds.</p></div>
+      <div class="pillar"><div class="pillar-num">03</div><h4>A reset on a schedule</h4><p>When a period ends, a new cap and buffer are set at current market levels. Between resets the funds can still move down with the market, usually by less.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section class="perf" id="performance">
+  <div class="shell">
+    <div class="perf-head reveal">
+      <div>
+        <div class="label">The numbers</div>
+        <h2>Hypothetical growth of $10,000, July 2021 through September 2026.</h2>
+        <p>A little over five years, next to an S&amp;P 500 index fund and a total bond market fund. Results are shown before our advisory fee. Switch the view to see them after it.</p>
+      </div>
+      <div class="perf-ctl">
+        <div class="fee-toggle" role="group" aria-label="Show results net or before fees">
+          <span class="ft-label">Results</span>
+          <span class="ft-switch">
+            <button type="button" data-basis="net" aria-pressed="false">Net of 1.25%</button>
+            <button type="button" data-basis="gross" aria-pressed="true">Before fees</button>
+          </span>
+        </div>
+        <div><span class="gross-flag">Before fees. Results after our fee are lower.</span></div>
+      </div>
+    </div>
+
+    <div class="tiles reveal">
+      <div class="tile"><div class="tl">Annualized since July 2021</div><div class="tv num-swap" id="t-cagr"></div><div class="tn num-swap" id="n-cagr"></div><div class="tc">vs <span><b id="b-cagr"></b> S&amp;P 500,</span> <span><b id="c-cagr"></b> bonds</span></div></div>
+      <div class="tile"><div class="tl">Worst calendar year (2022)</div><div class="tv num-swap" id="t-worst"></div><div class="tn num-swap" id="n-worst"></div><div class="tc">vs <span><b id="b-worst"></b> S&amp;P 500,</span> <span><b id="c-worst"></b> bonds</span></div></div>
+      <div class="tile"><div class="tl">Largest decline, high to low</div><div class="tv neg num-swap" id="t-dd"></div><div class="tn num-swap" id="n-dd"></div><div class="tc">vs <span><b id="b-dd"></b> S&amp;P 500,</span> <span><b id="c-dd"></b> bonds</span></div></div>
+      <div class="tile"><div class="tl">Ending value of $10,000</div><div class="tv num-swap" id="t-end"></div><div class="tn num-swap" id="n-end"></div><div class="tc">vs <span><b id="b-end"></b> S&amp;P 500,</span> <span><b id="c-end"></b> bonds</span></div></div>
+    </div>
+    <p class="yield-note reveal">Blended fund expense ratio: 0.59% a year, already reflected in the returns shown. Buffered Growth is a growth strategy, not an income strategy.</p>
+
+    <div class="chart-card reveal">
+      <div class="chart-head">
+        <div class="chart-title">Growth of $10,000, through September 30, 2026</div>
+        <div class="chart-legend">
+          <span class="lg-me"><svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#232E3D" stroke-width="3"/></svg><span>Buffered Growth, <span class="num-swap" id="lg-basis"></span></span> <b class="num-swap" id="lg-end"></b></span>
+          <span><svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#7D8187" stroke-width="2" stroke-dasharray="6 4"/></svg>S&amp;P 500 (VOO) <b id="lg-bench"></b></span>
+          <span><svg width="26" height="8" aria-hidden="true"><line x1="0" y1="4" x2="26" y2="4" stroke="#A3A6AA" stroke-width="2" stroke-dasharray="2 4"/></svg>Bonds (BND) <b id="lg-bond"></b></span>
+        </div>
+      </div>
+      <div class="chart-wrap" id="chart-wrap">
+        <svg id="chart" viewBox="0 0 960 400" role="img" aria-labelledby="chart-desc"><desc id="chart-desc"></desc></svg>
+        <div class="chart-tip" id="chart-tip"></div>
+      </div>
+    </div>
+
+    <div class="table-cap reveal"><span>Returns</span><span>As of September 30, 2026</span></div>
+    <div class="years-wrap reveal" style="margin-top:0">
+      <table class="years periods">
+        <thead><tr><th>Period</th><th>Q3 2026</th><th>2026 year to date</th><th>1 year</th><th>5 years, annualized</th><th>Since 7/1/2021, annualized</th></tr></thead>
+        <tbody>
+          <tr id="pd-port"></tr>
+          <tr id="pd-bench" class="bench"></tr>
+          <tr id="pd-bond" class="bench"></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-cap reveal"><span>Calendar years</span><span>2021 is July through December. 2026 is January through September</span></div>
+    <div class="years-wrap reveal" style="margin-top:0">
+      <table class="years periods">
+        <thead><tr id="yr-head"><th>Calendar year</th></tr></thead>
+        <tbody>
+          <tr id="yr-port"></tr>
+          <tr id="yr-bench" class="bench"></tr>
+          <tr id="yr-bond" class="bench"></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fee-note reveal">
+      <span class="num-swap" id="fee-note-text"></span>
+      <a href="https://www.jantzwealth.com/fees">See our fees</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOT BONDS -->
+<section>
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">A fair question</div>
+      <h2>Why not just own bonds?</h2>
+      <p class="lede">Bonds are the traditional way to steady a portfolio, and they still have a place. Buffered Growth takes a different route to the same goal, in three specific ways.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h3>Bonds can fall with stocks.</h3>
+        <p>In 2022, rising interest rates pushed stocks and bonds down together, and a bond fund offered little cushion. Buffered Growth does not depend on interest rates falling to hold its ground.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>The trade is set in advance.</h3>
+        <p>Each buffered fund sets its cap and its buffer at the start of a period. You can see what you are giving up and what you are getting before the period begins, though neither is guaranteed.</p>
+      </div>
+      <div class="why-card reveal">
+        <h3>Growth still comes from stocks.</h3>
+        <p>A bond's return is mostly the interest it pays. The buffered funds follow the S&amp;P 500 up to their caps, so the portfolio keeps a link to the long-term growth of the stock market.</p>
+      </div>
+    </div>
+    <div class="why-fact">
+      <div class="why-box reveal"><span class="small-label">What the five years showed</span><span class="num-swap" id="why-fact-text"></span></div>
+      <div class="why-box plain reveal"><span class="small-label">The honest trade-offs</span>This portfolio costs more to own than an index fund (about 0.59% a year in fund expenses against about 0.03%). In strong years the caps hold it well behind the stock market. Buffers work over a set period, not day by day, and they are not guaranteed. A bond pays contractual interest and returns its principal at maturity, and this portfolio does neither. Its history is also short, a little over five years. We think the design is worth those costs for the right part of a plan. That is a judgment, and we are happy to walk through it with you.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="fit" id="fit" style="scroll-margin-top:40px">
+  <div class="shell">
+    <div class="sec-head reveal">
+      <div class="label">Who it is for</div>
+      <h2>Is Buffered Growth right for you?</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col reveal">
+        <h3>A strong fit if you</h3>
+        <ul>
+          <li>Want your savings to keep growing, with smaller swings along the way</li>
+          <li>Would trade some upside in strong markets for a cushion in weak ones</li>
+          <li>Have relied on bonds for stability and want another approach for part of that money</li>
+          <li>Can leave this money invested for five years or more</li>
+        </ul>
+      </div>
+      <div class="fit-col caution reveal">
+        <h3>Think twice if you</h3>
+        <ul>
+          <li>Want all of the stock market's upside and have decades to ride out the declines</li>
+          <li>Need a guarantee of principal or a guaranteed income</li>
+          <li>Need regular income from this account today</li>
+          <li>Expect a portfolio that never declines</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fit-core reveal">
+      <div>
+        <h3>Where it sits next to the Global Core Portfolios</h3>
+        <p>The four Global Core portfolios are the foundation of most plans we build. Buffered Growth is a satellite that can sit beside them, for the part of your savings where a steadier ride matters most.</p>
+      </div>
+      <a href="https://www.jantzwealth.com/global-core-portfolios" class="btn btn-line">See the Global Core Portfolios</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta on-ink" id="schedule">
+  <svg class="cta-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="-40" cy="540" r="200"/><circle cx="-40" cy="540" r="320"/><circle cx="-40" cy="540" r="440"/><circle cx="-40" cy="540" r="560"/>
+    </g>
+    <path d="M -40 540 m 440 0 a 440 440 0 0 0 -440 -440" fill="none" stroke="#0077B6" stroke-opacity="0.38" stroke-width="1.5"/>
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
+      <circle cx="1480" cy="-20" r="200"/><circle cx="1480" cy="-20" r="320"/><circle cx="1480" cy="-20" r="440"/>
+    </g>
+    <path d="M 1480 -20 m -320 0 a 320 320 0 0 0 320 320" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+  </svg>
+  <div class="shell reveal">
+    <div class="label">The next step</div>
+    <h2><span>Every dollar should have a role.</span> <span><em>Every vehicle should have a job.</em></span></h2>
+    <p><span>The right portfolio depends on your time horizon, your tax situation, and how much movement you can live with.</span> <span>A short conversation is the fastest way to find out.</span></p>
+    <div class="cta-buttons">
+      <a href="https://www.jantzwealth.com/schedule" class="btn btn-blue">Schedule a conversation</a>
+      <a href="https://www.jantzwealth.com/investment-strategy" class="btn btn-line">Find your profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-wordmark">Jantz <span>Wealth Advisors</span></div>
+    <h4>Important disclosures</h4>
+    <div class="disclosures">
+      <p><strong>Hypothetical performance.</strong> Buffered Growth is a model allocation established in November 2026. All performance shown is hypothetical and does not represent any actual account. It was calculated by applying a 40/15/15/10/10/10 allocation to BALT, BUFR, DBMF, STIP, SPLV, and EFAV to the historical total returns of each fund from July 1, 2021 through September 30, 2026, rebalanced to target weights each January, with all distributions reinvested. The period begins July 1, 2021 because that is when BALT began trading, and a longer history could look different. Hypothetical results do not reflect actual trading, were prepared with the benefit of hindsight, and may not reflect the impact that material economic and market factors might have had on decision-making if client money had actually been managed. Results do not reflect trading costs or taxes. No client has experienced these results. Price data: Yahoo Finance, retrieved November 2026.</p>
+      <p><strong>Advisory fees.</strong> Results labeled "net of 1.25%" are shown after deducting a 1.25% annual advisory fee, the maximum annual advisory fee, applied quarterly in arrears as 0.3125% of the portfolio value at the end of each calendar quarter. Results labeled "before fees" do not reflect the deduction of any advisory fee and are higher than what a client would have received; a client's results would be reduced by advisory fees and any custodial or trading costs. For a complete description of advisory fees, see the Jantz Wealth Advisors fee schedule.</p>
+      <p><strong>Buffered funds.</strong> BALT and BUFR use options to seek a buffer against a set amount of decline in the S&amp;P 500 over a set outcome period, in exchange for a cap on gains. The buffer and cap apply only to shares held for the full outcome period, they change at each reset, and they are not guaranteed. These funds can decline in value, and they do not receive the dividends paid by S&amp;P 500 companies. Buffered Growth as a whole has no buffer or cap of its own.</p>
+      <p><strong>Managed futures.</strong> DBMF uses futures contracts to follow market trends. It can decline when trends reverse, including in years when stocks rise. It fell 8.9% in 2023.</p>
+      <p><strong>The comparisons</strong> use the total returns of the Vanguard S&amp;P 500 ETF (VOO) and the Vanguard Total Bond Market ETF (BND) over the same period, with distributions reinvested. They are shown as reference points and do not reflect the deduction of an advisory fee. These funds differ from Buffered Growth in their holdings, risks, costs, and income. Indexes are unmanaged and cannot be invested in directly.</p>
+      <p><strong>Worst calendar year and largest decline.</strong> Worst calendar year figures are calendar-year total returns for the full years 2022 through 2025. The largest decline is the biggest fall from a high to a later low, measured on daily values. For Buffered Growth it ran from February 18, 2025 to April 8, 2025. Trailing returns and 2026 year-to-date figures are as of September 30, 2026; periods longer than one year are annualized.</p>
+      <p><strong>Fund data.</strong> Expense ratios are as published by each fund's sponsor as of November 2026 and can change. The buffered funds pay little or no income. Managed futures and options-based funds may generate ordinary income and short-term gains in a taxable account. Consider each fund's objectives, risks, and expenses carefully before investing; see each prospectus for details.</p>
+      <p>Buffered Growth is a model allocation and may not be appropriate for every investor. Individual recommendations are based on your financial situation, time horizon, tax considerations, and risk tolerance. Holdings, weights, and methodology are subject to change. Diversification does not ensure a profit or protect against a decline. All investments involve risk, including the possible loss of principal. Past performance, actual or hypothetical, is not indicative of future results.</p>
+      <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ───────── DATA (as of 9/30/2026) ─────────
+     Value of $10,000 before advisory fees. Point 0 is the close on July 1, 2021, then each month-end from July 2021 through September 2026 (64 points).
+     G = Buffered Growth (40% BALT, 15% BUFR, 15% DBMF, 10% STIP, 10% SPLV, 10% EFAV, rebalanced each January). V = S&P 500 fund (VOO). B = bond fund (BND).
+     DD = largest decline from a high to a later low, in percent, measured on daily values.
+     To update: replace the three lists and DD with the new values and change the dates in the text and disclosures. */
+  var G = [10000.00,10082.48,10105.36,9979.63,10166.98,10078.77,10273.11,10125.23,10119.50,10329.59,10292.35,10306.86,10216.03,10368.11,10306.65,10089.50,10337.59,10400.13,10357.24,10483.36,10399.96,10467.33,10600.23,10516.83,10775.82,10887.77,10817.16,10697.11,10639.83,10894.04,11015.19,11110.03,11289.22,11502.48,11468.09,11644.80,11790.18,11880.81,12032.85,12138.00,11997.80,12225.46,12081.22,12248.63,12322.23,12225.10,12269.62,12462.79,12620.86,12640.83,12826.63,13003.37,13073.85,13232.31,13315.46,13538.53,13876.73,13569.14,13839.22,13892.83,13920.35,14095.83,14208.38,14199.90];
+  var V = [10000.00,10187.24,10487.95,9998.82,10702.59,10624.00,11108.48,10526.30,10212.57,10599.54,9668.44,9693.46,8892.35,9710.36,9309.43,8453.07,9139.25,9642.37,9089.62,9661.38,9420.00,9769.48,9924.83,9972.63,10621.83,10971.30,10792.65,10280.66,10057.35,10979.65,11482.36,11666.90,12274.41,12677.02,12168.83,12780.40,13236.30,13389.80,13710.30,14008.67,13875.93,14693.08,14350.20,14736.92,14550.48,13734.49,13623.04,14478.80,15227.74,15575.98,15899.28,16463.63,16857.75,16894.59,16907.89,17152.96,17013.31,16161.25,17865.95,18810.11,18629.45,18625.11,19119.86,19059.43];
+  var B = [10000.00,10117.78,10098.63,9996.27,10003.30,10023.72,9992.61,9786.27,9674.90,9408.63,9034.86,9109.83,8958.42,9171.79,8915.21,8542.28,8443.39,8752.92,8682.36,8970.00,8730.86,8964.48,9017.18,8912.24,8892.30,8881.75,8823.10,8604.35,8473.53,8858.35,9173.29,9158.32,9033.49,9110.26,8890.85,9040.26,9119.87,9334.58,9470.08,9594.76,9359.15,9459.13,9300.13,9355.74,9557.50,9558.67,9596.54,9531.83,9676.39,9650.68,9762.06,9869.96,9929.47,9988.78,9958.80,9980.31,10140.16,9963.99,9978.92,10006.44,10033.36,9905.01,9941.06,9687.38];
+  var DD = { gross: -5.63, net: -5.92, bench: -24.52, bond: -17.91 };
+  var LAST = G.length - 1, YEARS = 1917 / 365.25;   /* July 1, 2021 to September 30, 2026 */
+  var DEC = [0, 6, 18, 30, 42, 54];                /* start, then each December from 2021 through 2025 */
+  var CAL_LABELS = ['2021', '2022', '2023', '2024', '2025'];
+  /* 1.25% a year, taken as 0.3125% of the value at the end of each calendar quarter */
+  var NET = G.map(function (v, m) { return v * Math.pow(1 - 0.003125, Math.floor(m / 3)); });
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  var basis = 'gross';
+  var $ = function (id) { return document.getElementById(id); };
+  var usd = function (v) { return '$' + Math.round(v).toLocaleString('en-US'); };
+  var pct = function (v) { var r = Math.abs(v).toFixed(1); return (v < 0 && r !== '0.0' ? '-' : '') + r + '%'; };
+  var WORDS = ['none','one','two','three','each'];
+
+  function stats(s) {
+    var o = { cal: [] };
+    for (var k = 1; k < DEC.length; k++) o.cal.push((s[DEC[k]] / s[DEC[k - 1]] - 1) * 100);
+    o.ytd = (s[LAST] / s[DEC[DEC.length - 1]] - 1) * 100;
+    o.qtd = (s[LAST] / s[LAST - 3] - 1) * 100;
+    o.y1 = (s[LAST] / s[LAST - 12] - 1) * 100;
+    o.y5 = (Math.pow(s[LAST] / s[LAST - 60], 1 / 5) - 1) * 100;
+    o.si = (Math.pow(s[LAST] / s[0], 1 / YEARS) - 1) * 100;
+    o.end = s[LAST];
+    o.full = o.cal.slice(1);                         /* full calendar years, 2022 through 2025 */
+    o.worst = Math.min.apply(null, o.full);
+    return o;
+  }
+  var S = { net: stats(NET), gross: stats(G), bench: stats(V), bond: stats(B) };
+  function series() { return basis === 'net' ? NET : G; }
+
+  /* ───────── GROWTH CHART ───────── */
+  var W = 960, H = 400, L = 58, R = 22, T = 14, Bm = 38, small = false;
+  var YMIN = 8000, YMAX = Math.ceil(Math.max.apply(null, V.concat(G)) / 2000) * 2000;
+  var x = function (i) { return L + (W - L - R) * i / LAST; };
+  var y = function (v) { return T + (H - T - Bm) * (1 - (v - YMIN) / (YMAX - YMIN)); };
+  var path = function (s) { return s.map(function (v, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1); }).join(' '); };
+  var when = function (i) { return i === 0 ? 'Start, July 1, 2021' : 'End of ' + MONTHS[(i + 5) % 12] + ' ' + (2021 + Math.floor((i + 5) / 12)); };
+
+  function drawChart() {
+    var s = series(), svg = $('chart'), h = '';
+    /* phones get a narrower drawing so the axis labels stay readable */
+    small = $('chart-wrap').offsetWidth < 560;
+    W = small ? 520 : 960; H = small ? 380 : 400; L = small ? 62 : 58; R = small ? 14 : 22;
+    var fs = small ? 17 : 12;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    for (var t = YMIN; t <= YMAX; t += (small ? 4000 : 2000)) {
+      h += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(t) + '" y2="' + y(t) + '" stroke="' + (t === 10000 ? '#B1B3B6' : '#D9D3C8') + '" stroke-width="1"/>';
+      h += '<text x="' + (L - 12) + '" y="' + (y(t) + 4) + '" text-anchor="end" font-family="Inter, sans-serif" font-size="' + fs + '" fill="#4A4F55">$' + t / 1000 + 'k</text>';
+    }
+    /* a year label sits where that year begins */
+    for (var k = 1; k < DEC.length; k++) {
+      h += '<line x1="' + x(DEC[k]) + '" x2="' + x(DEC[k]) + '" y1="' + y(YMIN) + '" y2="' + (y(YMIN) + 5) + '" stroke="#B1B3B6" stroke-width="1"/>';
+      h += '<text x="' + x(DEC[k]) + '" y="' + (H - 12) + '" text-anchor="middle" font-family="Inter, sans-serif" font-size="' + fs + '" fill="#4A4F55">' + (2021 + k) + '</text>';
+    }
+    h += '<path d="' + path(s) + ' L' + x(LAST) + ' ' + y(YMIN) + ' L' + x(0) + ' ' + y(YMIN) + ' Z" fill="#232E3D" fill-opacity="0.05"/>';
+    h += '<path d="' + path(B) + '" fill="none" stroke="#A3A6AA" stroke-width="2" stroke-dasharray="2 5" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<path d="' + path(V) + '" fill="none" stroke="#7D8187" stroke-width="2" stroke-dasharray="7 5" stroke-linejoin="round"/>';
+    h += '<path d="' + path(s) + '" fill="none" stroke="#232E3D" stroke-width="' + (small ? 2.5 : 3) + '" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<circle cx="' + x(LAST) + '" cy="' + y(B[LAST]) + '" r="4" fill="#F6F3EE" stroke="#A3A6AA" stroke-width="2"/>';
+    h += '<circle cx="' + x(LAST) + '" cy="' + y(V[LAST]) + '" r="4" fill="#F6F3EE" stroke="#7D8187" stroke-width="2"/>';
+    h += '<circle cx="' + x(LAST) + '" cy="' + y(s[LAST]) + '" r="5" fill="#232E3D"/>';
+    h += '<g id="chart-hover" style="display:none"><line id="ch-line" y1="' + T + '" y2="' + y(YMIN) + '" stroke="#232E3D" stroke-opacity="0.35" stroke-width="1"/>' +
+         '<circle id="ch-c" r="4.5" fill="#F6F3EE" stroke="#A3A6AA" stroke-width="2"/><circle id="ch-b" r="4.5" fill="#F6F3EE" stroke="#7D8187" stroke-width="2"/><circle id="ch-p" r="5" fill="#232E3D" stroke="#F6F3EE" stroke-width="2"/></g>';
+    h += '<rect id="chart-hit" x="' + L + '" y="' + T + '" width="' + (W - L - R) + '" height="' + (H - T - Bm) + '" fill="transparent"/>';
+    var desc = 'Line chart of the hypothetical growth of $10,000 from July 1, 2021 through September 30, 2026. Buffered Growth, ' +
+      (basis === 'net' ? 'net of a 1.25% advisory fee' : 'before advisory fees') + ', ends at ' + usd(s[LAST]) + '. The S&P 500 fund ends at ' + usd(V[LAST]) + ' and the bond fund at ' + usd(B[LAST]) + '.';
+    svg.innerHTML = '<desc id="chart-desc">' + desc + '</desc>' + h;
+
+    var hit = $('chart-hit'), tip = $('chart-tip'), wrap = $('chart-wrap'), hov = $('chart-hover');
+    function show(clientX) {
+      var box = svg.getBoundingClientRect();
+      var px = (clientX - box.left) / box.width * W;
+      var i = Math.max(0, Math.min(LAST, Math.round((px - L) / (W - L - R) * LAST)));
+      hov.style.display = '';
+      $('ch-line').setAttribute('x1', x(i)); $('ch-line').setAttribute('x2', x(i));
+      $('ch-p').setAttribute('cx', x(i)); $('ch-p').setAttribute('cy', y(s[i]));
+      $('ch-b').setAttribute('cx', x(i)); $('ch-b').setAttribute('cy', y(V[i]));
+      $('ch-c').setAttribute('cx', x(i)); $('ch-c').setAttribute('cy', y(B[i]));
+      tip.innerHTML = '<div class="ty">' + when(i) + '</div>Buffered Growth <b>' + usd(s[i]) + '</b><br>S&amp;P 500 (VOO) <b>' + usd(V[i]) + '</b><br>Bonds (BND) <b>' + usd(B[i]) + '</b>';
+      tip.classList.add('on');
+      var left = x(i) / W * box.width, tw = tip.offsetWidth;
+      left = left + 14 + tw > wrap.offsetWidth ? left - tw - 14 : left + 14;
+      tip.style.transform = 'translate(' + Math.max(0, left) + 'px, 8px)';
+    }
+    function hide() { hov.style.display = 'none'; tip.classList.remove('on'); }
+    hit.addEventListener('mousemove', function (e) { show(e.clientX); });
+    hit.addEventListener('mouseleave', hide);
+    hit.addEventListener('touchstart', function (e) { show(e.touches[0].clientX); }, { passive: true });
+    hit.addEventListener('touchmove', function (e) { show(e.touches[0].clientX); }, { passive: true });
+    hit.addEventListener('touchend', hide);
+  }
+
+  /* ───────── NUMBERS ───────── */
+  function render() {
+    var net = basis === 'net', p = S[basis], b = S.bench, c = S.bond, tag = net ? 'Net of 1.25%' : 'Before fees';
+    var behind = p.full.filter(function (v, i) { return v < b.full[i]; }).length;
+    var cell = function (v) { return '<td' + (v < 0 ? ' class="neg"' : '') + '>' + pct(v) + '</td>'; };
+
+    $('t-cagr').textContent = pct(p.si);     $('b-cagr').textContent = pct(b.si);     $('c-cagr').textContent = pct(c.si);
+    $('t-worst').textContent = pct(p.worst); $('b-worst').textContent = pct(b.worst); $('c-worst').textContent = pct(c.worst);
+    $('t-worst').classList.toggle('neg', p.worst < 0);
+    $('t-dd').textContent = pct(DD[basis]);  $('b-dd').textContent = pct(DD.bench);   $('c-dd').textContent = pct(DD.bond);
+    $('t-end').textContent = usd(p.end);     $('b-end').textContent = usd(b.end);     $('c-end').textContent = usd(c.end);
+    $('n-cagr').innerHTML = net ? '' : '<b>' + pct(S.net.si) + '</b> net of our 1.25% fee';
+    $('n-worst').innerHTML = net ? '' : '<b>' + pct(S.net.worst) + '</b> net of our 1.25% fee';
+    $('n-dd').innerHTML = net ? '' : '<b>' + pct(DD.net) + '</b> net of our 1.25% fee';
+    $('n-end').innerHTML = net ? '' : '<b>' + usd(S.net.end) + '</b> net of our 1.25% fee';
+    $('lg-basis').textContent = net ? 'net of 1.25%' : 'before fees';
+    $('lg-end').textContent = usd(p.end);    $('lg-bench').textContent = usd(b.end);  $('lg-bond').textContent = usd(c.end);
+
+    var periods = function (o) { return [o.qtd, o.ytd, o.y1, o.y5, o.si].map(cell).join(''); };
+    $('pd-port').innerHTML = '<td>Buffered Growth<small>' + tag + '</small></td>' + periods(p);
+    $('pd-bench').innerHTML = '<td>S&amp;P 500 (VOO)</td>' + periods(b);
+    $('pd-bond').innerHTML = '<td>Bonds (BND)</td>' + periods(c);
+
+    $('yr-head').innerHTML = '<th>Calendar year</th>' + CAL_LABELS.map(function (l, i) { return '<th>' + l + (i ? '' : ', Jul to Dec') + '</th>'; }).join('') + '<th>2026 YTD</th>';
+    $('yr-port').innerHTML = '<td>Buffered Growth<small>' + tag + '</small></td>' + p.cal.concat([p.ytd]).map(cell).join('');
+    $('yr-bench').innerHTML = '<td>S&amp;P 500 (VOO)</td>' + b.cal.concat([b.ytd]).map(cell).join('');
+    $('yr-bond').innerHTML = '<td>Bonds (BND)</td>' + c.cal.concat([c.ytd]).map(cell).join('');
+
+    $('fee-note-text').innerHTML = net
+      ? '<strong>Shown net of a 1.25% annual advisory fee,</strong> our maximum rate. The S&amp;P 500 and bond funds are shown with no advisory fee.'
+      : '<strong>Shown before advisory fees.</strong> A client\'s results would be lower by our advisory fee, up to 1.25% a year. Switch the view above to see them.';
+
+    /* the wording follows the numbers, so it stays true when the data is updated */
+    var other = net
+      ? 'Before fees, the same $10,000 grew to ' + usd(S.gross.end) + '.'
+      : 'After a 1.25% annual advisory fee, the same $10,000 grew to ' + usd(S.net.end) + '.';
+    $('why-fact-text').innerHTML =
+      'From July 2021 through September 2026, ' + (net ? 'after a 1.25% annual advisory fee' : 'before advisory fees') + ', Buffered Growth turned $10,000 into <strong>' + usd(p.end) +
+      '</strong>. A bond fund finished at ' + usd(c.end) + ' and an S&amp;P 500 fund at ' + usd(b.end) + '. In 2022 the S&amp;P 500 fund returned ' + pct(b.cal[1]) +
+      ' and the bond fund ' + pct(c.cal[1]) + ', while Buffered Growth returned <strong>' + pct(p.cal[1]) + '</strong>. Its largest decline from a high to a low was ' + pct(DD[basis]) +
+      ', against ' + pct(DD.bench) + ' for the stock fund and ' + pct(DD.bond) + ' for the bond fund. It trailed the S&amp;P 500 fund in ' + WORDS[behind] +
+      ' of the four full calendar years, which is the cost of the cushion. ' + other + ' Hypothetical, historical, and no guarantee of the next five.';
+
+    drawChart();
+  }
+
+  document.querySelectorAll('[data-basis]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.dataset.basis === basis) return;
+      basis = btn.dataset.basis;
+      document.querySelectorAll('[data-basis]').forEach(function (o) { o.setAttribute('aria-pressed', String(o === btn)); });
+      document.body.classList.toggle('gross', basis === 'gross');
+      document.body.classList.add('swapping');
+      setTimeout(function () { render(); document.body.classList.remove('swapping'); }, 200);
+    });
+  });
+  render();
+  var wasSmall = small;
+  window.addEventListener('resize', function () { if (($('chart-wrap').offsetWidth < 560) !== wasSmall) { drawChart(); wasSmall = small; } });
+
+  /* ───────── REVEAL ───────── */
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
