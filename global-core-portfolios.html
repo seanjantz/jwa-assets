@@ -156,15 +156,17 @@ body.gross .gross-flag { display: inline-flex; }
 @media (max-width: 768px) { .compare-head { grid-template-columns: 1fr; } }
 .compare-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 4px; background: var(--white); }
 .compare-table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 820px; }
-.compare-table th, .compare-table td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.compare-table th, .compare-table td { padding: 16px 11px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: middle; }
 .compare-table thead th { background: var(--stone-light); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); border-bottom: 1px solid var(--rule); }
 .compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table th:first-child, .compare-table td:first-child { padding-left: 18px; }
+.compare-table th:last-child, .compare-table td:last-child { padding-right: 18px; white-space: nowrap; }
 .compare-table tbody tr:hover { background: var(--stone-light); }
-.compare-name { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); }
-.compare-tier { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-top: 2px; }
+.compare-name { font-family: var(--serif); font-size: 19px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.compare-tier { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-top: 2px; white-space: nowrap; }
 .compare-num { font-family: var(--serif); font-size: 21px; font-weight: 500; color: var(--ink); }
 .compare-num.neg { color: var(--red); }
-.compare-num small { display: block; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 3px; }
+.compare-num small { display: block; white-space: nowrap; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-top: 3px; }
 .compare-link a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); text-decoration: none; white-space: nowrap; }
 .compare-link a:hover { color: var(--ink); }
 .fee-note { margin-top: 24px; padding: 18px 22px; background: var(--stone); border-radius: 4px; font-size: 14px; line-height: 1.55; color: var(--slate); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
@@ -266,7 +268,7 @@ body.gross .gross-flag { display: inline-flex; }
 .blurbs { margin: 28px auto 0; max-width: 320px; }
 .blurb + .blurb { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
 .blurb h5 { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
-.blurb p { font-size: 14px; line-height: 1.5; }
+.blurb p { font-size: 14px; line-height: 1.5; text-wrap: pretty; }
 .blurb em { font-style: italic; font-family: var(--serif); color: var(--blue); font-size: 15px; }
 .holdings { width: 100%; border-collapse: collapse; font-size: 14px; }
 .holdings thead th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); text-align: left; padding: 0 0 10px; border-bottom: 1px solid var(--ink); }
@@ -523,11 +525,11 @@ body.swapping .num-swap { opacity: 0.25; }
         <div class="fee-toggle" role="group" aria-label="Advisory fee basis">
           <span class="ft-label">Advisory fee</span>
           <span class="ft-switch">
-            <button type="button" data-fee="net" aria-pressed="true">Net of 1.50%</button>
+            <button type="button" data-fee="net" aria-pressed="true">Net of 1.25%</button>
             <button type="button" data-fee="gross" aria-pressed="false">Before fees</button>
           </span>
         </div>
-        <div class="fee-basis">Showing results <strong class="fee-basis-text">net of the 1.50% annual advisory fee</strong></div>
+        <div class="fee-basis">Showing results <strong class="fee-basis-text">net of the 1.25% annual advisory fee</strong></div>
         <div class="gross-flag">Before advisory fees. Your results will be lower.</div>
       </div>
     </div>
@@ -614,10 +616,10 @@ body.swapping .num-swap { opacity: 0.25; }
     <div class="reveal">
       <div class="label">How they are built</div>
       <h2>Strategic, not reactive. Diversified, not diluted.</h2>
-      <p class="lede">Every Global Core portfolio is built from the same six asset classes. What changes between tiers is the weighting, not the philosophy. Moving from Conservative to Moderate to Balanced to Growth is a question of how much movement you can live with, not which strategy you happen to land on.</p>
+      <p class="lede">Every Global Core portfolio is built from the same six asset classes. What changes between tiers is the weighting, not the philosophy. Moving from Conservative to Balanced to Moderate Growth to Aggressive Growth is a question of how much movement you can live with, not which strategy you happen to land on.</p>
     </div>
     <div class="pillars reveal">
-      <div class="pillar"><div class="pillar-num">01</div><h4>Low-cost ETFs</h4><p>Weighted fund expenses run between 0.04% and 0.07% a year. Every basis point saved on fees compounds for decades.</p></div>
+      <div class="pillar"><div class="pillar-num">01</div><h4>Low-cost ETFs</h4><p>Weighted fund expenses run between 0.04% and 0.06% a year. Every basis point saved on fees compounds for decades.</p></div>
       <div class="pillar"><div class="pillar-num">02</div><h4>True diversification</h4><p>Across asset classes (stocks, Treasuries, gold) and geographies (U.S., developed, and emerging markets). Not just a different shade of the same risk.</p></div>
       <div class="pillar"><div class="pillar-num">03</div><h4>Built-in stability</h4><p>Treasuries, gold, and dividend quality steady the portfolio by design. The cushion is engineered in, not bolted on.</p></div>
       <div class="pillar"><div class="pillar-num">04</div><h4>Strategic, not tactical</h4><p>Allocations are set with intent and held with discipline. We do not chase momentum, predict markets, or shuffle positions on news cycles.</p></div>
@@ -648,7 +650,7 @@ body.swapping .num-swap { opacity: 0.25; }
         <div class="label">The compounding engine</div>
         <h3>Every dividend. Every interest payment. <em>Automatically reinvested.</em></h3>
         <p>Dividends from SCHB, SCHD, and VXUS, along with interest from SGOV and VGIT, are not pulled out as cash. They go straight back to work, buying more shares, generating more income, compounding quietly across decades.</p>
-        <p>This is not optional. It is the <strong>structural choice that turns a 2% yield into a meaningful share of long-term total return.</strong></p>
+        <p>This is not optional. It is the <strong>structural choice that turns a 2% to 3% yield into a meaningful share of long-term total return.</strong></p>
         <p>No cash sits idle, and the earliest dollars work the longest.</p>
       </div>
       <div class="compound-visual">
@@ -715,7 +717,7 @@ body.swapping .num-swap { opacity: 0.25; }
           </div>
           <div class="calc-field">
             <label for="c-rate">Expected annual return, before fees</label>
-            <div class="calc-input"><input type="number" id="c-rate" value="10.37" min="0" max="20" step="0.1" inputmode="decimal"><span>%</span></div>
+            <div class="calc-input"><input type="number" id="c-rate" value="8.21" min="0" max="20" step="0.1" inputmode="decimal"><span>%</span></div>
             <div class="calc-hint" id="c-rate-hint"></div>
           </div>
           <div class="calc-fee">
@@ -758,7 +760,7 @@ body.swapping .num-swap { opacity: 0.25; }
         <div class="calc-actions">
           <a href="#schedule" class="btn btn-blue">Discuss these numbers</a>
         </div>
-        <div class="calc-note">This is a projection, not a prediction. The range comes from 1,000 simulated paths that vary month to month around the expected return you enter, using each portfolio's historical volatility (about 6% a year for Conservative up to 12% for Growth). The middle outcome is the 50th percentile; half of the simulated paths finished above it and half below. The low and high outcomes are the 5th and 95th percentiles, so roughly 1 run in 20 finished below the low figure and 1 in 20 above the high. The default expected return for each portfolio is its hypothetical annualized return from January 2012 through September 2026, a period that included strong U.S. stock markets; your results will be different and may be lower. Net results deduct the Fee Schedule A advisory fee from each simulated balance monthly: 1.50% on the first $500,000, 1.00% from $500,000 to $1,000,000, 0.75% from $1,000,000 to $2,000,000, nothing above $2,000,000, capped at $20,000 a year. The maximum annual investment advisory fee is 1.50%. Contributions are added at the end of each month. Taxes and fund expenses are not modeled beyond what is already reflected in fund returns.</div>
+        <div class="calc-note">This is a projection, not a prediction. The range comes from 1,000 simulated paths that vary month to month around the expected return you enter, using each portfolio's historical volatility (about 6% a year for Conservative up to 12% for Aggressive Growth). The middle outcome is the 50th percentile; half of the simulated paths finished above it and half below. The low and high outcomes are the 5th and 95th percentiles, so roughly 1 run in 20 finished below the low figure and 1 in 20 above the high. The default expected return for each portfolio is its hypothetical annualized return from January 2012 through September 2026, a period that included strong U.S. stock markets; your results will be different and may be lower. Net results deduct the advisory fee from each simulated balance monthly: 1.25% on the first $1,000,000, 0.75% from $1,000,000 to $2,000,000, nothing above $2,000,000, capped at $20,000 a year. The maximum annual investment advisory fee is 1.25%. Contributions are added at the end of each month. Taxes and fund expenses are not modeled beyond what is already reflected in fund returns.</div>
       </div>
     </div>
   </div>
@@ -822,14 +824,13 @@ body.swapping .num-swap { opacity: 0.25; }
     <table class="fee-table">
       <thead><tr><th>Assets under management</th><th>Annual fee</th></tr></thead>
       <tbody>
-        <tr><td>First $500,000</td><td>1.50%</td></tr>
-        <tr><td>$500,000 to $1,000,000</td><td>1.00%</td></tr>
+        <tr><td>First $1,000,000</td><td>1.25%</td></tr>
         <tr><td>$1,000,000 to $2,000,000</td><td>0.75%</td></tr>
         <tr><td>Above $2,000,000</td><td>No additional fee</td></tr>
       </tbody>
     </table>
-    <div class="fee-ex"><strong>How the tiers work.</strong> Each dollar pays only the rate for its tier, like income tax brackets. On $750,000 you pay 1.50% on the first $500,000 and 1.00% on the next $250,000, about $10,000 a year or 1.33% overall. At $1.5 million the blended rate is 1.08%. Once a household passes $2 million the fee stops growing: the most anyone pays is $20,000 a year, no matter how large the accounts become.</div>
-    <div class="fine">The maximum annual investment advisory fee is 1.50%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter based on the value at quarter end. Underlying ETFs carry their own expenses (0.05% to 0.10% a year for the Global Core Portfolios), which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Insurance and annuity products are separate from your advisory account and pay the agent a commission from the insurance company, not from your account. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</div>
+    <div class="fee-ex"><strong>How the tiers work.</strong> Each dollar pays only the rate for its tier, like income tax brackets. On $1.5 million you pay 1.25% on the first $1,000,000 and 0.75% on the next $500,000, which is $16,250 a year or 1.08% overall. Once a household passes $2 million the fee stops growing: the most anyone pays is $20,000 a year, no matter how large the accounts become.</div>
+    <div class="fine">The maximum annual investment advisory fee is 1.25%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter based on the value at quarter end. Underlying ETFs carry their own expenses (0.03% to 0.09% a year for the funds in the Global Core Portfolios), which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Insurance and annuity products are separate from your advisory account and pay the agent a commission from the insurance company, not from your account. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</div>
     <div class="modal-actions">
       <a href="https://www.jantzwealth.com/fees" target="_blank" rel="noopener noreferrer" class="btn btn-line">Full fee page</a>
       <button type="button" class="btn btn-ink" data-close>Close</button>
@@ -844,8 +845,8 @@ body.swapping .num-swap { opacity: 0.25; }
     <h4>Important disclosures</h4>
     <div class="disclosures">
       <p><strong>Hypothetical performance.</strong> The Global Core Portfolios in their current form were established in November 2026. All performance shown is hypothetical and was calculated by applying each portfolio's target weights to the historical monthly total returns of the underlying ETFs from January 1, 2012 through September 30, 2026, rebalanced to target weights each January, with all distributions reinvested. SGOV (iShares 0-3 Month Treasury Bond ETF) launched in May 2020; before July 2020 the short-term Treasury allocation uses the iShares Short Treasury Bond ETF (SHV) as a proxy. IAUM (iShares Gold Trust Micro) launched in June 2021; before August 2021 the gold allocation uses the iShares Gold Trust (IAU), which holds the same metal at a higher expense ratio, as a proxy. Hypothetical results do not reflect actual trading, were prepared with the benefit of hindsight, and may not reflect the impact that material economic and market factors might have had on decision-making if client money had actually been managed. No client has experienced these results.</p>
-      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.50%. Results labeled "net of 1.50%" are shown after deducting a 1.50% annual advisory fee, applied quarterly in arrears as 0.375% of the portfolio value at the end of each calendar quarter. Results labeled "before fees" do not reflect the deduction of any advisory fee and will be higher than what a client would have received; a client's results would be reduced by advisory fees and any custodial or trading costs. For a complete description of advisory fees, see the Jantz Wealth Advisors fee schedule.</p>
-      <p><strong>Worst calendar year</strong> figures are calendar-year total returns. Declines within a year, measured from peak to trough, may have been larger than the calendar-year figures shown. Trailing 12-month returns, yields, and 2026 year-to-date figures are as of September 30, 2026. Yield and fund expense figures are weighted averages of the underlying fund data and are subject to change. Price data: Yahoo Finance.</p>
+      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.25%. Results labeled "net of 1.25%" are shown after deducting a 1.25% annual advisory fee, applied quarterly in arrears as 0.3125% of the portfolio value at the end of each calendar quarter. Results labeled "before fees" do not reflect the deduction of any advisory fee and will be higher than what a client would have received; a client's results would be reduced by advisory fees and any custodial or trading costs. For a complete description of advisory fees, see the Jantz Wealth Advisors fee schedule.</p>
+      <p><strong>Worst calendar year</strong> figures are calendar-year total returns. Declines within a year, measured from peak to trough, may have been larger than the calendar-year figures shown. Trailing 12-month returns, yields, and 2026 year-to-date figures are as of September 30, 2026. Yield and fund expense figures are weighted averages of the underlying fund data and are subject to change. Price data: Yahoo Finance and fund sponsors.</p>
       <p>The Global Core Portfolios are model allocations and may not be appropriate for every investor. Individual recommendations are based on your financial situation, time horizon, tax considerations, and risk tolerance. Holdings, weights, and methodology are subject to change. All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
       <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
     </div>
@@ -853,7 +854,7 @@ body.swapping .num-swap { opacity: 0.25; }
 </footer>
 
 <script>
-/* ───────── DATA (as of 9/30/2026; Jan 2012 start; SGOV spliced from July 2020, IAUM from Aug 2021; six-fund lineup of Nov 2026) ───────── */
+/* ───────── DATA (as of 9/30/2026; Jan 2012 start; SGOV spliced from July 2020, IAUM from Aug 2021; six-fund lineup locked Nov 19, 2026; net = 1.25% a year, deducted quarterly) ───────── */
 const CAL_YEARS = [2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
 const FUNDS = {
   SCHB: { name: 'U.S. Equity', long: 'Schwab U.S. Broad Market ETF', color: '#232E3D' },
@@ -865,41 +866,33 @@ const FUNDS = {
 };
 const PORTS = [
   { id: 'conservative', name: 'Conservative', tier: 'Tier 1', tierWord: 'Stability first', num: '01',
-    weights: [['SGOV',35],['SCHD',20],['VGIT',15],['SCHB',10],['VXUS',10],['IAUM',10]], stocks: 40, mix: [40,50,10], exp: '0.07%', yld: '2.88%',
+    weights: [['SGOV',35],['SCHD',20],['VGIT',20],['SCHB',10],['VXUS',10],['IAUM',5]], stocks: 40, mix: [40,55,5], exp: '0.06%', yld: '3.09%',
     tag: 'Built for you if protecting what you have saved comes first, and you still want steady growth and income working in the background.',
-    blurbs: [['A large stability sleeve','Half the portfolio is in U.S. Treasuries. Most of that is short-term bills, the part that holds steady when markets do not and gives us cash to rebalance with.'],
-             ['A holding for each kind of market','Intermediate Treasuries have tended to gain in recessions, and gold in periods of inflation, <em>so no single environment decides your year.</em>'],
-             ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad U.S. market fell about 19%.']],
-    vol: 6.04,
-    gross: { QTD:1.06, YTD:7.05, Y1:10.33, Y5:7.65, Y10:7.39, SI:6.64, cal:[6.8,8.12,3.61,-1.27,6.08,10.82,-2.45,14.27,10.1,8.69,-5.28,8.86,9.99,14.81], val:[106804,115479,119650,118128,125308,138862,135454,154778,170414,185229,175448,190988,210072,241181,258176] },
-    net:   { QTD:0.68, YTD:5.85, Y1:8.68, Y5:6.04, Y10:5.79, SI:5.05, cal:[5.21,6.51,2.07,-2.74,4.5,9.16,-3.91,12.56,8.46,7.07,-6.69,7.23,8.35,13.1], val:[105211,112060,114375,111236,116238,126889,121929,137245,148856,159383,148715,159473,172791,195420,206846] } },
-  { id: 'moderate', name: 'Moderate', tier: 'Tier 2', tierWord: 'Stability with growth', num: '02',
-    weights: [['SCHD',25],['SCHB',20],['SGOV',20],['VGIT',15],['VXUS',10],['IAUM',10]], stocks: 55, mix: [55,35,10], exp: '0.06%', yld: '2.60%',
+    blurbs: [['A large stability sleeve','More than half the portfolio is in U.S. Treasuries. Most of that is short-term bills, the part that holds steady when markets do not and gives us cash to rebalance with.'], ['A holding for each kind of market','Intermediate Treasuries have tended to gain in recessions, and gold moves independently of stocks and bonds, <em>so no single environment decides your year.</em>'], ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad U.S. market fell about 19%.']],
+    vol: 5.62,
+    gross: { QTD:0.77, YTD:7.08, Y1:9.65, Y5:6.62, Y10:6.79, SI:6.31, cal:[6.57,9.4,3.94,-0.66,5.76,10.26,-2.3,13.68,9.23,8.75,-5.78,8.42,8.71,11.96], val:[106569,116587,121184,120381,127317,140374,137148,155905,170302,185209,174500,189184,205662,230264,246570] },
+    net:   { QTD:0.45, YTD:6.08, Y1:8.29, Y5:5.29, Y10:5.46, SI:4.99, cal:[5.24,8.04,2.65,-1.9,4.45,8.88,-3.51,12.26,7.88,7.4,-6.95,7.07,7.36,10.57], val:[105243,113704,116717,114501,119591,130216,125640,141046,152155,163415,152050,162794,174771,193243,204994] } },
+  { id: 'balanced', name: 'Balanced', tier: 'Tier 2', tierWord: 'Stability with growth', num: '02',
+    weights: [['SCHD',25],['SGOV',25],['SCHB',20],['VGIT',15],['VXUS',10],['IAUM',5]], stocks: 55, mix: [55,40,5], exp: '0.06%', yld: '2.78%',
     tag: 'Built for you if you want steady growth and income, with a large stability sleeve to soften the rough years.',
-    blurbs: [['A large stability sleeve','A little over a third is in U.S. Treasuries, mostly short-term bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'],
-             ['Stocks that pay you','Dividend payers are the largest holding. In 2022 they fell about 3% while the broad U.S. market fell about 19%.'],
-             ['A holding for each kind of market','Intermediate Treasuries have tended to gain in recessions, and gold in periods of inflation, <em>so no single environment decides your year.</em>']],
-    vol: 7.70,
-    gross: { QTD:1.25, YTD:8.98, Y1:12.47, Y5:8.86, Y10:9.14, SI:8.51, cal:[9,13.09,5.46,-1.25,8.05,13.88,-3.52,18.36,12.8,12.76,-7.63,10.93,12.18,16.08], val:[109003,123268,130003,128382,138716,157968,152406,180382,203478,229451,211953,235123,263753,306173,333672] },
-    net:   { QTD:0.88, YTD:7.76, Y1:10.79, Y5:7.24, Y10:7.51, SI:6.89, cal:[7.38,11.4,3.89,-2.72,6.44,12.18,-4.96,16.59,11.12,11.08,-9,9.28,10.5,14.35], val:[107378,119618,124272,120892,128675,144347,137188,159949,177737,197434,179658,196325,216946,248081,267332] } },
-  { id: 'balanced', name: 'Balanced', tier: 'Tier 3', tierWord: 'Balanced growth', num: '03',
-    weights: [['SCHB',35],['SCHD',20],['VXUS',15],['SGOV',10],['VGIT',10],['IAUM',10]], stocks: 70, mix: [70,20,10], exp: '0.05%', yld: '2.14%',
+    blurbs: [['A large stability sleeve','Forty percent is in U.S. Treasuries, mostly short-term bills. That is the part that holds steady when markets do not, and it gives us cash to rebalance with.'], ['Stocks that pay you','Dividend payers are the largest stock holding. In 2022 they fell about 3% while the broad U.S. market fell about 19%.'], ['A holding for each kind of market','Intermediate Treasuries have tended to gain in recessions, and gold moves independently of stocks and bonds, <em>so no single environment decides your year.</em>']],
+    vol: 7.30,
+    gross: { QTD:1.14, YTD:9.3, Y1:12.07, Y5:8.05, Y10:8.62, SI:8.21, cal:[8.66,14.5,5.57,-0.72,7.77,13.27,-3.35,17.58,11.59,12.96,-7.52,10.53,11.09,13.08], val:[108660,124415,131340,130397,140527,159170,153843,180881,201854,228011,210859,233066,258909,292779,320007] },
+    net:   { QTD:0.82, YTD:8.28, Y1:10.68, Y5:6.7, Y10:7.27, SI:6.86, cal:[7.31,13.07,4.25,-1.95,6.43,11.86,-4.55,16.11,10.21,11.55,-8.67,9.16,9.71,11.67], val:[107308,121338,126499,124028,132000,147652,140935,163642,180344,201180,183731,200554,220021,245708,266049] } },
+  { id: 'moderate-growth', name: 'Moderate Growth', tier: 'Tier 3', tierWord: 'Growth with stability', num: '03',
+    weights: [['SCHB',35],['SCHD',20],['VXUS',15],['SGOV',15],['VGIT',10],['IAUM',5]], stocks: 70, mix: [70,25,5], exp: '0.05%', yld: '2.32%',
     tag: 'Built for you if you want your savings to keep growing, with enough stability on hand to stay the course when markets get rough.',
-    blurbs: [['Growth leads','About 70% is in stocks, led by the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
-             ['Two kinds of Treasuries','Short-term bills hold steady and give us cash to rebalance with. Intermediate Treasuries have tended to gain in recessions, when stocks fall.'],
-             ['More than one source of return','U.S. stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
-    vol: 9.80,
-    gross: { QTD:1.31, YTD:10.35, Y1:14.24, Y5:10.4, Y10:10.88, SI:10.22, cal:[11.7,17.29,6.32,-1.46,9.2,17.24,-5,22.15,15.23,15.72,-10.82,14.7,14.84,19.23], val:[111704,131012,139287,137260,149886,175723,166938,203918,234976,271922,242508,278146,319421,380855,420289] },
-    net:   { QTD:0.93, YTD:9.12, Y1:12.53, Y5:8.76, Y10:9.23, SI:8.58, cal:[10.04,15.54,4.73,-2.93,7.57,15.49,-6.42,20.33,13.51,14,-12.15,12.98,13.13,17.45], val:[110037,127133,133147,129252,139037,160572,150269,180819,205250,233980,205557,232248,262734,308593,336729] } },
-  { id: 'growth', name: 'Growth', tier: 'Tier 4', tierWord: 'Long-term growth', num: '04',
+    blurbs: [['Growth leads','About 70% is in stocks, led by the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'], ['Two kinds of Treasuries','Short-term bills hold steady and give us cash to rebalance with. Intermediate Treasuries have tended to gain in recessions, when stocks fall.'], ['More than one source of return','U.S. stocks, international stocks and gold each respond to different conditions, so no single market decides your year.']],
+    vol: 9.43,
+    gross: { QTD:1.2, YTD:10.67, Y1:13.86, Y5:9.6, Y10:10.37, SI:9.93, cal:[11.36,18.7,6.42,-0.93,9.0,16.63,-4.83,21.37,14.02,15.92,-10.71,14.3,13.75,16.23], val:[111361,132183,140667,139364,151911,177168,168619,204654,233350,270492,241513,276039,313997,364964,403914] },
+    net:   { QTD:0.88, YTD:9.64, Y1:12.44, Y5:8.24, Y10:9.0, SI:8.56, cal:[9.98,17.22,5.09,-2.16,7.65,15.17,-6.01,19.86,12.6,14.47,-11.82,12.87,12.34,14.79], val:[109975,128914,135482,132557,142693,164347,154470,185150,208484,238662,210441,237533,266835,306287,335808] } },
+  { id: 'aggressive-growth', name: 'Aggressive Growth', tier: 'Tier 4', tierWord: 'Long-term growth', num: '04',
     weights: [['SCHB',55],['SCHD',15],['VXUS',15],['SGOV',5],['VGIT',5],['IAUM',5]], stocks: 85, mix: [85,10,5], exp: '0.04%', yld: '1.80%',
-    tag: 'Built for you if you have many years ahead and want your money working hard, and you can sit through market drops along the way.',
-    blurbs: [['Stocks do the work','About 85% is in stocks, with more than half in the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'],
-             ['Expect bigger swings','This portfolio rises and falls with the stock market. Its worst calendar year was 2022, and the drops within a year were larger. It suits money you will not need for many years.'],
-             ['A small stabilizing sleeve','Ten percent in Treasuries and five percent in gold will not cushion much. Their job is to give us something to rebalance with when stocks are down.']],
-    vol: 11.67,
-    gross: { QTD:1.35, YTD:12, Y1:15.45, Y5:11.24, Y10:12.34, SI:11.9, cal:[13.95,23.83,8.14,-0.91,10.32,19.67,-5.85,25.62,16.95,19.72,-14.07,18.57,17.36,18.61], val:[113947,141097,152587,151204,166809,199623,187950,236103,276128,330576,284053,336811,395271,468832,525115] },
-    net:   { QTD:0.97, YTD:10.75, Y1:13.73, Y5:9.58, Y10:10.67, SI:10.23, cal:[12.25,21.98,6.53,-2.38,8.67,17.89,-7.25,23.75,15.21,17.93,-15.36,16.8,15.61,16.84], val:[112248,136919,145861,142383,154734,182411,169183,209357,241196,284449,240772,281233,325124,379878,420713] } }
+    tag: 'Built for you if you have ten or more years before you need this money, and you can sit through market drops along the way.',
+    blurbs: [['Stocks do the work','About 85% is in stocks, with more than half in the broad U.S. market. Over long periods that is <em>where most of the growth comes from.</em>'], ['Expect bigger swings','This portfolio rises and falls with the stock market. Its worst calendar year was 2022, and the drops within a year were larger. It suits money you will not need for ten years or more.'], ['A small stabilizing sleeve','Ten percent in Treasuries and five percent in gold will not cushion much. Their job is to give us something to rebalance with when stocks are down.']],
+    vol: 11.66,
+    gross: { QTD:1.35, YTD:12, Y1:15.45, Y5:11.24, Y10:12.34, SI:11.92, cal:[13.95,23.83,8.14,-0.91,10.63,19.67,-5.85,25.62,16.95,19.72,-14.07,18.57,17.36,18.61], val:[113947,141097,152587,151204,167283,200190,188484,236774,276913,331515,284860,337768,396394,470164,526607] },
+    net:   { QTD:1.03, YTD:10.96, Y1:14.02, Y5:9.85, Y10:10.94, SI:10.53, cal:[12.53,22.29,6.8,-2.14,9.26,18.18,-7.02,24.06,15.5,18.23,-15.14,17.1,15.9,17.13], val:[112529,137608,146962,143818,157132,185703,172669,214208,247405,292504,248212,290651,336856,394575,437813] } }
 ];
 
 /* ───────── helpers ───────── */
@@ -909,7 +902,7 @@ const usd = v => '$' + Math.round(v).toLocaleString('en-US');
 const dataFor = p => p[FEE];
 const worst = d => { let i = 0; d.cal.forEach((r, k) => { if (r < d.cal[i]) i = k; }); return { r: d.cal[i], y: CAL_YEARS[i] }; };
 const best  = d => { let i = 0; d.cal.forEach((r, k) => { if (r > d.cal[i]) i = k; }); return { r: d.cal[i], y: CAL_YEARS[i] }; };
-const feeText = () => FEE === 'net' ? 'net of the 1.50% annual advisory fee' : 'before any advisory fee';
+const feeText = () => FEE === 'net' ? 'net of the 1.25% annual advisory fee' : 'before any advisory fee';
 
 /* ───────── static builds ───────── */
 function buildStatic() {
@@ -922,7 +915,7 @@ function buildStatic() {
   document.getElementById('spectrum-dots').innerHTML = PORTS.map(p => `
     <div class="spectrum-dot">
       <div class="spectrum-name">${p.name}</div>
-      <div class="spectrum-tier">${p.tier} &middot; ${p.tierWord}</div>
+      <div class="spectrum-tier">${p.tier} &middot; <span style="white-space:nowrap">${p.tierWord}</span></div>
       <div class="spectrum-stocks">${p.stocks}% stocks</div>
       <div class="spectrum-cagr"><span class="num-swap" data-si="${p.id}"></span><small>Annualized since 2012</small></div>
     </div>`).join('');
@@ -942,10 +935,10 @@ function buildStatic() {
   const roles = [
     ['SCHB','Primary growth engine. Roughly 2,400 U.S. companies of every size in a single low-cost fund, so no one company or industry can decide your year.'],
     ['SCHD','Quality and income. A 100-stock screen for dividend consistency and balance-sheet strength that has historically softened drawdowns while keeping pace in growth markets.'],
-    ['VXUS','Geographic diversification across roughly 8,900 holdings in developed and emerging markets outside the U.S. Keeps one country from deciding your year.'],
+    ['VXUS','Geographic diversification across roughly 8,800 holdings in developed and emerging markets outside the U.S. Keeps one country from deciding your year.'],
     ['SGOV','The stability sleeve. Treasury bills maturing in three months or less provide yield while holding steady, and give us cash to rebalance into weakness instead of selling into it.'],
     ['VGIT','The recession hedge. Treasury notes maturing in three to ten years have tended to gain when the economy weakens and stocks fall, which steadies the portfolio.'],
-    ['IAUM','Inflation hedge and crisis diversifier. Low correlation with stocks means gold often zigs when the rest of the portfolio zags.']
+    ['IAUM','The diversifier. Gold has had a low correlation with stocks and bonds, so it often moves on its own schedule when the rest of the portfolio does not.']
   ];
   const envs = [
     ['Economy grows','Growth',['SCHB','SCHD','VXUS'],'Stocks do the work, in the U.S. and around the world.'],
@@ -1042,16 +1035,16 @@ function renderNumbers() {
     q(`[data-best="${p.id}"]`, el => el.innerHTML = `${pct(b.r)}<small>${b.y}</small>`);
     q(`[data-worst2="${p.id}"]`, el => el.innerHTML = `${pct(w.r)}<small>${w.y}</small>`);
     q(`[data-grow="${p.id}"]`, el => el.innerHTML = `${usd(d.val[14])}<small>9/30/26</small>`);
-    q(`[data-calkey="${p.id}"]`, el => el.textContent = FEE === 'net' ? 'Net of 1.50% fee' : 'Before fees');
+    q(`[data-calkey="${p.id}"]`, el => el.textContent = FEE === 'net' ? 'Net of 1.25% fee' : 'Before fees');
     q(`svg[data-cal="${p.id}"]`, svg => drawCal(svg, d));
   });
 
   document.getElementById('spectrum-note-text').textContent = FEE === 'net'
-    ? 'Hypothetical annualized returns, January 2012 through September 2026, shown after deducting our maximum annual advisory fee of 1.50%.'
+    ? 'Hypothetical annualized returns, January 2012 through September 2026, shown after deducting our maximum annual advisory fee of 1.25%.'
     : 'Hypothetical annualized returns, January 2012 through September 2026, shown before any advisory fee. A client\'s results would be lower.';
   document.getElementById('fee-note-text').innerHTML = FEE === 'net'
-    ? `<strong>Every figure on this page is shown ${feeText()}.</strong> The maximum annual investment advisory fee is 1.50%. Your fee depends on your advisory agreement and may be lower.`
-    : `<strong>Every figure on this page is now shown ${feeText()}.</strong> These are not the results a client would have received. Switch back to "Net of 1.50%" to see results after the maximum annual advisory fee.`;
+    ? `<strong>Every figure on this page is shown ${feeText()}.</strong> The maximum annual investment advisory fee is 1.25%. Your fee depends on your advisory agreement and may be lower.`
+    : `<strong>Every figure on this page is now shown ${feeText()}.</strong> These are not the results a client would have received. Switch back to "Net of 1.25%" to see results after the maximum annual advisory fee.`;
 
   const bal = PORTS.find(p => p.id === 'balanced'), bd = dataFor(bal);
   document.getElementById('cv-sub').textContent = `January 1, 2012 through September 30, 2026, ${feeText()}, all distributions reinvested, rebalanced each January.`;
@@ -1139,8 +1132,8 @@ renderNumbers();
   const Z = (() => { let a = 1234567; const r = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
     const z = new Float32Array(PATHS * MAXM); for (let i = 0; i < z.length; i += 2) { const u = 1 - r(), v = r(), m = Math.sqrt(-2 * Math.log(u)); z[i] = m * Math.cos(2 * Math.PI * v); z[i + 1] = m * Math.sin(2 * Math.PI * v); } return z; })();
 
-  // Fee Schedule A: 1.50% to $500k, 1.00% to $1M, 0.75% to $2M, 0% above, capped at $20,000 a year
-  const TIERS = [[500000, 0.015], [1000000, 0.010], [2000000, 0.0075]], CAP = 20000;
+  // Fee schedule: 1.25% to $1M, 0.75% to $2M, 0% above, capped at $20,000 a year
+  const TIERS = [[1000000, 0.0125], [2000000, 0.0075]], CAP = 20000;
   function annualFee(v) { let f = 0, lo = 0; for (const [hi, r] of TIERS) { if (v <= lo) break; f += (Math.min(v, hi) - lo) * r; lo = hi; } return Math.min(f, CAP); }
   function project(start, contrib, years, rate, vol, fee, infl) {
     const sm = vol / 100 / Math.sqrt(12), mu = Math.log(1 + rate / 100) / 12, M = years * 12;
@@ -1173,13 +1166,13 @@ renderNumbers();
     $('c-rate-hint').textContent = `Prefilled with Global Core ${p.name}'s hypothetical annualized return since 2012 (${pct(grossRate(p))} before fees). Change it to test other assumptions. The range uses ${p.name}'s historical volatility of about ${p.vol.toFixed(0)}% a year.`;
     const s = project(i.start, i.contrib, i.years, i.rate, p.vol, fee, i.infl), end = s[s.length - 1];
     $('calc-title').innerHTML = `Global Core ${p.name}, <em>${i.years} years out.</em>`;
-    $('calc-basis').textContent = (CF === 'net' ? 'Net of Fee Schedule A' : 'Gross, before advisory fees') + (i.infl ? " · today's dollars" : '');
+    $('calc-basis').textContent = (CF === 'net' ? 'Net of the fee schedule' : 'Gross, before advisory fees') + (i.infl ? " · today's dollars" : '');
     $('calc-empty-msg').textContent = empty ? `Enter a starting balance or a monthly contribution to see a projection for Global Core ${p.name}.` : '';
     $('k-end').textContent = usd(end.mid);
     $('k-end-sub').textContent = empty ? 'Enter an amount to begin' : `9 in 10 runs landed between ${usd(end.lo)} and ${usd(end.hi)}`;
-    const effNow = i.start > 0 ? annualFee(i.start) / i.start * 100 : 1.5, effEnd = end.mid > 0 ? annualFee(end.mid) / end.mid * 100 : 1.5;
+    const effNow = i.start > 0 ? annualFee(i.start) / i.start * 100 : 1.25, effEnd = end.mid > 0 ? annualFee(end.mid) / end.mid * 100 : 1.25;
     $('c-fee-hint').textContent = CF === 'net'
-      ? `Fee Schedule A: 1.50% on the first $500k, 1.00% to $1M, 0.75% to $2M, nothing above, capped at $20,000 a year.` + (empty ? '' : ` Blended rate on ${usd(i.start)} today is ${effNow.toFixed(2)}%; on the projected ${usd(end.mid)} it would be ${effEnd.toFixed(2)}%.`)
+      ? `Fee schedule: 1.25% on the first $1M, 0.75% from $1M to $2M, nothing above, capped at $20,000 a year.` + (empty ? '' : ` Blended rate on ${usd(i.start)} today is ${effNow.toFixed(2)}%; on the projected ${usd(end.mid)} it would be ${effEnd.toFixed(2)}%.`)
       : 'No advisory fee deducted. These are not the results a client would receive.';
     $('k-contrib').textContent = usd(end.c);
     $('k-contrib-sub').textContent = `${usd(i.start)} to start plus ${usd(i.contrib)} a month`;
