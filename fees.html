@@ -132,7 +132,8 @@ h1, h2, h3, h4, .hs-head { text-wrap: balance; }
 .fee-table td { padding: 18px 20px; border-bottom: 1px solid var(--rule); font-size: 16px; color: var(--slate); }
 .fee-table tr:last-child td { border-bottom: 0; }
 .fee-table td.rate { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
-.fee-table td.rate.cap { color: var(--blue); font-size: 17px; font-family: var(--sans); font-weight: 600; }
+.fee-table td.rate.cap { color: var(--blue); font-size: 17px; font-family: var(--sans); font-weight: 600; white-space: nowrap; }
+@media (max-width: 480px) { .fee-table td.rate.cap { font-size: 15px; } .fee-table td { padding-left: 16px; padding-right: 16px; } }
 .fee-notes { margin-top: 22px; }
 .fee-notes p { font-size: 14.5px; line-height: 1.65; }
 .fee-notes strong { color: var(--ink); font-weight: 600; }
@@ -337,7 +338,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
           <div class="hs-col">
             <div class="small-label">The first way</div>
             <h3>Advisory fee</h3>
-            <p>For managing your investments and keeping your retirement plan current. One clear fee, starting at 1.50% on your first $500,000 and stepping down from there, with a cap built in.</p>
+            <p>For managing your investments and keeping your retirement plan current. One clear fee: 1.25% on your first $1,000,000 and less above that, with a cap built in.</p>
             <div class="hs-foot"><strong>Paid by you.</strong> Nothing out of pocket. Cancel any time.</div>
           </div>
           <div class="hs-col">
@@ -391,7 +392,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
   </svg>
   <div class="shell reveal">
     <div class="section-head">
-      <div class="label">Fee Schedule A</div>
+      <div class="label">Advisory fee schedule</div>
       <h2>The full planning relationship.<br><em>One fee, with a cap built in.</em></h2>
       <p class="lede">Our fee covers everything: your investment management and your complete retirement plan, kept current year after year. Each dollar pays only the rate for its tier, like income tax brackets.<br>The whole balance is never re-priced.</p>
     </div>
@@ -400,8 +401,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
         <table class="fee-table">
           <thead><tr><th>Assets under management</th><th>Annual fee</th></tr></thead>
           <tbody>
-            <tr><td>First $500,000</td><td class="rate">1.50%</td></tr>
-            <tr><td>$500,000 to $1,000,000</td><td class="rate">1.00%</td></tr>
+            <tr><td>First $1,000,000</td><td class="rate">1.25%</td></tr>
             <tr><td>$1,000,000 to $2,000,000</td><td class="rate">0.75%</td></tr>
             <tr><td>Above $2,000,000</td><td class="rate cap">No additional fee</td></tr>
           </tbody>
@@ -417,17 +417,18 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
           <h4>What that looks like</h4>
           <p class="sub">Annual fee at a few common household sizes.</p>
           <table class="ex-table">
-            <thead><tr><th>Household assets</th><th>Annual fee</th><th>Blended rate</th><th>Per month</th></tr></thead>
+            <thead><tr><th>Household assets</th><th>Annual fee</th><th>Effective rate</th><th>Per month</th></tr></thead>
             <tbody>
-              <tr><td>$250,000</td><td class="strong">$3,750</td><td>1.50%</td><td>$313</td></tr>
-              <tr><td>$500,000</td><td class="strong">$7,500</td><td>1.50%</td><td>$625</td></tr>
-              <tr><td>$750,000</td><td class="strong">$10,000</td><td>1.33%</td><td>$833</td></tr>
+              <tr><td>$250,000</td><td class="strong">$3,125</td><td>1.25%</td><td>$260</td></tr>
+              <tr><td>$500,000</td><td class="strong">$6,250</td><td>1.25%</td><td>$521</td></tr>
+              <tr><td>$750,000</td><td class="strong">$9,375</td><td>1.25%</td><td>$781</td></tr>
               <tr><td>$1,000,000</td><td class="strong">$12,500</td><td>1.25%</td><td>$1,042</td></tr>
               <tr><td>$1,500,000</td><td class="strong">$16,250</td><td>1.08%</td><td>$1,354</td></tr>
-              <tr><td>$2,000,000+</td><td class="strong">$20,000</td><td>1.00%</td><td>$1,667</td></tr>
+              <tr><td>$2,000,000</td><td class="strong">$20,000</td><td>1.00%</td><td>$1,667</td></tr>
+              <tr><td>$4,000,000</td><td class="strong">$20,000</td><td>0.50%</td><td>$1,667</td></tr>
             </tbody>
           </table>
-          <p class="fine" style="padding: 14px 0 10px;">Above $2 million the fee stays at $20,000, so the blended rate keeps falling. Monthly figures are shown for perspective. The fee is billed quarterly.</p>
+          <p class="fine" style="padding: 14px 0 10px;">Above $2 million the fee stays at $20,000, so the effective rate keeps falling. Monthly figures are shown for perspective. The fee is billed quarterly. Example: $1,500,000 pays $12,500 on the first $1,000,000, then $3,750 on the next $500,000.</p>
         </div>
         <div class="callout">
           <h4>Nothing out of pocket.</h4>
@@ -485,8 +486,8 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
     </div>
     <div class="inc-foot">
       <div class="callout">
-        <h4>Only need investment management?</h4>
-        <p>A management-only relationship, without the written retirement plan, is available at a lower rate under Fee Schedule B.<br>Ask your advisor which schedule fits you.</p>
+        <h4>No add-on charges.</h4>
+        <p>Planning, reviews and questions are all included.<br>You can call your advisor as often as you need to, and the answer is never "that costs extra."</p>
       </div>
       <div class="callout">
         <h4>What's not in the fee.</h4>
@@ -613,7 +614,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
         <input type="range" id="ann-pct" min="0" max="50" step="5" value="25" style="--pct:50%">
         <div class="slider-ticks"><span>0%</span><span>25%</span><span>50%</span></div>
         <div class="split-bar"><span class="s-inv" id="bar-inv" style="width:75%"></span><span class="s-ann" id="bar-ann" style="width:25%"></span></div>
-        <div class="split-legend"><span><i style="background:var(--ink)"></i>Investments (Schedule A)</span><span><i style="background:var(--r4)"></i>Growth annuity (no advisory fee)</span></div>
+        <div class="split-legend"><span><i style="background:var(--ink)"></i>Investments (advisory fee)</span><span><i style="background:var(--r4)"></i>Growth annuity (no advisory fee)</span></div>
         <p class="calc-note">The growth annuity side pays your advisor a one-time commission from the insurance company instead of an ongoing fee. No fee is deducted from your contract for it. The annuity's cost shows up as a cap on your upside and a surrender period, not as a fee.</p>
       </div>
       <div class="calc-out">
@@ -633,20 +634,20 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
             <div class="alloc"><b id="hy-inv">$750,000</b> in managed investments</div>
             <div class="alloc"><b id="hy-ann">$250,000</b> in a growth annuity</div>
             <div class="fee">
-              <span class="num" id="hy-fee">$10,000</span>
-              <div class="rate"><span id="hy-rate">1.00%</span> of your whole portfolio, per year</div>
-              <div class="mo">About <span id="hy-mo">$833</span> a month</div>
+              <span class="num" id="hy-fee">$9,375</span>
+              <div class="rate"><span id="hy-rate">0.94%</span> of your whole portfolio, per year</div>
+              <div class="mo">About <span id="hy-mo">$781</span> a month</div>
             </div>
           </div>
         </div>
         <div class="savings" id="savings">
           <div>
             <div class="small-label">Your annual fee difference</div>
-            <span class="num" id="sv-amt">$2,500</span>
+            <span class="num" id="sv-amt">$3,125</span>
           </div>
-          <div class="pct" id="sv-pct"><b>20% lower</b> advisory fee on the same portfolio</div>
+          <div class="pct" id="sv-pct"><b>25% lower</b> advisory fee on the same portfolio</div>
         </div>
-        <p class="calc-note">Both columns use Fee Schedule A, so the comparison is apples to apples. Many investment-only advisors charge more than Schedule A, which would make the difference larger. Above $2 million the cap takes over and the two columns converge.</p>
+        <p class="calc-note">Both columns use the same fee schedule, so the comparison is apples to apples. Other advisors' fees vary, so compare against what you pay today. Above $2 million the cap takes over and the two columns converge.</p>
       </div>
     </div>
 
@@ -654,16 +655,16 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
       <div class="hx">
         <div class="small-label">Example</div>
         <div class="size">$500,000</div>
-        <div class="hx-row"><span>Investment-only (100%)</span><b>$7,500</b></div>
-        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$5,625</b></div>
-        <div class="hx-row save"><span>Difference each year</span><b>$1,875</b></div>
+        <div class="hx-row"><span>Investment-only (100%)</span><b>$6,250</b></div>
+        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$4,688</b></div>
+        <div class="hx-row save"><span>Difference each year</span><b>$1,562</b></div>
       </div>
       <div class="hx">
         <div class="small-label">Example</div>
         <div class="size">$1,000,000</div>
         <div class="hx-row"><span>Investment-only (100%)</span><b>$12,500</b></div>
-        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$10,000</b></div>
-        <div class="hx-row save"><span>Difference each year</span><b>$2,500</b></div>
+        <div class="hx-row"><span>Hybrid (75% / 25%)</span><b>$9,375</b></div>
+        <div class="hx-row save"><span>Difference each year</span><b>$3,125</b></div>
       </div>
       <div class="hx">
         <div class="small-label">Example</div>
@@ -725,10 +726,6 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
         <div class="faq-a"><div class="faq-a-in">Yes. Fees are calculated on a household basis across all the advisory accounts we manage for you and your spouse, so the lower tiers and the $20,000 cap apply to the household as a whole.</div></div>
       </div>
       <div class="faq-item">
-        <button type="button" class="faq-q">What if I only want my investments managed?<span class="tg">+</span></button>
-        <div class="faq-a"><div class="faq-a-in">That is available under <strong>Fee Schedule B</strong>, a management-only relationship at a lower rate. It includes investment management, rebalancing, unlimited advisor access, an annual review, account coordination, and reporting, but not the written retirement paycheck plan or the ongoing tax, Social Security, and Medicare planning that come with Schedule A. Your advisor can walk you through both.</div></div>
-      </div>
-      <div class="faq-item">
         <button type="button" class="faq-q">Can I leave?<span class="tg">+</span></button>
         <div class="faq-a"><div class="faq-a-in">Any time, for any reason, with no termination fee. Your accounts stay at Charles Schwab in your name, so leaving is a matter of ending the advisory agreement, not moving your money.</div></div>
       </div>
@@ -766,8 +763,8 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
     <div class="footer-wordmark">Jantz <span>Wealth Advisors</span></div>
     <h4>Important disclosures</h4>
     <div class="disclosures">
-      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee under Fee Schedule A is 1.50%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter in arrears based on the value at quarter end, and capped at $20,000 per year. Underlying ETFs carry their own expenses, which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</p>
-      <p><strong>Hybrid fee comparison.</strong> The comparison above is hypothetical and for illustration only. It compares advisory fees only. An indexed annuity has no explicit annual fee, but its costs are reflected in its caps, participation rates, and surrender charges. It applies Fee Schedule A to both columns and assumes the growth annuity allocation carries no advisory fee. It does not reflect the surrender charges, caps, participation rates, or other terms of any specific annuity contract, and it is not a recommendation of any allocation. Indexed annuities are long-term contracts designed for retirement; withdrawals above the free amount during the surrender period may be subject to surrender charges, and guarantees are backed by the financial strength and claims-paying ability of the issuing insurance company. Whether an annuity is appropriate depends on your individual situation.</p>
+      <p><strong>Advisory fees.</strong> The maximum annual investment advisory fee is 1.25%. Fees are charged on a household basis across the advisory accounts we manage for you and your spouse, deducted from your account each quarter in arrears based on the value at quarter end, and capped at $20,000 per year. Underlying ETFs carry their own expenses, which are reflected in fund returns. Custodial and trading costs, if any, are charged by the custodian. Full details are in the Jantz Wealth Advisors advisory agreement and Form ADV Part 2.</p>
+      <p><strong>Hybrid fee comparison.</strong> The comparison above is hypothetical and for illustration only. It compares advisory fees only. An indexed annuity has no explicit annual fee, but its costs are reflected in its caps, participation rates, and surrender charges. It applies the same advisory fee schedule to both columns and assumes the growth annuity allocation carries no advisory fee. It does not reflect the surrender charges, caps, participation rates, or other terms of any specific annuity contract, and it is not a recommendation of any allocation. Indexed annuities are long-term contracts designed for retirement; withdrawals above the free amount during the surrender period may be subject to surrender charges, and guarantees are backed by the financial strength and claims-paying ability of the issuing insurance company. Whether an annuity is appropriate depends on your individual situation.</p>
       <p><strong>Insurance products</strong> are offered through individually licensed and appointed insurance agents, not through SimplyRIA Advisor Network. Your advisor may receive commissions on insurance products, which are separate from any advisory fee.</p>
       <p>All investments involve risk, including the possible loss of principal. Past performance is not indicative of future results.</p>
       <p style="margin-top:20px;">Investment advisory services are offered through Jantz Wealth Advisors on behalf of SimplyRIA Advisor Network, an SEC-registered investment adviser.</p>
@@ -776,13 +773,12 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
 </footer>
 
 <script>
-/* ───────── Fee Schedule A ───────── */
+/* ───────── Advisory fee schedule: 1.25% to $1M, 0.75% to $2M, 0% above, capped at $20,000 ───────── */
 const CAP = 20000;
 function scheduleA(x) {
   if (!x || x <= 0) return 0;
   let f = 0;
-  f += Math.min(x, 500000) * 0.015;
-  if (x > 500000) f += (Math.min(x, 1000000) - 500000) * 0.010;
+  f += Math.min(x, 1000000) * 0.0125;
   if (x > 1000000) f += (Math.min(x, 2000000) - 1000000) * 0.0075;
   return Math.min(f, CAP);
 }
@@ -795,7 +791,7 @@ function update() {
   const p = parseInt($('ann-pct').value, 10);
   const ann = total * p / 100, inv = total - ann;
   const ioFee = scheduleA(total), hyFee = scheduleA(inv);
-  const diff = ioFee - hyFee;
+  const diff = Math.round(ioFee) - Math.round(hyFee);
 
   $('ann-val').textContent = p + '%';
   $('ann-pct').style.setProperty('--pct', (p / 50 * 100) + '%');
