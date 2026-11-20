@@ -22,6 +22,16 @@
   --r1: #232E3D; --r2: #4A4F55; --r3: #7D8187; --r4: #B1B3B6; --r5: #D9D3C8;
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Inter', system-ui, sans-serif;
+  /* JWA gradients, brand standards v1.2 (Nov 20, 2026). Built only from palette colors. */
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -41,7 +51,7 @@ section { padding: 88px 0; }
 }
 h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; }
 h1 { font-size: clamp(42px, 6vw, 70px); font-weight: 400; line-height: 1.03; }
-h1 em { font-style: italic; font-weight: 400; color: var(--blue); }
+h1 em { font-style: italic; font-weight: 400; }
 h2 { font-size: clamp(30px, 3.8vw, 44px); margin-bottom: 20px; }
 h1, h2, h3, .ln { text-wrap: balance; }
 .ln { display: block; }
@@ -62,6 +72,17 @@ p + p { margin-top: 16px; }
 }
 .text-link:hover { border-bottom-color: var(--blue); }
 
+/* Gradient text: a short headline phrase only, never body copy */
+.gtext, h1 em, h2 .hl { color: var(--blue); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .gtext, h1 em, h2 .hl {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .on-ink .gtext, .on-ink h1 em, .on-ink h2 .hl { background-image: var(--g-text-blue-on-ink); }
+}
+
 /* Sentence starts on its own line in designed text */
 .s { display: inline-block; }
 .nw { white-space: nowrap; }
@@ -72,17 +93,17 @@ p + p { margin-top: 16px; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 .btn-ink { background: var(--ink); color: #fff; }
-.btn-ink:hover { background: var(--blue); }
+.btn-ink:hover { background: var(--blue); background-image: var(--g-blue-lift); }
 .btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
 .btn-line:hover { border-color: var(--ink); background: var(--white); }
 .on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
 .on-ink .btn-line:hover { border-color: #fff; background: transparent; }
 
 /* Hero (ink band 1 of 2) */
-.hero { background: var(--ink); color: #fff; padding: 112px 0 100px; position: relative; overflow: hidden; }
+.hero { background: var(--ink); background-image: var(--g-ink-blue); color: #fff; padding: 112px 0 100px; position: relative; overflow: hidden; }
 .hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .hero .shell { position: relative; z-index: 1; }
 .hero .label { color: rgba(255,255,255,0.7); }
@@ -126,10 +147,11 @@ p + p { margin-top: 16px; }
 }
 
 /* Who we help */
-.who { background: var(--stone-light); }
+.who { background: var(--stone-light); background-image: var(--g-stone-fade); }
 .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 @media (max-width: 900px) { .who-grid { grid-template-columns: 1fr; } }
-.who-card { background: var(--white); border-radius: 4px; padding: 32px 30px 30px; border-top: 3px solid var(--ink); }
+.who-card { background: var(--white); border-radius: 4px; padding: 35px 30px 30px; position: relative; overflow: hidden; }
+.who-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--g-blue-green); }
 .who-card .small-label { margin-bottom: 14px; }
 .who-card h3 { margin-bottom: 12px; }
 .who-card p { font-size: 16px; line-height: 1.65; }
@@ -157,7 +179,6 @@ p + p { margin-top: 16px; }
 .hybrid-grid .section-head { margin-bottom: 28px; }
 .hybrid-head { margin-bottom: 40px; }
 .hybrid-head h2 { margin-bottom: 0; }
-h2 .hl { color: var(--blue); }
 .founders { margin-top: 40px; max-width: 400px; }
 .founders-img { position: relative; z-index: 0; }
 .founders-img img { display: block; width: 100%; height: auto; border-radius: 4px; }
@@ -179,7 +200,7 @@ h2 .hl { color: var(--blue); }
 .coord strong { color: var(--ink); font-weight: 600; }
 
 /* Retirement Stack */
-.stack-sec { background: var(--stone); position: relative; overflow: hidden; }
+.stack-sec { background: var(--stone); background-image: var(--g-stone-sky); position: relative; overflow: hidden; }
 .stack-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .stack-sec .shell { position: relative; z-index: 1; }
 .stack-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
@@ -235,7 +256,7 @@ h2 .hl { color: var(--blue); }
   .step, .step + .step, .step:nth-child(even) { padding: 26px 0 22px; border-left: 0; }
   .step + .step { border-top: 1px solid var(--rule); }
 }
-.step .num { font-family: var(--serif); font-size: 46px; line-height: 1; color: var(--r4); margin-bottom: 18px; font-weight: 400; }
+.step .num { font-family: var(--serif); font-size: 46px; line-height: 1; margin-bottom: 18px; font-weight: 400; display: inline-block; }
 .step h3 { font-size: 23px; margin-bottom: 10px; }
 .step p { font-size: 15.5px; line-height: 1.65; }
 
@@ -266,7 +287,7 @@ h2 .hl { color: var(--blue); }
 .pf-key { margin-top: 16px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 12.5px; }
 .pf-key span { display: inline-flex; align-items: center; gap: 8px; }
 .pf-key i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
-.isa { background: var(--stone); border-radius: 4px; padding: 34px 32px 32px; display: flex; flex-direction: column; }
+.isa { background: var(--stone); background-image: var(--g-stone-sky); border-radius: 4px; padding: 34px 32px 32px; display: flex; flex-direction: column; }
 .isa .small-label { color: var(--blue); margin-bottom: 12px; }
 .isa h3 { margin-bottom: 12px; }
 .isa p { font-size: 16px; line-height: 1.65; }
@@ -314,7 +335,7 @@ h2 .hl { color: var(--blue); }
 .about-quote { margin: 30px 0; padding: 4px 0 4px 24px; border-left: 3px solid var(--blue); font-family: var(--serif); font-style: italic; font-size: 24px; line-height: 1.35; color: var(--ink); max-width: 34ch; text-wrap: balance; }
 
 /* Final CTA (ink band 2 of 2) */
-.final-cta { background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+.final-cta { background: var(--ink); background-image: var(--g-ink-depth); text-align: center; position: relative; overflow: hidden; }
 .cta-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .final-cta .shell { position: relative; z-index: 1; }
 .final-cta .label { color: rgba(255,255,255,0.7); }
@@ -348,7 +369,7 @@ h2 .hl { color: var(--blue); }
     <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1">
       <circle cx="1500" cy="40" r="260"/><circle cx="1500" cy="40" r="360"/><circle cx="1500" cy="40" r="460"/><circle cx="1500" cy="40" r="560"/><circle cx="1500" cy="40" r="660"/><circle cx="1500" cy="40" r="760"/>
     </g>
-    <path d="M 1500 40 m -560 0 a 560 560 0 0 0 560 560" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5"/>
+    <path d="M 1500 40 m -560 0 a 560 560 0 0 0 560 560" fill="none" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="1.5"/>
     <g fill="#FFFFFF" fill-opacity="0.07">
       <circle cx="80" cy="660" r="2"/><circle cx="120" cy="660" r="2"/><circle cx="160" cy="660" r="2"/><circle cx="200" cy="660" r="2"/><circle cx="240" cy="660" r="2"/>
       <circle cx="80" cy="700" r="2"/><circle cx="120" cy="700" r="2"/><circle cx="160" cy="700" r="2"/><circle cx="200" cy="700" r="2"/><circle cx="240" cy="700" r="2"/>
@@ -573,22 +594,22 @@ h2 .hl { color: var(--blue); }
     </div>
     <div class="steps reveal">
       <div class="step">
-        <div class="num">1</div>
+        <div class="num gtext">1</div>
         <h3>A first conversation</h3>
         <p>A short, no-cost conversation about where you are, where you want to go, and whether we're the right fit for each other.</p>
       </div>
       <div class="step">
-        <div class="num">2</div>
+        <div class="num gtext">2</div>
         <h3>Your plan, in writing</h3>
         <p>We map your income sources against your expenses, test the plan against market drawdowns and inflation, and show you the paycheck it can support.</p>
       </div>
       <div class="step">
-        <div class="num">3</div>
+        <div class="num gtext">3</div>
         <h3>Put it to work</h3>
         <p>Accounts open in your name at Charles Schwab. Your investments go into the portfolio that fits you, and an annuity or life insurance is added only where it solves a problem in your plan.</p>
       </div>
       <div class="step">
-        <div class="num">4</div>
+        <div class="num gtext">4</div>
         <h3>Stay on course</h3>
         <p>Ongoing management, an annual review, and access to your advisor whenever you need it. When life or markets change, the plan changes with them.</p>
       </div>
@@ -605,10 +626,11 @@ h2 .hl { color: var(--blue); }
       </g>
       <polygon points="10,205 50,190 80,196 115,170 150,178 185,150 215,158 250,120 280,128 315,92 345,72 370,48 370,230 10,230" fill="#232E3D" fill-opacity="0.03"/>
       <polyline points="10,212 60,203 110,193 160,184 210,172 260,161 310,148 370,134" fill="none" stroke="#232E3D" stroke-opacity="0.12" stroke-width="1.25" stroke-dasharray="3 5"/>
-      <polyline class="grow" points="10,205 50,190 80,196 115,170 150,178 185,150 215,158 250,120 280,128 315,92 345,72 370,48" fill="none" stroke="#232E3D" stroke-opacity="0.28" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>
+      <defs><linearGradient id="gGrow" gradientUnits="userSpaceOnUse" x1="10" y1="205" x2="370" y2="48"><stop offset="0" stop-color="#0077B6"/><stop offset="0.55" stop-color="#1A7C8C"/><stop offset="1" stop-color="#2E7D5B"/></linearGradient></defs>
+      <polyline class="grow" points="10,205 50,190 80,196 115,170 150,178 185,150 215,158 250,120 280,128 315,92 345,72 370,48" fill="none" stroke="url(#gGrow)" stroke-opacity="0.7" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
       <g class="grow-dot">
-        <circle cx="370" cy="48" r="10" fill="none" stroke="#0077B6" stroke-opacity="0.3"/>
-        <circle cx="370" cy="48" r="4" fill="#0077B6"/>
+        <circle cx="370" cy="48" r="10" fill="none" stroke="#2E7D5B" stroke-opacity="0.3"/>
+        <circle cx="370" cy="48" r="4" fill="#2E7D5B"/>
       </g>
     </svg>
     <div class="section-head reveal">

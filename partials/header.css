@@ -9,8 +9,8 @@ html{scroll-padding-top:84px}
 .jwa-hd .jwa-hd-link{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#232E3D;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent;white-space:nowrap}
 .jwa-hd .jwa-hd-link:hover{color:#0077B6}
 .jwa-hd .jwa-hd-link.is-active{color:#0077B6;border-bottom-color:#0077B6}
-.jwa-hd .jwa-hd-cta{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:#0077B6;text-decoration:none;padding:13px 20px;border-radius:2px;white-space:nowrap}
-.jwa-hd .jwa-hd-cta:hover{background:#00609A}
+.jwa-hd .jwa-hd-cta{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:#0077B6;background-image:linear-gradient(90deg,#0077B6 0%,#2A9BD6 100%);text-decoration:none;padding:13px 20px;border-radius:2px;white-space:nowrap}
+.jwa-hd .jwa-hd-cta:hover{background-image:linear-gradient(90deg,#00609A 0%,#0077B6 100%)}
 .jwa-hd-btn{display:none;background:none;border:1px solid #D9D3C8;border-radius:2px;width:44px;height:44px;cursor:pointer;align-items:center;justify-content:center}
 .jwa-hd-btn span,.jwa-hd-btn span:before,.jwa-hd-btn span:after{content:'';display:block;width:18px;height:2px;background:#232E3D;position:relative}
 .jwa-hd-btn span:before{position:absolute;top:-6px}
