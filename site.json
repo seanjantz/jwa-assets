@@ -63,7 +63,8 @@
       "path": "/investment-strategy",
       "file": "investment-strategy.html",
       "metaEvent": { "name": "CompleteRegistration", "whenVisible": "#result" },
-      "menu": "Assessment",
+      "menu": "Investment Strategy Assessment",
+      "menuGroup": "Tools",
       "title": "Investment Strategy Assessment (ISA) | Jantz Wealth Advisors",
       "description": "A 12-question assessment that matches you to one of the four Global Core portfolios based on your time horizon, capacity for risk, and comfort with risk."
     },
@@ -78,6 +79,8 @@
     {
       "path": "/roth-conversion-calculator",
       "file": "roth-conversion-calculator.html",
+      "menu": "Roth Conversion Calculator",
+      "menuGroup": "Tools",
       "title": "Multi-Year Roth Conversion Calculator | Jantz Wealth Advisors",
       "description": "Model a year-by-year Roth conversion plan. Choose from three conversion strategies, set an IRMAA ceiling, and compare the plan against doing nothing.",
       "shareImage": "/images/share/roth-conversion-calculator.jpg"
@@ -85,6 +88,8 @@
     {
       "path": "/tax-simulator",
       "file": "tax-simulator.html",
+      "menu": "Tax Simulator",
+      "menuGroup": "Tools",
       "title": "2026 Federal and State Tax Simulator | Jantz Wealth Advisors",
       "description": "Estimate your 2026 federal and state income taxes, then test a Roth conversion or a capital gain and see the before and after side by side. Covers all 50 states, Social Security taxation, and Medicare IRMAA tiers.",
       "shareImage": "/images/share/tax-simulator.jpg"
@@ -92,6 +97,8 @@
     {
       "path": "/indexed-growth-annuity",
       "file": "indexed-growth-annuity.html",
+      "menu": "Indexed Growth Strategy",
+      "menuGroup": "Tools",
       "title": "The Indexed Growth Strategy | Jantz Wealth Advisors",
       "description": "See how an indexed growth annuity credits interest year by year. Set your own S&P 500 cap, compare a strong market decade with a challenging one, and see the bond market alongside it.",
       "shareImage": "/images/share/indexed-growth-annuity.jpg"
