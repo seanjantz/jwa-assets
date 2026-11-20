@@ -53,8 +53,8 @@ p, li { text-wrap: pretty; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 
 /* Hero (ink band 1 of 2) */
 .hero { background: var(--ink); color: #fff; padding: 84px 0 76px; position: relative; overflow: hidden; }
@@ -225,6 +225,29 @@ dialog.ref::backdrop { background: rgba(35,46,61,0.55); }
 .disclosures strong { color: var(--ink); font-weight: 600; }
 
 @media print { .hero-art, .cta-art, .final-cta, .copybtn { display: none; } }
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 </head>
 <body>
@@ -235,9 +258,9 @@ dialog.ref::backdrop { background: rgba(35,46,61,0.55); }
     <!-- ten years: the Traditional IRA winds down while the Roth builds -->
     <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1"><line x1="880" y1="66" x2="880" y2="470"/><line x1="938" y1="66" x2="938" y2="470"/><line x1="996" y1="66" x2="996" y2="470"/><line x1="1053" y1="66" x2="1053" y2="470"/><line x1="1111" y1="66" x2="1111" y2="470"/><line x1="1169" y1="66" x2="1169" y2="470"/><line x1="1227" y1="66" x2="1227" y2="470"/><line x1="1284" y1="66" x2="1284" y2="470"/><line x1="1342" y1="66" x2="1342" y2="470"/><line x1="1400" y1="66" x2="1400" y2="470"/><line x1="840" y1="470" x2="1420" y2="470"/></g>
     <polyline points="880.0,166.0 888.7,179.9 897.3,193.3 906.0,206.0 914.7,218.3 923.3,230.0 932.0,241.2 940.7,251.9 949.3,262.2 958.0,272.1 966.7,281.5 975.3,290.5 984.0,299.2 992.7,307.4 1001.3,315.4 1010.0,323.0 1018.7,330.2 1027.3,337.2 1036.0,343.9 1044.7,350.2 1053.3,356.4 1062.0,362.2 1070.7,367.8 1079.3,373.2 1088.0,378.3 1096.7,383.2 1105.3,388.0 1114.0,392.5 1122.7,396.8 1131.3,400.9 1140.0,404.9 1148.7,408.7 1157.3,412.3 1166.0,415.8 1174.7,419.1 1183.3,422.3 1192.0,425.4 1200.7,428.3 1209.3,431.1 1218.0,433.8 1226.7,436.4 1235.3,438.8 1244.0,441.2 1252.7,443.4 1261.3,445.6 1270.0,447.7 1278.7,449.7 1287.3,451.5 1296.0,453.4 1304.7,455.1 1313.3,456.8 1322.0,458.4 1330.7,459.9 1339.3,461.4 1348.0,462.8 1356.7,464.1 1365.3,465.4 1374.0,466.6 1382.7,467.8 1391.3,468.9 1400.0,470.0" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.5"/>
-    <polyline points="880.0,470.0 888.7,458.3 897.3,447.0 906.0,435.9 914.7,425.1 923.3,414.6 932.0,404.4 940.7,394.5 949.3,384.8 958.0,375.4 966.7,366.2 975.3,357.2 984.0,348.5 992.7,340.1 1001.3,331.8 1010.0,323.8 1018.7,315.9 1027.3,308.3 1036.0,300.9 1044.7,293.7 1053.3,286.7 1062.0,279.8 1070.7,273.1 1079.3,266.7 1088.0,260.3 1096.7,254.2 1105.3,248.2 1114.0,242.3 1122.7,236.7 1131.3,231.1 1140.0,225.7 1148.7,220.5 1157.3,215.4 1166.0,210.4 1174.7,205.6 1183.3,200.9 1192.0,196.3 1200.7,191.8 1209.3,187.5 1218.0,183.2 1226.7,179.1 1235.3,175.1 1244.0,171.2 1252.7,167.4 1261.3,163.7 1270.0,160.0 1278.7,156.5 1287.3,153.1 1296.0,149.8 1304.7,146.5 1313.3,143.4 1322.0,140.3 1330.7,137.3 1339.3,134.4 1348.0,131.5 1356.7,128.8 1365.3,126.1 1374.0,123.5 1382.7,120.9 1391.3,118.4 1400.0,116.0" fill="none" stroke="#0077B6" stroke-opacity="0.75" stroke-width="1.75"/>
-    <g fill="#0077B6" fill-opacity="0.9"><circle cx="880" cy="470.0" r="2.5"/><circle cx="938" cy="397.8" r="2.5"/><circle cx="996" cy="337.3" r="2.5"/><circle cx="1053" cy="286.7" r="2.5"/><circle cx="1111" cy="244.3" r="2.5"/><circle cx="1169" cy="208.8" r="2.5"/><circle cx="1227" cy="179.1" r="2.5"/><circle cx="1284" cy="154.2" r="2.5"/><circle cx="1342" cy="133.4" r="2.5"/><circle cx="1400" cy="116.0" r="2.5"/></g>
-    <circle cx="1400" cy="116.0" r="7" fill="none" stroke="#0077B6" stroke-opacity="0.6" stroke-width="1"/>
+    <polyline points="880.0,470.0 888.7,458.3 897.3,447.0 906.0,435.9 914.7,425.1 923.3,414.6 932.0,404.4 940.7,394.5 949.3,384.8 958.0,375.4 966.7,366.2 975.3,357.2 984.0,348.5 992.7,340.1 1001.3,331.8 1010.0,323.8 1018.7,315.9 1027.3,308.3 1036.0,300.9 1044.7,293.7 1053.3,286.7 1062.0,279.8 1070.7,273.1 1079.3,266.7 1088.0,260.3 1096.7,254.2 1105.3,248.2 1114.0,242.3 1122.7,236.7 1131.3,231.1 1140.0,225.7 1148.7,220.5 1157.3,215.4 1166.0,210.4 1174.7,205.6 1183.3,200.9 1192.0,196.3 1200.7,191.8 1209.3,187.5 1218.0,183.2 1226.7,179.1 1235.3,175.1 1244.0,171.2 1252.7,167.4 1261.3,163.7 1270.0,160.0 1278.7,156.5 1287.3,153.1 1296.0,149.8 1304.7,146.5 1313.3,143.4 1322.0,140.3 1330.7,137.3 1339.3,134.4 1348.0,131.5 1356.7,128.8 1365.3,126.1 1374.0,123.5 1382.7,120.9 1391.3,118.4 1400.0,116.0" fill="none" stroke="#8CCBEC" stroke-opacity="0.75" stroke-width="1.75"/>
+    <g fill="#8CCBEC" fill-opacity="0.9"><circle cx="880" cy="470.0" r="2.5"/><circle cx="938" cy="397.8" r="2.5"/><circle cx="996" cy="337.3" r="2.5"/><circle cx="1053" cy="286.7" r="2.5"/><circle cx="1111" cy="244.3" r="2.5"/><circle cx="1169" cy="208.8" r="2.5"/><circle cx="1227" cy="179.1" r="2.5"/><circle cx="1284" cy="154.2" r="2.5"/><circle cx="1342" cy="133.4" r="2.5"/><circle cx="1400" cy="116.0" r="2.5"/></g>
+    <circle cx="1400" cy="116.0" r="7" fill="none" stroke="#8CCBEC" stroke-opacity="0.6" stroke-width="1"/>
   </svg>
   <div class="shell">
     <div class="label">Tax planning tool</div>

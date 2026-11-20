@@ -69,10 +69,10 @@ h1, h2, h3, h4, .hs-head { text-wrap: balance; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 .btn-ink { background: var(--ink); color: #fff; }
-.btn-ink:hover { background: var(--blue); }
+.btn-ink:hover { background: var(--blue); background-image: var(--g-blue-lift); }
 .btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
 .btn-line:hover { border-color: var(--ink); background: var(--white); }
 .on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
@@ -305,6 +305,32 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.in { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+.schedule { background-image: var(--g-stone-sky); }
+.job { border-image: var(--g-blue-green) 1; border-top-left-radius: 0; border-top-right-radius: 0; }
+.inc-card { border-image: var(--g-blue-green) 1; border-top-left-radius: 0; border-top-right-radius: 0; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 </head>
 <body>
@@ -315,7 +341,7 @@ input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 
     <g fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1">
       <circle cx="1500" cy="40" r="260"/><circle cx="1500" cy="40" r="360"/><circle cx="1500" cy="40" r="460"/><circle cx="1500" cy="40" r="560"/><circle cx="1500" cy="40" r="660"/>
     </g>
-    <path d="M 1500 40 m -460 0 a 460 460 0 0 0 460 460" fill="none" stroke="#0077B6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <path d="M 1500 40 m -460 0 a 460 460 0 0 0 460 460" fill="none" stroke="#8CCBEC" stroke-opacity="0.3" stroke-width="1.5"/>
     <g fill="#FFFFFF" fill-opacity="0.07">
       <circle cx="80" cy="600" r="2"/><circle cx="120" cy="600" r="2"/><circle cx="160" cy="600" r="2"/><circle cx="200" cy="600" r="2"/><circle cx="240" cy="600" r="2"/>
       <circle cx="80" cy="640" r="2"/><circle cx="120" cy="640" r="2"/><circle cx="160" cy="640" r="2"/><circle cx="200" cy="640" r="2"/><circle cx="240" cy="640" r="2"/>

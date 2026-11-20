@@ -54,8 +54,8 @@ p, li { text-wrap: pretty; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 
 /* Hero (ink band 1 of 2) */
 .hero { background: var(--ink); color: #fff; padding: 84px 0 76px; position: relative; overflow: hidden; }
@@ -236,6 +236,29 @@ details.math .mbody { padding: 0 24px 16px; font-size: 14px; }
 .disclosures strong { color: var(--ink); font-weight: 600; }
 
 @media print { .hero-art, .cta-art, .final-cta, .copybtn, .reset, .slider { display: none; } }
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 </head>
 <body>
@@ -244,7 +267,7 @@ details.math .mbody { padding: 0 24px 16px; font-size: 14px; }
 <section class="hero">
   <svg class="hero-art" viewBox="830 50 590 440" preserveAspectRatio="xMaxYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <!-- before and after: the baseline, then the same rail with the strategy added in blue -->
-    <g font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.18em" fill="#FFFFFF" fill-opacity="0.5"><text x="880" y="172">BASELINE</text><text x="880" y="292">WITH THE STRATEGY</text></g><rect x="880" y="186" width="520" height="46" rx="2" fill="none" stroke="#FFFFFF" stroke-opacity="0.18"/><line x1="942.4" y1="186" x2="942.4" y2="232" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1129.6" y1="186" x2="1129.6" y2="232" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1285.6" y1="186" x2="1285.6" y2="232" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><rect x="880" y="214" width="208.0" height="18" fill="#FFFFFF" fill-opacity="0.30"/><rect x="880" y="306" width="520" height="46" rx="2" fill="none" stroke="#FFFFFF" stroke-opacity="0.18"/><line x1="942.4" y1="306" x2="942.4" y2="352" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1129.6" y1="306" x2="1129.6" y2="352" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1285.6" y1="306" x2="1285.6" y2="352" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><rect x="880" y="334" width="208.0" height="18" fill="#FFFFFF" fill-opacity="0.30"/><rect x="1088.0" y="334" width="124.8" height="18" fill="#0077B6" fill-opacity="0.9"/>
+    <g font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.18em" fill="#FFFFFF" fill-opacity="0.5"><text x="880" y="172">BASELINE</text><text x="880" y="292">WITH THE STRATEGY</text></g><rect x="880" y="186" width="520" height="46" rx="2" fill="none" stroke="#FFFFFF" stroke-opacity="0.18"/><line x1="942.4" y1="186" x2="942.4" y2="232" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1129.6" y1="186" x2="1129.6" y2="232" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1285.6" y1="186" x2="1285.6" y2="232" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><rect x="880" y="214" width="208.0" height="18" fill="#FFFFFF" fill-opacity="0.30"/><rect x="880" y="306" width="520" height="46" rx="2" fill="none" stroke="#FFFFFF" stroke-opacity="0.18"/><line x1="942.4" y1="306" x2="942.4" y2="352" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1129.6" y1="306" x2="1129.6" y2="352" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><line x1="1285.6" y1="306" x2="1285.6" y2="352" stroke="#FFFFFF" stroke-opacity="0.18" stroke-dasharray="3 4"/><rect x="880" y="334" width="208.0" height="18" fill="#FFFFFF" fill-opacity="0.30"/><rect x="1088.0" y="334" width="124.8" height="18" fill="#8CCBEC" fill-opacity="0.9"/>
   </svg>
   <div class="shell">
     <div class="label">Tax planning tool</div>

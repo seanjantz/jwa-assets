@@ -57,8 +57,8 @@ p + p { margin-top: 16px; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 .btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
 .btn-line:hover { border-color: var(--ink); background: var(--white); }
 .on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
@@ -266,6 +266,30 @@ html:not(.js) .mix-bar { transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal, .mix-bar { opacity: 1; transform: none; transition: none; }
 }
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+.method { background-image: var(--g-stone-sky); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -277,8 +301,8 @@ html:not(.js) .mix-bar { transform: none; }
     <g stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1">
       <line x1="0" y1="180" x2="1440" y2="180"/><line x1="0" y1="320" x2="1440" y2="320"/><line x1="0" y1="460" x2="1440" y2="460"/><line x1="0" y1="600" x2="1440" y2="600"/>
     </g>
-    <path d="M 520 660 L 660 612 L 760 632 L 900 520 L 1000 548 L 1140 400 L 1240 436 L 1400 236" fill="none" stroke="#0077B6" stroke-opacity="0.5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="1400" cy="236" r="5" fill="#0077B6" fill-opacity="0.75"/>
+    <path d="M 520 660 L 660 612 L 760 632 L 900 520 L 1000 548 L 1140 400 L 1240 436 L 1400 236" fill="none" stroke="#8CCBEC" stroke-opacity="0.5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1400" cy="236" r="5" fill="#8CCBEC" fill-opacity="0.75"/>
     <path d="M 600 676 L 740 640 L 850 656 L 980 574 L 1090 598 L 1250 486 L 1440 372" fill="none" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M 680 688 L 820 664 L 930 676 L 1060 618 L 1190 634 L 1330 556 L 1440 512" fill="none" stroke="#FFFFFF" stroke-opacity="0.11" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 8"/>
     <g fill="#FFFFFF" fill-opacity="0.06">

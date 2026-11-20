@@ -22,9 +22,9 @@
   .wrap{max-width:920px;margin:0 auto;padding:0 24px}
   .lab{font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
   h2{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.2;color:var(--blue)}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;border:0;border-radius:2px;
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);background-image:var(--g-blue-lift);color:#fff;border:0;border-radius:2px;
        font-weight:600;font-size:15px;letter-spacing:.02em;padding:15px 28px;text-decoration:none;transition:background .15s}
-  .btn:hover{background:var(--blue-dark)}
+  .btn:hover{background-image:var(--g-blue-lift-hover)}
   .btn:disabled{background:var(--rule);color:#fff;cursor:not-allowed}
   .btn:focus-visible,.opt:focus-visible,.link:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
   .link{background:none;border:0;color:var(--blue);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;padding:6px 0}
@@ -173,6 +173,30 @@
     table.hold .tk{width:54px}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.close { background-image: var(--g-ink-depth); }
+.how { background-image: var(--g-stone-sky); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .close h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 </head>
 <body data-view="intro">

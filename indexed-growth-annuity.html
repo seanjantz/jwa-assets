@@ -54,8 +54,8 @@ p, li { text-wrap: pretty; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 
 /* Hero (ink band 1 of 2) */
 .hero { background: var(--ink); color: #fff; padding: 84px 0 76px; position: relative; overflow: hidden; }
@@ -192,6 +192,31 @@ tfoot td.credit { color: var(--green); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
 @media print { .hero-art, .cta-art, .final-cta { display: none; } }
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+.fit { background-image: var(--g-stone-sky); }
+.term { border-image: var(--g-blue-green) 1; border-top-left-radius: 0; border-top-right-radius: 0; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 </head>
 <body>
@@ -202,9 +227,9 @@ tfoot td.credit { color: var(--green); }
     <!-- 2007 to 2016: the index path (faint) and the credited value with a 10% cap and 0% floor (blue) -->
     <g fill="none" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="1"><line x1="880" y1="66" x2="880" y2="470"/><line x1="932" y1="66" x2="932" y2="470"/><line x1="984" y1="66" x2="984" y2="470"/><line x1="1036" y1="66" x2="1036" y2="470"/><line x1="1088" y1="66" x2="1088" y2="470"/><line x1="1140" y1="66" x2="1140" y2="470"/><line x1="1192" y1="66" x2="1192" y2="470"/><line x1="1244" y1="66" x2="1244" y2="470"/><line x1="1296" y1="66" x2="1296" y2="470"/><line x1="1348" y1="66" x2="1348" y2="470"/><line x1="1400" y1="66" x2="1400" y2="470"/><line x1="840" y1="470" x2="1420" y2="470"/></g>
     <polyline points="880.0,352.3 932.0,341.8 984.0,461.0 1036.0,416.3 1088.0,386.3 1140.0,386.3 1192.0,350.7 1244.0,261.6 1296.0,217.2 1348.0,220.3 1400.0,179.2" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.5"/>
-    <polyline points="880.0,352.3 932.0,341.8 984.0,341.8 1036.0,310.8 1088.0,276.7 1140.0,276.7 1192.0,239.2 1244.0,198.0 1296.0,152.6 1348.0,152.6 1400.0,105.0" fill="none" stroke="#0077B6" stroke-opacity="0.75" stroke-width="1.75"/>
-    <g fill="#0077B6" fill-opacity="0.9"><circle cx="880.0" cy="352.3" r="2.5"/><circle cx="932.0" cy="341.8" r="2.5"/><circle cx="984.0" cy="341.8" r="2.5"/><circle cx="1036.0" cy="310.8" r="2.5"/><circle cx="1088.0" cy="276.7" r="2.5"/><circle cx="1140.0" cy="276.7" r="2.5"/><circle cx="1192.0" cy="239.2" r="2.5"/><circle cx="1244.0" cy="198.0" r="2.5"/><circle cx="1296.0" cy="152.6" r="2.5"/><circle cx="1348.0" cy="152.6" r="2.5"/><circle cx="1400.0" cy="105.0" r="2.5"/></g>
-    <circle cx="1400.0" cy="105.0" r="7" fill="none" stroke="#0077B6" stroke-opacity="0.6" stroke-width="1"/>
+    <polyline points="880.0,352.3 932.0,341.8 984.0,341.8 1036.0,310.8 1088.0,276.7 1140.0,276.7 1192.0,239.2 1244.0,198.0 1296.0,152.6 1348.0,152.6 1400.0,105.0" fill="none" stroke="#8CCBEC" stroke-opacity="0.75" stroke-width="1.75"/>
+    <g fill="#8CCBEC" fill-opacity="0.9"><circle cx="880.0" cy="352.3" r="2.5"/><circle cx="932.0" cy="341.8" r="2.5"/><circle cx="984.0" cy="341.8" r="2.5"/><circle cx="1036.0" cy="310.8" r="2.5"/><circle cx="1088.0" cy="276.7" r="2.5"/><circle cx="1140.0" cy="276.7" r="2.5"/><circle cx="1192.0" cy="239.2" r="2.5"/><circle cx="1244.0" cy="198.0" r="2.5"/><circle cx="1296.0" cy="152.6" r="2.5"/><circle cx="1348.0" cy="152.6" r="2.5"/><circle cx="1400.0" cy="105.0" r="2.5"/></g>
+    <circle cx="1400.0" cy="105.0" r="7" fill="none" stroke="#8CCBEC" stroke-opacity="0.6" stroke-width="1"/>
   </svg>
   <div class="shell">
     <div class="label">The indexed growth strategy</div>

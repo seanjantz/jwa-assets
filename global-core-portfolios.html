@@ -57,10 +57,10 @@ p + p { margin-top: 16px; }
   font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
   text-decoration: none; border-radius: 2px; transition: background 0.2s, color 0.2s, border-color 0.2s; cursor: pointer; border: 1px solid transparent;
 }
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-blue:hover { background: #00609A; }
+.btn-blue { background: var(--blue); background-image: var(--g-blue-lift); color: #fff; }
+.btn-blue:hover { background-image: var(--g-blue-lift-hover); }
 .btn-ink { background: var(--ink); color: #fff; }
-.btn-ink:hover { background: var(--blue); }
+.btn-ink:hover { background: var(--blue); background-image: var(--g-blue-lift); }
 .btn-line { background: transparent; color: var(--ink); border-color: var(--rule); }
 .btn-line:hover { border-color: var(--ink); background: var(--white); }
 .on-ink .btn-line { color: #fff; border-color: rgba(255,255,255,0.35); }
@@ -436,6 +436,30 @@ body.gross .gross-flag { display: inline-flex; }
 }
 .num-swap { transition: opacity 0.25s; }
 body.swapping .num-swap { opacity: 0.25; }
+
+/* JWA gradients, brand standards v1.2 (Nov 20, 2026) */
+:root {
+  --g-ink-depth: linear-gradient(135deg, #1A2330 0%, #232E3D 45%, #2F4963 100%);
+  --g-ink-blue: linear-gradient(115deg, #232E3D 0%, #232E3D 38%, #1F4E73 72%, #0077B6 100%);
+  --g-blue-lift: linear-gradient(90deg, #0077B6 0%, #2A9BD6 100%);
+  --g-blue-lift-hover: linear-gradient(90deg, #00609A 0%, #0077B6 100%);
+  --g-stone-fade: linear-gradient(180deg, #FFFFFF 0%, #F6F3EE 45%, #EDE8E0 100%);
+  --g-stone-sky: linear-gradient(135deg, #EDE8E0 0%, #E6ECEC 50%, #D3E6F1 100%);
+  --g-blue-green: linear-gradient(120deg, #0077B6 0%, #1A7C8C 55%, #2E7D5B 100%);
+  --g-text-blue: linear-gradient(90deg, #005F92 0%, #2A9BD6 100%);
+  --g-text-blue-on-ink: linear-gradient(90deg, #4FB0E0 0%, #B5E0F5 100%);
+}
+.hero { background-image: var(--g-ink-blue); }
+.final-cta { background-image: var(--g-ink-depth); }
+.method { background-image: var(--g-stone-sky); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  h1 em, h2 em, h3 em, .gtext {
+    background-image: var(--g-text-blue); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-right: 0.06em;
+  }
+  .hero h1 em, .hero h2 em, .final-cta h2 em, .on-ink h2 em, .on-ink h3 em { background-image: var(--g-text-blue-on-ink); }
+}
 </style>
 </head>
 <body>
@@ -455,12 +479,12 @@ body.swapping .num-swap { opacity: 0.25; }
     <ellipse cx="1085" cy="202.6" rx="275.4" ry="94.2"/>
     <ellipse cx="1085" cy="93.2" rx="159.0" ry="54.4"/>
     </g>
-    <ellipse cx="1085" cy="352" rx="318" ry="108.8" stroke="#0077B6" stroke-opacity="0.55" stroke-width="1.5"/>
-    <ellipse cx="1085" cy="352" rx="224.9" ry="318" stroke="#0077B6" stroke-opacity="0.28" stroke-width="1.2"/>
+    <ellipse cx="1085" cy="352" rx="318" ry="108.8" stroke="#8CCBEC" stroke-opacity="0.55" stroke-width="1.5"/>
+    <ellipse cx="1085" cy="352" rx="224.9" ry="318" stroke="#8CCBEC" stroke-opacity="0.28" stroke-width="1.2"/>
     </g>
-    <path d="M 40 668 L 200 630 L 360 642 L 520 580 L 680 548 L 840 470" fill="none" stroke="#0077B6" stroke-opacity="0.32" stroke-width="1.5" stroke-dasharray="6 8"/>
+    <path d="M 40 668 L 200 630 L 360 642 L 520 580 L 680 548 L 840 470" fill="none" stroke="#8CCBEC" stroke-opacity="0.32" stroke-width="1.5" stroke-dasharray="6 8"/>
     <g fill="#FFFFFF" fill-opacity="0.14"><circle cx="200" cy="630" r="3"/><circle cx="360" cy="642" r="3"/><circle cx="520" cy="580" r="3"/><circle cx="680" cy="548" r="3"/></g>
-    <circle cx="840" cy="470" r="5" fill="#0077B6" fill-opacity="0.55"/>
+    <circle cx="840" cy="470" r="5" fill="#8CCBEC" fill-opacity="0.55"/>
     <g fill="#FFFFFF" fill-opacity="0.06">
       <circle cx="40" cy="60" r="2"/><circle cx="80" cy="60" r="2"/><circle cx="120" cy="60" r="2"/><circle cx="160" cy="60" r="2"/><circle cx="200" cy="60" r="2"/>
       <circle cx="40" cy="100" r="2"/><circle cx="80" cy="100" r="2"/><circle cx="120" cy="100" r="2"/><circle cx="160" cy="100" r="2"/><circle cx="200" cy="100" r="2"/>
